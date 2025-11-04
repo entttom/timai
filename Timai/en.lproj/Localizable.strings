@@ -1,0 +1,110 @@
+//
+//  Localizable.strings
+//  Timai
+//
+//  Copyright © 2018 Dr. Thomas Entner.
+//  All rights reserved.
+//
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+
+// Login View
+"login.button.signin" = "Sign in";
+"login.button.needHelp" = "Need Help?";
+"login.button.tryDemo" = "Try the demo";
+"login.placeholder.username" = "Username";
+"login.placeholder.password" = "Password";
+
+// Timesheet View
+"timesheet.navigationTitle" = "Timesheet";
+"timesheet.tableView.section.today" = "Today";
+"timesheet.tableView.section.yesterday" = "Yesterday";
+"timesheet.tableView.cellAction.delete" = "Delete";
+"timesheet.tableView.cellAction.duplicate" = "Duplicate";
+"timesheet.stats.today" = "Hours today";
+"timesheet.stats.week" = "Hours this week";
+"timesheet.stats.month" = "Hours this month";
+
+// TimesheetRecordDetail View
+"timesheetRecordDetail.startTimeTitle" = "Start";
+"timesheetRecordDetail.endTimeTitle" = "End";
+"timesheetRecordDetail.navigationTitle" = "Calendar week";
+
+// Settings View
+"settings.navigationTitle" = "Settings";
+"settings.button.signout" = "Sign out";
+"settings.tableView.section.appearance" = "Appearance";
+"settings.tableView.cell.theme" = "Theme";
+"settings.theme.system" = "System";
+"settings.theme.light" = "Light";
+"settings.theme.dark" = "Dark";
+"settings.tableView.section.language" = "Language";
+"settings.tableView.cell.language" = "Language";
+"settings.tableView.section.credits" = "Credits";
+"settings.tableView.section.about" = "About";
+"settings.tableView.cell.openSource" = "Open Source Software";
+"settings.tableView.cell.graphics" = "Graphics & Images";
+"settings.tableView.cell.contributors" = "Contributors";
+"settings.tableView.cell.source" = "Source code";
+"settings.tableView.cell.appVersion" = "App Version";
+"settings.label.madeBy" = "Timai is built by Dr. Thomas Entner";
+"settings.alert.logout.title" = "Sign out?";
+"settings.alert.logout.message" = "Do you really want to sign out?";
+"settings.alert.logout.confirm" = "Sign out";
+"settings.alert.logout.cancel" = "Cancel";
+"settings.alert.language.title" = "Change language";
+"settings.alert.language.message" = "The language will be changed. Some texts will only be fully updated after restarting the app.";
+"settings.alert.language.confirm" = "Change";
+"settings.alert.language.cancel" = "Cancel";
+
+// OSSDetails View
+"ossDetail.navigationTitle" = "Open Source Software";
+"ossDetail.detailText.seperator" = "by";
+
+// GraphicsDetail View
+"graphicsDetail.navigationTitle" = "Graphics & Images";
+"graphicsDetail.detailText.seperator" = "by";
+
+// AddTimesheetRecord View
+"addTimesheetRecord.comingSoon.title" = "Not implemented";
+"addTimesheetRecord.comingSoon.description" = "Sorry, this functionality isn't yet implemented.";
+
+// Reports View
+"reports.navigationTitle" = "Reports";
+"reports.tabTitle" = "Reports";
+
+// Report Types - Titles
+"reports.userWeek.title" = "Weekly View";
+"reports.userMonth.title" = "Monthly View";
+"reports.userYear.title" = "Yearly View";
+"reports.allUsersWeek.title" = "Weekly View (All Users)";
+"reports.allUsersMonth.title" = "Monthly View (All Users)";
+"reports.allUsersYear.title" = "Yearly View (All Users)";
+"reports.projectDetails.title" = "Project Details";
+"reports.projectOverview.title" = "Project Overview";
+"reports.monthlyEvaluation.title" = "Monthly Evaluation";
+"reports.inactiveProjects.title" = "Inactive Projects";
+"reports.projectsByMonthActivityUser.title" = "Projects by Month";
+
+// Report Types - Descriptions
+"reports.userWeek.description" = "Your time tracking for this week";
+"reports.userMonth.description" = "Your time tracking for this month";
+"reports.userYear.description" = "Your time tracking for this year";
+"reports.allUsersWeek.description" = "Time tracking of all users this week";
+"reports.allUsersMonth.description" = "Time tracking of all users this month";
+"reports.allUsersYear.description" = "Time tracking of all users this year";
+"reports.projectDetails.description" = "Detailed project information";
+"reports.projectOverview.description" = "Overview of all projects";
+"reports.monthlyEvaluation.description" = "Evaluation of the current month";
+"reports.inactiveProjects.description" = "Projects without recent activity";
+"reports.projectsByMonthActivityUser.description" = "Grouped by month, activity and user";
+
+// Error messages
+"error.message.wrongCredentials" = "Wrong username or password";
+"error.message.unsupportedVersion" = "Unsupported Kimai version";
+"error.message.endpointConnectionError" = "Couldn't connect to the enpoint";
+"error.message.noTimesheetRecords" = "No records found";
+"error.message.couldntReceiveRecords" = "Couldn't get timesheet records";
+"error.message.loadingFailed" = "Failed to load data";

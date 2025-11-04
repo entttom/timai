@@ -1,0 +1,452 @@
+//
+//  TimesheetEditView.swift
+//  Timai
+//
+//  Copyright (c) 2025 Dr. Thomas Entner.
+//  All rights reserved.
+//
+//  Licensed under the Business Source License 1.1.
+//  Usage is free for non-commercial and personal use.
+//  Commercial use requires a commercial license.
+//
+import SwiftUI
+
+struct TimesheetEditView: View {
+    enum Mode {
+        case create
+        case edit(activity: Activity)
+        
+        var isEdit: Bool {
+            if case .edit = self {
+                return true
+            }
+            return false
+        }
+    }
+    
+    let mode: Mode
+    let onSaved: () -> Void
+    
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject private var editViewModel = TimesheetEditViewModel()
+    
+    @State private var selectedCustomerId: Int?
+    @State private var selectedProjectId: Int?
+    @State private var selectedActivityId: Int?
+    @State private var startDate = Date()
+    @State private var endDate = Date()
+    @State private var descriptionText = ""
+    @State private var showToast = false
+    @State private var isInitializing = false
+    
+    var body: some View {
+        Form {
+            customerSection
+            
+            if selectedCustomerId != nil || mode.isEdit {
+                projectSection
+            }
+            
+            if selectedProjectId != nil || mode.isEdit {
+                activitySection
+            }
+            
+            if selectedActivityId != nil || mode.isEdit {
+                timeSection
+                descriptionSection
+            }
+        }
+        .navigationTitle(mode.isEdit ? "Bearbeiten" : "Neuer Eintrag")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Abbrechen") {
+                    dismiss()
+                }
+            }
+            
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Speichern") {
+                    Task {
+                        await saveTimesheet()
+                    }
+                }
+                .disabled(!canSave)
+            }
+        }
+        .task {
+            if let user = authViewModel.currentUser {
+                editViewModel.setUser(user)
+                await editViewModel.loadCustomers()
+                
+                // Load existing data for edit mode
+                if case .edit(let activity) = mode {
+                    isInitializing = true
+                    
+                    startDate = activity.startDateTime
+                    endDate = activity.endDateTime
+                    descriptionText = activity.description ?? ""
+                    
+                    // Pre-select customer, project, and activity
+                    let (customer, project, activityDetails) = await editViewModel.loadAndPreselect(
+                        customerId: activity.customerId,
+                        projectId: activity.projectId,
+                        activityId: activity.activityId
+                    )
+                    
+                    // Set selected IDs after data is loaded
+                    selectedCustomerId = customer?.id
+                    print("🔍 [Edit] Customer ID gesetzt: \(customer?.id ?? -1) - \(customer?.name ?? "nil")")
+                    
+                    selectedProjectId = project?.id
+                    print("🔍 [Edit] Projekt ID gesetzt: \(project?.id ?? -1) - \(project?.name ?? "nil")")
+                    print("🔍 [Edit] Verfügbare Projekte: \(editViewModel.projects.map { "\($0.id): \($0.name)" })")
+                    
+                    selectedActivityId = activityDetails?.id
+                    print("🔍 [Edit] Aktivität ID gesetzt: \(activityDetails?.id ?? -1) - \(activityDetails?.name ?? "nil")")
+                    print("🔍 [Edit] Verfügbare Aktivitäten: \(editViewModel.activities.map { "\($0.id): \($0.name)" })")
+                    
+                    // Kleine Verzögerung für UI-Update
+                    try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 Sekunden
+                    
+                    isInitializing = false
+                    print("✅ [Edit] Initialisierung abgeschlossen")
+                }
+            }
+        }
+        .overlay {
+            if editViewModel.isSaving {
+                LoadingOverlay()
+            }
+        }
+        .toast(
+            isShowing: $showToast,
+            message: editViewModel.errorMessage ?? "",
+            type: .error
+        )
+        .onChange(of: editViewModel.errorMessage) { newValue in
+            if newValue != nil {
+                showToast = true
+            }
+        }
+    }
+    
+    // MARK: - Sub Views
+    
+    private var customerSection: some View {
+        Section("Kunde") {
+            if editViewModel.isLoadingCustomers {
+                loadingRow(text: "Lade Kunden...")
+            } else {
+                customerPicker
+            }
+        }
+    }
+    
+    private var customerPicker: some View {
+        Picker("Kunde auswählen", selection: $selectedCustomerId) {
+            Text("Bitte wählen").tag(nil as Int?)
+            ForEach(editViewModel.customers) { customer in
+                Text(customer.name).tag(customer.id as Int?)
+            }
+        }
+        .onChange(of: selectedCustomerId) { newValue in
+            guard !isInitializing else { return }
+            Task {
+                if let customerId = newValue,
+                   let customer = editViewModel.customers.first(where: { $0.id == customerId }) {
+                    await editViewModel.loadProjects(for: customer)
+                }
+                selectedProjectId = nil
+                selectedActivityId = nil
+            }
+        }
+    }
+    
+    private var projectSection: some View {
+        Section("Projekt") {
+            if editViewModel.isLoadingProjects {
+                loadingRow(text: "Lade Projekte...")
+            } else {
+                projectPicker
+            }
+        }
+    }
+    
+    private var projectPicker: some View {
+        Picker("Projekt auswählen", selection: $selectedProjectId) {
+            Text("Bitte wählen").tag(nil as Int?)
+            ForEach(editViewModel.projects) { project in
+                Text(project.name).tag(project.id as Int?)
+            }
+        }
+        .onChange(of: selectedProjectId) { newValue in
+            guard !isInitializing else { return }
+            Task {
+                if let projectId = newValue,
+                   let project = editViewModel.projects.first(where: { $0.id == projectId }) {
+                    await editViewModel.loadActivities(for: project)
+                }
+                selectedActivityId = nil
+            }
+        }
+    }
+    
+    private var activitySection: some View {
+        Section("Aktivität") {
+            if editViewModel.isLoadingActivities {
+                loadingRow(text: "Lade Aktivitäten...")
+            } else {
+                activityPicker
+            }
+        }
+    }
+    
+    private var activityPicker: some View {
+        Picker("Aktivität auswählen", selection: $selectedActivityId) {
+            Text("Bitte wählen").tag(nil as Int?)
+            ForEach(editViewModel.activities) { activity in
+                Text(activity.name).tag(activity.id as Int?)
+            }
+        }
+    }
+    
+    private var timeSection: some View {
+        Section("Zeit") {
+            DatePicker("Start", selection: $startDate)
+            DatePicker("Ende", selection: $endDate)
+        }
+    }
+    
+    private var descriptionSection: some View {
+        Section("Beschreibung") {
+            TextEditor(text: $descriptionText)
+                .frame(minHeight: 100)
+        }
+    }
+    
+    private func loadingRow(text: String) -> some View {
+        HStack {
+            ProgressView()
+            Text(text)
+                .foregroundColor(.timaiGrayTone2)
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private var canSave: Bool {
+        selectedProjectId != nil && selectedActivityId != nil && endDate > startDate
+    }
+    
+    private func saveTimesheet() async {
+        guard let projectId = selectedProjectId,
+              let activityId = selectedActivityId else {
+            return
+        }
+        
+        let success: Bool
+        
+        switch mode {
+        case .create:
+            success = await editViewModel.createTimesheet(
+                projectId: projectId,
+                activityId: activityId,
+                startDate: startDate,
+                endDate: endDate,
+                description: descriptionText.isEmpty ? nil : descriptionText
+            )
+        case .edit(let existingActivity):
+            success = await editViewModel.updateTimesheet(
+                id: existingActivity.recordId,
+                projectId: projectId,
+                activityId: activityId,
+                startDate: startDate,
+                endDate: endDate,
+                description: descriptionText.isEmpty ? nil : descriptionText
+            )
+        }
+        
+        if success {
+            onSaved()
+        }
+    }
+}
+
+// MARK: - Edit ViewModel
+@MainActor
+class TimesheetEditViewModel: ObservableObject {
+    @Published var customers: [Customer] = []
+    @Published var projects: [Project] = []
+    @Published var activities: [ActivityDetails] = []
+    @Published var isLoadingCustomers = false
+    @Published var isLoadingProjects = false
+    @Published var isLoadingActivities = false
+    @Published var isSaving = false
+    @Published var errorMessage: String?
+    
+    private let networkService = NetworkService.shared
+    private var currentUser: User?
+    
+    func setUser(_ user: User) {
+        self.currentUser = user
+    }
+    
+    func loadCustomers() async {
+        guard let user = currentUser else { return }
+        
+        isLoadingCustomers = true
+        errorMessage = nil
+        
+        do {
+            customers = try await networkService.getCustomers(user: user)
+        } catch {
+            print("❌ [TimesheetEditViewModel] Fehler beim Laden der Kunden: \(error)")
+            errorMessage = "Fehler beim Laden der Kunden"
+        }
+        
+        isLoadingCustomers = false
+    }
+    
+    func loadAndPreselect(customerId: Int, projectId: Int, activityId: Int) async -> (Customer?, Project?, ActivityDetails?) {
+        guard let user = currentUser else { 
+            return (nil, nil, nil)
+        }
+        
+        // Find customer by ID
+        guard let customer = customers.first(where: { $0.id == customerId }) else {
+            print("⚠️ [TimesheetEditViewModel] Kunde mit ID \(customerId) nicht gefunden")
+            return (nil, nil, nil)
+        }
+        
+        // Load projects for this customer
+        await loadProjects(for: customer)
+        print("✅ [TimesheetEditViewModel] \(projects.count) Projekte für Kunde '\(customer.name)' geladen")
+        
+        // Find project by ID
+        guard let project = projects.first(where: { $0.id == projectId }) else {
+            print("⚠️ [TimesheetEditViewModel] Projekt mit ID \(projectId) nicht gefunden")
+            return (customer, nil, nil)
+        }
+        
+        // Load activities for this project
+        await loadActivities(for: project)
+        print("✅ [TimesheetEditViewModel] \(activities.count) Aktivitäten für Projekt '\(project.name)' geladen")
+        
+        // Find activity by ID
+        let activity = activities.first(where: { $0.id == activityId })
+        if activity == nil {
+            print("⚠️ [TimesheetEditViewModel] Aktivität mit ID \(activityId) nicht gefunden")
+        } else {
+            print("✅ [TimesheetEditViewModel] Aktivität '\(activity!.name)' gefunden")
+        }
+        
+        return (customer, project, activity)
+    }
+    
+    func loadProjects(for customer: Customer) async {
+        guard let user = currentUser else { return }
+        
+        isLoadingProjects = true
+        projects = []
+        errorMessage = nil
+        
+        do {
+            projects = try await networkService.getProjects(customer: customer, user: user)
+        } catch {
+            print("❌ [TimesheetEditViewModel] Fehler beim Laden der Projekte: \(error)")
+            errorMessage = "Fehler beim Laden der Projekte"
+        }
+        
+        isLoadingProjects = false
+    }
+    
+    func loadActivities(for project: Project) async {
+        guard let user = currentUser else { return }
+        
+        isLoadingActivities = true
+        activities = []
+        errorMessage = nil
+        
+        do {
+            activities = try await networkService.getActivities(projectId: project.id, user: user)
+        } catch {
+            print("❌ [TimesheetEditViewModel] Fehler beim Laden der Aktivitäten: \(error)")
+            errorMessage = "Fehler beim Laden der Aktivitäten"
+        }
+        
+        isLoadingActivities = false
+    }
+    
+    func createTimesheet(projectId: Int, activityId: Int, startDate: Date, endDate: Date, description: String?) async -> Bool {
+        guard let user = currentUser else { return false }
+        
+        isSaving = true
+        errorMessage = nil
+        
+        let form = TimesheetEditForm(
+            project: projectId,
+            activity: activityId,
+            begin: startDate.ISO8601Format(),
+            end: endDate.ISO8601Format(),
+            description: description,
+            tags: nil,
+            fixedRate: nil,
+            hourlyRate: nil,
+            user: nil,
+            exported: nil,
+            billable: nil
+        )
+        
+        do {
+            _ = try await networkService.createTimesheet(form: form, user: user)
+            isSaving = false
+            return true
+        } catch {
+            print("❌ [TimesheetEditViewModel] Fehler beim Erstellen: \(error)")
+            errorMessage = "Fehler beim Speichern"
+            isSaving = false
+            return false
+        }
+    }
+    
+    func updateTimesheet(id: Int, projectId: Int, activityId: Int, startDate: Date, endDate: Date, description: String?) async -> Bool {
+        guard let user = currentUser else { return false }
+        
+        isSaving = true
+        errorMessage = nil
+        
+        let form = TimesheetEditForm(
+            project: projectId,
+            activity: activityId,
+            begin: startDate.ISO8601Format(),
+            end: endDate.ISO8601Format(),
+            description: description,
+            tags: nil,
+            fixedRate: nil,
+            hourlyRate: nil,
+            user: nil,
+            exported: nil,
+            billable: nil
+        )
+        
+        do {
+            _ = try await networkService.updateTimesheet(id: id, form: form, user: user)
+            isSaving = false
+            return true
+        } catch {
+            print("❌ [TimesheetEditViewModel] Fehler beim Aktualisieren: \(error)")
+            errorMessage = "Fehler beim Speichern"
+            isSaving = false
+            return false
+        }
+    }
+}
+
+#Preview {
+    NavigationStack {
+        TimesheetEditView(mode: .create, onSaved: {})
+            .environmentObject(AuthViewModel())
+    }
+}

@@ -1,0 +1,110 @@
+//
+//  Localizable.strings
+//  Timai
+//
+//  Copyright © 2018 Dr. Thomas Entner.
+//  All rights reserved.
+//
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+
+// Login View
+"login.button.signin" = "Einloggen";
+"login.button.needHelp" = "Hilfe benötigt?";
+"login.button.tryDemo" = "Demo ausprobieren";
+"login.placeholder.username" = "Benutzername";
+"login.placeholder.password" = "Passwort";
+
+// Timesheet View
+"timesheet.navigationTitle" = "Timesheet";
+"timesheet.tableView.section.today" = "Heute";
+"timesheet.tableView.section.yesterday" = "Gestern";
+"timesheet.tableView.cellAction.delete" = "Löschen";
+"timesheet.tableView.cellAction.duplicate" = "Duplizieren";
+"timesheet.stats.today" = "Stunden heute";
+"timesheet.stats.week" = "Stunden dieser Woche";
+"timesheet.stats.month" = "Stunden diesen Monat";
+
+// TimesheetRecordDetail View
+"timesheetRecordDetail.startTimeTitle" = "Start";
+"timesheetRecordDetail.endTimeTitle" = "Ende";
+"timesheetRecordDetail.navigationTitle" = "Kalenderwoche";
+
+// Settings View
+"settings.navigationTitle" = "Einstellungen";
+"settings.button.signout" = "Ausloggen";
+"settings.tableView.section.appearance" = "Darstellung";
+"settings.tableView.cell.theme" = "Theme";
+"settings.theme.system" = "System";
+"settings.theme.light" = "Hell";
+"settings.theme.dark" = "Dunkel";
+"settings.tableView.section.language" = "Sprache";
+"settings.tableView.cell.language" = "Sprache";
+"settings.tableView.section.credits" = "Credits";
+"settings.tableView.section.about" = "Über";
+"settings.tableView.cell.openSource" = "Open Source Software";
+"settings.tableView.cell.graphics" = "Grafiken & Bilder";
+"settings.tableView.cell.contributors" = "Mitwirkende";
+"settings.tableView.cell.source" = "Quelltext";
+"settings.tableView.cell.appVersion" = "App Version";
+"settings.label.madeBy" = "Timai wird entwickelt von Dr. Thomas Entner";
+"settings.alert.logout.title" = "Abmelden?";
+"settings.alert.logout.message" = "Möchten Sie sich wirklich abmelden?";
+"settings.alert.logout.confirm" = "Abmelden";
+"settings.alert.logout.cancel" = "Abbrechen";
+"settings.alert.language.title" = "Sprache ändern";
+"settings.alert.language.message" = "Die Sprache wird geändert. Einige Texte werden erst nach einem Neustart der App vollständig aktualisiert.";
+"settings.alert.language.confirm" = "Ändern";
+"settings.alert.language.cancel" = "Abbrechen";
+
+// OSSDetails View
+"ossDetail.navigationTitle" = "Open Source Software";
+"ossDetail.detailText.seperator" = "von";
+
+// GraphicsDetail View
+"graphicsDetail.navigationTitle" = "Grafiken & Bilder";
+"graphicsDetail.detailText.seperator" = "von";
+
+// AddTimesheetRecord View
+"addTimesheetRecord.comingSoon.title" = "Nicht implementiert";
+"addTimesheetRecord.comingSoon.description" = "Entschuldigung, diese Funktionalität ist noch nicht implementiert.";
+
+// Reports View
+"reports.navigationTitle" = "Berichte";
+"reports.tabTitle" = "Berichte";
+
+// Report Types - Titles
+"reports.userWeek.title" = "Wochenansicht";
+"reports.userMonth.title" = "Monatsansicht";
+"reports.userYear.title" = "Jahresansicht";
+"reports.allUsersWeek.title" = "Wochenansicht (Alle)";
+"reports.allUsersMonth.title" = "Monatsansicht (Alle)";
+"reports.allUsersYear.title" = "Jahresansicht (Alle)";
+"reports.projectDetails.title" = "Projektdetails";
+"reports.projectOverview.title" = "Projektübersicht";
+"reports.monthlyEvaluation.title" = "Monatsauswertung";
+"reports.inactiveProjects.title" = "Inaktive Projekte";
+"reports.projectsByMonthActivityUser.title" = "Projekte nach Monat";
+
+// Report Types - Descriptions
+"reports.userWeek.description" = "Ihre Zeiterfassung dieser Woche";
+"reports.userMonth.description" = "Ihre Zeiterfassung diesen Monat";
+"reports.userYear.description" = "Ihre Zeiterfassung dieses Jahr";
+"reports.allUsersWeek.description" = "Zeiterfassung aller Benutzer diese Woche";
+"reports.allUsersMonth.description" = "Zeiterfassung aller Benutzer diesen Monat";
+"reports.allUsersYear.description" = "Zeiterfassung aller Benutzer dieses Jahr";
+"reports.projectDetails.description" = "Detaillierte Projektinformationen";
+"reports.projectOverview.description" = "Übersicht aller Projekte";
+"reports.monthlyEvaluation.description" = "Auswertung des aktuellen Monats";
+"reports.inactiveProjects.description" = "Projekte ohne kürzliche Aktivität";
+"reports.projectsByMonthActivityUser.description" = "Gruppiert nach Monat, Tätigkeit und Benutzer";
+
+// Error messages
+"error.message.wrongCredentials" = "Falscher Benutzername oder Passwort";
+"error.message.unsupportedVersion" = "Nicht unterstützte Kimai Version";
+"error.message.endpointConnectionError" = "Konnte keine Verbindung zu Kimai herstellen";
+"error.message.noTimesheetRecords" = "Keine Einträge gefunden";
+"error.message.couldntReceiveRecords" = "Konnte keine Einträge vom Server laden";
+"error.message.loadingFailed" = "Daten konnten nicht geladen werden";

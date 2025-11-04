@@ -1,0 +1,446 @@
+//
+//  GenericReportView.swift
+//  Timai
+//
+//  Copyright (c) 2025 Dr. Thomas Entner.
+//  All rights reserved.
+//
+//  Licensed under the Business Source License 1.1.
+//  Usage is free for non-commercial and personal use.
+//  Commercial use requires a commercial license.
+//
+import SwiftUI
+import Charts
+
+// MARK: - User Reports
+struct UserWeekReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        GenericTimeReportView(
+            title: "reports.userWeek.title".localized(),
+            timesheets: viewModel.timesheets,
+            period: .week
+        )
+    }
+}
+
+struct UserMonthReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        GenericTimeReportView(
+            title: "reports.userMonth.title".localized(),
+            timesheets: viewModel.timesheets,
+            period: .month
+        )
+    }
+}
+
+struct UserYearReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        GenericTimeReportView(
+            title: "reports.userYear.title".localized(),
+            timesheets: viewModel.timesheets,
+            period: .year
+        )
+    }
+}
+
+// MARK: - All Users Reports
+struct AllUsersWeekReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        AllUsersReportView(
+            title: "reports.allUsersWeek.title".localized(),
+            users: viewModel.users,
+            timesheets: viewModel.timesheets,
+            period: .week
+        )
+    }
+}
+
+struct AllUsersMonthReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        AllUsersReportView(
+            title: "reports.allUsersMonth.title".localized(),
+            users: viewModel.users,
+            timesheets: viewModel.timesheets,
+            period: .month
+        )
+    }
+}
+
+struct AllUsersYearReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        AllUsersReportView(
+            title: "reports.allUsersYear.title".localized(),
+            users: viewModel.users,
+            timesheets: viewModel.timesheets,
+            period: .year
+        )
+    }
+}
+
+// MARK: - Project Reports
+struct ProjectDetailsReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        ProjectReportView(
+            title: "reports.projectDetails.title".localized(),
+            timesheets: viewModel.timesheets
+        )
+    }
+}
+
+struct ProjectOverviewReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        ProjectReportView(
+            title: "reports.projectOverview.title".localized(),
+            timesheets: viewModel.timesheets
+        )
+    }
+}
+
+struct MonthlyEvaluationReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        GenericTimeReportView(
+            title: "reports.monthlyEvaluation.title".localized(),
+            timesheets: viewModel.timesheets,
+            period: .month
+        )
+    }
+}
+
+struct InactiveProjectsReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        InactiveProjectsListView(
+            title: "reports.inactiveProjects.title".localized(),
+            timesheets: viewModel.timesheets
+        )
+    }
+}
+
+struct ProjectsByMonthActivityUserReportView: View {
+    @EnvironmentObject var viewModel: ReportsViewModel
+    
+    var body: some View {
+        ProjectReportView(
+            title: "reports.projectsByMonthActivityUser.title".localized(),
+            timesheets: viewModel.timesheets
+        )
+    }
+}
+
+// MARK: - Generic Report Components
+
+struct GenericTimeReportView: View {
+    let title: String
+    let timesheets: [Timesheet]
+    let period: TimePeriod
+    
+    enum TimePeriod {
+        case week, month, year
+    }
+    
+    var filteredTimesheets: [Timesheet] {
+        let now = Date()
+        return timesheets.filter { timesheet in
+            switch period {
+            case .week:
+                return Calendar.current.isDate(timesheet.begin, equalTo: now, toGranularity: .weekOfYear)
+            case .month:
+                return Calendar.current.isDate(timesheet.begin, equalTo: now, toGranularity: .month)
+            case .year:
+                return Calendar.current.isDate(timesheet.begin, equalTo: now, toGranularity: .year)
+            }
+        }
+    }
+    
+    var totalHours: Double {
+        let totalSeconds = filteredTimesheets.reduce(0) { sum, timesheet in
+            sum + (timesheet.duration ?? 0)
+        }
+        return Double(totalSeconds) / 3600.0
+    }
+    
+    var projectBreakdown: [(String, Double)] {
+        var breakdown: [String: Double] = [:]
+        for timesheet in filteredTimesheets {
+            let projectName = timesheet.project.name
+            let hours = Double(timesheet.duration ?? 0) / 3600.0
+            breakdown[projectName, default: 0] += hours
+        }
+        return breakdown.sorted { $0.value > $1.value }
+    }
+    
+    var body: some View {
+        List {
+            // Summary Section
+            Section("Zusammenfassung") {
+                HStack {
+                    Text("Gesamtstunden")
+                        .foregroundColor(.timaiSubheaderColor)
+                    Spacer()
+                    Text(String(format: "%.2f h", totalHours))
+                        .fontWeight(.bold)
+                        .foregroundColor(.timaiHighlight)
+                }
+                
+                HStack {
+                    Text("Anzahl Einträge")
+                        .foregroundColor(.timaiSubheaderColor)
+                    Spacer()
+                    Text("\(filteredTimesheets.count)")
+                        .fontWeight(.bold)
+                        .foregroundColor(.timaiTextBlack)
+                }
+            }
+            
+            // Chart Section
+            if !projectBreakdown.isEmpty {
+                Section("Nach Projekt") {
+                    Chart(projectBreakdown, id: \.0) { item in
+                        BarMark(
+                            x: .value("Stunden", item.1),
+                            y: .value("Projekt", item.0)
+                        )
+                        .foregroundStyle(Color.timaiHighlight)
+                    }
+                    .frame(height: CGFloat(projectBreakdown.count * 40))
+                    .padding(.vertical)
+                }
+            }
+            
+            // Project List
+            Section("Details") {
+                ForEach(projectBreakdown, id: \.0) { project, hours in
+                    HStack {
+                        Text(project)
+                        Spacer()
+                        Text(String(format: "%.2f h", hours))
+                            .foregroundColor(.timaiGrayTone2)
+                    }
+                }
+            }
+        }
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct AllUsersReportView: View {
+    let title: String
+    let users: [TimesheetUser]
+    let timesheets: [Timesheet]
+    let period: GenericTimeReportView.TimePeriod
+    
+    var userBreakdown: [(TimesheetUser, Double)] {
+        var breakdown: [Int: Double] = [:]
+        let filteredTimesheets = filterTimesheets()
+        
+        for timesheet in filteredTimesheets {
+            let userId = timesheet.user.id
+            let hours = Double(timesheet.duration ?? 0) / 3600.0
+            breakdown[userId, default: 0] += hours
+        }
+        
+        return users.compactMap { user in
+            if let hours = breakdown[user.id] {
+                return (user, hours)
+            }
+            return nil
+        }.sorted { $0.1 > $1.1 }
+    }
+    
+    func filterTimesheets() -> [Timesheet] {
+        let now = Date()
+        return timesheets.filter { timesheet in
+            switch period {
+            case .week:
+                return Calendar.current.isDate(timesheet.begin, equalTo: now, toGranularity: .weekOfYear)
+            case .month:
+                return Calendar.current.isDate(timesheet.begin, equalTo: now, toGranularity: .month)
+            case .year:
+                return Calendar.current.isDate(timesheet.begin, equalTo: now, toGranularity: .year)
+            }
+        }
+    }
+    
+    var body: some View {
+        List {
+            Section("Nach Benutzer") {
+                ForEach(userBreakdown, id: \.0.id) { user, hours in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(user.username)
+                                .font(.headline)
+                            if let alias = user.alias {
+                                Text(alias)
+                                    .font(.caption)
+                                    .foregroundColor(.timaiSubheaderColor)
+                            }
+                        }
+                        Spacer()
+                        Text(String(format: "%.2f h", hours))
+                            .fontWeight(.semibold)
+                            .foregroundColor(.timaiHighlight)
+                    }
+                }
+            }
+        }
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct ProjectReportView: View {
+    let title: String
+    let timesheets: [Timesheet]
+    
+    var projectData: [(Project, Int, Double)] {
+        var breakdown: [Int: (Project, Int, Double)] = [:]
+        
+        for timesheet in timesheets {
+            let projectId = timesheet.project.id
+            let hours = Double(timesheet.duration ?? 0) / 3600.0
+            
+            if var existing = breakdown[projectId] {
+                existing.1 += 1  // count
+                existing.2 += hours
+                breakdown[projectId] = existing
+            } else {
+                breakdown[projectId] = (timesheet.project, 1, hours)
+            }
+        }
+        
+        return breakdown.values.sorted { $0.2 > $1.2 }
+    }
+    
+    var body: some View {
+        List {
+            ForEach(projectData, id: \.0.id) { project, count, hours in
+                let _ = print("🔍 [ProjectReportView] Projekt: \(project.name), Budget: \(project.timeBudget ?? 0)s")
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(project.name)
+                        .font(.headline)
+                        .foregroundColor(.timaiTextBlack)
+                    
+                    Text(project.customer.name)
+                        .font(.subheadline)
+                        .foregroundColor(.timaiSubheaderColor)
+                    
+                    HStack {
+                        Label("\(count) Einträge", systemImage: "list.bullet")
+                            .font(.caption)
+                            .foregroundColor(.timaiGrayTone2)
+                        
+                        Spacer()
+                        
+                        Text(String(format: "%.2f h", hours))
+                            .fontWeight(.semibold)
+                            .foregroundColor(.timaiHighlight)
+                    }
+                    
+                    // Budget Information
+                    if let timeBudget = project.timeBudget, timeBudget > 0 {
+                        let budgetHours = Double(timeBudget) / 3600.0
+                        let progress = hours / budgetHours
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack {
+                                Text("Budget:")
+                                    .font(.caption)
+                                    .foregroundColor(.timaiGrayTone2)
+                                
+                                Spacer()
+                                
+                                Text(String(format: "%.2f / %.2f h", hours, budgetHours))
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(progress > 1.0 ? .red : .timaiGrayTone3)
+                                
+                                Text(String(format: "(%.0f%%)", progress * 100))
+                                    .font(.caption)
+                                    .foregroundColor(progress > 1.0 ? .red : .timaiGrayTone2)
+                            }
+                            
+                            // Progress Bar
+                            GeometryReader { geometry in
+                                ZStack(alignment: .leading) {
+                                    // Background
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Color.timaiGrayTone1)
+                                        .frame(height: 8)
+                                    
+                                    // Progress
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(progress > 1.0 ? Color.red : Color.timaiHighlight)
+                                        .frame(width: min(geometry.size.width * progress, geometry.size.width), height: 8)
+                                }
+                            }
+                            .frame(height: 8)
+                        }
+                        .padding(.top, 4)
+                    }
+                }
+                .padding(.vertical, 4)
+            }
+        }
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct InactiveProjectsListView: View {
+    let title: String
+    let timesheets: [Timesheet]
+    
+    var inactiveProjects: [Project] {
+        let thirtyDaysAgo = Calendar.current.date(byAdding: .day, value: -30, to: Date()) ?? Date()
+        let activeProjectIds = Set(timesheets.filter { $0.begin > thirtyDaysAgo }.map { $0.project.id })
+        let allProjects = Set(timesheets.map { $0.project })
+        
+        return allProjects.filter { !activeProjectIds.contains($0.id) }.sorted { $0.name < $1.name }
+    }
+    
+    var body: some View {
+        List {
+            if inactiveProjects.isEmpty {
+                EmptyStateView(
+                    icon: "checkmark.circle",
+                    title: "Alle Projekte aktiv",
+                    message: "Es gibt keine inaktiven Projekte in den letzten 30 Tagen"
+                )
+            } else {
+                ForEach(inactiveProjects) { project in
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(project.name)
+                            .font(.headline)
+                        Text(project.customer.name)
+                            .font(.caption)
+                            .foregroundColor(.timaiSubheaderColor)
+                    }
+                    .padding(.vertical, 4)
+                }
+            }
+        }
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
