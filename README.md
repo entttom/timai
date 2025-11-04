@@ -98,8 +98,6 @@ This project is licensed under the **Business Source License 1.1** (BSL).
 - **Non-commercial and personal use**: Free
 - **Commercial use**: Requires a commercial license
 
-The license will automatically convert to the Mozilla Public License Version 2.0 on January 1, 2029.
-
 See [LICENSE](LICENSE) for full details.
 
 ## Credits
