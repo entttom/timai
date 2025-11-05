@@ -77,10 +77,10 @@ platform :ios do
     # Certificates und Provisioning Profiles synchronisieren
     match(type: "adhoc") if ENV["USE_MATCH"] == "true"
     
-    # Increment Build Number
-    increment_build_number(
-      xcodeproj: xcodeproj
-    )
+    # Increment Build Number (optional)
+    # increment_build_number(
+    #   xcodeproj: xcodeproj
+    # )
     
     build_app(
       scheme: scheme,
@@ -105,10 +105,13 @@ platform :ios do
     # Certificates und Provisioning Profiles synchronisieren
     match(type: "appstore") if ENV["USE_MATCH"] == "true"
     
-    # Increment Build Number
-    increment_build_number(
-      xcodeproj: xcodeproj
-    )
+    # Increment Build Number (nur wenn Apple Generic Versioning aktiviert ist)
+    # increment_build_number(
+    #   xcodeproj: xcodeproj
+    # )
+    
+    UI.important("⚠️  Build Number wird nicht automatisch erhöht.")
+    UI.important("Bitte manuell in Xcode erhöhen oder Apple Generic Versioning aktivieren.")
     
     # Build
     build_app(
@@ -127,14 +130,16 @@ platform :ios do
     )
     
     # Git commit für Build Number
-    commit_version_bump(
-      message: "Bump build number for TestFlight",
-      xcodeproj: xcodeproj
-    )
+    # commit_version_bump(
+    #   message: "Bump build number for TestFlight",
+    #   xcodeproj: xcodeproj
+    # )
     
     # Tag erstellen
+    version = get_version_number_from_plist(target: scheme)
+    build = get_info_plist_value(path: "./Timai/Info.plist", key: "CFBundleVersion")
     add_git_tag(
-      tag: "testflight/#{get_version_number(xcodeproj: xcodeproj)}/#{get_build_number(xcodeproj: xcodeproj)}"
+      tag: "testflight/#{version}/#{build}"
     )
     
     # Push to remote
@@ -159,10 +164,14 @@ platform :ios do
     #   bump_type: "patch" # major, minor, oder patch
     # )
     
-    # Increment Build Number
-    increment_build_number(
-      xcodeproj: xcodeproj
-    )
+    # Increment Build Number (nur wenn Apple Generic Versioning aktiviert ist)
+    # increment_build_number(
+    #   xcodeproj: xcodeproj
+    # )
+    
+    # Alternativ: Build Number aus Info.plist verwenden
+    UI.important("⚠️  Build Number wird nicht automatisch erhöht.")
+    UI.important("Bitte manuell in Xcode erhöhen oder Apple Generic Versioning aktivieren.")
     
     # Build
     build_app(
@@ -182,15 +191,16 @@ platform :ios do
       automatic_release: false
     )
     
-    # Git commit
-    commit_version_bump(
-      message: "Version bump for App Store release",
-      xcodeproj: xcodeproj
-    )
+    # Git commit (nur wenn Version geändert wurde)
+    # commit_version_bump(
+    #   message: "Version bump for App Store release",
+    #   xcodeproj: xcodeproj
+    # )
     
     # Tag erstellen
+    version = get_version_number_from_plist(target: scheme)
     add_git_tag(
-      tag: "release/#{get_version_number(xcodeproj: xcodeproj)}"
+      tag: "release/#{version}"
     )
     
     # Push to remote
@@ -227,15 +237,13 @@ platform :ios do
   # ==========================================
   desc "Erhöht die Version Number (patch, minor oder major)"
   lane :bump_version do |options|
-    bump_type = options[:type] || "patch" # patch, minor, oder major
-    
-    increment_version_number(
-      bump_type: bump_type,
-      xcodeproj: xcodeproj
-    )
-    
-    version = get_version_number(xcodeproj: xcodeproj)
-    UI.success("✅ Version auf #{version} erhöht!")
+    UI.error("❌ Apple Generic Versioning ist nicht aktiviert!")
+    UI.message("Bitte Version manuell in Info.plist oder Xcode erhöhen:")
+    UI.message("1. Öffne Timai/Info.plist")
+    UI.message("2. Erhöhe CFBundleShortVersionString (z.B. von 1.0.0 auf 1.0.1)")
+    UI.message("")
+    UI.message("Oder aktiviere Apple Generic Versioning:")
+    UI.message("https://developer.apple.com/library/content/qa/qa1827/_index.html")
   end
   
   # ==========================================
@@ -243,12 +251,13 @@ platform :ios do
   # ==========================================
   desc "Erhöht die Build Number"
   lane :bump_build do
-    increment_build_number(
-      xcodeproj: xcodeproj
-    )
-    
-    build = get_build_number(xcodeproj: xcodeproj)
-    UI.success("✅ Build Number auf #{build} erhöht!")
+    UI.error("❌ Apple Generic Versioning ist nicht aktiviert!")
+    UI.message("Bitte Build Number manuell in Info.plist oder Xcode erhöhen:")
+    UI.message("1. Öffne Timai/Info.plist")
+    UI.message("2. Erhöhe CFBundleVersion (z.B. von 1 auf 2)")
+    UI.message("")
+    UI.message("Oder aktiviere Apple Generic Versioning:")
+    UI.message("https://developer.apple.com/library/content/qa/qa1827/_index.html")
   end
   
   # ==========================================
