@@ -30,18 +30,7 @@ struct MainTabView: View {
             )
             
             // Preloading indicator
-            if authViewModel.isPreloadingData {
-                HStack(spacing: 8) {
-                    ProgressView()
-                        .scaleEffect(0.8)
-                    Text("Lade Referenzdaten für Offline-Nutzung...")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                .padding(.vertical, 8)
-                .padding(.horizontal)
-                .background(Color.blue.opacity(0.1))
-            }
+            PreloadBanner(isLoading: authViewModel.isPreloadingData)
             
             TabView {
                 // Zeiterfassung Tab
@@ -102,6 +91,54 @@ struct MainTabView: View {
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
         UITabBar.appearance().isTranslucent = true
+    }
+}
+
+// MARK: - Preload Banner Component
+struct PreloadBanner: View {
+    let isLoading: Bool
+    
+    var body: some View {
+        if isLoading {
+            HStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Lade Referenzdaten")
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(.primary)
+                    
+                    Text("Kunden, Projekte & Aktivitäten für Offline-Nutzung")
+                        .font(.system(size: 12))
+                        .foregroundColor(.secondary)
+                }
+                
+                Spacer()
+                
+                // Animated progress indicator
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                    .scaleEffect(0.9)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 14)
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color.blue.opacity(0.12),
+                        Color.blue.opacity(0.08)
+                    ]),
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+            )
+            .overlay(
+                Rectangle()
+                    .fill(Color.blue.opacity(0.3))
+                    .frame(height: 1),
+                alignment: .bottom
+            )
+            .transition(.move(edge: .top).combined(with: .opacity))
+            .animation(.easeInOut(duration: 0.3), value: isLoading)
+        }
     }
 }
 

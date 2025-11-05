@@ -1,0 +1,4 @@
+- Offline-Modus hinzugefügt
+- Cache-Verwaltung implementiert
+- Synchronisierung ausstehender Änderungen
+- Bug-Fixes und Performance-Verbesserungen

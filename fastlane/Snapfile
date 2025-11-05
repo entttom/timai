@@ -4,12 +4,8 @@
 # Liste der Geräte, für die Screenshots erstellt werden sollen
 # Diese entsprechen den App Store Screenshot-Anforderungen
 devices([
-  "iPhone 16 Pro Max",      # 6.9" Display (2868 x 1320) - Erforderlich für App Store
-  "iPhone 16 Pro",          # 6.3" Display (2622 x 1206) - Erforderlich für App Store
-  "iPad Pro 13-inch (M4)"   # 13" iPad Pro - Erforderlich für App Store
-  # Optional: Weitere Geräte hinzufügen
-  # "iPhone 16",
-  # "iPad Pro 11-inch (M4)"
+  "iPhone 16 Pro Max",
+  "iPhone 16 Pro"
 ])
 
 # Unterstützte Sprachen

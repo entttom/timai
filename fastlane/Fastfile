@@ -98,7 +98,7 @@ platform :ios do
   # LANE: Beta-Deployment zu TestFlight
   # ==========================================
   desc "Lädt einen neuen Build zu TestFlight hoch"
-  lane :beta do
+  lane :beta do |options|
     # Ensure git status is clean
     ensure_git_status_clean
     
@@ -122,11 +122,30 @@ platform :ios do
       clean: true
     )
     
+    # Changelog bestimmen
+    changelog_text = options[:changelog] || read_changelog || "Neue Version mit Verbesserungen und Bug-Fixes"
+    
     # Upload zu TestFlight
     upload_to_testflight(
       skip_waiting_for_build_processing: true,
       skip_submission: true,
-      distribute_external: false
+      distribute_external: false,
+      
+      # Changelog / What to Test (für interne Tester)
+      changelog: changelog_text,
+      
+      # Beta App Beschreibung
+      beta_app_description: "Timai - Zeiterfassung für Kimai\n\nZeiterfassung für Kimai mit Offline-Unterstützung.",
+      
+      # Beta App Feedback E-Mail (anpassen!)
+      # beta_app_feedback_email: "feedback@example.com",
+      
+      # Tester-Gruppen (optional)
+      # groups: ["Internal Testers", "Beta Testers"],
+      
+      # Automatisch für interne Tester freigeben
+      distribute_external: false,
+      notify_external_testers: false
     )
     
     # Git commit für Build Number
@@ -188,7 +207,13 @@ platform :ios do
       skip_metadata: false,
       skip_screenshots: false,
       submit_for_review: false,
-      automatic_release: false
+      automatic_release: false,
+      
+      # Review-Informationen (aus fastlane/metadata/review_information/)
+      app_review_information: {
+        demo_account_required: true,
+        notes: File.read("./fastlane/metadata/review_information/notes.txt")
+      }
     )
     
     # Git commit (nur wenn Version geändert wurde)
@@ -285,6 +310,35 @@ platform :ios do
       raise_if_swiftlint_error: true,
       ignore_exit_status: false
     )
+  end
+  
+  # ==========================================
+  # Helper Methods
+  # ==========================================
+  
+  # Changelog aus CHANGELOG.md lesen
+  def read_changelog
+    changelog_path = "../CHANGELOG.md"
+    return nil unless File.exist?(changelog_path)
+    
+    changelog = File.read(changelog_path)
+    
+    # Extrahiere [Unreleased] Section
+    if changelog =~ /## \[Unreleased\](.*?)(?=##|\z)/m
+      unreleased = $1.strip
+      
+      # Konvertiere zu einfacher Liste
+      lines = unreleased.split("\n")
+        .select { |line| line.start_with?("- ") }
+        .join("\n")
+      
+      return lines unless lines.empty?
+    end
+    
+    nil
+  rescue => e
+    UI.error("Fehler beim Lesen des Changelogs: #{e.message}")
+    nil
   end
   
   # ==========================================

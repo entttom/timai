@@ -434,13 +434,13 @@ class NetworkService {
         
         print("📦 [NetworkService] Create Response empfangen: \(data.count) bytes")
         
-                let timesheet = try customDateDecoder.decode(Timesheet.self, from: data)
-                print("✅ [NetworkService] Timesheet erfolgreich erstellt mit ID: \(timesheet.id)")
+        let timesheet = try customDateDecoder.decode(Timesheet.self, from: data)
+        print("✅ [NetworkService] Timesheet erfolgreich erstellt mit ID: \(timesheet.id)")
                 
                 // Update cache with new timesheet
                 await updateCacheAfterCreate(timesheet: timesheet, user: user)
                 
-                return timesheet
+        return timesheet
             } catch {
                 print("❌ [NetworkService] Online-Create fehlgeschlagen: \(error)")
                 
@@ -492,13 +492,13 @@ class NetworkService {
         
         print("📦 [NetworkService] Update Response empfangen: \(data.count) bytes")
         
-                let timesheet = try customDateDecoder.decode(Timesheet.self, from: data)
-                print("✅ [NetworkService] Timesheet erfolgreich aktualisiert mit ID: \(timesheet.id)")
+        let timesheet = try customDateDecoder.decode(Timesheet.self, from: data)
+        print("✅ [NetworkService] Timesheet erfolgreich aktualisiert mit ID: \(timesheet.id)")
                 
                 // Update cache with modified timesheet
                 await updateCacheAfterUpdate(timesheet: timesheet, user: user)
                 
-                return timesheet
+        return timesheet
             } catch {
                 print("❌ [NetworkService] Online-Update fehlgeschlagen: \(error)")
                 
@@ -534,11 +534,11 @@ class NetworkService {
         if networkMonitor.isConnected {
             // Online: Try to delete directly
             do {
-                let url = user.apiEndpoint.appendingPathComponent("timesheets/\(id)")
-                print("📡 [NetworkService] DELETE \(url)")
-                
-                _ = try await performRESTRequest(url: url, method: "DELETE", body: nil, user: user)
-                print("✅ [NetworkService] DELETE erfolgreich - Timesheet \(id) gelöscht")
+        let url = user.apiEndpoint.appendingPathComponent("timesheets/\(id)")
+        print("📡 [NetworkService] DELETE \(url)")
+        
+        _ = try await performRESTRequest(url: url, method: "DELETE", body: nil, user: user)
+        print("✅ [NetworkService] DELETE erfolgreich - Timesheet \(id) gelöscht")
                 
                 // Update cache by removing the deleted item
                 await updateCacheAfterDelete(id: id, user: user)

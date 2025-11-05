@@ -119,46 +119,46 @@ struct TimesheetRowView: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            VStack(alignment: .leading, spacing: 8) {
-                // Customer & Project
-                Text(activity.customerName)
-                    .font(.headline)
-                    .foregroundColor(.timaiTextBlack)
-                
-                Text(activity.projectName)
-                    .font(.subheadline)
-                    .foregroundColor(.timaiSubheaderColor)
-                
-                // Task
-                Text(activity.task)
-                    .font(.body)
-                    .foregroundColor(.timaiGrayTone3)
-                
-                // Time & Duration
-                HStack {
-                    HStack(spacing: 4) {
-                        Image(systemName: "clock")
-                            .font(.caption)
-                        Text("\(formatTime(activity.startDateTime)) - \(formatTime(activity.endDateTime))")
-                            .font(.caption)
-                    }
-                    .foregroundColor(.timaiGrayTone2)
-                    
-                    Spacer()
-                    
-                    Text(formatDuration(from: activity.startDateTime, to: activity.endDateTime))
+        VStack(alignment: .leading, spacing: 8) {
+            // Customer & Project
+            Text(activity.customerName)
+                .font(.headline)
+                .foregroundColor(.timaiTextBlack)
+            
+            Text(activity.projectName)
+                .font(.subheadline)
+                .foregroundColor(.timaiSubheaderColor)
+            
+            // Task
+            Text(activity.task)
+                .font(.body)
+                .foregroundColor(.timaiGrayTone3)
+            
+            // Time & Duration
+            HStack {
+                HStack(spacing: 4) {
+                    Image(systemName: "clock")
                         .font(.caption)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.timaiHighlight)
+                    Text("\(formatTime(activity.startDateTime)) - \(formatTime(activity.endDateTime))")
+                        .font(.caption)
                 }
+                .foregroundColor(.timaiGrayTone2)
                 
-                // Description
-                if let description = activity.description, !description.isEmpty {
-                    Text(description)
-                        .font(.caption)
-                        .foregroundColor(.timaiGrayTone2)
-                        .lineLimit(2)
-                        .padding(.top, 4)
+                Spacer()
+                
+                Text(formatDuration(from: activity.startDateTime, to: activity.endDateTime))
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.timaiHighlight)
+            }
+            
+            // Description
+            if let description = activity.description, !description.isEmpty {
+                Text(description)
+                    .font(.caption)
+                    .foregroundColor(.timaiGrayTone2)
+                    .lineLimit(2)
+                    .padding(.top, 4)
                 }
             }
             

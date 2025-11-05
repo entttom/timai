@@ -396,7 +396,7 @@ class TimesheetEditViewModel: ObservableObject {
                case .offlineNoCache = apiError {
                 errorMessage = "Offline - Keine Daten im Cache. Bitte einmal online verbinden."
             } else {
-                errorMessage = "Fehler beim Laden der Kunden"
+            errorMessage = "Fehler beim Laden der Kunden"
             }
         }
         

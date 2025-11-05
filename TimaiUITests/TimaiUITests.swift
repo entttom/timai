@@ -53,7 +53,7 @@ class TimaiUITests: XCTestCase {
             app.buttons["Anmelden"].tap()
             
             // Warten bis Login abgeschlossen ist (ca. 3-5 Sekunden)
-            sleep(5)
+            sleep(90)
             
             // Screenshot 2: Timesheet-Übersicht (Dashboard)
             snapshot("02-Timesheet-Overview")
