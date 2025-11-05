@@ -11,6 +11,7 @@
 //
 import Foundation
 import SwiftUI
+import Combine
 
 @MainActor
 class TimesheetViewModel: ObservableObject {
@@ -21,12 +22,40 @@ class TimesheetViewModel: ObservableObject {
     @Published var errorMessage: String?
     
     private let networkService = NetworkService.shared
+    private let pendingOpsManager = PendingOperationsManager.shared
     private var currentUser: User?
+    private var cancellables = Set<AnyCancellable>()
+    
+    // Track locally deleted items (not yet synced)
+    private var locallyDeletedIds: Set<Int> = []
     
     struct TimesheetStats {
         let today: String
         let thisWeek: String
         let thisMonth: String
+    }
+    
+    init() {
+        setupSyncNotifications()
+    }
+    
+    private func setupSyncNotifications() {
+        // Listen for sync completion
+        NotificationCenter.default.publisher(for: .syncCompleted)
+            .sink { [weak self] _ in
+                Task { @MainActor in
+                    self?.onSyncCompleted()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func onSyncCompleted() {
+        print("✅ [TimesheetViewModel] Sync abgeschlossen - lade Timesheets neu")
+        clearLocallyDeleted()
+        Task {
+            await loadTimesheets()
+        }
     }
     
     func setUser(_ user: User) {
@@ -51,7 +80,8 @@ class TimesheetViewModel: ObservableObject {
                 sections = []
                 stats = nil
             } else {
-                activities = fetchedActivities
+                // Filter out locally deleted items
+                activities = fetchedActivities.filter { !locallyDeletedIds.contains($0.recordId) }
                 calculateSections()
                 calculateStats()
             }
@@ -64,15 +94,67 @@ class TimesheetViewModel: ObservableObject {
     }
     
     func deleteTimesheet(id: Int) async {
-        guard let user = currentUser else { return }
+        guard let user = currentUser else { 
+            print("❌ [TimesheetViewModel] Kein User - Delete abgebrochen")
+            return 
+        }
+        
+        print("🗑️ [TimesheetViewModel] Lösche Timesheet ID: \(id)")
+        
+        // Optimistically remove from local list
+        locallyDeletedIds.insert(id)
+        activities.removeAll { $0.recordId == id }
+        calculateSections()
+        calculateStats()
+        
+        print("✅ [TimesheetViewModel] Eintrag lokal entfernt - \(activities.count) Einträge übrig")
         
         do {
             try await networkService.deleteTimesheet(id: id, user: user)
-            await loadTimesheets()
+            
+            print("✅ [TimesheetViewModel] Delete abgeschlossen")
+            
+            // Check if operation was added to pending queue
+            if pendingOpsManager.hasPendingOperations {
+                print("⚠️ [TimesheetViewModel] Operation in Pending Queue - warte auf Sync")
+            } else {
+                print("✅ [TimesheetViewModel] Delete erfolgreich - lade Liste neu")
+                // If online and successful, reload to confirm
+                await loadTimesheets()
+                
+                // Clear from locally deleted after successful sync
+                locallyDeletedIds.remove(id)
+            }
         } catch {
             print("❌ [TimesheetViewModel] Fehler beim Löschen: \(error)")
-            errorMessage = "Fehler beim Löschen des Eintrags"
+            print("🔍 [TimesheetViewModel] Error Type: \(type(of: error))")
+            
+            // Always keep in locally deleted and pending ops - will be synced when online
+            print("📥 [TimesheetViewModel] Lösch-Operation vorgemerkt für ID: \(id)")
+            // Don't restore the item - keep it deleted locally
         }
+    }
+    
+    /// Check if an activity is pending deletion
+    func isPendingDeletion(_ activityId: Int) -> Bool {
+        return locallyDeletedIds.contains(activityId)
+    }
+    
+    /// Check if an activity has pending operations (create, update, or delete)
+    func isPendingSync(_ activityId: Int) -> Bool {
+        // Use the new helper method in PendingOperationsManager
+        let hasPending = pendingOpsManager.hasPendingOperationForId(activityId)
+        
+        if hasPending {
+            print("🟡 [TimesheetViewModel] Activity \(activityId) IST pending sync")
+        }
+        
+        return hasPending
+    }
+    
+    /// Clear locally deleted items after successful sync
+    func clearLocallyDeleted() {
+        locallyDeletedIds.removeAll()
     }
     
     private func calculateSections() {

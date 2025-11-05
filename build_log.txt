@@ -1,0 +1,290 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project Timai.xcodeproj -scheme Timai -sdk iphonesimulator -destination "generic/platform=iOS Simulator" build
+
+Build settings from command line:
+    SDKROOT = iphonesimulator26.0
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'Timai' in project 'Timai' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/thomasentner/Github/timai/Timai/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: c03a6b085695cf4aa57d5ae1caf58cd5
+Build description path: /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/XCBuildData/c03a6b085695cf4aa57d5ae1caf58cd5.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk /Users/thomasentner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.0-23A339-26257891a6c027eb51374368541b8346.sdkstatcache
+    cd /Users/thomasentner/Github/timai/Timai.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -o /Users/thomasentner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.0-23A339-26257891a6c027eb51374368541b8346.sdkstatcache
+
+ProcessProductPackaging "" /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai.app-Simulated.xcent (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "RG7FE682S2.com.entner.time";
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai.app-Simulated.xcent
+
+WriteAuxiliaryFile /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-DebugDylibInstallName-normal-x86_64.txt (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    write-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-DebugDylibInstallName-normal-x86_64.txt
+
+WriteAuxiliaryFile /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-DebugDylibPath-normal-x86_64.txt (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    write-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-DebugDylibPath-normal-x86_64.txt
+
+WriteAuxiliaryFile /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.SwiftFileList (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    write-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.SwiftFileList
+
+WriteAuxiliaryFile /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai-OutputFileMap.json (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    write-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.SwiftConstValuesFileList (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    write-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai_const_extract_protocols.json (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    write-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.LinkFileList (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    write-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.LinkFileList
+
+ProcessProductPackagingDER /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai.app-Simulated.xcent /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai.app-Simulated.xcent.der (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    /usr/bin/derq query -f xml -i /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai.app-Simulated.xcent -o /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai.app-Simulated.xcent.der --raw
+
+Ld /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Binary/__preview.dylib normal x86_64 (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target x86_64-apple-ios16.6-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -O0 -L/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator -F/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator -F/Users/thomasentner/Github/timai/Carthage/Build/iOS -install_name @rpath/Timai.debug.dylib -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai_dependency_info.dat -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai.app-Simulated.xcent.der -Xlinker -no_adhoc_codesign -o /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Binary/__preview.dylib
+ld: warning: search path '/Users/thomasentner/Github/timai/Carthage/Build/iOS' not found
+
+Ld /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/arm64/Binary/__preview.dylib normal arm64 (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios16.6-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -O0 -L/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator -F/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator -F/Users/thomasentner/Github/timai/Carthage/Build/iOS -install_name @rpath/Timai.debug.dylib -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/arm64/Timai_dependency_info.dat -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai.app-Simulated.xcent.der -Xlinker -no_adhoc_codesign -o /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/arm64/Binary/__preview.dylib
+ld: warning: search path '/Users/thomasentner/Github/timai/Carthage/Build/iOS' not found
+
+CompileAssetCatalogVariant thinned /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator/Timai.app /Users/thomasentner/Github/timai/Timai/Assets.xcassets (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/thomasentner/Github/timai/Timai/Assets.xcassets --compile /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 16.6 --platform iphonesimulator
+
+CreateUniversalBinary /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator/Timai.app/__preview.dylib normal arm64\ x86_64 (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo -create /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/arm64/Binary/__preview.dylib /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Binary/__preview.dylib -output /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator/Timai.app/__preview.dylib
+
+SwiftDriver Timai normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Timai -Onone -enforce-exclusivity\=checked @/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/arm64/Timai.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -target arm64-apple-ios16.6-simulator -g -module-cache-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 4.2 -I /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator -F /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator -F /Users/thomasentner/Github/timai/Carthage/Build/iOS -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/thomasentner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.0-23A339-26257891a6c027eb51374368541b8346.sdkstatcache -output-file-map /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/arm64/Timai-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/arm64/Timai.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/arm64/Timai_const_extract_protocols.json -Xcc -iquote -Xcc /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-generated-files.hmap -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-own-target-headers.hmap -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-all-target-headers.hmap -Xcc -iquote -Xcc /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-project-headers.hmap -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources-normal/arm64 -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources/arm64 -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/arm64/Timai-Swift.h -working-directory /Users/thomasentner/Github/timai -experimental-emit-module-separately -disable-cmo
+
+SwiftDriver Timai normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Timai -Onone -enforce-exclusivity\=checked @/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -target x86_64-apple-ios16.6-simulator -g -module-cache-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 4.2 -I /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator -F /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator -F /Users/thomasentner/Github/timai/Carthage/Build/iOS -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/thomasentner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.0-23A339-26257891a6c027eb51374368541b8346.sdkstatcache -output-file-map /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai_const_extract_protocols.json -Xcc -iquote -Xcc /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-generated-files.hmap -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-own-target-headers.hmap -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-all-target-headers.hmap -Xcc -iquote -Xcc /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-project-headers.hmap -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources-normal/x86_64 -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources/x86_64 -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai-Swift.h -working-directory /Users/thomasentner/Github/timai -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal x86_64 Compiling\ SettingsViewModel.swift,\ ReportData.swift,\ ReportAggregator.swift,\ Credits.swift /Users/thomasentner/Github/timai/Timai/ViewModels/SettingsViewModel.swift /Users/thomasentner/Github/timai/Timai/Reports/Model/ReportData.swift /Users/thomasentner/Github/timai/Timai/Reports/Model/ReportAggregator.swift /Users/thomasentner/Github/timai/Timai/Settings/Model/Credits.swift (in target 'Timai' from project 'Timai')
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/ViewModels/SettingsViewModel.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Reports/Model/ReportData.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Reports/Model/ReportAggregator.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Settings/Model/Credits.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 Compiling\ ReportType.swift,\ AuthViewModel.swift,\ ReportsViewModel.swift,\ TimesheetViewModel.swift /Users/thomasentner/Github/timai/Timai/Reports/Model/ReportType.swift /Users/thomasentner/Github/timai/Timai/ViewModels/AuthViewModel.swift /Users/thomasentner/Github/timai/Timai/ViewModels/ReportsViewModel.swift /Users/thomasentner/Github/timai/Timai/ViewModels/TimesheetViewModel.swift (in target 'Timai' from project 'Timai')
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Reports/Model/ReportType.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/ViewModels/AuthViewModel.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/ViewModels/ReportsViewModel.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/ViewModels/TimesheetViewModel.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 Compiling\ TimesheetUser.swift,\ TimesheetEditForm.swift,\ Timesheet.swift /Users/thomasentner/Github/timai/Timai/Model/TimesheetUser.swift /Users/thomasentner/Github/timai/Timai/Model/TimesheetEditForm.swift /Users/thomasentner/Github/timai/Timai/Model/Timesheet.swift (in target 'Timai' from project 'Timai')
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Model/TimesheetUser.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Model/TimesheetEditForm.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Model/Timesheet.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 Compiling\ MainTabView.swift,\ EmptyStateView.swift,\ LoginBackgroundView.swift,\ ProjectCollection.swift /Users/thomasentner/Github/timai/Timai/Views/MainTabView.swift /Users/thomasentner/Github/timai/Timai/Components/EmptyStateView.swift /Users/thomasentner/Github/timai/Timai/Login/View/LoginBackgroundView.swift /Users/thomasentner/Github/timai/Timai/Model/ProjectCollection.swift (in target 'Timai' from project 'Timai')
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Views/MainTabView.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Components/EmptyStateView.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Login/View/LoginBackgroundView.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Model/ProjectCollection.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 Compiling\ TimesheetEditView.swift,\ NetworkService.swift,\ TimesheetView.swift,\ PrimaryButton.swift /Users/thomasentner/Github/timai/Timai/Views/Timesheet/TimesheetEditView.swift /Users/thomasentner/Github/timai/Timai/Services/NetworkService.swift /Users/thomasentner/Github/timai/Timai/Views/Timesheet/TimesheetView.swift /Users/thomasentner/Github/timai/Timai/Components/PrimaryButton.swift (in target 'Timai' from project 'Timai')
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Views/Timesheet/TimesheetEditView.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Services/NetworkService.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Views/Timesheet/TimesheetView.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Components/PrimaryButton.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 Compiling\ Customer.swift,\ Project.swift,\ ActivityDetails.swift /Users/thomasentner/Github/timai/Timai/Model/Customer.swift /Users/thomasentner/Github/timai/Timai/Model/Project.swift /Users/thomasentner/Github/timai/Timai/Model/ActivityDetails.swift (in target 'Timai' from project 'Timai')
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Model/Customer.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Model/Project.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Model/ActivityDetails.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 Compiling\ TimaiApp.swift,\ User.swift,\ GeneratedAssetSymbols.swift /Users/thomasentner/Github/timai/Timai/TimaiApp.swift /Users/thomasentner/Github/timai/Timai/Model/User.swift /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Timai' from project 'Timai')
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/TimaiApp.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Model/User.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 Compiling\ ReportsView.swift,\ ToastView.swift,\ SettingsView.swift,\ LoginView.swift /Users/thomasentner/Github/timai/Timai/Views/Reports/ReportsView.swift /Users/thomasentner/Github/timai/Timai/Components/ToastView.swift /Users/thomasentner/Github/timai/Timai/Views/Settings/SettingsView.swift /Users/thomasentner/Github/timai/Timai/Views/LoginView.swift (in target 'Timai' from project 'Timai')
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Views/Reports/ReportsView.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Components/ToastView.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Views/Settings/SettingsView.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftCompile normal x86_64 /Users/thomasentner/Github/timai/Timai/Views/LoginView.swift (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+
+SwiftEmitModule normal x86_64 Emitting\ module\ for\ Timai (in target 'Timai' from project 'Timai')
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -emit-module -experimental-skip-non-inlinable-function-bodies-without-types /Users/thomasentner/Github/timai/Timai/Reports/Model/ReportType.swift /Users/thomasentner/Github/timai/Timai/ViewModels/AuthViewModel.swift /Users/thomasentner/Github/timai/Timai/ViewModels/ReportsViewModel.swift /Users/thomasentner/Github/timai/Timai/ViewModels/TimesheetViewModel.swift /Users/thomasentner/Github/timai/Timai/ViewModels/SettingsViewModel.swift /Users/thomasentner/Github/timai/Timai/Reports/Model/ReportData.swift /Users/thomasentner/Github/timai/Timai/Reports/Model/ReportAggregator.swift /Users/thomasentner/Github/timai/Timai/Settings/Model/Credits.swift /Users/thomasentner/Github/timai/Timai/Model/InstanceMetadata.swift /Users/thomasentner/Github/timai/Timai/Helper/Theme.swift /Users/thomasentner/Github/timai/Timai/Model/Activity.swift /Users/thomasentner/Github/timai/Timai/Views/Timesheet/TimesheetDetailView.swift /Users/thomasentner/Github/timai/Timai/Components/LoadingView.swift /Users/thomasentner/Github/timai/Timai/Views/Settings/GraphicsCreditsView.swift /Users/thomasentner/Github/timai/Timai/Views/Reports/GenericReportView.swift /Users/thomasentner/Github/timai/Timai/Views/Settings/OSSCreditsView.swift /Users/thomasentner/Github/timai/Timai/Views/Reports/ReportsView.swift /Users/thomasentner/Github/timai/Timai/Components/ToastView.swift /Users/thomasentner/Github/timai/Timai/Views/Settings/SettingsView.swift /Users/thomasentner/Github/timai/Timai/Views/LoginView.swift /Users/thomasentner/Github/timai/Timai/Views/Timesheet/TimesheetEditView.swift /Users/thomasentner/Github/timai/Timai/Services/NetworkService.swift /Users/thomasentner/Github/timai/Timai/Views/Timesheet/TimesheetView.swift /Users/thomasentner/Github/timai/Timai/Components/PrimaryButton.swift /Users/thomasentner/Github/timai/Timai/Views/MainTabView.swift /Users/thomasentner/Github/timai/Timai/Components/EmptyStateView.swift /Users/thomasentner/Github/timai/Timai/Login/View/LoginBackgroundView.swift /Users/thomasentner/Github/timai/Timai/Model/ProjectCollection.swift /Users/thomasentner/Github/timai/Timai/Model/Customer.swift /Users/thomasentner/Github/timai/Timai/Model/Project.swift /Users/thomasentner/Github/timai/Timai/Model/ActivityDetails.swift /Users/thomasentner/Github/timai/Timai/Model/TimesheetUser.swift /Users/thomasentner/Github/timai/Timai/Model/TimesheetEditForm.swift /Users/thomasentner/Github/timai/Timai/Model/Timesheet.swift /Users/thomasentner/Github/timai/Timai/TimaiApp.swift /Users/thomasentner/Github/timai/Timai/Model/User.swift /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources/GeneratedAssetSymbols.swift -target x86_64-apple-ios16.6-simulator -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.0.sdk -I /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator -F /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator -F /Users/thomasentner/Github/timai/Carthage/Build/iOS -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=4 -module-cache-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -swift-version 4.2 -enforce-exclusivity\=checked -Onone -D DEBUG -serialize-debugging-options -const-gather-protocols-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai_const_extract_protocols.json -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/thomasentner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/thomasentner/Github/timai -enable-anonymous-context-mangled-names -file-compilation-dir /Users/thomasentner/Github/timai -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /Users/thomasentner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.0-23A339-26257891a6c027eb51374368541b8346.sdkstatcache -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-generated-files.hmap -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-own-target-headers.hmap -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-all-target-headers.hmap -Xcc -iquote -Xcc /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Timai-project-headers.hmap -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources-normal/x86_64 -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources/x86_64 -Xcc -I/Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/DerivedSources -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name Timai -frontend-parseable-output -disable-clang-spi -target-sdk-version 26.0 -target-sdk-name iphonesimulator26.0 -external-plugin-path /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server -external-plugin-path /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/local/lib/swift/host/plugins\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/local/lib/swift/host/plugins -emit-module-doc-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.swiftdoc -emit-module-source-info-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.swiftsourceinfo -emit-objc-header-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai-Swift.h -serialize-diagnostics-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai-primary-emit-module.dia -emit-dependencies-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai-primary-emit-module.d -o /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.swiftmodule -emit-abi-descriptor-path /Users/thomasentner/Library/Developer/Xcode/DerivedData/Timai-gfluibryxunormeyrvlzxzzppztk/Build/Intermediates.noindex/Timai.build/Debug-iphonesimulator/Timai.build/Objects-normal/x86_64/Timai.abi.json
+
+EmitSwiftModule normal x86_64 (in target 'Timai' from project 'Timai')
+    cd /Users/thomasentner/Github/timai
+    
+/Users/thomasentner/Github/timai/Timai/Helper/Theme.swift:196:11: warning: class 'PrivateBundle' must restate inherited '@unchecked Sendable' conformance
+    class PrivateBundle: Bundle {
+          ^
+                               , @unchecked Sendable
+/Users/thomasentner/Github/timai/Timai/Views/MainTabView.swift:16:44: error: cannot find type 'NetworkMonitor' in scope
+    @EnvironmentObject var networkMonitor: NetworkMonitor
+                                           ^~~~~~~~~~~~~~
+/Users/thomasentner/Github/timai/Timai/Views/MainTabView.swift:17:41: error: cannot find type 'OfflineSyncManager' in scope
+    @EnvironmentObject var syncManager: OfflineSyncManager
+                                        ^~~~~~~~~~~~~~~~~~
+/Users/thomasentner/Github/timai/Timai/Services/NetworkService.swift:43:34: error: cannot find 'NetworkMonitor' in scope
+    private let networkMonitor = NetworkMonitor.shared
+                                 ^~~~~~~~~~~~~~
+/Users/thomasentner/Github/timai/Timai/Services/NetworkService.swift:44:32: error: cannot find 'CacheManager' in scope
+    private let cacheManager = CacheManager.shared
+                               ^~~~~~~~~~~~
+/Users/thomasentner/Github/timai/Timai/Services/NetworkService.swift:45:37: error: cannot find 'PendingOperationsManager' in scope
+    private let pendingOpsManager = PendingOperationsManager.shared
+                                    ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/thomasentner/Github/timai/Timai/Views/MainTabView.swift:21:50: error: cannot find 'PendingOperationsManager' in scope
+    @StateObject private var pendingOpsManager = PendingOperationsManager.shared
+                                                 ^~~~~~~~~~~~~~~~~~~~~~~~
+/Users/thomasentner/Github/timai/Timai/TimaiApp.swift:20:47: error: cannot find 'NetworkMonitor' in scope
+    @StateObject private var networkMonitor = NetworkMonitor.shared
+                                              ^~~~~~~~~~~~~~
+/Users/thomasentner/Github/timai/Timai/TimaiApp.swift:21:44: error: cannot find 'OfflineSyncManager' in scope
+    @StateObject private var syncManager = OfflineSyncManager.shared
+                                           ^~~~~~~~~~~~~~~~~~
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ Timai (in target 'Timai' from project 'Timai')
+
+warning: Run script build phase 'Run Script' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'Timai' from project 'Timai')
+warning: Run script build phase 'Run Script' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'Timai' from project 'Timai')
+** BUILD FAILED **
+
+
+The following build commands failed:
+	SwiftEmitModule normal x86_64 Emitting\ module\ for\ Timai (in target 'Timai' from project 'Timai')
+	EmitSwiftModule normal x86_64 (in target 'Timai' from project 'Timai')
+	Building project Timai with scheme Timai
+(3 failures)

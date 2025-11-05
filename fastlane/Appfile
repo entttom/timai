@@ -1,0 +1,16 @@
+# App Identifier (Bundle ID)
+app_identifier("com.entner.time")
+
+# Apple ID für App Store Connect
+apple_id(ENV["APPLE_ID"]) # Über Umgebungsvariable oder direkt eintragen
+
+# Team ID (optional, wenn mehrere Teams vorhanden sind)
+# team_id(ENV["TEAM_ID"])
+
+# iTunes Connect Team ID (optional)
+# itc_team_id(ENV["ITC_TEAM_ID"])
+
+# Für ein anderes Schema (optional)
+# scheme("Timai")
+
+

@@ -81,7 +81,7 @@ struct ToastModifier: ViewModifier {
                             }
                         }
                     }
-                    .padding(.top, 50)
+                    .padding(.top, 8)
             }
         }
         .animation(.spring(), value: isShowing)

@@ -35,13 +35,37 @@ struct TimesheetEditView: View {
     @State private var selectedProjectId: Int?
     @State private var selectedActivityId: Int?
     @State private var startDate = Date()
-    @State private var endDate = Date()
+    @State private var endDate = Date().addingTimeInterval(3600) // +1 Stunde als Standard
     @State private var descriptionText = ""
     @State private var showToast = false
     @State private var isInitializing = false
+    @State private var showNoDataWarning = false
+    @State private var isAdjustingDates = false // Verhindert Rekursion
     
     var body: some View {
         Form {
+            // Warning if no data available
+            if editViewModel.customers.isEmpty && !editViewModel.isLoadingCustomers && showNoDataWarning {
+                Section {
+                    VStack(spacing: 12) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .font(.system(size: 40))
+                            .foregroundColor(.orange)
+                        
+                        Text("Keine Daten verfügbar")
+                            .font(.headline)
+                        
+                        Text("Bitte stellen Sie eine Internetverbindung her, um Kunden, Projekte und Aktivitäten zu laden.")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 20)
+                }
+            }
+            
             customerSection
             
             if selectedCustomerId != nil || mode.isEdit {
@@ -80,6 +104,11 @@ struct TimesheetEditView: View {
                 editViewModel.setUser(user)
                 await editViewModel.loadCustomers()
                 
+                // Show warning if no customers loaded
+                if editViewModel.customers.isEmpty {
+                    showNoDataWarning = true
+                }
+                
                 // Load existing data for edit mode
                 if case .edit(let activity) = mode {
                     isInitializing = true
@@ -88,9 +117,17 @@ struct TimesheetEditView: View {
                     endDate = activity.endDateTime
                     descriptionText = activity.description ?? ""
                     
+                    // For offline-created entries, customer ID might be 0
+                    // In that case, try to find customer from project cache
+                    var effectiveCustomerId = activity.customerId
+                    if effectiveCustomerId == 0 {
+                        print("⚠️ [TimesheetEditView] Customer ID ist 0 - versuche aus Project-Cache zu laden")
+                        effectiveCustomerId = await editViewModel.findCustomerIdForProject(activity.projectId)
+                    }
+                    
                     // Pre-select customer, project, and activity
                     let (customer, project, activityDetails) = await editViewModel.loadAndPreselect(
-                        customerId: activity.customerId,
+                        customerId: effectiveCustomerId,
                         projectId: activity.projectId,
                         activityId: activity.activityId
                     )
@@ -215,7 +252,30 @@ struct TimesheetEditView: View {
     private var timeSection: some View {
         Section("Zeit") {
             DatePicker("Start", selection: $startDate)
+                .onChange(of: startDate) { newStartDate in
+                    guard !isAdjustingDates else { return }
+                    
+                    // Wenn Start nach Ende liegt, setze Ende auf Start + 1 Stunde
+                    if newStartDate >= endDate {
+                        isAdjustingDates = true
+                        endDate = newStartDate.addingTimeInterval(3600)
+                        print("⏰ [TimesheetEditView] Start nach Ende - Endzeit auf +1h gesetzt")
+                        isAdjustingDates = false
+                    }
+                }
+            
             DatePicker("Ende", selection: $endDate)
+                .onChange(of: endDate) { newEndDate in
+                    guard !isAdjustingDates else { return }
+                    
+                    // Wenn Ende vor Start liegt, setze Start auf Ende - 1 Stunde
+                    if newEndDate <= startDate {
+                        isAdjustingDates = true
+                        startDate = newEndDate.addingTimeInterval(-3600)
+                        print("⏰ [TimesheetEditView] Ende vor Start - Startzeit auf -1h gesetzt")
+                        isAdjustingDates = false
+                    }
+                }
         }
     }
     
@@ -293,6 +353,32 @@ class TimesheetEditViewModel: ObservableObject {
         self.currentUser = user
     }
     
+    /// Find customer ID for a given project by searching all cached projects
+    func findCustomerIdForProject(_ projectId: Int) async -> Int {
+        guard let user = currentUser else { return 0 }
+        
+        print("🔍 [TimesheetEditViewModel] Suche Customer für Project ID: \(projectId)")
+        
+        // Load all customers first
+        do {
+            let cachedCustomers = try await networkService.getCustomers(user: user)
+            
+            // Search through all customer project caches
+            for customer in cachedCustomers {
+                if let projects = try? await CacheManager.shared.load([Project].self, for: user, cacheType: .projectsForCustomer, identifier: "\(customer.id)") {
+                    if projects.contains(where: { $0.id == projectId }) {
+                        print("✅ [TimesheetEditViewModel] Customer gefunden: \(customer.name) (ID: \(customer.id))")
+                        return customer.id
+                    }
+                }
+            }
+        } catch {
+            print("⚠️ [TimesheetEditViewModel] Konnte Customer nicht finden")
+        }
+        
+        return 0
+    }
+    
     func loadCustomers() async {
         guard let user = currentUser else { return }
         
@@ -301,9 +387,17 @@ class TimesheetEditViewModel: ObservableObject {
         
         do {
             customers = try await networkService.getCustomers(user: user)
+            print("✅ [TimesheetEditViewModel] \(customers.count) Kunden geladen")
         } catch {
             print("❌ [TimesheetEditViewModel] Fehler beim Laden der Kunden: \(error)")
-            errorMessage = "Fehler beim Laden der Kunden"
+            
+            // Check if it's offline/no cache error
+            if let apiError = error as? NetworkService.APIError,
+               case .offlineNoCache = apiError {
+                errorMessage = "Offline - Keine Daten im Cache. Bitte einmal online verbinden."
+            } else {
+                errorMessage = "Fehler beim Laden der Kunden"
+            }
         }
         
         isLoadingCustomers = false

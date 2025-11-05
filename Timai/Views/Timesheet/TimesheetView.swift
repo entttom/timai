@@ -41,9 +41,21 @@ struct TimesheetView: View {
                     ForEach(viewModel.sections, id: \.date) { section in
                         Section(header: Text(formatSectionDate(section.date))) {
                             ForEach(section.activities) { activity in
-                                NavigationLink(destination: TimesheetDetailView(activity: activity)) {
-                                    TimesheetRowView(activity: activity)
+                                let isPending = viewModel.isPendingSync(activity.recordId)
+                                NavigationLink(destination: 
+                                    TimesheetDetailView(activity: activity)
+                                        .environmentObject(viewModel)
+                                ) {
+                                    TimesheetRowView(
+                                        activity: activity,
+                                        isPendingSync: isPending
+                                    )
                                 }
+                                .listRowBackground(
+                                    isPending ? 
+                                        Color.yellow.opacity(0.08) : 
+                                        Color.white
+                                )
                             }
                         }
                     }
@@ -74,6 +86,7 @@ struct TimesheetView: View {
                 TimesheetEditView(mode: .create, onSaved: {
                     showingAddSheet = false
                 })
+                .environmentObject(viewModel)
             }
         }
         .task {
@@ -102,48 +115,61 @@ struct TimesheetView: View {
 // MARK: - Timesheet Row
 struct TimesheetRowView: View {
     let activity: Activity
+    var isPendingSync: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            // Customer & Project
-            Text(activity.customerName)
-                .font(.headline)
-                .foregroundColor(.timaiTextBlack)
-            
-            Text(activity.projectName)
-                .font(.subheadline)
-                .foregroundColor(.timaiSubheaderColor)
-            
-            // Task
-            Text(activity.task)
-                .font(.body)
-                .foregroundColor(.timaiGrayTone3)
-            
-            // Time & Duration
-            HStack {
-                HStack(spacing: 4) {
-                    Image(systemName: "clock")
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 8) {
+                // Customer & Project
+                Text(activity.customerName)
+                    .font(.headline)
+                    .foregroundColor(.timaiTextBlack)
+                
+                Text(activity.projectName)
+                    .font(.subheadline)
+                    .foregroundColor(.timaiSubheaderColor)
+                
+                // Task
+                Text(activity.task)
+                    .font(.body)
+                    .foregroundColor(.timaiGrayTone3)
+                
+                // Time & Duration
+                HStack {
+                    HStack(spacing: 4) {
+                        Image(systemName: "clock")
+                            .font(.caption)
+                        Text("\(formatTime(activity.startDateTime)) - \(formatTime(activity.endDateTime))")
+                            .font(.caption)
+                    }
+                    .foregroundColor(.timaiGrayTone2)
+                    
+                    Spacer()
+                    
+                    Text(formatDuration(from: activity.startDateTime, to: activity.endDateTime))
                         .font(.caption)
-                    Text("\(formatTime(activity.startDateTime)) - \(formatTime(activity.endDateTime))")
-                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.timaiHighlight)
                 }
-                .foregroundColor(.timaiGrayTone2)
                 
-                Spacer()
-                
-                Text(formatDuration(from: activity.startDateTime, to: activity.endDateTime))
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.timaiHighlight)
+                // Description
+                if let description = activity.description, !description.isEmpty {
+                    Text(description)
+                        .font(.caption)
+                        .foregroundColor(.timaiGrayTone2)
+                        .lineLimit(2)
+                        .padding(.top, 4)
+                }
             }
             
-            // Description
-            if let description = activity.description, !description.isEmpty {
-                Text(description)
-                    .font(.caption)
-                    .foregroundColor(.timaiGrayTone2)
-                    .lineLimit(2)
-                    .padding(.top, 4)
+            // Sync indicator icon
+            if isPendingSync {
+                VStack(spacing: 2) {
+                    Image(systemName: "clock.arrow.circlepath")
+                        .foregroundColor(.orange)
+                        .font(.system(size: 14))
+                }
+                .frame(width: 30)
             }
         }
         .padding(.vertical, 4)

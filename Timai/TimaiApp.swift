@@ -17,6 +17,8 @@ import KeychainAccess
 struct TimaiApp: App {
     @StateObject private var authViewModel = AuthViewModel()
     @StateObject private var languageManager = LanguageManager.shared
+    @StateObject private var networkMonitor = NetworkMonitor.shared
+    @StateObject private var syncManager = OfflineSyncManager.shared
     
     init() {
         resetStateForUITesting()
@@ -27,6 +29,8 @@ struct TimaiApp: App {
             ContentView()
                 .environmentObject(authViewModel)
                 .environmentObject(languageManager)
+                .environmentObject(networkMonitor)
+                .environmentObject(syncManager)
                 .onAppear {
                     Task {
                         await authViewModel.checkAutoLogin()

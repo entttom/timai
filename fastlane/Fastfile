@@ -1,0 +1,295 @@
+# Fastfile für Timai App
+# Mehr Informationen unter: https://docs.fastlane.tools
+
+default_platform(:ios)
+
+platform :ios do
+  
+  # Variablen
+  xcodeproj = "Timai.xcodeproj"
+  scheme = "Timai"
+  output_directory = "./fastlane/builds"
+  
+  # ==========================================
+  # LANE: Tests ausführen
+  # ==========================================
+  desc "Führt alle Tests aus"
+  lane :test do
+    run_tests(
+      scheme: scheme,
+      devices: ["iPhone 16 Pro"],
+      clean: true
+    )
+  end
+  
+  # ==========================================
+  # LANE: UI-Tests ausführen
+  # ==========================================
+  desc "Führt UI-Tests aus"
+  lane :ui_test do
+    run_tests(
+      scheme: "TimaiUITests",
+      devices: ["iPhone 16 Pro"],
+      clean: true
+    )
+  end
+  
+  # ==========================================
+  # LANE: Screenshots erstellen
+  # ==========================================
+  desc "Erstellt Screenshots für den App Store"
+  lane :screenshots do
+    # Screenshots für alle konfigurierten Geräte und Sprachen erstellen
+    snapshot(
+      # Alle Einstellungen kommen aus Snapfile
+      # Devices: iPhone 16 Pro Max, iPhone 16 Pro, iPad Pro 13-inch
+      # Languages: de-DE, en-US
+    )
+    
+    # Optional: Framing (Geräte-Rahmen um Screenshots)
+    # frameit(white: true, path: './fastlane/screenshots')
+    
+    UI.success("✅ Screenshots erfolgreich erstellt!")
+    UI.message("📂 Siehe: fastlane/screenshots/")
+    UI.message("🌐 Vorschau: fastlane/screenshots/screenshots.html")
+  end
+  
+  # ==========================================
+  # LANE: Debug-Build
+  # ==========================================
+  desc "Erstellt einen Debug-Build"
+  lane :debug do
+    build_app(
+      scheme: scheme,
+      configuration: "Debug",
+      output_directory: output_directory,
+      output_name: "Timai-Debug.ipa",
+      export_method: "development",
+      clean: true
+    )
+  end
+  
+  # ==========================================
+  # LANE: Ad-Hoc Build
+  # ==========================================
+  desc "Erstellt einen Ad-Hoc Build für interne Tests"
+  lane :adhoc do
+    # Certificates und Provisioning Profiles synchronisieren
+    match(type: "adhoc") if ENV["USE_MATCH"] == "true"
+    
+    # Increment Build Number
+    increment_build_number(
+      xcodeproj: xcodeproj
+    )
+    
+    build_app(
+      scheme: scheme,
+      configuration: "Release",
+      output_directory: output_directory,
+      output_name: "Timai-AdHoc.ipa",
+      export_method: "ad-hoc",
+      clean: true
+    )
+    
+    UI.success("✅ Ad-Hoc Build erfolgreich erstellt!")
+  end
+  
+  # ==========================================
+  # LANE: Beta-Deployment zu TestFlight
+  # ==========================================
+  desc "Lädt einen neuen Build zu TestFlight hoch"
+  lane :beta do
+    # Ensure git status is clean
+    ensure_git_status_clean
+    
+    # Certificates und Provisioning Profiles synchronisieren
+    match(type: "appstore") if ENV["USE_MATCH"] == "true"
+    
+    # Increment Build Number
+    increment_build_number(
+      xcodeproj: xcodeproj
+    )
+    
+    # Build
+    build_app(
+      scheme: scheme,
+      configuration: "Release",
+      output_directory: output_directory,
+      export_method: "app-store",
+      clean: true
+    )
+    
+    # Upload zu TestFlight
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      skip_submission: true,
+      distribute_external: false
+    )
+    
+    # Git commit für Build Number
+    commit_version_bump(
+      message: "Bump build number for TestFlight",
+      xcodeproj: xcodeproj
+    )
+    
+    # Tag erstellen
+    add_git_tag(
+      tag: "testflight/#{get_version_number(xcodeproj: xcodeproj)}/#{get_build_number(xcodeproj: xcodeproj)}"
+    )
+    
+    # Push to remote
+    # push_to_git_remote
+    
+    UI.success("✅ Beta-Build erfolgreich zu TestFlight hochgeladen!")
+  end
+  
+  # ==========================================
+  # LANE: Release zum App Store
+  # ==========================================
+  desc "Erstellt einen Release-Build und lädt ihn zum App Store hoch"
+  lane :release do
+    # Ensure git status is clean
+    ensure_git_status_clean
+    
+    # Certificates und Provisioning Profiles synchronisieren
+    match(type: "appstore") if ENV["USE_MATCH"] == "true"
+    
+    # Bump Version Number (optional)
+    # increment_version_number(
+    #   bump_type: "patch" # major, minor, oder patch
+    # )
+    
+    # Increment Build Number
+    increment_build_number(
+      xcodeproj: xcodeproj
+    )
+    
+    # Build
+    build_app(
+      scheme: scheme,
+      configuration: "Release",
+      output_directory: output_directory,
+      export_method: "app-store",
+      clean: true
+    )
+    
+    # Upload zum App Store
+    upload_to_app_store(
+      force: true,
+      skip_metadata: false,
+      skip_screenshots: false,
+      submit_for_review: false,
+      automatic_release: false
+    )
+    
+    # Git commit
+    commit_version_bump(
+      message: "Version bump for App Store release",
+      xcodeproj: xcodeproj
+    )
+    
+    # Tag erstellen
+    add_git_tag(
+      tag: "release/#{get_version_number(xcodeproj: xcodeproj)}"
+    )
+    
+    # Push to remote
+    # push_to_git_remote
+    
+    UI.success("✅ Release-Build erfolgreich zum App Store hochgeladen!")
+  end
+  
+  # ==========================================
+  # LANE: Provisioning Profile Setup
+  # ==========================================
+  desc "Synchronisiert Certificates und Provisioning Profiles mit match"
+  lane :sync_certificates do
+    match(
+      type: "development",
+      readonly: is_ci
+    )
+    
+    match(
+      type: "adhoc",
+      readonly: is_ci
+    )
+    
+    match(
+      type: "appstore",
+      readonly: is_ci
+    )
+    
+    UI.success("✅ Certificates erfolgreich synchronisiert!")
+  end
+  
+  # ==========================================
+  # LANE: Bump Version
+  # ==========================================
+  desc "Erhöht die Version Number (patch, minor oder major)"
+  lane :bump_version do |options|
+    bump_type = options[:type] || "patch" # patch, minor, oder major
+    
+    increment_version_number(
+      bump_type: bump_type,
+      xcodeproj: xcodeproj
+    )
+    
+    version = get_version_number(xcodeproj: xcodeproj)
+    UI.success("✅ Version auf #{version} erhöht!")
+  end
+  
+  # ==========================================
+  # LANE: Bump Build Number
+  # ==========================================
+  desc "Erhöht die Build Number"
+  lane :bump_build do
+    increment_build_number(
+      xcodeproj: xcodeproj
+    )
+    
+    build = get_build_number(xcodeproj: xcodeproj)
+    UI.success("✅ Build Number auf #{build} erhöht!")
+  end
+  
+  # ==========================================
+  # LANE: Carthage Update
+  # ==========================================
+  desc "Aktualisiert Carthage Dependencies"
+  lane :update_dependencies do
+    carthage(
+      command: "update",
+      platform: "iOS",
+      use_xcframeworks: true
+    )
+    
+    UI.success("✅ Carthage Dependencies aktualisiert!")
+  end
+  
+  # ==========================================
+  # LANE: Linting
+  # ==========================================
+  desc "Führt SwiftLint aus (falls installiert)"
+  lane :lint do
+    swiftlint(
+      mode: :lint,
+      executable: "swiftlint",
+      raise_if_swiftlint_error: true,
+      ignore_exit_status: false
+    )
+  end
+  
+  # ==========================================
+  # Error Handling
+  # ==========================================
+  error do |lane, exception|
+    UI.error("❌ Fehler in Lane '#{lane}': #{exception.message}")
+    
+    # Optional: Slack-Benachrichtigung bei Fehler
+    # slack(
+    #   message: "Build fehlgeschlagen in Lane '#{lane}'",
+    #   success: false
+    # )
+  end
+  
+end
+

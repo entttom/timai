@@ -19,6 +19,7 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var isPreloadingData = false
     
     private let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
     private let networkService = NetworkService.shared
@@ -106,6 +107,11 @@ class AuthViewModel: ObservableObject {
                 
                 self.currentUser = user
                 self.isAuthenticated = true
+                
+                // Preload reference data in background
+                Task {
+                    await preloadReferenceData()
+                }
             } else {
                 print("⚠️ [AuthViewModel] Version zu alt: \(metadata.version) < \(minimumRequiredVersion)")
                 errorMessage = "\("error.message.unsupportedVersion".localized()): \(metadata.version)"
@@ -125,6 +131,9 @@ class AuthViewModel: ObservableObject {
             case .requestError:
                 print("❌ [AuthViewModel] Netzwerk-Fehler")
                 errorMessage = "error.message.endpointConnectionError".localized()
+            case .offlineNoCache:
+                print("❌ [AuthViewModel] Offline ohne Cache")
+                errorMessage = "error.message.endpointConnectionError".localized()
             }
         } catch {
             print("❌ [AuthViewModel] Unerwarteter Fehler: \(error)")
@@ -132,6 +141,58 @@ class AuthViewModel: ObservableObject {
         }
         
         isLoading = false
+    }
+    
+    // MARK: - Preload Data
+    
+    func preloadReferenceData() async {
+        guard let user = currentUser else {
+            print("❌ [AuthViewModel] Kein User - Preload abgebrochen")
+            return
+        }
+        
+        // Check if already preloaded
+        let hasPreloaded = UserDefaults.standard.bool(forKey: "hasPreloadedReferenceData")
+        if hasPreloaded {
+            print("ℹ️ [AuthViewModel] Referenzdaten bereits vorgeladen - überspringe")
+            return
+        }
+        
+        print("🔄 [AuthViewModel] Starte Preload von Referenzdaten...")
+        isPreloadingData = true
+        
+        do {
+            try await networkService.preloadReferenceData(for: user)
+            UserDefaults.standard.set(true, forKey: "hasPreloadedReferenceData")
+            print("✅ [AuthViewModel] Referenzdaten erfolgreich vorgeladen")
+        } catch {
+            print("❌ [AuthViewModel] Fehler beim Preload: \(error)")
+            // Don't fail - user can still use the app
+        }
+        
+        isPreloadingData = false
+    }
+    
+    func forcePreloadReferenceData() async throws {
+        guard let user = currentUser else {
+            print("❌ [AuthViewModel] Kein User - Preload abgebrochen")
+            throw NSError(domain: "AuthViewModel", code: -1, userInfo: [NSLocalizedDescriptionKey: "Kein User verfügbar"])
+        }
+        
+        print("🔄 [AuthViewModel] Erzwinge Preload von Referenzdaten...")
+        isPreloadingData = true
+        
+        do {
+            try await networkService.preloadReferenceData(for: user)
+            UserDefaults.standard.set(true, forKey: "hasPreloadedReferenceData")
+            print("✅ [AuthViewModel] Referenzdaten erfolgreich vorgeladen")
+        } catch {
+            print("❌ [AuthViewModel] Fehler beim Preload: \(error)")
+            isPreloadingData = false
+            throw error
+        }
+        
+        isPreloadingData = false
     }
     
     // MARK: - Logout
@@ -144,6 +205,8 @@ class AuthViewModel: ObservableObject {
             print("✅ [AuthViewModel] API Token aus Keychain entfernt")
             UserDefaults.standard.removeObject(forKey: "currentUser")
             print("✅ [AuthViewModel] User Daten aus UserDefaults entfernt")
+            UserDefaults.standard.removeObject(forKey: "hasPreloadedReferenceData")
+            print("✅ [AuthViewModel] Preload-Flag zurückgesetzt")
             print("🔓 [AuthViewModel] Logout erfolgreich - zeige Login")
             
             self.currentUser = nil

@@ -82,6 +82,7 @@ struct TimesheetDetailView: View {
                     showingEditSheet = false
                     dismiss()
                 })
+                .environmentObject(viewModel)
             }
         }
     }

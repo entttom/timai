@@ -36,6 +36,16 @@
 		AA3AC11B2EB8B239007CB3AA /* ReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1122EB8B239007CB3AA /* ReportType.swift */; };
 		AA3AC11D2EB8B239007CB3AA /* ReportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1112EB8B239007CB3AA /* ReportData.swift */; };
 		AA3AC1212EB8B239007CB3AA /* ReportAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1102EB8B239007CB3AA /* ReportAggregator.swift */; };
+		AA68BDF02EBB288900D64E58 /* OfflineSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */; };
+		AA68BDF12EBB288900D64E58 /* PendingOperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEF2EBB288900D64E58 /* PendingOperationsManager.swift */; };
+		AA68BDF22EBB288900D64E58 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEC2EBB288900D64E58 /* CacheManager.swift */; };
+		AA68BDF32EBB288900D64E58 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDED2EBB288900D64E58 /* NetworkMonitor.swift */; };
+		AA68BDF72EBB289E00D64E58 /* PendingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDF52EBB289E00D64E58 /* PendingOperation.swift */; };
+		AA68BDF82EBB289E00D64E58 /* CacheSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDF42EBB289E00D64E58 /* CacheSettings.swift */; };
+		AA68BDF92EBB289E00D64E58 /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDF62EBB289E00D64E58 /* SyncStatus.swift */; };
+		AA68BDFC2EBB28AC00D64E58 /* OfflineBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFA2EBB28AC00D64E58 /* OfflineBanner.swift */; };
+		AA68BDFD2EBB28AC00D64E58 /* SyncStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */; };
+		AA68BDFF2EBB28B800D64E58 /* CacheSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */; };
 		B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4A303DA5D49C78F37C4A9 /* Customer.swift */; };
 		BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */; };
 		F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */; };
@@ -91,6 +101,16 @@
 		AA3AC1102EB8B239007CB3AA /* ReportAggregator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAggregator.swift; sourceTree = "<group>"; };
 		AA3AC1112EB8B239007CB3AA /* ReportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportData.swift; sourceTree = "<group>"; };
 		AA3AC1122EB8B239007CB3AA /* ReportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportType.swift; sourceTree = "<group>"; };
+		AA68BDEC2EBB288900D64E58 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		AA68BDED2EBB288900D64E58 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncManager.swift; sourceTree = "<group>"; };
+		AA68BDEF2EBB288900D64E58 /* PendingOperationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperationsManager.swift; sourceTree = "<group>"; };
+		AA68BDF42EBB289E00D64E58 /* CacheSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheSettings.swift; sourceTree = "<group>"; };
+		AA68BDF52EBB289E00D64E58 /* PendingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperation.swift; sourceTree = "<group>"; };
+		AA68BDF62EBB289E00D64E58 /* SyncStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatus.swift; sourceTree = "<group>"; };
+		AA68BDFA2EBB28AC00D64E58 /* OfflineBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineBanner.swift; sourceTree = "<group>"; };
+		AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatusIndicator.swift; sourceTree = "<group>"; };
+		AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheSettingsView.swift; sourceTree = "<group>"; };
 		B21783BD3CFE445097141633 /* Timesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timesheet.swift; sourceTree = "<group>"; };
 		BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollection.swift; sourceTree = "<group>"; };
 		EFF4A303DA5D49C78F37C4A9 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -145,6 +165,8 @@
 		AA34B1442EBA0D4D0027C2F5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AA68BDFA2EBB28AC00D64E58 /* OfflineBanner.swift */,
+				AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */,
 				AA34B1402EBA0D4D0027C2F5 /* EmptyStateView.swift */,
 				AA34B1412EBA0D4D0027C2F5 /* LoadingView.swift */,
 				AA34B1422EBA0D4D0027C2F5 /* PrimaryButton.swift */,
@@ -156,6 +178,10 @@
 		AA34B1462EBA0D4D0027C2F5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AA68BDEC2EBB288900D64E58 /* CacheManager.swift */,
+				AA68BDED2EBB288900D64E58 /* NetworkMonitor.swift */,
+				AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */,
+				AA68BDEF2EBB288900D64E58 /* PendingOperationsManager.swift */,
 				AA34B1452EBA0D4D0027C2F5 /* NetworkService.swift */,
 			);
 			path = Services;
@@ -173,6 +199,7 @@
 		AA34B14D2EBA0D4D0027C2F5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */,
 				AA34B14A2EBA0D4D0027C2F5 /* GraphicsCreditsView.swift */,
 				AA34B14B2EBA0D4D0027C2F5 /* OSSCreditsView.swift */,
 				AA34B14C2EBA0D4D0027C2F5 /* SettingsView.swift */,
@@ -249,6 +276,9 @@
 		FDB0BF561F814CA9005AAA0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AA68BDF42EBB289E00D64E58 /* CacheSettings.swift */,
+				AA68BDF52EBB289E00D64E58 /* PendingOperation.swift */,
+				AA68BDF62EBB289E00D64E58 /* SyncStatus.swift */,
 				FDB0BF571F814CBB005AAA0F /* Activity.swift */,
 				FD3E3E791F82F92900B5D291 /* User.swift */,
 				FD73611421580608002DC15E /* InstanceMetadata.swift */,
@@ -483,16 +513,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA3AC11B2EB8B239007CB3AA /* ReportType.swift in Sources */,
+				AA68BDFC2EBB28AC00D64E58 /* OfflineBanner.swift in Sources */,
+				AA68BDFD2EBB28AC00D64E58 /* SyncStatusIndicator.swift in Sources */,
 				AA34B13C2EBA0D370027C2F5 /* AuthViewModel.swift in Sources */,
 				AA34B13D2EBA0D370027C2F5 /* ReportsViewModel.swift in Sources */,
 				AA34B13E2EBA0D370027C2F5 /* TimesheetViewModel.swift in Sources */,
 				AA34B13F2EBA0D370027C2F5 /* SettingsViewModel.swift in Sources */,
+				AA68BDF72EBB289E00D64E58 /* PendingOperation.swift in Sources */,
+				AA68BDF82EBB289E00D64E58 /* CacheSettings.swift in Sources */,
+				AA68BDF92EBB289E00D64E58 /* SyncStatus.swift in Sources */,
 				AA3AC11D2EB8B239007CB3AA /* ReportData.swift in Sources */,
 				AA3AC1212EB8B239007CB3AA /* ReportAggregator.swift in Sources */,
 				FDE9C2F2205320E1009250D9 /* Credits.swift in Sources */,
 				FD73611521580608002DC15E /* InstanceMetadata.swift in Sources */,
 				AA34B1652EBA0D620027C2F5 /* Theme.swift in Sources */,
 				FDB0BF581F814CBB005AAA0F /* Activity.swift in Sources */,
+				AA68BDFF2EBB28B800D64E58 /* CacheSettingsView.swift in Sources */,
 				AA34B1552EBA0D4D0027C2F5 /* TimesheetDetailView.swift in Sources */,
 				AA34B1562EBA0D4D0027C2F5 /* LoadingView.swift in Sources */,
 				AA34B1572EBA0D4D0027C2F5 /* GraphicsCreditsView.swift in Sources */,
@@ -517,6 +553,10 @@
 				A4BC116CC8DC4193A010CFA6 /* TimesheetEditForm.swift in Sources */,
 				9F972C4094E645ECA13A334E /* Timesheet.swift in Sources */,
 				AA34B1362EBA0D250027C2F5 /* TimaiApp.swift in Sources */,
+				AA68BDF02EBB288900D64E58 /* OfflineSyncManager.swift in Sources */,
+				AA68BDF12EBB288900D64E58 /* PendingOperationsManager.swift in Sources */,
+				AA68BDF22EBB288900D64E58 /* CacheManager.swift in Sources */,
+				AA68BDF32EBB288900D64E58 /* NetworkMonitor.swift in Sources */,
 				FD3E3E7A1F82F92900B5D291 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

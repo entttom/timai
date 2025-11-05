@@ -53,6 +53,18 @@ struct SettingsView: View {
                 }
             }
             
+            // Offline & Cache Section
+            Section("Offline & Cache") {
+                NavigationLink(destination: CacheSettingsView()) {
+                    Label("Cache-Verwaltung", systemImage: "externaldrive")
+                }
+                
+                Toggle("Automatische Synchronisierung", isOn: Binding(
+                    get: { CacheSettings.autoSyncEnabled },
+                    set: { CacheSettings.autoSyncEnabled = $0 }
+                ))
+            }
+            
             // Credits Section
             Section("settings.tableView.section.credits".localized()) {
                 NavigationLink(destination: OSSCreditsView()) {
