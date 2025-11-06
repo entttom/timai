@@ -108,3 +108,82 @@
 "error.message.noTimesheetRecords" = "No records found";
 "error.message.couldntReceiveRecords" = "Couldn't get timesheet records";
 "error.message.loadingFailed" = "Failed to load data";
+
+// Timesheet Detail View
+"timesheetDetail.section.project" = "Project";
+"timesheetDetail.field.customer" = "Customer";
+"timesheetDetail.field.project" = "Project";
+"timesheetDetail.field.activity" = "Activity";
+"timesheetDetail.section.time" = "Time";
+"timesheetDetail.field.start" = "Start";
+"timesheetDetail.field.end" = "End";
+"timesheetDetail.field.duration" = "Duration";
+"timesheetDetail.section.description" = "Description";
+"timesheetDetail.navigationTitle" = "Details";
+"timesheetDetail.button.edit" = "Edit";
+"timesheetDetail.button.delete" = "Delete";
+"timesheetDetail.alert.delete.title" = "Delete entry?";
+"timesheetDetail.alert.delete.message" = "Do you really want to delete this entry?";
+"timesheetDetail.alert.delete.confirm" = "Delete";
+"timesheetDetail.alert.delete.cancel" = "Cancel";
+
+// Timesheet Edit View
+"timesheetEdit.navigationTitle.create" = "New Entry";
+"timesheetEdit.navigationTitle.edit" = "Edit";
+"timesheetEdit.button.save" = "Save";
+"timesheetEdit.button.cancel" = "Cancel";
+"timesheetEdit.section.customer" = "Customer";
+"timesheetEdit.section.project" = "Project";
+"timesheetEdit.section.activity" = "Activity";
+"timesheetEdit.section.time" = "Time";
+"timesheetEdit.section.description" = "Description";
+"timesheetEdit.picker.customer" = "Select customer";
+"timesheetEdit.picker.project" = "Select project";
+"timesheetEdit.picker.activity" = "Select activity";
+"timesheetEdit.picker.placeholder" = "Please select";
+"timesheetEdit.loading.customers" = "Loading customers...";
+"timesheetEdit.loading.projects" = "Loading projects...";
+"timesheetEdit.loading.activities" = "Loading activities...";
+"timesheetEdit.warning.noData.title" = "No data available";
+"timesheetEdit.warning.noData.message" = "Please connect to the internet to load customers, projects, and activities.";
+"timesheetEdit.error.loadingCustomers" = "Error loading customers";
+"timesheetEdit.error.loadingProjects" = "Error loading projects";
+"timesheetEdit.error.loadingActivities" = "Error loading activities";
+"timesheetEdit.error.saving" = "Error saving";
+
+// Settings - Cache Section
+"settings.section.offlineCache" = "Offline & Cache";
+"settings.cache.management" = "Cache Management";
+"settings.cache.autoSync" = "Automatic Synchronization";
+
+// Cache Settings View
+"cacheSettings.navigationTitle" = "Cache Management";
+"cacheSettings.section.statistics" = "Cache Statistics";
+"cacheSettings.field.cacheSize" = "Cache Size";
+"cacheSettings.field.timesheets" = "Timesheets in cache";
+"cacheSettings.field.customers" = "Customers in cache";
+"cacheSettings.section.sync" = "Synchronization";
+"cacheSettings.sync.auto" = "Automatic Synchronization";
+"cacheSettings.sync.preload.title" = "Preload Reference Data";
+"cacheSettings.sync.preload.subtitle" = "Loads Customers, Projects & Activities for offline use";
+"cacheSettings.section.settings" = "Cache Settings";
+"cacheSettings.field.maxEntries" = "Maximum Entries";
+"cacheSettings.field.retentionDays" = "Retention (Days)";
+"cacheSettings.button.clearCache" = "Clear Cache";
+"cacheSettings.alert.clear.title" = "Clear cache?";
+"cacheSettings.alert.clear.message" = "This will delete all cached data.";
+"cacheSettings.alert.clear.confirm" = "Clear";
+"cacheSettings.alert.clear.cancel" = "Cancel";
+"cacheSettings.toast.cleared" = "Cache successfully cleared";
+
+// Reports - Generic
+"reports.section.summary" = "Summary";
+"reports.field.totalHours" = "Total Hours";
+"reports.field.entryCount" = "Number of Entries";
+"reports.section.byProject" = "By Project";
+"reports.section.byUser" = "By User";
+"reports.section.details" = "Details";
+"reports.field.budget" = "Budget";
+"reports.field.entries" = "Entries";
+"reports.projects.inactive.empty.title" = "All projects active";
+"reports.projects.inactive.empty.message" = "There are no inactive projects in the last 30 days";

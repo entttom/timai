@@ -54,7 +54,7 @@ struct TimesheetView: View {
                                 .listRowBackground(
                                     isPending ? 
                                         Color.yellow.opacity(0.08) : 
-                                        Color.white
+                                        Color.timaiCardBackground
                                 )
                             }
                         }

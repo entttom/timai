@@ -12,6 +12,7 @@
 		5E68D7CDAD99403DB8C42535 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74829760C01C4CB7B99E35E4 /* Project.swift */; };
 		9F972C4094E645ECA13A334E /* Timesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21783BD3CFE445097141633 /* Timesheet.swift */; };
 		A4BC116CC8DC4193A010CFA6 /* TimesheetEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57079C8AD4FC4675A1BA436F /* TimesheetEditForm.swift */; };
+		FD08AD4B2039DFF400526CF4 /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FD08AD492039DFF400526CF3 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA34B1362EBA0D250027C2F5 /* TimaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1352EBA0D250027C2F5 /* TimaiApp.swift */; };
 		AA34B13C2EBA0D370027C2F5 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */; };
 		AA34B13D2EBA0D370027C2F5 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */; };
@@ -70,6 +71,20 @@
 			remoteInfo = Timai;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FD08AD4C2039DFF400526CF5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FD08AD4B2039DFF400526CF4 /* KeychainAccess.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		57079C8AD4FC4675A1BA436F /* TimesheetEditForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetEditForm.swift; sourceTree = "<group>"; };
@@ -393,6 +408,7 @@
 				FDD678621F7D9051002F4D33 /* Sources */,
 				FDD678631F7D9051002F4D33 /* Frameworks */,
 				FDD678641F7D9051002F4D33 /* Resources */,
+				FD08AD4C2039DFF400526CF5 /* Embed Frameworks */,
 				FDD6787E1F7D9387002F4D33 /* ShellScript */,
 				FDAACDE120813DFF006E15DE /* ShellScript */,
 			);
@@ -763,7 +779,7 @@
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build",
 				);
 				INFOPLIST_FILE = Timai/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Timai;
@@ -790,7 +806,7 @@
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build",
 				);
 				INFOPLIST_FILE = Timai/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Timai;

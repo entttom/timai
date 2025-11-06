@@ -152,5 +152,7 @@ struct PreloadBanner: View {
     
     return MainTabView()
         .environmentObject(authViewModel)
+        .environmentObject(NetworkMonitor.shared)
+        .environmentObject(OfflineSyncManager.shared)
 }
 

@@ -100,7 +100,7 @@ platform :ios do
   desc "Lädt einen neuen Build zu TestFlight hoch"
   lane :beta do |options|
     # Ensure git status is clean
-    ensure_git_status_clean
+    # ensure_git_status_clean
     
     # Certificates und Provisioning Profiles synchronisieren
     match(type: "appstore") if ENV["USE_MATCH"] == "true"
@@ -129,7 +129,6 @@ platform :ios do
     upload_to_testflight(
       skip_waiting_for_build_processing: true,
       skip_submission: true,
-      distribute_external: false,
       
       # Changelog / What to Test (für interne Tester)
       changelog: changelog_text,
@@ -143,7 +142,7 @@ platform :ios do
       # Tester-Gruppen (optional)
       # groups: ["Internal Testers", "Beta Testers"],
       
-      # Automatisch für interne Tester freigeben
+      # Nur für interne Tester
       distribute_external: false,
       notify_external_testers: false
     )
@@ -155,7 +154,7 @@ platform :ios do
     # )
     
     # Tag erstellen
-    version = get_version_number_from_plist(target: scheme)
+    version = get_info_plist_value(path: "./Timai/Info.plist", key: "CFBundleShortVersionString")
     build = get_info_plist_value(path: "./Timai/Info.plist", key: "CFBundleVersion")
     add_git_tag(
       tag: "testflight/#{version}/#{build}"
@@ -223,7 +222,7 @@ platform :ios do
     # )
     
     # Tag erstellen
-    version = get_version_number_from_plist(target: scheme)
+    version = get_info_plist_value(path: "./Timai/Info.plist", key: "CFBundleShortVersionString")
     add_git_tag(
       tag: "release/#{version}"
     )

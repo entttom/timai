@@ -191,9 +191,9 @@ struct GenericTimeReportView: View {
     var body: some View {
         List {
             // Summary Section
-            Section("Zusammenfassung") {
+            Section("reports.section.summary".localized()) {
                 HStack {
-                    Text("Gesamtstunden")
+                    Text("reports.field.totalHours".localized())
                         .foregroundColor(.timaiSubheaderColor)
                     Spacer()
                     Text(String(format: "%.2f h", totalHours))
@@ -202,7 +202,7 @@ struct GenericTimeReportView: View {
                 }
                 
                 HStack {
-                    Text("Anzahl Einträge")
+                    Text("reports.field.entryCount".localized())
                         .foregroundColor(.timaiSubheaderColor)
                     Spacer()
                     Text("\(filteredTimesheets.count)")
@@ -213,7 +213,7 @@ struct GenericTimeReportView: View {
             
             // Chart Section
             if !projectBreakdown.isEmpty {
-                Section("Nach Projekt") {
+                Section("reports.section.byProject".localized()) {
                     Chart(projectBreakdown, id: \.0) { item in
                         BarMark(
                             x: .value("Stunden", item.1),
@@ -227,7 +227,7 @@ struct GenericTimeReportView: View {
             }
             
             // Project List
-            Section("Details") {
+            Section("reports.section.details".localized()) {
                 ForEach(projectBreakdown, id: \.0) { project, hours in
                     HStack {
                         Text(project)
@@ -283,7 +283,7 @@ struct AllUsersReportView: View {
     
     var body: some View {
         List {
-            Section("Nach Benutzer") {
+            Section("reports.section.byUser".localized()) {
                 ForEach(userBreakdown, id: \.0.id) { user, hours in
                     HStack {
                         VStack(alignment: .leading) {
@@ -345,7 +345,7 @@ struct ProjectReportView: View {
                         .foregroundColor(.timaiSubheaderColor)
                     
                     HStack {
-                        Label("\(count) Einträge", systemImage: "list.bullet")
+                        Label("\(count) " + "reports.field.entries".localized(), systemImage: "list.bullet")
                             .font(.caption)
                             .foregroundColor(.timaiGrayTone2)
                         
@@ -363,7 +363,7 @@ struct ProjectReportView: View {
                         
                         VStack(alignment: .leading, spacing: 4) {
                             HStack {
-                                Text("Budget:")
+                                Text("reports.field.budget".localized() + ":")
                                     .font(.caption)
                                     .foregroundColor(.timaiGrayTone2)
                                 
@@ -423,8 +423,8 @@ struct InactiveProjectsListView: View {
             if inactiveProjects.isEmpty {
                 EmptyStateView(
                     icon: "checkmark.circle",
-                    title: "Alle Projekte aktiv",
-                    message: "Es gibt keine inaktiven Projekte in den letzten 30 Tagen"
+                    title: "reports.projects.inactive.empty.title".localized(),
+                    message: "reports.projects.inactive.empty.message".localized()
                 )
             } else {
                 ForEach(inactiveProjects) { project in

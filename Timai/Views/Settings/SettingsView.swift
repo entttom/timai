@@ -14,8 +14,8 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var settingsViewModel: SettingsViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
-    @StateObject private var languageManager = LanguageManager.shared
-    @StateObject private var themeManager = ThemeManager.shared
+    @EnvironmentObject var languageManager: LanguageManager
+    @EnvironmentObject var themeManager: ThemeManager
     @State private var showingLogoutAlert = false
     @State private var showingLanguageChangeAlert = false
     @State private var selectedLanguage: AppLanguage
@@ -41,7 +41,7 @@ struct SettingsView: View {
             Section("settings.tableView.section.language".localized()) {
                 Picker("settings.tableView.cell.language".localized(), selection: $selectedLanguage) {
                     ForEach(AppLanguage.allCases) { language in
-                        Text("\(language.flag) \(language.displayName)")
+                        Text(language.displayName)
                             .tag(language)
                     }
                 }
@@ -54,12 +54,12 @@ struct SettingsView: View {
             }
             
             // Offline & Cache Section
-            Section("Offline & Cache") {
+            Section("settings.section.offlineCache".localized()) {
                 NavigationLink(destination: CacheSettingsView()) {
-                    Label("Cache-Verwaltung", systemImage: "externaldrive")
+                    Label("settings.cache.management".localized(), systemImage: "externaldrive")
                 }
                 
-                Toggle("Automatische Synchronisierung", isOn: Binding(
+                Toggle("settings.cache.autoSync".localized(), isOn: Binding(
                     get: { CacheSettings.autoSyncEnabled },
                     set: { CacheSettings.autoSyncEnabled = $0 }
                 ))
@@ -132,6 +132,8 @@ struct SettingsView: View {
         SettingsView()
             .environmentObject(SettingsViewModel())
             .environmentObject(AuthViewModel())
+            .environmentObject(LanguageManager.shared)
+            .environmentObject(ThemeManager.shared)
     }
 }
 

@@ -108,3 +108,82 @@
 "error.message.noTimesheetRecords" = "Keine Einträge gefunden";
 "error.message.couldntReceiveRecords" = "Konnte keine Einträge vom Server laden";
 "error.message.loadingFailed" = "Daten konnten nicht geladen werden";
+
+// Timesheet Detail View
+"timesheetDetail.section.project" = "Projekt";
+"timesheetDetail.field.customer" = "Kunde";
+"timesheetDetail.field.project" = "Projekt";
+"timesheetDetail.field.activity" = "Aktivität";
+"timesheetDetail.section.time" = "Zeit";
+"timesheetDetail.field.start" = "Start";
+"timesheetDetail.field.end" = "Ende";
+"timesheetDetail.field.duration" = "Dauer";
+"timesheetDetail.section.description" = "Beschreibung";
+"timesheetDetail.navigationTitle" = "Details";
+"timesheetDetail.button.edit" = "Bearbeiten";
+"timesheetDetail.button.delete" = "Löschen";
+"timesheetDetail.alert.delete.title" = "Eintrag löschen?";
+"timesheetDetail.alert.delete.message" = "Möchten Sie diesen Eintrag wirklich löschen?";
+"timesheetDetail.alert.delete.confirm" = "Löschen";
+"timesheetDetail.alert.delete.cancel" = "Abbrechen";
+
+// Timesheet Edit View
+"timesheetEdit.navigationTitle.create" = "Neuer Eintrag";
+"timesheetEdit.navigationTitle.edit" = "Bearbeiten";
+"timesheetEdit.button.save" = "Speichern";
+"timesheetEdit.button.cancel" = "Abbrechen";
+"timesheetEdit.section.customer" = "Kunde";
+"timesheetEdit.section.project" = "Projekt";
+"timesheetEdit.section.activity" = "Aktivität";
+"timesheetEdit.section.time" = "Zeit";
+"timesheetEdit.section.description" = "Beschreibung";
+"timesheetEdit.picker.customer" = "Kunde auswählen";
+"timesheetEdit.picker.project" = "Projekt auswählen";
+"timesheetEdit.picker.activity" = "Aktivität auswählen";
+"timesheetEdit.picker.placeholder" = "Bitte wählen";
+"timesheetEdit.loading.customers" = "Lade Kunden...";
+"timesheetEdit.loading.projects" = "Lade Projekte...";
+"timesheetEdit.loading.activities" = "Lade Aktivitäten...";
+"timesheetEdit.warning.noData.title" = "Keine Daten verfügbar";
+"timesheetEdit.warning.noData.message" = "Bitte stellen Sie eine Internetverbindung her, um Kunden, Projekte und Aktivitäten zu laden.";
+"timesheetEdit.error.loadingCustomers" = "Fehler beim Laden der Kunden";
+"timesheetEdit.error.loadingProjects" = "Fehler beim Laden der Projekte";
+"timesheetEdit.error.loadingActivities" = "Fehler beim Laden der Aktivitäten";
+"timesheetEdit.error.saving" = "Fehler beim Speichern";
+
+// Settings - Cache Section
+"settings.section.offlineCache" = "Offline & Cache";
+"settings.cache.management" = "Cache-Verwaltung";
+"settings.cache.autoSync" = "Automatische Synchronisierung";
+
+// Cache Settings View
+"cacheSettings.navigationTitle" = "Cache-Verwaltung";
+"cacheSettings.section.statistics" = "Cache-Statistiken";
+"cacheSettings.field.cacheSize" = "Cache-Größe";
+"cacheSettings.field.timesheets" = "Timesheets im Cache";
+"cacheSettings.field.customers" = "Customers im Cache";
+"cacheSettings.section.sync" = "Synchronisierung";
+"cacheSettings.sync.auto" = "Automatische Synchronisierung";
+"cacheSettings.sync.preload.title" = "Referenzdaten vorladen";
+"cacheSettings.sync.preload.subtitle" = "Lädt Customers, Projects & Activities für Offline-Nutzung";
+"cacheSettings.section.settings" = "Cache-Einstellungen";
+"cacheSettings.field.maxEntries" = "Maximale Einträge";
+"cacheSettings.field.retentionDays" = "Aufbewahrung (Tage)";
+"cacheSettings.button.clearCache" = "Cache löschen";
+"cacheSettings.alert.clear.title" = "Cache löschen?";
+"cacheSettings.alert.clear.message" = "Dies löscht alle zwischengespeicherten Daten.";
+"cacheSettings.alert.clear.confirm" = "Löschen";
+"cacheSettings.alert.clear.cancel" = "Abbrechen";
+"cacheSettings.toast.cleared" = "Cache erfolgreich gelöscht";
+
+// Reports - Generic
+"reports.section.summary" = "Zusammenfassung";
+"reports.field.totalHours" = "Gesamtstunden";
+"reports.field.entryCount" = "Anzahl Einträge";
+"reports.section.byProject" = "Nach Projekt";
+"reports.section.byUser" = "Nach Benutzer";
+"reports.section.details" = "Details";
+"reports.field.budget" = "Budget";
+"reports.field.entries" = "Einträge";
+"reports.projects.inactive.empty.title" = "Alle Projekte aktiv";
+"reports.projects.inactive.empty.message" = "Es gibt keine inaktiven Projekte in den letzten 30 Tagen";

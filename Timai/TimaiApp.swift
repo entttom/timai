@@ -17,6 +17,7 @@ import KeychainAccess
 struct TimaiApp: App {
     @StateObject private var authViewModel = AuthViewModel()
     @StateObject private var languageManager = LanguageManager.shared
+    @StateObject private var themeManager = ThemeManager.shared
     @StateObject private var networkMonitor = NetworkMonitor.shared
     @StateObject private var syncManager = OfflineSyncManager.shared
     
@@ -29,8 +30,10 @@ struct TimaiApp: App {
             ContentView()
                 .environmentObject(authViewModel)
                 .environmentObject(languageManager)
+                .environmentObject(themeManager)
                 .environmentObject(networkMonitor)
                 .environmentObject(syncManager)
+                .preferredColorScheme(themeManager.currentTheme.colorScheme)
                 .onAppear {
                     Task {
                         await authViewModel.checkAutoLogin()

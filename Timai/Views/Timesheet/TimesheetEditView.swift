@@ -52,10 +52,10 @@ struct TimesheetEditView: View {
                             .font(.system(size: 40))
                             .foregroundColor(.orange)
                         
-                        Text("Keine Daten verfügbar")
+                        Text("timesheetEdit.warning.noData.title".localized())
                             .font(.headline)
                         
-                        Text("Bitte stellen Sie eine Internetverbindung her, um Kunden, Projekte und Aktivitäten zu laden.")
+                        Text("timesheetEdit.warning.noData.message".localized())
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
@@ -81,17 +81,17 @@ struct TimesheetEditView: View {
                 descriptionSection
             }
         }
-        .navigationTitle(mode.isEdit ? "Bearbeiten" : "Neuer Eintrag")
+        .navigationTitle(mode.isEdit ? "timesheetEdit.navigationTitle.edit".localized() : "timesheetEdit.navigationTitle.create".localized())
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("Abbrechen") {
+                Button("timesheetEdit.button.cancel".localized()) {
                     dismiss()
                 }
             }
             
             ToolbarItem(placement: .confirmationAction) {
-                Button("Speichern") {
+                Button("timesheetEdit.button.save".localized()) {
                     Task {
                         await saveTimesheet()
                     }
@@ -172,9 +172,9 @@ struct TimesheetEditView: View {
     // MARK: - Sub Views
     
     private var customerSection: some View {
-        Section("Kunde") {
+        Section("timesheetEdit.section.customer".localized()) {
             if editViewModel.isLoadingCustomers {
-                loadingRow(text: "Lade Kunden...")
+                loadingRow(text: "timesheetEdit.loading.customers".localized())
             } else {
                 customerPicker
             }
@@ -182,8 +182,8 @@ struct TimesheetEditView: View {
     }
     
     private var customerPicker: some View {
-        Picker("Kunde auswählen", selection: $selectedCustomerId) {
-            Text("Bitte wählen").tag(nil as Int?)
+        Picker("timesheetEdit.picker.customer".localized(), selection: $selectedCustomerId) {
+            Text("timesheetEdit.picker.placeholder".localized()).tag(nil as Int?)
             ForEach(editViewModel.customers) { customer in
                 Text(customer.name).tag(customer.id as Int?)
             }
@@ -202,9 +202,9 @@ struct TimesheetEditView: View {
     }
     
     private var projectSection: some View {
-        Section("Projekt") {
+        Section("timesheetEdit.section.project".localized()) {
             if editViewModel.isLoadingProjects {
-                loadingRow(text: "Lade Projekte...")
+                loadingRow(text: "timesheetEdit.loading.projects".localized())
             } else {
                 projectPicker
             }
@@ -212,8 +212,8 @@ struct TimesheetEditView: View {
     }
     
     private var projectPicker: some View {
-        Picker("Projekt auswählen", selection: $selectedProjectId) {
-            Text("Bitte wählen").tag(nil as Int?)
+        Picker("timesheetEdit.picker.project".localized(), selection: $selectedProjectId) {
+            Text("timesheetEdit.picker.placeholder".localized()).tag(nil as Int?)
             ForEach(editViewModel.projects) { project in
                 Text(project.name).tag(project.id as Int?)
             }
@@ -231,9 +231,9 @@ struct TimesheetEditView: View {
     }
     
     private var activitySection: some View {
-        Section("Aktivität") {
+        Section("timesheetEdit.section.activity".localized()) {
             if editViewModel.isLoadingActivities {
-                loadingRow(text: "Lade Aktivitäten...")
+                loadingRow(text: "timesheetEdit.loading.activities".localized())
             } else {
                 activityPicker
             }
@@ -241,8 +241,8 @@ struct TimesheetEditView: View {
     }
     
     private var activityPicker: some View {
-        Picker("Aktivität auswählen", selection: $selectedActivityId) {
-            Text("Bitte wählen").tag(nil as Int?)
+        Picker("timesheetEdit.picker.activity".localized(), selection: $selectedActivityId) {
+            Text("timesheetEdit.picker.placeholder".localized()).tag(nil as Int?)
             ForEach(editViewModel.activities) { activity in
                 Text(activity.name).tag(activity.id as Int?)
             }
@@ -250,7 +250,7 @@ struct TimesheetEditView: View {
     }
     
     private var timeSection: some View {
-        Section("Zeit") {
+        Section("timesheetEdit.section.time".localized()) {
             DatePicker("Start", selection: $startDate)
                 .onChange(of: startDate) { newStartDate in
                     guard !isAdjustingDates else { return }
@@ -280,7 +280,7 @@ struct TimesheetEditView: View {
     }
     
     private var descriptionSection: some View {
-        Section("Beschreibung") {
+        Section("timesheetEdit.section.description".localized()) {
             TextEditor(text: $descriptionText)
                 .frame(minHeight: 100)
         }
@@ -396,7 +396,7 @@ class TimesheetEditViewModel: ObservableObject {
                case .offlineNoCache = apiError {
                 errorMessage = "Offline - Keine Daten im Cache. Bitte einmal online verbinden."
             } else {
-            errorMessage = "Fehler beim Laden der Kunden"
+            errorMessage = "timesheetEdit.error.loadingCustomers".localized()
             }
         }
         
@@ -450,7 +450,7 @@ class TimesheetEditViewModel: ObservableObject {
             projects = try await networkService.getProjects(customer: customer, user: user)
         } catch {
             print("❌ [TimesheetEditViewModel] Fehler beim Laden der Projekte: \(error)")
-            errorMessage = "Fehler beim Laden der Projekte"
+            errorMessage = "timesheetEdit.error.loadingProjects".localized()
         }
         
         isLoadingProjects = false
@@ -467,7 +467,7 @@ class TimesheetEditViewModel: ObservableObject {
             activities = try await networkService.getActivities(projectId: project.id, user: user)
         } catch {
             print("❌ [TimesheetEditViewModel] Fehler beim Laden der Aktivitäten: \(error)")
-            errorMessage = "Fehler beim Laden der Aktivitäten"
+            errorMessage = "timesheetEdit.error.loadingActivities".localized()
         }
         
         isLoadingActivities = false
@@ -499,7 +499,7 @@ class TimesheetEditViewModel: ObservableObject {
             return true
         } catch {
             print("❌ [TimesheetEditViewModel] Fehler beim Erstellen: \(error)")
-            errorMessage = "Fehler beim Speichern"
+            errorMessage = "timesheetEdit.error.saving".localized()
             isSaving = false
             return false
         }
@@ -531,7 +531,7 @@ class TimesheetEditViewModel: ObservableObject {
             return true
         } catch {
             print("❌ [TimesheetEditViewModel] Fehler beim Aktualisieren: \(error)")
-            errorMessage = "Fehler beim Speichern"
+            errorMessage = "timesheetEdit.error.saving".localized()
             isSaving = false
             return false
         }

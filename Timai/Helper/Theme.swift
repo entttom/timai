@@ -136,15 +136,6 @@ enum AppLanguage: String, CaseIterable, Identifiable {
             return "English"
         }
     }
-    
-    var flag: String {
-        switch self {
-        case .german:
-            return "🇩🇪"
-        case .english:
-            return "🇬🇧"
-        }
-    }
 }
 
 @MainActor

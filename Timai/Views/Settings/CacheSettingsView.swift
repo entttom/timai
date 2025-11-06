@@ -46,16 +46,16 @@ struct CacheSettingsView: View {
     var body: some View {
         Form {
             // Statistics Section
-            Section("Cache-Statistiken") {
+            Section("cacheSettings.section.statistics".localized()) {
                 HStack {
-                    Text("Cache-Größe")
+                    Text("cacheSettings.field.cacheSize".localized())
                     Spacer()
                     Text(cacheSizeFormatted)
                         .foregroundColor(.timaiGrayTone2)
                 }
                 
                 HStack {
-                    Text("Letzter Sync")
+                    Text("Last Sync")
                     Spacer()
                     Text(lastSyncFormatted)
                         .foregroundColor(.timaiGrayTone2)
@@ -65,14 +65,14 @@ struct CacheSettingsView: View {
                     let stats = cacheManager.getCacheStatistics(for: user)
                     
                     HStack {
-                        Text("Timesheets im Cache")
+                        Text("cacheSettings.field.timesheets".localized())
                         Spacer()
                         Text("\(stats.timesheetsCount)")
                             .foregroundColor(.timaiGrayTone2)
                     }
                     
                     HStack {
-                        Text("Customers im Cache")
+                        Text("cacheSettings.field.customers".localized())
                         Spacer()
                         Text("\(stats.customersCount)")
                             .foregroundColor(.timaiGrayTone2)
@@ -97,8 +97,8 @@ struct CacheSettingsView: View {
             }
             
             // Sync Settings Section
-            Section("Synchronisierung") {
-                Toggle("Automatische Synchronisierung", isOn: $autoSyncEnabled)
+            Section("cacheSettings.section.sync".localized()) {
+                Toggle("cacheSettings.sync.auto".localized(), isOn: $autoSyncEnabled)
                     .onChange(of: autoSyncEnabled) { newValue in
                         CacheSettings.autoSyncEnabled = newValue
                     }
@@ -159,7 +159,7 @@ struct CacheSettingsView: View {
                         }
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Alle Daten herunterladen")
-                            Text("Lädt Customers, Projects & Activities für Offline-Nutzung")
+                            Text("cacheSettings.sync.preload.subtitle".localized())
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -175,8 +175,8 @@ struct CacheSettingsView: View {
             }
             
             // Cache Settings Section
-            Section("Cache-Einstellungen") {
-                Picker("Maximale Einträge", selection: $maxCacheEntries) {
+            Section("cacheSettings.section.settings".localized()) {
+                Picker("cacheSettings.field.maxEntries".localized(), selection: $maxCacheEntries) {
                     Text("50").tag(50)
                     Text("100").tag(100)
                     Text("200").tag(200)
@@ -237,15 +237,15 @@ struct CacheSettingsView: View {
                 }) {
                     HStack {
                         Image(systemName: "trash")
-                        Text("Cache löschen")
+                        Text("cacheSettings.button.clearCache".localized())
                     }
                     .foregroundColor(.red)
                 }
             }
         }
-        .navigationTitle("Cache-Verwaltung")
+        .navigationTitle("cacheSettings.navigationTitle".localized())
         .navigationBarTitleDisplayMode(.inline)
-        .alert("Cache löschen?", isPresented: $showClearConfirmation) {
+        .alert("cacheSettings.alert.clear.title".localized(), isPresented: $showClearConfirmation) {
             Button("Abbrechen", role: .cancel) {}
             Button("Löschen", role: .destructive) {
                 Task {
@@ -260,7 +260,7 @@ struct CacheSettingsView: View {
         }
         .toast(
             isShowing: $showClearSuccess,
-            message: "Cache erfolgreich gelöscht",
+            message: "cacheSettings.toast.cleared".localized(),
             type: .success
         )
         .toast(

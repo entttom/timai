@@ -21,25 +21,25 @@ struct TimesheetDetailView: View {
     var body: some View {
         List {
             // Customer & Project Section
-            Section("Projekt") {
-                DetailRow(title: "Kunde", value: activity.customerName)
-                DetailRow(title: "Projekt", value: activity.projectName)
-                DetailRow(title: "Aktivität", value: activity.task)
+            Section("timesheetDetail.section.project".localized()) {
+                DetailRow(title: "timesheetDetail.field.customer".localized(), value: activity.customerName)
+                DetailRow(title: "timesheetDetail.field.project".localized(), value: activity.projectName)
+                DetailRow(title: "timesheetDetail.field.activity".localized(), value: activity.task)
             }
             
             // Time Section
-            Section("Zeit") {
-                DetailRow(title: "Start", value: formatDateTime(activity.startDateTime))
-                DetailRow(title: "Ende", value: formatDateTime(activity.endDateTime))
+            Section("timesheetDetail.section.time".localized()) {
+                DetailRow(title: "timesheetDetail.field.start".localized(), value: formatDateTime(activity.startDateTime))
+                DetailRow(title: "timesheetDetail.field.end".localized(), value: formatDateTime(activity.endDateTime))
                 DetailRow(
-                    title: "Dauer",
+                    title: "timesheetDetail.field.duration".localized(),
                     value: formatDuration(from: activity.startDateTime, to: activity.endDateTime)
                 )
             }
             
             // Description Section
             if let description = activity.description, !description.isEmpty {
-                Section("Beschreibung") {
+                Section("timesheetDetail.section.description".localized()) {
                     Text(description)
                         .font(.body)
                         .foregroundColor(.timaiTextBlack)
@@ -51,30 +51,30 @@ struct TimesheetDetailView: View {
                 Button(role: .destructive, action: { showingDeleteAlert = true }) {
                     HStack {
                         Image(systemName: "trash")
-                        Text("Löschen")
+                        Text("timesheetDetail.button.delete".localized())
                     }
                 }
             }
         }
-        .navigationTitle("Details")
+        .navigationTitle("timesheetDetail.navigationTitle".localized())
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Bearbeiten") {
+                Button("timesheetDetail.button.edit".localized()) {
                     showingEditSheet = true
                 }
             }
         }
-        .alert("Eintrag löschen?", isPresented: $showingDeleteAlert) {
-            Button("Abbrechen", role: .cancel) {}
-            Button("Löschen", role: .destructive) {
+        .alert("timesheetDetail.alert.delete.title".localized(), isPresented: $showingDeleteAlert) {
+            Button("timesheetDetail.alert.delete.cancel".localized(), role: .cancel) {}
+            Button("timesheetDetail.alert.delete.confirm".localized(), role: .destructive) {
                 Task {
                     await viewModel.deleteTimesheet(id: activity.recordId)
                     dismiss()
                 }
             }
         } message: {
-            Text("Möchten Sie diesen Eintrag wirklich löschen?")
+            Text("timesheetDetail.alert.delete.message".localized())
         }
         .sheet(isPresented: $showingEditSheet) {
             NavigationStack {

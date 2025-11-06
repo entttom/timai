@@ -43,51 +43,59 @@ struct LoginView: View {
                     // URL Input
                     HStack(spacing: 15) {
                         Image(systemName: "link")
-                            .font(.system(size: 18))
-                            .foregroundColor(.timaiGrayTone3)
-                            .frame(width: 20)
+                            .font(.system(size: 20, weight: .medium))
+                            .foregroundColor(.white)
+                            .frame(width: 24)
+                            .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1)
                         
-                        TextField("https://demo.kimai.org/api/", text: $kimaiURL)
-                            .keyboardType(.URL)
-                            .autocapitalization(.none)
-                            .autocorrectionDisabled()
-                            .focused($focusedField, equals: .url)
-                            .submitLabel(.next)
-                            .onSubmit {
-                                focusedField = .token
+                        ZStack(alignment: .leading) {
+                            if kimaiURL.isEmpty {
+                                Text("Kimai Server URL")
+                                    .foregroundColor(.primary.opacity(0.4))
                             }
+                            TextField("", text: $kimaiURL)
+                                .keyboardType(.URL)
+                                .autocapitalization(.none)
+                                .autocorrectionDisabled()
+                                .focused($focusedField, equals: .url)
+                                .submitLabel(.next)
+                                .tint(.timaiHighlight)
+                                .onSubmit {
+                                    focusedField = .token
+                                }
+                        }
                     }
-                    .padding()
+                    .padding(16)
                     .background(
-                        Color.white.opacity(0.6)
-                            .background(.ultraThinMaterial)
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(.ultraThinMaterial)
+                            .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
                     )
-                    .cornerRadius(5)
-                    .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 5)
                     
                     // API Token Input
                     HStack(spacing: 15) {
                         Image(systemName: "key.fill")
-                            .font(.system(size: 18))
-                            .foregroundColor(.timaiGrayTone3)
-                            .frame(width: 20)
+                            .font(.system(size: 20, weight: .medium))
+                            .foregroundColor(.white)
+                            .frame(width: 24)
+                            .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1)
                         
                         SecureField("API Token", text: $apiToken)
                             .autocapitalization(.none)
                             .autocorrectionDisabled()
                             .focused($focusedField, equals: .token)
                             .submitLabel(.go)
+                            .tint(.timaiHighlight)
                             .onSubmit {
                                 performLogin()
                             }
                     }
-                    .padding()
+                    .padding(16)
                     .background(
-                        Color.white.opacity(0.6)
-                            .background(.ultraThinMaterial)
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(.ultraThinMaterial)
+                            .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
                     )
-                    .cornerRadius(5)
-                    .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 5)
                     
                     // Login Button
                     Button(action: performLogin) {
