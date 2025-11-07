@@ -652,6 +652,23 @@ class NetworkService {
         print("✅ [NetworkService] Preload abgeschlossen: \(customers.count) Customers, \(totalProjects) Projects")
     }
     
+    /// Get current user information including roles
+    func getCurrentUser(user: User) async throws -> TimesheetUser {
+        let url = user.apiEndpoint.appendingPathComponent("users/me")
+        print("📡 [NetworkService] GET \(url)")
+        
+        let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
+        print("📦 [NetworkService] Current User Daten empfangen: \(data.count) bytes")
+        
+        let decoder = JSONDecoder()
+        let currentUser = try decoder.decode(TimesheetUser.self, from: data)
+        print("✅ [NetworkService] Current User dekodiert: \(currentUser.username)")
+        if let roles = currentUser.roles {
+            print("🔑 [NetworkService] User Rollen: \(roles.joined(separator: ", "))")
+        }
+        return currentUser
+    }
+    
     /// Get all users (for reports with all users)
     func getAllUsers(user: User) async throws -> [TimesheetUser] {
         let url = user.apiEndpoint.appendingPathComponent("users")
@@ -736,7 +753,7 @@ class NetworkService {
         }()
         
         // Create minimal user
-        let tempUser = TimesheetUser(id: 0, alias: nil, title: nil, username: "Current User")
+        let tempUser = TimesheetUser(id: 0, alias: nil, title: nil, username: "Current User", roles: nil)
         
         // Try to load real customer, project, and activity from cache
         var customer: Customer?

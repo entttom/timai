@@ -79,7 +79,7 @@ extension Timesheet: Codable {
             user = userObject
         } else if let userId = try? container.decode(Int.self, forKey: .user) {
             // Fallback: Erstelle einen minimalen User mit nur der ID
-            user = TimesheetUser(id: userId, alias: nil, title: nil, username: "User \(userId)")
+            user = TimesheetUser(id: userId, alias: nil, title: nil, username: "User \(userId)", roles: nil)
         } else {
             throw DecodingError.dataCorruptedError(
                 forKey: .user,

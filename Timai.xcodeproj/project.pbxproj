@@ -12,7 +12,6 @@
 		5E68D7CDAD99403DB8C42535 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74829760C01C4CB7B99E35E4 /* Project.swift */; };
 		9F972C4094E645ECA13A334E /* Timesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21783BD3CFE445097141633 /* Timesheet.swift */; };
 		A4BC116CC8DC4193A010CFA6 /* TimesheetEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57079C8AD4FC4675A1BA436F /* TimesheetEditForm.swift */; };
-		FD08AD4B2039DFF400526CF4 /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FD08AD492039DFF400526CF3 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA34B1362EBA0D250027C2F5 /* TimaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1352EBA0D250027C2F5 /* TimaiApp.swift */; };
 		AA34B13C2EBA0D370027C2F5 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */; };
 		AA34B13D2EBA0D370027C2F5 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */; };
@@ -47,10 +46,13 @@
 		AA68BDFC2EBB28AC00D64E58 /* OfflineBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFA2EBB28AC00D64E58 /* OfflineBanner.swift */; };
 		AA68BDFD2EBB28AC00D64E58 /* SyncStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */; };
 		AA68BDFF2EBB28B800D64E58 /* CacheSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */; };
+		AAD67AE32EBCC813005E592B /* BiometricAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */; };
+		AAD67AE52EBCC81C005E592B /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE42EBCC81C005E592B /* AppLockView.swift */; };
 		B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4A303DA5D49C78F37C4A9 /* Customer.swift */; };
 		BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */; };
 		F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */; };
 		FD08AD4A2039DFF400526CF3 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD08AD492039DFF400526CF3 /* KeychainAccess.framework */; };
+		FD08AD4B2039DFF400526CF4 /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FD08AD492039DFF400526CF3 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FD3E058A208543F0005AAC63 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3E0589208543F0005AAC63 /* SnapshotHelper.swift */; };
 		FD3E3E731F82E62200B5D291 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3E3E751F82E62200B5D291 /* Localizable.strings */; };
 		FD3E3E7A1F82F92900B5D291 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3E3E791F82F92900B5D291 /* User.swift */; };
@@ -126,6 +128,8 @@
 		AA68BDFA2EBB28AC00D64E58 /* OfflineBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineBanner.swift; sourceTree = "<group>"; };
 		AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatusIndicator.swift; sourceTree = "<group>"; };
 		AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheSettingsView.swift; sourceTree = "<group>"; };
+		AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthService.swift; sourceTree = "<group>"; };
+		AAD67AE42EBCC81C005E592B /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
 		B21783BD3CFE445097141633 /* Timesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timesheet.swift; sourceTree = "<group>"; };
 		BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollection.swift; sourceTree = "<group>"; };
 		EFF4A303DA5D49C78F37C4A9 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 		AA34B1462EBA0D4D0027C2F5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */,
 				AA68BDEC2EBB288900D64E58 /* CacheManager.swift */,
 				AA68BDED2EBB288900D64E58 /* NetworkMonitor.swift */,
 				AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */,
@@ -235,6 +240,7 @@
 		AA34B1542EBA0D4D0027C2F5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AAD67AE42EBCC81C005E592B /* AppLockView.swift */,
 				AA34B1492EBA0D4D0027C2F5 /* Reports */,
 				AA34B14D2EBA0D4D0027C2F5 /* Settings */,
 				AA34B1512EBA0D4D0027C2F5 /* Timesheet */,
@@ -529,11 +535,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA3AC11B2EB8B239007CB3AA /* ReportType.swift in Sources */,
+				AAD67AE52EBCC81C005E592B /* AppLockView.swift in Sources */,
 				AA68BDFC2EBB28AC00D64E58 /* OfflineBanner.swift in Sources */,
 				AA68BDFD2EBB28AC00D64E58 /* SyncStatusIndicator.swift in Sources */,
 				AA34B13C2EBA0D370027C2F5 /* AuthViewModel.swift in Sources */,
 				AA34B13D2EBA0D370027C2F5 /* ReportsViewModel.swift in Sources */,
 				AA34B13E2EBA0D370027C2F5 /* TimesheetViewModel.swift in Sources */,
+				AAD67AE32EBCC813005E592B /* BiometricAuthService.swift in Sources */,
 				AA34B13F2EBA0D370027C2F5 /* SettingsViewModel.swift in Sources */,
 				AA68BDF72EBB289E00D64E58 /* PendingOperation.swift in Sources */,
 				AA68BDF82EBB289E00D64E58 /* CacheSettings.swift in Sources */,

@@ -3,9 +3,13 @@
 A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built with SwiftUI and following modern iOS development best practices.
 
 <p align="center">
-  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2025-11-04 at 20.56.21.png" width="250" />
-  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2025-11-04 at 20.56.26.png" width="250" />
-  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2025-11-04 at 20.56.33.png" width="250" />
+  <img src="fastlane/screenshots/de-DE/iPhone 6.7-01-Login.png" width="250" />
+  <img src="fastlane/screenshots/de-DE/iPhone 6.7-02-Dashboard.png" width="250" />
+  <img src="fastlane/screenshots/de-DE/iPhone 6.7-04-Reports.png" width="250" />
+</p>
+<p align="center">
+  <img src="fastlane/screenshots/de-DE/iPhone 6.7-03-Timesheet.png" width="250" />
+  <img src="fastlane/screenshots/de-DE/iPhone 6.7-05-Settings.png" width="250" />
 </p>
 
 ## Features
@@ -123,13 +127,13 @@ Please ensure your code follows Swift best practices and includes appropriate co
 
 ## Roadmap
 
-- [ ] App Store submission
-- [ ] Offline mode with local caching
-- [ ] Dark mode optimization
+- [x] Offline mode with local caching
+- [x] Automated testing and CI/CD (Fastlane)
+- [x] Dark mode optimization
+- [ ] App Store submission (in progress)
 - [ ] Widget support for quick time tracking
 - [ ] Apple Watch companion app
 - [ ] Siri shortcuts integration
-- [ ] Automated testing and CI/CD
 
 ## Support
 

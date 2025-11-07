@@ -19,6 +19,7 @@
 
 // Timesheet View
 "timesheet.navigationTitle" = "Timesheet";
+"timesheet.tabTitle" = "Zeiterfassung";
 "timesheet.tableView.section.today" = "Heute";
 "timesheet.tableView.section.yesterday" = "Gestern";
 "timesheet.tableView.cellAction.delete" = "Löschen";
@@ -34,6 +35,7 @@
 
 // Settings View
 "settings.navigationTitle" = "Einstellungen";
+"settings.tabTitle" = "Einstellungen";
 "settings.button.signout" = "Ausloggen";
 "settings.tableView.section.appearance" = "Darstellung";
 "settings.tableView.cell.theme" = "Theme";
@@ -187,3 +189,26 @@
 "reports.field.entries" = "Einträge";
 "reports.projects.inactive.empty.title" = "Alle Projekte aktiv";
 "reports.projects.inactive.empty.message" = "Es gibt keine inaktiven Projekte in den letzten 30 Tagen";
+
+// App Lock
+"appLock.title" = "App ist gesperrt";
+"appLock.button.unlock" = "Entsperren";
+"appLock.error.title" = "Fehler";
+"appLock.error.message" = "Authentifizierung fehlgeschlagen. Bitte versuche es erneut.";
+"appLock.error.button" = "OK";
+"appLock.message.faceID" = "Verwende Face ID um die App zu entsperren";
+"appLock.message.touchID" = "Verwende Touch ID um die App zu entsperren";
+"appLock.message.opticID" = "Verwende Optic ID um die App zu entsperren";
+"appLock.message.passcode" = "Verwende deinen Gerätecode um die App zu entsperren";
+
+// Settings - Security
+"settings.section.security" = "Sicherheit";
+"settings.security.appLock" = "App-Sperre";
+"settings.security.appLock.with" = "Mit";
+"settings.security.appLock.withPasscode" = "Mit Gerätecode";
+"settings.security.appLock.footer.biometric" = "Schütze deine Daten mit %@. Die App wird beim Starten gesperrt.";
+"settings.security.appLock.footer.passcode" = "Schütze deine Daten mit deinem Gerätecode. Die App wird beim Starten gesperrt.";
+
+// Preload Banner
+"preload.title" = "Lade Referenzdaten";
+"preload.subtitle" = "Kunden, Projekte & Aktivitäten für Offline-Nutzung";

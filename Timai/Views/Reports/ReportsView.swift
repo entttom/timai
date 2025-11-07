@@ -13,11 +13,12 @@ import SwiftUI
 
 struct ReportsView: View {
     @EnvironmentObject var viewModel: ReportsViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 16) {
-                ForEach(ReportType.allCases, id: \.self) { reportType in
+                ForEach(availableReports, id: \.self) { reportType in
                     NavigationLink(destination: reportDestination(for: reportType)) {
                         ReportCardView(reportType: reportType)
                     }
@@ -30,6 +31,27 @@ struct ReportsView: View {
         .navigationTitle("reports.navigationTitle".localized())
         .task {
             await viewModel.loadReportData()
+        }
+    }
+    
+    /// Filtert die verfügbaren Reports basierend auf den Berechtigungen des Users
+    private var availableReports: [ReportType] {
+        guard let user = authViewModel.currentUser else {
+            return []
+        }
+        
+        // Prüfe ob User die view_other_reporting Berechtigung hat
+        let hasViewOtherReporting = user.userDetails?.hasAnyRole([
+            "ROLE_SUPER_ADMIN",  // Super-Admin hat immer alle Rechte
+            "ROLE_ADMIN"         // Admin hat normalerweise auch view_other_reporting
+        ]) ?? false
+        
+        // Wenn User keine view_other_reporting Berechtigung hat, filtere entsprechende Reports aus
+        return ReportType.allCases.filter { reportType in
+            if reportType.requiresViewOtherReporting {
+                return hasViewOtherReporting
+            }
+            return true
         }
     }
     
@@ -122,9 +144,17 @@ struct ReportCardView: View {
 extension ReportType: Hashable {}
 
 #Preview {
-    NavigationStack {
+    let authViewModel = AuthViewModel()
+    authViewModel.isAuthenticated = true
+    authViewModel.currentUser = User(
+        apiEndpoint: URL(string: "https://demo.kimai.org/api")!,
+        apiToken: "token_admin"
+    )
+    
+    return NavigationStack {
         ReportsView()
             .environmentObject(ReportsViewModel())
+            .environmentObject(authViewModel)
     }
 }
 

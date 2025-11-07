@@ -16,6 +16,7 @@ struct SettingsView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject var themeManager: ThemeManager
+    @StateObject private var biometricService = BiometricAuthService.shared
     @State private var showingLogoutAlert = false
     @State private var showingLanguageChangeAlert = false
     @State private var selectedLanguage: AppLanguage
@@ -65,6 +66,58 @@ struct SettingsView: View {
                 ))
             }
             
+            // Support Section
+            Section("Unterstützung") {
+                Button(action: {
+                    if let url = URL(string: "https://paypal.me/Entner") {
+                        UIApplication.shared.open(url)
+                    }
+                }) {
+                    HStack {
+                        Label("Entwickler unterstützen", systemImage: "heart.fill")
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "arrow.up.right")
+                            .font(.caption)
+                            .foregroundColor(.timaiGrayTone2)
+                    }
+                }
+            }
+            
+            // Security Section
+            Section {
+                Toggle(isOn: $biometricService.isAppLockEnabled) {
+                    HStack(spacing: 12) {
+                        Image(systemName: biometricService.biometricType.iconName)
+                            .foregroundColor(.timaiHighlight)
+                            .frame(width: 24)
+                        
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("settings.security.appLock".localized())
+                                .font(.body)
+                            
+                            if biometricService.isBiometricAuthAvailable {
+                                Text("\("settings.security.appLock.with".localized()) \(biometricService.biometricType.displayName)")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            } else {
+                                Text("settings.security.appLock.withPasscode".localized())
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                }
+            } header: {
+                Text("settings.section.security".localized())
+            } footer: {
+                if biometricService.isBiometricAuthAvailable {
+                    Text(String(format: "settings.security.appLock.footer.biometric".localized(), biometricService.biometricType.displayName))
+                } else {
+                    Text("settings.security.appLock.footer.passcode".localized())
+                }
+            }
+            
             // Credits Section
             Section("settings.tableView.section.credits".localized()) {
                 NavigationLink(destination: OSSCreditsView()) {
@@ -83,6 +136,62 @@ struct SettingsView: View {
                     Spacer()
                     Text(settingsViewModel.appVersion)
                         .foregroundColor(.timaiGrayTone2)
+                }
+            }
+            
+            // Account Section
+            if let user = authViewModel.currentUser {
+                Section("Account") {
+                    // Username
+                    if let userDetails = user.userDetails {
+                        HStack {
+                            Label("Benutzer", systemImage: "person.fill")
+                            Spacer()
+                            Text(userDetails.username)
+                                .foregroundColor(.timaiGrayTone2)
+                        }
+                        
+                        // User ID
+                        HStack {
+                            Label("User ID", systemImage: "number")
+                            Spacer()
+                            Text("\(userDetails.id)")
+                                .foregroundColor(.timaiGrayTone2)
+                        }
+                        
+                        // Roles
+                        if let roles = userDetails.roles, !roles.isEmpty {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Label("Rollen", systemImage: "key.fill")
+                                    .foregroundColor(.primary)
+                                
+                                ForEach(roles, id: \.self) { role in
+                                    HStack {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .foregroundColor(.timaiHighlight)
+                                            .font(.caption)
+                                        Text(formatRoleName(role))
+                                            .font(.subheadline)
+                                            .foregroundColor(.timaiGrayTone2)
+                                        Spacer()
+                                    }
+                                    .padding(.leading, 24)
+                                }
+                            }
+                            .padding(.vertical, 4)
+                        }
+                    }
+                    
+                    // API Endpoint
+                    HStack {
+                        Label("Server", systemImage: "server.rack")
+                        Spacer()
+                        Text(user.apiEndpoint.absoluteString)
+                            .font(.caption)
+                            .foregroundColor(.timaiGrayTone2)
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                    }
                 }
             }
             
@@ -124,6 +233,18 @@ struct SettingsView: View {
         } message: {
             Text("settings.alert.language.message".localized())
         }
+    }
+    
+    // Helper: Format role name for display
+    private func formatRoleName(_ role: String) -> String {
+        // Entferne "ROLE_" Prefix und mache es lesbarer
+        let withoutPrefix = role.replacingOccurrences(of: "ROLE_", with: "")
+        
+        // Ersetze Unterstriche durch Leerzeichen und kapitalisiere
+        let words = withoutPrefix.split(separator: "_")
+        return words.map { word in
+            word.prefix(1).uppercased() + word.dropFirst().lowercased()
+        }.joined(separator: " ")
     }
 }
 

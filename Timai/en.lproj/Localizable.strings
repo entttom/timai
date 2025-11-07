@@ -19,6 +19,7 @@
 
 // Timesheet View
 "timesheet.navigationTitle" = "Timesheet";
+"timesheet.tabTitle" = "Timesheet";
 "timesheet.tableView.section.today" = "Today";
 "timesheet.tableView.section.yesterday" = "Yesterday";
 "timesheet.tableView.cellAction.delete" = "Delete";
@@ -34,6 +35,7 @@
 
 // Settings View
 "settings.navigationTitle" = "Settings";
+"settings.tabTitle" = "Settings";
 "settings.button.signout" = "Sign out";
 "settings.tableView.section.appearance" = "Appearance";
 "settings.tableView.cell.theme" = "Theme";
@@ -187,3 +189,26 @@
 "reports.field.entries" = "Entries";
 "reports.projects.inactive.empty.title" = "All projects active";
 "reports.projects.inactive.empty.message" = "There are no inactive projects in the last 30 days";
+
+// App Lock
+"appLock.title" = "App is locked";
+"appLock.button.unlock" = "Unlock";
+"appLock.error.title" = "Error";
+"appLock.error.message" = "Authentication failed. Please try again.";
+"appLock.error.button" = "OK";
+"appLock.message.faceID" = "Use Face ID to unlock the app";
+"appLock.message.touchID" = "Use Touch ID to unlock the app";
+"appLock.message.opticID" = "Use Optic ID to unlock the app";
+"appLock.message.passcode" = "Use your device passcode to unlock the app";
+
+// Settings - Security
+"settings.section.security" = "Security";
+"settings.security.appLock" = "App Lock";
+"settings.security.appLock.with" = "With";
+"settings.security.appLock.withPasscode" = "With Device Passcode";
+"settings.security.appLock.footer.biometric" = "Protect your data with %@. The app will be locked when started.";
+"settings.security.appLock.footer.passcode" = "Protect your data with your device passcode. The app will be locked when started.";
+
+// Preload Banner
+"preload.title" = "Loading Reference Data";
+"preload.subtitle" = "Customers, Projects & Activities for offline use";

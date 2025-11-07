@@ -51,6 +51,11 @@ class AuthViewModel: ObservableObject {
         self.isAuthenticated = true
         
         print("🚀 [AuthViewModel] Auto-Login erfolgreich - öffne App")
+        
+        // Lade User-Details mit Rollen im Hintergrund
+        Task {
+            await loadCurrentUserDetails()
+        }
     }
     
     // MARK: - Login
@@ -106,6 +111,10 @@ class AuthViewModel: ObservableObject {
                 )
                 
                 self.currentUser = user
+                
+                // Lade User-Details mit Rollen
+                await loadCurrentUserDetails()
+                
                 self.isAuthenticated = true
                 
                 // Preload reference data in background
@@ -141,6 +150,26 @@ class AuthViewModel: ObservableObject {
         }
         
         isLoading = false
+    }
+    
+    // MARK: - Load User Details
+    
+    private func loadCurrentUserDetails() async {
+        guard let user = currentUser else {
+            print("❌ [AuthViewModel] Kein User - kann Details nicht laden")
+            return
+        }
+        
+        do {
+            let userDetails = try await networkService.getCurrentUser(user: user)
+            var updatedUser = user
+            updatedUser.userDetails = userDetails
+            self.currentUser = updatedUser
+            print("✅ [AuthViewModel] User-Details geladen für: \(userDetails.username)")
+        } catch {
+            print("⚠️ [AuthViewModel] Konnte User-Details nicht laden: \(error)")
+            // Nicht kritisch - App kann trotzdem verwendet werden
+        }
     }
     
     // MARK: - Preload Data

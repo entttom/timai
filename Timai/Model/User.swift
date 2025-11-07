@@ -12,8 +12,10 @@
 import Foundation
 import KeychainAccess
 
-struct User {
+struct User: Equatable {
     let apiEndpoint: URL
+    var userDetails: TimesheetUser?  // Details über den aktuellen User inkl. Rollen
+    
     var apiToken: String? {
         get {
             let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
@@ -29,8 +31,19 @@ struct User {
         }
     }
 
-    init(apiEndpoint: URL, apiToken: String?) {
+    init(apiEndpoint: URL, apiToken: String?, userDetails: TimesheetUser? = nil) {
         self.apiEndpoint = apiEndpoint
         self.apiToken = apiToken
+        self.userDetails = userDetails
+    }
+    
+    // Hilfsfunktion: Prüft ob User eine bestimmte Rolle hat
+    func hasRole(_ role: String) -> Bool {
+        return userDetails?.hasRole(role) ?? false
+    }
+    
+    // Hilfsfunktion: Prüft ob User eine der angegebenen Rollen hat
+    func hasAnyRole(_ roles: [String]) -> Bool {
+        return userDetails?.hasAnyRole(roles) ?? false
     }
 }

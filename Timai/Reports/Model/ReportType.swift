@@ -24,6 +24,16 @@ enum ReportType: CaseIterable {
     case inactiveProjects
     case projectsByMonthActivityUser
     
+    /// Prüft ob dieser Report-Typ die view_other_reporting Berechtigung benötigt
+    var requiresViewOtherReporting: Bool {
+        switch self {
+        case .allUsersWeek, .allUsersMonth, .allUsersYear:
+            return true
+        default:
+            return false
+        }
+    }
+    
     var title: String {
         switch self {
         case .userWeek:

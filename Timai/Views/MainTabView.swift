@@ -40,13 +40,14 @@ struct MainTabView: View {
                 }
                 .tabItem {
                     Image(systemName: "clock.badge.checkmark")
-                    Text("Zeiterfassung")
+                    Text("timesheet.tabTitle".localized())
                 }
                 
                 // Reports Tab
                 NavigationStack {
                     ReportsView()
                         .environmentObject(reportsViewModel)
+                        .environmentObject(authViewModel)
                 }
                 .tabItem {
                     Image(systemName: "chart.bar.fill")
@@ -60,7 +61,7 @@ struct MainTabView: View {
                 }
                 .tabItem {
                     Image(systemName: "slider.horizontal.3")
-                    Text("Einstellungen")
+                    Text("settings.tabTitle".localized())
                 }
             }
             .accentColor(.timaiHighlight)
@@ -102,11 +103,11 @@ struct PreloadBanner: View {
         if isLoading {
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("Lade Referenzdaten")
+                    Text("preload.title".localized())
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundColor(.primary)
                     
-                    Text("Kunden, Projekte & Aktivitäten für Offline-Nutzung")
+                    Text("preload.subtitle".localized())
                         .font(.system(size: 12))
                         .foregroundColor(.secondary)
                 }

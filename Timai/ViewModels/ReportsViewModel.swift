@@ -22,8 +22,50 @@ class ReportsViewModel: ObservableObject {
     private let networkService = NetworkService.shared
     private var currentUser: User?
     
+    // Cache für lazy-geladene Budget-Daten
+    private var projectBudgetCache: [Int: Project] = [:]
+    private var loadingProjectIds: Set<Int> = []
+    
     func setUser(_ user: User) {
         self.currentUser = user
+    }
+    
+    /// Lazy Loading: Lädt Budget-Daten für ein spezifisches Projekt bei Bedarf
+    func loadProjectBudget(for projectId: Int) async -> Project? {
+        // Prüfe Cache
+        if let cachedProject = projectBudgetCache[projectId] {
+            return cachedProject
+        }
+        
+        // Verhindere doppeltes Laden
+        guard !loadingProjectIds.contains(projectId) else {
+            print("⏳ [ReportsViewModel] Budget für Projekt \(projectId) wird bereits geladen")
+            return nil
+        }
+        
+        guard let user = currentUser else {
+            print("❌ [ReportsViewModel] Kein User gesetzt - kann Budget nicht laden")
+            return nil
+        }
+        
+        loadingProjectIds.insert(projectId)
+        
+        do {
+            let projectWithBudget = try await networkService.getProjectById(projectId, user: user)
+            projectBudgetCache[projectId] = projectWithBudget
+            loadingProjectIds.remove(projectId)
+            print("✅ [ReportsViewModel] Budget geladen für \(projectWithBudget.name): \(projectWithBudget.timeBudget ?? 0)s")
+            return projectWithBudget
+        } catch {
+            loadingProjectIds.remove(projectId)
+            print("⚠️ [ReportsViewModel] Konnte Budget für Projekt \(projectId) nicht laden: \(error)")
+            return nil
+        }
+    }
+    
+    /// Gibt ein Projekt mit Budget aus dem Cache zurück (ohne zu laden)
+    func getCachedProjectWithBudget(for projectId: Int) -> Project? {
+        return projectBudgetCache[projectId]
     }
     
     func loadReportData() async {
@@ -37,55 +79,21 @@ class ReportsViewModel: ObservableObject {
         
         do {
             async let fetchedTimesheets = networkService.getTimesheetsWithProjects(user)
-            async let fetchedUsers = networkService.getAllUsers(user: user)
             
             var loadedTimesheets = try await fetchedTimesheets
-            users = try await fetchedUsers
             
-            print("✅ [ReportsViewModel] \(loadedTimesheets.count) Timesheets und \(users.count) Users geladen")
-            
-            // Lade vollständige Projekt-Details mit Budget für alle einzigartigen Projekte
-            let uniqueProjectIds = Set(loadedTimesheets.map { $0.project.id })
-            print("📊 [ReportsViewModel] Lade Budget-Details für \(uniqueProjectIds.count) Projekte...")
-            
-            var projectsWithBudget: [Int: Project] = [:]
-            
-            for projectId in uniqueProjectIds {
-                do {
-                    let projectWithBudget = try await networkService.getProjectById(projectId, user: user)
-                    projectsWithBudget[projectId] = projectWithBudget
-                    print("  ✅ \(projectWithBudget.name): Budget=\(projectWithBudget.timeBudget ?? 0)s (\(Double(projectWithBudget.timeBudget ?? 0) / 3600.0)h)")
-                } catch {
-                    print("  ⚠️ Konnte Budget für Projekt \(projectId) nicht laden: \(error)")
-                }
-            }
-            
-            // Ersetze Projekte in Timesheets mit vollständigen Projekt-Objekten (inkl. Budget)
-            loadedTimesheets = loadedTimesheets.map { timesheet in
-                if let projectWithBudget = projectsWithBudget[timesheet.project.id] {
-                    return Timesheet(
-                        id: timesheet.id,
-                        begin: timesheet.begin,
-                        end: timesheet.end,
-                        duration: timesheet.duration,
-                        user: timesheet.user,
-                        activity: timesheet.activity,
-                        project: projectWithBudget,  // Vollständiges Projekt mit Budget
-                        description: timesheet.description,
-                        rate: timesheet.rate,
-                        internalRate: timesheet.internalRate,
-                        fixedRate: timesheet.fixedRate,
-                        hourlyRate: timesheet.hourlyRate,
-                        exported: timesheet.exported,
-                        billable: timesheet.billable,
-                        tags: timesheet.tags
-                    )
-                }
-                return timesheet
+            // Users optional laden - wenn keine Berechtigung besteht, einfach überspringen
+            do {
+                users = try await networkService.getAllUsers(user: user)
+                print("✅ [ReportsViewModel] \(loadedTimesheets.count) Timesheets und \(users.count) Users geladen")
+            } catch {
+                print("⚠️ [ReportsViewModel] Users konnten nicht geladen werden (möglicherweise keine Berechtigung): \(error)")
+                users = []
+                print("✅ [ReportsViewModel] \(loadedTimesheets.count) Timesheets geladen (ohne Users)")
             }
             
             timesheets = loadedTimesheets
-            print("✅ [ReportsViewModel] Budget-Daten für alle Projekte geladen")
+            print("✅ [ReportsViewModel] Report-Daten geladen (Budget wird bei Bedarf nachgeladen)")
             
         } catch {
             print("❌ [ReportsViewModel] Fehler beim Laden: \(error)")
