@@ -48,10 +48,27 @@ class TimesheetViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        
+        // Listen for instance changes
+        NotificationCenter.default.publisher(for: .instanceDidChange)
+            .sink { [weak self] _ in
+                Task { @MainActor in
+                    self?.onInstanceChanged()
+                }
+            }
+            .store(in: &cancellables)
     }
     
     private func onSyncCompleted() {
         print("✅ [TimesheetViewModel] Sync abgeschlossen - lade Timesheets neu")
+        clearLocallyDeleted()
+        Task {
+            await loadTimesheets()
+        }
+    }
+    
+    private func onInstanceChanged() {
+        print("🔄 [TimesheetViewModel] Instanz gewechselt - lade Timesheets neu")
         clearLocallyDeleted()
         Task {
             await loadTimesheets()

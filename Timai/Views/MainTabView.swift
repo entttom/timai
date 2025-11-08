@@ -19,6 +19,7 @@ struct MainTabView: View {
     @StateObject private var reportsViewModel = ReportsViewModel()
     @StateObject private var settingsViewModel = SettingsViewModel()
     @StateObject private var pendingOpsManager = PendingOperationsManager.shared
+    @StateObject private var instanceManager = InstanceManager.shared
     
     var body: some View {
         VStack(spacing: 0) {
@@ -37,6 +38,7 @@ struct MainTabView: View {
                 NavigationStack {
                     TimesheetView()
                         .environmentObject(timesheetViewModel)
+                        .environmentObject(authViewModel)
                 }
                 .tabItem {
                     Image(systemName: "clock.badge.checkmark")
@@ -70,6 +72,13 @@ struct MainTabView: View {
                 
                 // Set current user for view models
                 if let user = authViewModel.currentUser {
+                    timesheetViewModel.setUser(user)
+                    reportsViewModel.setUser(user)
+                }
+            }
+            .onChange(of: authViewModel.currentUser) { newUser in
+                // Update ViewModels when user changes (e.g., after instance switch)
+                if let user = newUser {
                     timesheetViewModel.setUser(user)
                     reportsViewModel.setUser(user)
                 }

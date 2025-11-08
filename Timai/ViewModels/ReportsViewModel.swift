@@ -11,6 +11,7 @@
 //
 import Foundation
 import SwiftUI
+import Combine
 
 @MainActor
 class ReportsViewModel: ObservableObject {
@@ -21,10 +22,40 @@ class ReportsViewModel: ObservableObject {
     
     private let networkService = NetworkService.shared
     private var currentUser: User?
+    private var cancellables = Set<AnyCancellable>()
     
     // Cache für lazy-geladene Budget-Daten
     private var projectBudgetCache: [Int: Project] = [:]
     private var loadingProjectIds: Set<Int> = []
+    
+    init() {
+        setupNotifications()
+    }
+    
+    private func setupNotifications() {
+        // Listen for instance changes
+        NotificationCenter.default.publisher(for: .instanceDidChange)
+            .sink { [weak self] _ in
+                Task { @MainActor in
+                    self?.onInstanceChanged()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func onInstanceChanged() {
+        print("🔄 [ReportsViewModel] Instanz gewechselt - lösche Cache und lade Daten neu")
+        // Clear cache
+        projectBudgetCache.removeAll()
+        loadingProjectIds.removeAll()
+        timesheets.removeAll()
+        users.removeAll()
+        
+        // Reload data
+        Task {
+            await loadReportData()
+        }
+    }
     
     func setUser(_ user: User) {
         self.currentUser = user

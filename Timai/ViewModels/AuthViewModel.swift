@@ -23,30 +23,33 @@ class AuthViewModel: ObservableObject {
     
     private let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
     private let networkService = NetworkService.shared
+    private let instanceManager = InstanceManager.shared
     
     // MARK: - Auto Login
     
     func checkAutoLogin() {
         print("🔑 [AuthViewModel] Prüfe gespeicherte Zugangsdaten...")
         
-        guard let token = try? keychain.get("apiToken"),
-              let apiToken = token else {
-            print("ℹ️ [AuthViewModel] Kein API Token gefunden - zeige Login")
+        // Check if there's an active instance
+        guard let activeInstance = instanceManager.activeInstance else {
+            print("ℹ️ [AuthViewModel] Keine aktive Instanz - zeige Login")
             return
         }
         
-        print("✅ [AuthViewModel] API Token im Keychain gefunden (Länge: \(apiToken.count) Zeichen)")
-        
-        guard let currentUserDict = UserDefaults.standard.dictionary(forKey: "currentUser"),
-              let endpoint = currentUserDict["endpoint"] as? String,
-              let endpointURL = URL(string: endpoint) else {
-            print("❌ [AuthViewModel] Endpoint ungültig - zeige Login")
+        // Get token for active instance
+        guard let apiToken = activeInstance.apiToken else {
+            print("ℹ️ [AuthViewModel] Kein API Token für aktive Instanz - zeige Login")
             return
         }
         
-        print("✅ [AuthViewModel] Gespeicherten Endpoint gefunden: \(endpointURL)")
+        print("✅ [AuthViewModel] Aktive Instanz gefunden: '\(activeInstance.name)'")
+        print("✅ [AuthViewModel] API Token gefunden (Länge: \(apiToken.count) Zeichen)")
         
-        let user = User(apiEndpoint: endpointURL, apiToken: apiToken)
+        let user = User(
+            apiEndpoint: activeInstance.apiEndpoint,
+            apiToken: apiToken,
+            instanceId: activeInstance.id
+        )
         self.currentUser = user
         self.isAuthenticated = true
         
@@ -60,7 +63,7 @@ class AuthViewModel: ObservableObject {
     
     // MARK: - Login
     
-    func login(kimaiURL: URL, apiToken: String) async {
+    func login(kimaiURL: URL, apiToken: String, instanceName: String? = nil) async {
         guard !kimaiURL.absoluteString.isEmpty, !apiToken.isEmpty else {
             print("❌ [AuthViewModel] Fehlende Eingaben: URL oder API Token fehlt")
             errorMessage = "Bitte URL und API Token eingeben"
@@ -104,13 +107,45 @@ class AuthViewModel: ObservableObject {
             if metadata.version.compare(minimumRequiredVersion, options: .numeric) != .orderedAscending {
                 print("✅ [AuthViewModel] Version ist kompatibel - Login erfolgreich")
                 
-                // Speichere Credentials
-                UserDefaults.standard.set(
-                    ["endpoint": String(describing: user.apiEndpoint)],
-                    forKey: "currentUser"
+                // Create or update instance
+                let instance = KimaiInstance(
+                    name: instanceName ?? "Kimai Instance",
+                    apiEndpoint: api,
+                    isActive: false  // Will be set to true by switchToInstance
                 )
                 
-                self.currentUser = user
+                // Save token to instance
+                try instance.saveToken(apiToken)
+                
+                // Add or update instance in manager
+                if let existingInstance = instanceManager.instances.first(where: { $0.apiEndpoint == api }) {
+                    // Update existing instance
+                    var updatedInstance = existingInstance
+                    updatedInstance.name = instanceName ?? existingInstance.name
+                    instanceManager.updateInstance(updatedInstance)
+                    instanceManager.switchToInstance(updatedInstance)
+                    
+                    // Create user with instance ID
+                    self.currentUser = User(
+                        apiEndpoint: api,
+                        apiToken: apiToken,
+                        instanceId: updatedInstance.id
+                    )
+                } else {
+                    // Add new instance
+                    instanceManager.addInstance(instance)
+                    // Switch to the newly added instance
+                    if let addedInstance = instanceManager.instances.first(where: { $0.id == instance.id }) {
+                        instanceManager.switchToInstance(addedInstance)
+                    }
+                    
+                    // Create user with instance ID
+                    self.currentUser = User(
+                        apiEndpoint: api,
+                        apiToken: apiToken,
+                        instanceId: instance.id
+                    )
+                }
                 
                 // Lade User-Details mit Rollen
                 await loadCurrentUserDetails()
@@ -224,25 +259,70 @@ class AuthViewModel: ObservableObject {
         isPreloadingData = false
     }
     
+    // MARK: - Instance Management
+    
+    /// Switch to a different instance
+    func switchToInstance(_ instance: KimaiInstance) async {
+        print("🔄 [AuthViewModel] Wechsle zu Instanz: '\(instance.name)'")
+        
+        guard let apiToken = instance.apiToken else {
+            print("❌ [AuthViewModel] Kein Token für Instanz '\(instance.name)'")
+            errorMessage = "Keine Zugangsdaten für diese Instanz gefunden"
+            return
+        }
+        
+        // Switch instance in manager
+        instanceManager.switchToInstance(instance)
+        
+        // Create new user
+        let user = User(
+            apiEndpoint: instance.apiEndpoint,
+            apiToken: apiToken,
+            instanceId: instance.id
+        )
+        
+        self.currentUser = user
+        
+        // Reload user details
+        await loadCurrentUserDetails()
+        
+        print("✅ [AuthViewModel] Instanzwechsel abgeschlossen")
+    }
+    
     // MARK: - Logout
     
     func logout() {
         print("🚪 [AuthViewModel] Logout wird durchgeführt...")
         
-        do {
-            try keychain.remove("apiToken")
-            print("✅ [AuthViewModel] API Token aus Keychain entfernt")
-            UserDefaults.standard.removeObject(forKey: "currentUser")
-            print("✅ [AuthViewModel] User Daten aus UserDefaults entfernt")
-            UserDefaults.standard.removeObject(forKey: "hasPreloadedReferenceData")
-            print("✅ [AuthViewModel] Preload-Flag zurückgesetzt")
-            print("🔓 [AuthViewModel] Logout erfolgreich - zeige Login")
-            
+        guard let activeInstance = instanceManager.activeInstance else {
+            print("⚠️ [AuthViewModel] Keine aktive Instanz zum Ausloggen")
             self.currentUser = nil
             self.isAuthenticated = false
-        } catch let error {
-            print("❌ [AuthViewModel] Logout fehlgeschlagen: \(error.localizedDescription)")
-            errorMessage = "Logout fehlgeschlagen"
+            return
+        }
+        
+        Task {
+            do {
+                // Delete instance (includes token and cache cleanup)
+                try await instanceManager.deleteInstance(activeInstance)
+                print("✅ [AuthViewModel] Instanz gelöscht: '\(activeInstance.name)'")
+                
+                // Check if there are more instances
+                if let nextInstance = instanceManager.activeInstance {
+                    // Switch to next instance
+                    print("🔄 [AuthViewModel] Wechsle zu nächster Instanz: '\(nextInstance.name)'")
+                    await switchToInstance(nextInstance)
+                } else {
+                    // No more instances, show login
+                    print("🔓 [AuthViewModel] Keine Instanzen mehr - zeige Login")
+                    UserDefaults.standard.removeObject(forKey: "hasPreloadedReferenceData")
+                    self.currentUser = nil
+                    self.isAuthenticated = false
+                }
+            } catch let error {
+                print("❌ [AuthViewModel] Logout fehlgeschlagen: \(error.localizedDescription)")
+                errorMessage = "Logout fehlgeschlagen"
+            }
         }
     }
 }

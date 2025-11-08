@@ -13,7 +13,10 @@ import SwiftUI
 
 struct TimesheetView: View {
     @EnvironmentObject var viewModel: TimesheetViewModel
+    @StateObject private var instanceManager = InstanceManager.shared
+    @EnvironmentObject var authViewModel: AuthViewModel
     @State private var showingAddSheet = false
+    @State private var showingInstanceSwitcher = false
     @State private var showToast = false
     
     var body: some View {
@@ -67,6 +70,24 @@ struct TimesheetView: View {
         }
         .navigationTitle("timesheet.navigationTitle".localized())
         .toolbar {
+            // Instance Badge (only show when multiple instances)
+            if instanceManager.hasMultipleInstances, let activeInstance = instanceManager.activeInstance {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showingInstanceSwitcher = true
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: "server.rack")
+                                .font(.caption)
+                            Text(activeInstance.name)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        .foregroundColor(.timaiHighlight)
+                    }
+                }
+            }
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { showingAddSheet = true }) {
                     Image(systemName: "plus")
@@ -88,6 +109,10 @@ struct TimesheetView: View {
                 })
                 .environmentObject(viewModel)
             }
+        }
+        .sheet(isPresented: $showingInstanceSwitcher) {
+            InstanceSwitcherSheet()
+                .environmentObject(authViewModel)
         }
         .task {
             await viewModel.loadTimesheets()

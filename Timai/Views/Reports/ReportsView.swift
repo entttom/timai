@@ -14,6 +14,8 @@ import SwiftUI
 struct ReportsView: View {
     @EnvironmentObject var viewModel: ReportsViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject private var instanceManager = InstanceManager.shared
+    @State private var showingInstanceSwitcher = false
     
     var body: some View {
         ScrollView {
@@ -29,6 +31,29 @@ struct ReportsView: View {
         }
         .background(Color.timaiGray.ignoresSafeArea())
         .navigationTitle("reports.navigationTitle".localized())
+        .toolbar {
+            // Instance Badge (only show when multiple instances)
+            if instanceManager.hasMultipleInstances, let activeInstance = instanceManager.activeInstance {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showingInstanceSwitcher = true
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: "server.rack")
+                                .font(.caption)
+                            Text(activeInstance.name)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        .foregroundColor(.timaiHighlight)
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $showingInstanceSwitcher) {
+            InstanceSwitcherSheet()
+                .environmentObject(authViewModel)
+        }
         .task {
             await viewModel.loadReportData()
         }

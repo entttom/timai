@@ -13,13 +13,14 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @State private var instanceName: String = ""
     @State private var kimaiURL: String = ""
     @State private var apiToken: String = ""
     @State private var showToast = false
     @FocusState private var focusedField: Field?
     
     enum Field {
-        case url, token
+        case name, url, token
     }
     
     var body: some View {
@@ -40,6 +41,36 @@ struct LoginView: View {
                 
                 // Login Form - vertikal zentriert
                 VStack(spacing: 20) {
+                    // Instance Name Input
+                    HStack(spacing: 15) {
+                        Image(systemName: "tag.fill")
+                            .font(.system(size: 20, weight: .medium))
+                            .foregroundColor(.white)
+                            .frame(width: 24)
+                            .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1)
+                        
+                        ZStack(alignment: .leading) {
+                            if instanceName.isEmpty {
+                                Text("Instanzname (z.B. Firma)")
+                                    .foregroundColor(.primary.opacity(0.4))
+                            }
+                            TextField("", text: $instanceName)
+                                .autocapitalization(.words)
+                                .focused($focusedField, equals: .name)
+                                .submitLabel(.next)
+                                .tint(.timaiHighlight)
+                                .onSubmit {
+                                    focusedField = .url
+                                }
+                        }
+                    }
+                    .padding(16)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(.ultraThinMaterial)
+                            .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
+                    )
+                    
                     // URL Input
                     HStack(spacing: 15) {
                         Image(systemName: "link")
@@ -133,8 +164,10 @@ struct LoginView: View {
             return
         }
         
+        let name = instanceName.isEmpty ? "Kimai Instance" : instanceName
+        
         Task {
-            await authViewModel.login(kimaiURL: url, apiToken: apiToken)
+            await authViewModel.login(kimaiURL: url, apiToken: apiToken, instanceName: name)
         }
     }
 }

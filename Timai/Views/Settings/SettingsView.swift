@@ -17,8 +17,12 @@ struct SettingsView: View {
     @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject var themeManager: ThemeManager
     @StateObject private var biometricService = BiometricAuthService.shared
+    @StateObject private var instanceManager = InstanceManager.shared
     @State private var showingLogoutAlert = false
     @State private var showingLanguageChangeAlert = false
+    @State private var showingAddInstance = false
+    @State private var showingDeleteAlert = false
+    @State private var instanceToDelete: KimaiInstance?
     @State private var selectedLanguage: AppLanguage
     
     init() {
@@ -27,6 +31,63 @@ struct SettingsView: View {
     
     var body: some View {
         List {
+            // Kimai Instances Section
+            Section("settings.section.instances".localized()) {
+                ForEach(instanceManager.instances) { instance in
+                    NavigationLink {
+                        EditInstanceView(instance: instance)
+                            .environmentObject(authViewModel)
+                    } label: {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(instance.name)
+                                    .font(.body)
+                                    .foregroundColor(.primary)
+                                
+                                Text(instance.apiEndpoint.absoluteString)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                            }
+                            
+                            Spacer()
+                            
+                            if instance.isActive {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.timaiHighlight)
+                            }
+                        }
+                    }
+                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                        Button(role: .destructive) {
+                            instanceToDelete = instance
+                            showingDeleteAlert = true
+                        } label: {
+                            Label("settings.instances.delete".localized(), systemImage: "trash")
+                        }
+                    }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        if !instance.isActive {
+                            Button {
+                                Task {
+                                    await authViewModel.switchToInstance(instance)
+                                }
+                            } label: {
+                                Label("settings.instances.activate".localized(), systemImage: "checkmark.circle")
+                            }
+                            .tint(.green)
+                        }
+                    }
+                }
+                
+                Button {
+                    showingAddInstance = true
+                } label: {
+                    Label("settings.instances.addNew".localized(), systemImage: "plus.circle.fill")
+                }
+            }
+            
             // Appearance Section
             Section("settings.tableView.section.appearance".localized()) {
                 Picker("settings.tableView.cell.theme".localized(), selection: $themeManager.currentTheme) {
@@ -221,7 +282,11 @@ struct SettingsView: View {
                 authViewModel.logout()
             }
         } message: {
-            Text("settings.alert.logout.message".localized())
+            if let activeInstance = instanceManager.activeInstance {
+                Text(String(format: "settings.alert.logout.messageWithInstance".localized(), activeInstance.name))
+            } else {
+                Text("settings.alert.logout.message".localized())
+            }
         }
         .alert("settings.alert.language.title".localized(), isPresented: $showingLanguageChangeAlert) {
             Button("settings.alert.language.cancel".localized(), role: .cancel) {
@@ -232,6 +297,31 @@ struct SettingsView: View {
             }
         } message: {
             Text("settings.alert.language.message".localized())
+        }
+        .sheet(isPresented: $showingAddInstance) {
+            AddInstanceView()
+                .environmentObject(authViewModel)
+        }
+        .alert("settings.instances.delete.title".localized(), isPresented: $showingDeleteAlert) {
+            Button("settings.instances.delete.cancel".localized(), role: .cancel) {
+                instanceToDelete = nil
+            }
+            Button("settings.instances.delete.confirm".localized(), role: .destructive) {
+                if let instance = instanceToDelete {
+                    Task {
+                        do {
+                            try await instanceManager.deleteInstance(instance)
+                        } catch {
+                            print("❌ [SettingsView] Fehler beim Löschen der Instanz: \(error)")
+                        }
+                    }
+                }
+                instanceToDelete = nil
+            }
+        } message: {
+            if let instance = instanceToDelete {
+                Text(String(format: "settings.instances.delete.message".localized(), instance.name))
+            }
         }
     }
     

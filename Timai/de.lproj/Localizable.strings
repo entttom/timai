@@ -54,6 +54,7 @@
 "settings.label.madeBy" = "Timai wird entwickelt von Dr. Thomas Entner";
 "settings.alert.logout.title" = "Abmelden?";
 "settings.alert.logout.message" = "Möchten Sie sich wirklich abmelden?";
+"settings.alert.logout.messageWithInstance" = "Möchten Sie sich wirklich von '%@' abmelden? Sie werden aus dieser Instanz ausgeloggt.";
 "settings.alert.logout.confirm" = "Abmelden";
 "settings.alert.logout.cancel" = "Abbrechen";
 "settings.alert.language.title" = "Sprache ändern";
@@ -139,10 +140,16 @@
 "timesheetEdit.section.activity" = "Aktivität";
 "timesheetEdit.section.time" = "Zeit";
 "timesheetEdit.section.description" = "Beschreibung";
+"timesheetEdit.section.tags" = "Schlagworte";
+"timesheetEdit.section.advancedSettings" = "Erweiterte Einstellungen";
 "timesheetEdit.picker.customer" = "Kunde auswählen";
 "timesheetEdit.picker.project" = "Projekt auswählen";
 "timesheetEdit.picker.activity" = "Aktivität auswählen";
 "timesheetEdit.picker.placeholder" = "Bitte wählen";
+"timesheetEdit.placeholder.tags" = "z.B. projektname, wichtig";
+"timesheetEdit.field.fixedRate" = "Festpreis";
+"timesheetEdit.field.hourlyRate" = "Preis pro Stunde";
+"timesheetEdit.field.billable" = "Abrechenbar";
 "timesheetEdit.loading.customers" = "Lade Kunden...";
 "timesheetEdit.loading.projects" = "Lade Projekte...";
 "timesheetEdit.loading.activities" = "Lade Aktivitäten...";
@@ -212,3 +219,61 @@
 // Preload Banner
 "preload.title" = "Lade Referenzdaten";
 "preload.subtitle" = "Kunden, Projekte & Aktivitäten für Offline-Nutzung";
+
+// Instance Management
+"settings.section.instances" = "Kimai Instanzen";
+"settings.instances.addNew" = "Neue Instanz hinzufügen";
+"settings.instances.activate" = "Aktivieren";
+"settings.instances.delete" = "Löschen";
+"settings.instances.delete.title" = "Instanz löschen?";
+"settings.instances.delete.message" = "Möchten Sie die Instanz '%@' wirklich löschen? Alle zugehörigen Daten werden ebenfalls gelöscht.";
+"settings.instances.delete.confirm" = "Löschen";
+"settings.instances.delete.cancel" = "Abbrechen";
+
+// Add Instance View
+"addInstance.title" = "Instanz hinzufügen";
+"addInstance.button.add" = "Hinzufügen";
+"addInstance.button.cancel" = "Abbrechen";
+"addInstance.section.name" = "Name";
+"addInstance.section.name.footer" = "Ein beschreibender Name für diese Instanz (z.B. 'Firma', 'Privat')";
+"addInstance.name.placeholder" = "Instanzname";
+"addInstance.section.url" = "Server URL";
+"addInstance.section.url.footer" = "Die URL Ihres Kimai-Servers (z.B. https://kimai.example.com)";
+"addInstance.url.placeholder" = "https://kimai.example.com";
+"addInstance.section.token" = "API Token";
+"addInstance.section.token.footer" = "Ihr persönlicher API Token aus den Kimai-Einstellungen";
+"addInstance.token.placeholder" = "API Token";
+"addInstance.error.title" = "Fehler";
+"addInstance.error.unknown" = "Ein unbekannter Fehler ist aufgetreten";
+"addInstance.error.invalidURL" = "Bitte geben Sie eine gültige URL ein";
+
+// Instance Switcher
+"instanceSwitcher.title" = "Instanz wechseln";
+"instanceSwitcher.section.instances" = "Verfügbare Instanzen";
+"instanceSwitcher.button.addNew" = "Neue Instanz hinzufügen";
+"instanceSwitcher.button.close" = "Schließen";
+"instanceSwitcher.switching" = "Wechsle Instanz...";
+
+// Edit Instance View
+"editInstance.title" = "Instanz bearbeiten";
+"editInstance.button.save" = "Speichern";
+"editInstance.button.delete" = "Ausloggen";
+"editInstance.section.name" = "Name";
+"editInstance.section.name.footer" = "Der beschreibende Name für diese Instanz";
+"editInstance.name.placeholder" = "Instanzname";
+"editInstance.section.url" = "Server URL";
+"editInstance.section.url.footer" = "Die URL Ihres Kimai-Servers";
+"editInstance.url.placeholder" = "https://kimai.example.com";
+"editInstance.section.token" = "API Token";
+"editInstance.section.token.footer" = "Ihr persönlicher API Token";
+"editInstance.token.placeholder" = "API Token";
+"editInstance.verifying" = "Überprüfe Verbindung...";
+"editInstance.error.title" = "Fehler";
+"editInstance.error.unknown" = "Ein unbekannter Fehler ist aufgetreten";
+"editInstance.error.invalidURL" = "Bitte geben Sie eine gültige URL ein";
+"editInstance.success.title" = "Gespeichert";
+"editInstance.success.message" = "Die Änderungen wurden erfolgreich gespeichert";
+"editInstance.delete.title" = "Ausloggen?";
+"editInstance.delete.message" = "Möchten Sie sich wirklich von '%@' ausloggen?";
+"editInstance.delete.confirm" = "Ausloggen";
+"editInstance.delete.cancel" = "Abbrechen";

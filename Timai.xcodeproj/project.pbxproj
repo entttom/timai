@@ -48,6 +48,11 @@
 		AA68BDFF2EBB28B800D64E58 /* CacheSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */; };
 		AAD67AE32EBCC813005E592B /* BiometricAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */; };
 		AAD67AE52EBCC81C005E592B /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE42EBCC81C005E592B /* AppLockView.swift */; };
+		AAD67AE72EBE5278005E592B /* KimaiInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE62EBE5278005E592B /* KimaiInstance.swift */; };
+		AAD67AE92EBE5286005E592B /* InstanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE82EBE5286005E592B /* InstanceManager.swift */; };
+		AAD67AEB2EBE5294005E592B /* AddInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AEA2EBE5294005E592B /* AddInstanceView.swift */; };
+		AAD67AEE2EBE52BC005E592B /* InstanceSwitcherSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AEC2EBE52BC005E592B /* InstanceSwitcherSheet.swift */; };
+		AAD67AF02EBE59D4005E592B /* EditInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AEF2EBE59D4005E592B /* EditInstanceView.swift */; };
 		B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4A303DA5D49C78F37C4A9 /* Customer.swift */; };
 		BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */; };
 		F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */; };
@@ -130,6 +135,11 @@
 		AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheSettingsView.swift; sourceTree = "<group>"; };
 		AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthService.swift; sourceTree = "<group>"; };
 		AAD67AE42EBCC81C005E592B /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
+		AAD67AE62EBE5278005E592B /* KimaiInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimaiInstance.swift; sourceTree = "<group>"; };
+		AAD67AE82EBE5286005E592B /* InstanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceManager.swift; sourceTree = "<group>"; };
+		AAD67AEA2EBE5294005E592B /* AddInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstanceView.swift; sourceTree = "<group>"; };
+		AAD67AEC2EBE52BC005E592B /* InstanceSwitcherSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSwitcherSheet.swift; sourceTree = "<group>"; };
+		AAD67AEF2EBE59D4005E592B /* EditInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInstanceView.swift; sourceTree = "<group>"; };
 		B21783BD3CFE445097141633 /* Timesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timesheet.swift; sourceTree = "<group>"; };
 		BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollection.swift; sourceTree = "<group>"; };
 		EFF4A303DA5D49C78F37C4A9 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -197,6 +207,7 @@
 		AA34B1462EBA0D4D0027C2F5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AAD67AE82EBE5286005E592B /* InstanceManager.swift */,
 				AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */,
 				AA68BDEC2EBB288900D64E58 /* CacheManager.swift */,
 				AA68BDED2EBB288900D64E58 /* NetworkMonitor.swift */,
@@ -219,6 +230,8 @@
 		AA34B14D2EBA0D4D0027C2F5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				AAD67AEF2EBE59D4005E592B /* EditInstanceView.swift */,
+				AAD67AEA2EBE5294005E592B /* AddInstanceView.swift */,
 				AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */,
 				AA34B14A2EBA0D4D0027C2F5 /* GraphicsCreditsView.swift */,
 				AA34B14B2EBA0D4D0027C2F5 /* OSSCreditsView.swift */,
@@ -240,6 +253,7 @@
 		AA34B1542EBA0D4D0027C2F5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AAD67AED2EBE52BC005E592B /* Components */,
 				AAD67AE42EBCC81C005E592B /* AppLockView.swift */,
 				AA34B1492EBA0D4D0027C2F5 /* Reports */,
 				AA34B14D2EBA0D4D0027C2F5 /* Settings */,
@@ -266,6 +280,14 @@
 				AA3AC1132EB8B239007CB3AA /* Model */,
 			);
 			path = Reports;
+			sourceTree = "<group>";
+		};
+		AAD67AED2EBE52BC005E592B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AAD67AEC2EBE52BC005E592B /* InstanceSwitcherSheet.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		FD6C12DA2051D4570068D584 /* Settings */ = {
@@ -297,6 +319,7 @@
 		FDB0BF561F814CA9005AAA0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AAD67AE62EBE5278005E592B /* KimaiInstance.swift */,
 				AA68BDF42EBB289E00D64E58 /* CacheSettings.swift */,
 				AA68BDF52EBB289E00D64E58 /* PendingOperation.swift */,
 				AA68BDF62EBB289E00D64E58 /* SyncStatus.swift */,
@@ -547,7 +570,9 @@
 				AA68BDF82EBB289E00D64E58 /* CacheSettings.swift in Sources */,
 				AA68BDF92EBB289E00D64E58 /* SyncStatus.swift in Sources */,
 				AA3AC11D2EB8B239007CB3AA /* ReportData.swift in Sources */,
+				AAD67AEE2EBE52BC005E592B /* InstanceSwitcherSheet.swift in Sources */,
 				AA3AC1212EB8B239007CB3AA /* ReportAggregator.swift in Sources */,
+				AAD67AE92EBE5286005E592B /* InstanceManager.swift in Sources */,
 				FDE9C2F2205320E1009250D9 /* Credits.swift in Sources */,
 				FD73611521580608002DC15E /* InstanceMetadata.swift in Sources */,
 				AA34B1652EBA0D620027C2F5 /* Theme.swift in Sources */,
@@ -556,6 +581,7 @@
 				AA34B1552EBA0D4D0027C2F5 /* TimesheetDetailView.swift in Sources */,
 				AA34B1562EBA0D4D0027C2F5 /* LoadingView.swift in Sources */,
 				AA34B1572EBA0D4D0027C2F5 /* GraphicsCreditsView.swift in Sources */,
+				AAD67AF02EBE59D4005E592B /* EditInstanceView.swift in Sources */,
 				AA34B1582EBA0D4D0027C2F5 /* GenericReportView.swift in Sources */,
 				AA34B1592EBA0D4D0027C2F5 /* OSSCreditsView.swift in Sources */,
 				AA34B15A2EBA0D4D0027C2F5 /* ReportsView.swift in Sources */,
@@ -564,6 +590,7 @@
 				AA34B15D2EBA0D4D0027C2F5 /* LoginView.swift in Sources */,
 				AA34B15E2EBA0D4D0027C2F5 /* TimesheetEditView.swift in Sources */,
 				AA34B15F2EBA0D4D0027C2F5 /* NetworkService.swift in Sources */,
+				AAD67AE72EBE5278005E592B /* KimaiInstance.swift in Sources */,
 				AA34B1602EBA0D4D0027C2F5 /* TimesheetView.swift in Sources */,
 				AA34B1612EBA0D4D0027C2F5 /* PrimaryButton.swift in Sources */,
 				AA34B1622EBA0D4D0027C2F5 /* MainTabView.swift in Sources */,
@@ -571,6 +598,7 @@
 				BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */,
 				F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */,
 				B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */,
+				AAD67AEB2EBE5294005E592B /* AddInstanceView.swift in Sources */,
 				5E68D7CDAD99403DB8C42535 /* Project.swift in Sources */,
 				0699EE5D657847C39AB7ABA5 /* ActivityDetails.swift in Sources */,
 				0798E753E1C54458A75104D5 /* TimesheetUser.swift in Sources */,

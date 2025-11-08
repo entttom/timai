@@ -54,6 +54,7 @@
 "settings.label.madeBy" = "Timai is built by Dr. Thomas Entner";
 "settings.alert.logout.title" = "Sign out?";
 "settings.alert.logout.message" = "Do you really want to sign out?";
+"settings.alert.logout.messageWithInstance" = "Do you really want to sign out from '%@'? You will be logged out from this instance.";
 "settings.alert.logout.confirm" = "Sign out";
 "settings.alert.logout.cancel" = "Cancel";
 "settings.alert.language.title" = "Change language";
@@ -139,10 +140,16 @@
 "timesheetEdit.section.activity" = "Activity";
 "timesheetEdit.section.time" = "Time";
 "timesheetEdit.section.description" = "Description";
+"timesheetEdit.section.tags" = "Tags";
+"timesheetEdit.section.advancedSettings" = "Advanced Settings";
 "timesheetEdit.picker.customer" = "Select customer";
 "timesheetEdit.picker.project" = "Select project";
 "timesheetEdit.picker.activity" = "Select activity";
 "timesheetEdit.picker.placeholder" = "Please select";
+"timesheetEdit.placeholder.tags" = "e.g. projectname, important";
+"timesheetEdit.field.fixedRate" = "Fixed Rate";
+"timesheetEdit.field.hourlyRate" = "Hourly Rate";
+"timesheetEdit.field.billable" = "Billable";
 "timesheetEdit.loading.customers" = "Loading customers...";
 "timesheetEdit.loading.projects" = "Loading projects...";
 "timesheetEdit.loading.activities" = "Loading activities...";
@@ -212,3 +219,61 @@
 // Preload Banner
 "preload.title" = "Loading Reference Data";
 "preload.subtitle" = "Customers, Projects & Activities for offline use";
+
+// Instance Management
+"settings.section.instances" = "Kimai Instances";
+"settings.instances.addNew" = "Add New Instance";
+"settings.instances.activate" = "Activate";
+"settings.instances.delete" = "Delete";
+"settings.instances.delete.title" = "Delete instance?";
+"settings.instances.delete.message" = "Do you really want to delete the instance '%@'? All associated data will also be deleted.";
+"settings.instances.delete.confirm" = "Delete";
+"settings.instances.delete.cancel" = "Cancel";
+
+// Add Instance View
+"addInstance.title" = "Add Instance";
+"addInstance.button.add" = "Add";
+"addInstance.button.cancel" = "Cancel";
+"addInstance.section.name" = "Name";
+"addInstance.section.name.footer" = "A descriptive name for this instance (e.g. 'Work', 'Personal')";
+"addInstance.name.placeholder" = "Instance name";
+"addInstance.section.url" = "Server URL";
+"addInstance.section.url.footer" = "The URL of your Kimai server (e.g. https://kimai.example.com)";
+"addInstance.url.placeholder" = "https://kimai.example.com";
+"addInstance.section.token" = "API Token";
+"addInstance.section.token.footer" = "Your personal API token from Kimai settings";
+"addInstance.token.placeholder" = "API Token";
+"addInstance.error.title" = "Error";
+"addInstance.error.unknown" = "An unknown error occurred";
+"addInstance.error.invalidURL" = "Please enter a valid URL";
+
+// Instance Switcher
+"instanceSwitcher.title" = "Switch Instance";
+"instanceSwitcher.section.instances" = "Available Instances";
+"instanceSwitcher.button.addNew" = "Add New Instance";
+"instanceSwitcher.button.close" = "Close";
+"instanceSwitcher.switching" = "Switching instance...";
+
+// Edit Instance View
+"editInstance.title" = "Edit Instance";
+"editInstance.button.save" = "Save";
+"editInstance.button.delete" = "Sign Out";
+"editInstance.section.name" = "Name";
+"editInstance.section.name.footer" = "The descriptive name for this instance";
+"editInstance.name.placeholder" = "Instance name";
+"editInstance.section.url" = "Server URL";
+"editInstance.section.url.footer" = "The URL of your Kimai server";
+"editInstance.url.placeholder" = "https://kimai.example.com";
+"editInstance.section.token" = "API Token";
+"editInstance.section.token.footer" = "Your personal API token";
+"editInstance.token.placeholder" = "API Token";
+"editInstance.verifying" = "Verifying connection...";
+"editInstance.error.title" = "Error";
+"editInstance.error.unknown" = "An unknown error occurred";
+"editInstance.error.invalidURL" = "Please enter a valid URL";
+"editInstance.success.title" = "Saved";
+"editInstance.success.message" = "Changes have been saved successfully";
+"editInstance.delete.title" = "Sign out?";
+"editInstance.delete.message" = "Do you really want to sign out from '%@'?";
+"editInstance.delete.confirm" = "Sign out";
+"editInstance.delete.cancel" = "Cancel";

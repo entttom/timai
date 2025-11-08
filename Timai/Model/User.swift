@@ -15,26 +15,52 @@ import KeychainAccess
 struct User: Equatable {
     let apiEndpoint: URL
     var userDetails: TimesheetUser?  // Details über den aktuellen User inkl. Rollen
+    var instanceId: UUID?  // Optional: ID der zugehörigen Instanz
     
     var apiToken: String? {
         get {
             let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
-            if let token = try? keychain.get("apiToken") ?? nil {
-                return token
-            } else {
-                return nil
+            
+            // If we have an instance ID, use instance-specific token
+            if let instanceId = instanceId {
+                let instanceKey = "apiToken_\(instanceId.uuidString)"
+                if let token = try? keychain.get(instanceKey) {
+                    return token
+                }
             }
+            
+            // Fallback to generic token (for backward compatibility)
+            if let token = try? keychain.get("apiToken") {
+                return token
+            }
+            
+            return nil
         }
         set {
             guard let token = newValue else { return }
-            try? Keychain(service: Bundle.main.bundleIdentifier!).set(token, key: "apiToken")
+            let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
+            
+            // If we have an instance ID, save to instance-specific key
+            if let instanceId = instanceId {
+                let instanceKey = "apiToken_\(instanceId.uuidString)"
+                try? keychain.set(token, key: instanceKey)
+            } else {
+                // Fallback to generic key
+                try? keychain.set(token, key: "apiToken")
+            }
         }
     }
 
-    init(apiEndpoint: URL, apiToken: String?, userDetails: TimesheetUser? = nil) {
+    init(apiEndpoint: URL, apiToken: String?, userDetails: TimesheetUser? = nil, instanceId: UUID? = nil) {
         self.apiEndpoint = apiEndpoint
-        self.apiToken = apiToken
+        self.instanceId = instanceId
         self.userDetails = userDetails
+        
+        // Set token if provided
+        if let token = apiToken {
+            var tempUser = self
+            tempUser.apiToken = token
+        }
     }
     
     // Hilfsfunktion: Prüft ob User eine bestimmte Rolle hat

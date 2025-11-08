@@ -37,6 +37,11 @@ struct TimesheetEditView: View {
     @State private var startDate = Date()
     @State private var endDate = Date().addingTimeInterval(3600) // +1 Stunde als Standard
     @State private var descriptionText = ""
+    @State private var tagsText = ""
+    @State private var fixedRate: String = ""
+    @State private var hourlyRate: String = ""
+    @State private var billable = true
+    @State private var showAdvancedSettings = false
     @State private var showToast = false
     @State private var isInitializing = false
     @State private var showNoDataWarning = false
@@ -79,6 +84,8 @@ struct TimesheetEditView: View {
             if selectedActivityId != nil || mode.isEdit {
                 timeSection
                 descriptionSection
+                tagsSection
+                advancedSettingsSection
             }
         }
         .navigationTitle(mode.isEdit ? "timesheetEdit.navigationTitle.edit".localized() : "timesheetEdit.navigationTitle.create".localized())
@@ -286,6 +293,41 @@ struct TimesheetEditView: View {
         }
     }
     
+    private var tagsSection: some View {
+        Section("timesheetEdit.section.tags".localized()) {
+            TextField("timesheetEdit.placeholder.tags".localized(), text: $tagsText)
+        }
+    }
+    
+    private var advancedSettingsSection: some View {
+        Section(isExpanded: $showAdvancedSettings) {
+            // Fixed Rate
+            HStack {
+                Text("timesheetEdit.field.fixedRate".localized())
+                Spacer()
+                TextField("0.00", text: $fixedRate)
+                    .keyboardType(.decimalPad)
+                    .multilineTextAlignment(.trailing)
+                    .frame(width: 100)
+            }
+            
+            // Hourly Rate
+            HStack {
+                Text("timesheetEdit.field.hourlyRate".localized())
+                Spacer()
+                TextField("0.00", text: $hourlyRate)
+                    .keyboardType(.decimalPad)
+                    .multilineTextAlignment(.trailing)
+                    .frame(width: 100)
+            }
+            
+            // Billable
+            Toggle("timesheetEdit.field.billable".localized(), isOn: $billable)
+        } header: {
+            Text("timesheetEdit.section.advancedSettings".localized())
+        }
+    }
+    
     private func loadingRow(text: String) -> some View {
         HStack {
             ProgressView()
@@ -306,6 +348,10 @@ struct TimesheetEditView: View {
             return
         }
         
+        // Convert string values to Double if not empty
+        let fixedRateValue = fixedRate.isEmpty ? nil : Double(fixedRate.replacingOccurrences(of: ",", with: "."))
+        let hourlyRateValue = hourlyRate.isEmpty ? nil : Double(hourlyRate.replacingOccurrences(of: ",", with: "."))
+        
         let success: Bool
         
         switch mode {
@@ -315,7 +361,11 @@ struct TimesheetEditView: View {
                 activityId: activityId,
                 startDate: startDate,
                 endDate: endDate,
-                description: descriptionText.isEmpty ? nil : descriptionText
+                description: descriptionText.isEmpty ? nil : descriptionText,
+                tags: tagsText.isEmpty ? nil : tagsText,
+                fixedRate: fixedRateValue,
+                hourlyRate: hourlyRateValue,
+                billable: billable
             )
         case .edit(let existingActivity):
             success = await editViewModel.updateTimesheet(
@@ -324,7 +374,11 @@ struct TimesheetEditView: View {
                 activityId: activityId,
                 startDate: startDate,
                 endDate: endDate,
-                description: descriptionText.isEmpty ? nil : descriptionText
+                description: descriptionText.isEmpty ? nil : descriptionText,
+                tags: tagsText.isEmpty ? nil : tagsText,
+                fixedRate: fixedRateValue,
+                hourlyRate: hourlyRateValue,
+                billable: billable
             )
         }
         
@@ -473,7 +527,7 @@ class TimesheetEditViewModel: ObservableObject {
         isLoadingActivities = false
     }
     
-    func createTimesheet(projectId: Int, activityId: Int, startDate: Date, endDate: Date, description: String?) async -> Bool {
+    func createTimesheet(projectId: Int, activityId: Int, startDate: Date, endDate: Date, description: String?, tags: String?, fixedRate: Double?, hourlyRate: Double?, billable: Bool) async -> Bool {
         guard let user = currentUser else { return false }
         
         isSaving = true
@@ -485,12 +539,12 @@ class TimesheetEditViewModel: ObservableObject {
             begin: startDate.ISO8601Format(),
             end: endDate.ISO8601Format(),
             description: description,
-            tags: nil,
-            fixedRate: nil,
-            hourlyRate: nil,
+            tags: tags,
+            fixedRate: fixedRate,
+            hourlyRate: hourlyRate,
             user: nil,
             exported: nil,
-            billable: nil
+            billable: billable
         )
         
         do {
@@ -505,7 +559,7 @@ class TimesheetEditViewModel: ObservableObject {
         }
     }
     
-    func updateTimesheet(id: Int, projectId: Int, activityId: Int, startDate: Date, endDate: Date, description: String?) async -> Bool {
+    func updateTimesheet(id: Int, projectId: Int, activityId: Int, startDate: Date, endDate: Date, description: String?, tags: String?, fixedRate: Double?, hourlyRate: Double?, billable: Bool) async -> Bool {
         guard let user = currentUser else { return false }
         
         isSaving = true
@@ -517,12 +571,12 @@ class TimesheetEditViewModel: ObservableObject {
             begin: startDate.ISO8601Format(),
             end: endDate.ISO8601Format(),
             description: description,
-            tags: nil,
-            fixedRate: nil,
-            hourlyRate: nil,
+            tags: tags,
+            fixedRate: fixedRate,
+            hourlyRate: hourlyRate,
             user: nil,
             exported: nil,
-            billable: nil
+            billable: billable
         )
         
         do {
