@@ -25,6 +25,13 @@ struct TimaiApp: App {
     
     init() {
         resetStateForUITesting()
+        
+        // Connect LiveActivityManager to TimerManager
+        if #available(iOS 16.2, *) {
+            Task { @MainActor in
+                TimerManager.shared.setLiveActivityManager(LiveActivityManager.shared)
+            }
+        }
     }
     
     var body: some Scene {

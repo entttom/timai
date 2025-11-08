@@ -277,3 +277,15 @@
 "editInstance.delete.message" = "Möchten Sie sich wirklich von '%@' ausloggen?";
 "editInstance.delete.confirm" = "Ausloggen";
 "editInstance.delete.cancel" = "Abbrechen";
+
+// Timer
+"timer.running" = "Läuft";
+"timer.start.title" = "Timer starten";
+"timer.start.button" = "Starten";
+"timer.start.fromEntry" = "Timer für dieses Projekt starten";
+"timer.description.placeholder" = "Beschreibung (optional)";
+"timer.stop.title" = "Timer stoppen";
+"timer.stop.button" = "Stoppen";
+"timer.stop.description.label" = "Beschreibung";
+"timer.stop.description.placeholder" = "Was hast du gemacht?";
+"timer.startedAt" = "Gestartet um";

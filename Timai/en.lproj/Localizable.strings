@@ -277,3 +277,15 @@
 "editInstance.delete.message" = "Do you really want to sign out from '%@'?";
 "editInstance.delete.confirm" = "Sign out";
 "editInstance.delete.cancel" = "Cancel";
+
+// Timer
+"timer.running" = "Running";
+"timer.start.title" = "Start Timer";
+"timer.start.button" = "Start";
+"timer.start.fromEntry" = "Start timer for this project";
+"timer.description.placeholder" = "Description (optional)";
+"timer.stop.title" = "Stop Timer";
+"timer.stop.button" = "Stop";
+"timer.stop.description.label" = "Description";
+"timer.stop.description.placeholder" = "What did you work on?";
+"timer.startedAt" = "Started at";

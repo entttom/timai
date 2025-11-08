@@ -14,12 +14,150 @@ import SwiftUI
 struct TimesheetView: View {
     @EnvironmentObject var viewModel: TimesheetViewModel
     @StateObject private var instanceManager = InstanceManager.shared
+    @StateObject private var timerManager = TimerManager.shared
     @EnvironmentObject var authViewModel: AuthViewModel
     @State private var showingAddSheet = false
     @State private var showingInstanceSwitcher = false
+    @State private var showingTimerStartSheet = false
+    @State private var showingTimerStopDialog = false
     @State private var showToast = false
     
     var body: some View {
+        ZStack {
+            // Timer Banner at the top
+            VStack(spacing: 0) {
+                if let timer = timerManager.activeTimer {
+                    TimerBanner(timer: timer) {
+                        showingTimerStopDialog = true
+                    }
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                }
+                
+                mainContent
+            }
+            
+            // FAB for starting timer
+            if timerManager.activeTimer == nil {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            showingTimerStartSheet = true
+                        }) {
+                            Image(systemName: "play.circle.fill")
+                                .font(.system(size: 56))
+                                .foregroundColor(.blue)
+                                .background(
+                                    Circle()
+                                        .fill(Color(.systemBackground))
+                                        .frame(width: 60, height: 60)
+                                )
+                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.bottom, 20)
+                    }
+                }
+            }
+            
+            // Timer Stop Dialog Overlay
+            if showingTimerStopDialog, let timer = timerManager.activeTimer {
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        showingTimerStopDialog = false
+                    }
+                
+                TimerStopDialog(
+                    timer: timer,
+                    onStop: { description in
+                        Task {
+                            await stopTimer(description: description)
+                        }
+                    },
+                    onCancel: {
+                        showingTimerStopDialog = false
+                    }
+                )
+                .transition(.scale.combined(with: .opacity))
+            }
+        }
+        .animation(.easeInOut, value: timerManager.activeTimer != nil)
+        .animation(.easeInOut, value: showingTimerStopDialog)
+        .navigationTitle("timesheet.navigationTitle".localized())
+        .toolbar {
+            // Instance Badge (only show when multiple instances)
+            if instanceManager.hasMultipleInstances, let activeInstance = instanceManager.activeInstance {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showingInstanceSwitcher = true
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: "server.rack")
+                                .font(.caption)
+                            Text(activeInstance.name)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        .foregroundColor(.timaiHighlight)
+                    }
+                }
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: { showingAddSheet = true }) {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+        .sheet(isPresented: $showingAddSheet) {
+            // Nach dem Schließen neu laden
+            Task {
+                await viewModel.loadTimesheets()
+            }
+        } content: {
+            NavigationStack {
+                TimesheetEditView(mode: .create, onSaved: {
+                    showingAddSheet = false
+                })
+                .environmentObject(viewModel)
+            }
+        }
+        .sheet(isPresented: $showingTimerStartSheet) {
+            TimerStartSheet(onTimerStarted: {
+                // Reload timesheets when timer starts
+                Task {
+                    await viewModel.loadTimesheets()
+                }
+            })
+            .environmentObject(authViewModel)
+        }
+        .sheet(isPresented: $showingInstanceSwitcher) {
+            InstanceSwitcherSheet()
+                .environmentObject(authViewModel)
+        }
+        .task {
+            await viewModel.loadTimesheets()
+            
+            // Restore timer if needed
+            if let user = authViewModel.currentUser {
+                await timerManager.restoreTimerIfNeeded(user: user)
+            }
+        }
+        .toast(
+            isShowing: $showToast,
+            message: viewModel.errorMessage ?? "",
+            type: .warning
+        )
+        .onChange(of: viewModel.errorMessage) { newValue in
+            if newValue != nil {
+                showToast = true
+            }
+        }
+    }
+    
+    private var mainContent: some View {
         ZStack {
             if viewModel.isLoading && viewModel.activities.isEmpty {
                 LoadingView()
@@ -59,6 +197,14 @@ struct TimesheetView: View {
                                         Color.yellow.opacity(0.08) : 
                                         Color.timaiCardBackground
                                 )
+                                .contextMenu {
+                                    Button {
+                                        startTimerForActivity(activity)
+                                    } label: {
+                                        Label("timer.start.fromEntry".localized(), systemImage: "play.circle")
+                                    }
+                                    .disabled(timerManager.isTimerRunning)
+                                }
                             }
                         }
                     }
@@ -68,66 +214,49 @@ struct TimesheetView: View {
                 .scrollContentBackground(.hidden)
             }
         }
-        .navigationTitle("timesheet.navigationTitle".localized())
-        .toolbar {
-            // Instance Badge (only show when multiple instances)
-            if instanceManager.hasMultipleInstances, let activeInstance = instanceManager.activeInstance {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        showingInstanceSwitcher = true
-                    } label: {
-                        HStack(spacing: 6) {
-                            Image(systemName: "server.rack")
-                                .font(.caption)
-                            Text(activeInstance.name)
-                                .font(.caption)
-                                .fontWeight(.medium)
-                        }
-                        .foregroundColor(.timaiHighlight)
-                    }
-                }
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: { showingAddSheet = true }) {
-                    Image(systemName: "plus")
-                }
-            }
-        }
         .refreshable {
             await viewModel.loadTimesheets()
         }
-        .sheet(isPresented: $showingAddSheet) {
-            // Nach dem Schließen neu laden
-            Task {
+    }
+    
+    // MARK: - Timer Actions
+    
+    private func startTimerForActivity(_ activity: Activity) {
+        guard let user = authViewModel.currentUser else { return }
+        
+        Task {
+            do {
+                try await timerManager.startTimer(
+                    projectId: activity.projectId,
+                    projectName: activity.projectName,
+                    activityId: activity.activityId,
+                    activityName: activity.task,
+                    customerId: activity.customerId,
+                    customerName: activity.customerName,
+                    description: activity.description,
+                    user: user
+                )
+                
                 await viewModel.loadTimesheets()
-            }
-        } content: {
-            NavigationStack {
-                TimesheetEditView(mode: .create, onSaved: {
-                    showingAddSheet = false
-                })
-                .environmentObject(viewModel)
-            }
-        }
-        .sheet(isPresented: $showingInstanceSwitcher) {
-            InstanceSwitcherSheet()
-                .environmentObject(authViewModel)
-        }
-        .task {
-            await viewModel.loadTimesheets()
-        }
-        .toast(
-            isShowing: $showToast,
-            message: viewModel.errorMessage ?? "",
-            type: .warning
-        )
-        .onChange(of: viewModel.errorMessage) { newValue in
-            if newValue != nil {
-                showToast = true
+            } catch {
+                print("❌ [TimesheetView] Fehler beim Starten des Timers: \(error)")
             }
         }
     }
+    
+    private func stopTimer(description: String?) async {
+        guard let user = authViewModel.currentUser else { return }
+        
+        do {
+            try await timerManager.stopTimer(user: user, finalDescription: description)
+            showingTimerStopDialog = false
+            await viewModel.loadTimesheets()
+        } catch {
+            print("❌ [TimesheetView] Fehler beim Stoppen des Timers: \(error)")
+        }
+    }
+    
+    // MARK: - Helpers
     
     private func formatSectionDate(_ date: Date) -> String {
         let formatter = DateFormatter()

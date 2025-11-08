@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -36,6 +36,8 @@
 		AA3AC11B2EB8B239007CB3AA /* ReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1122EB8B239007CB3AA /* ReportType.swift */; };
 		AA3AC11D2EB8B239007CB3AA /* ReportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1112EB8B239007CB3AA /* ReportData.swift */; };
 		AA3AC1212EB8B239007CB3AA /* ReportAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1102EB8B239007CB3AA /* ReportAggregator.swift */; };
+		AA5DBCFF2EBF944300002C68 /* TimaiWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AA5DBD222EBF9FF600002C68 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3E3E751F82E62200B5D291 /* Localizable.strings */; };
 		AA68BDF02EBB288900D64E58 /* OfflineSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */; };
 		AA68BDF12EBB288900D64E58 /* PendingOperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEF2EBB288900D64E58 /* PendingOperationsManager.swift */; };
 		AA68BDF22EBB288900D64E58 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEC2EBB288900D64E58 /* CacheManager.swift */; };
@@ -53,6 +55,16 @@
 		AAD67AEB2EBE5294005E592B /* AddInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AEA2EBE5294005E592B /* AddInstanceView.swift */; };
 		AAD67AEE2EBE52BC005E592B /* InstanceSwitcherSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AEC2EBE52BC005E592B /* InstanceSwitcherSheet.swift */; };
 		AAD67AF02EBE59D4005E592B /* EditInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AEF2EBE59D4005E592B /* EditInstanceView.swift */; };
+		AAD67AF72EBF88DC005E592B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD67AF62EBF88DC005E592B /* WidgetKit.framework */; };
+		AAD67AF92EBF88DC005E592B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD67AF82EBF88DC005E592B /* SwiftUI.framework */; };
+		AAD67B1B2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1A2EBF8AAD005E592B /* TimerActivityAttributes.swift */; };
+		AAD67B1C2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1A2EBF8AAD005E592B /* TimerActivityAttributes.swift */; };
+		AAD67B212EBF8B6D005E592B /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */; };
+		AAD67B222EBF8B6D005E592B /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1E2EBF8B6D005E592B /* TimerManager.swift */; };
+		AAD67B342EBF8C79005E592B /* TimerStartSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B322EBF8C79005E592B /* TimerStartSheet.swift */; };
+		AAD67B352EBF8C79005E592B /* TimerStopDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B332EBF8C79005E592B /* TimerStopDialog.swift */; };
+		AAD67B362EBF8C79005E592B /* TimerBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B312EBF8C79005E592B /* TimerBanner.swift */; };
+		AAD67B3A2EBF8CEE005E592B /* ActiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B392EBF8CEE005E592B /* ActiveTimer.swift */; };
 		B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4A303DA5D49C78F37C4A9 /* Customer.swift */; };
 		BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */; };
 		F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */; };
@@ -70,6 +82,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AA5DBD002EBF944300002C68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAD67AF42EBF88DC005E592B;
+			remoteInfo = TimaiWidgetsExtension;
+		};
 		FD8D548720853DCC004F1C85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
@@ -80,6 +99,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		AA5DBCFC2EBF940F00002C68 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AA5DBCFF2EBF944300002C68 /* TimaiWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD08AD4C2039DFF400526CF5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -140,6 +170,16 @@
 		AAD67AEA2EBE5294005E592B /* AddInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstanceView.swift; sourceTree = "<group>"; };
 		AAD67AEC2EBE52BC005E592B /* InstanceSwitcherSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSwitcherSheet.swift; sourceTree = "<group>"; };
 		AAD67AEF2EBE59D4005E592B /* EditInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInstanceView.swift; sourceTree = "<group>"; };
+		AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimaiWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAD67AF62EBF88DC005E592B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		AAD67AF82EBF88DC005E592B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		AAD67B1A2EBF8AAD005E592B /* TimerActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerActivityAttributes.swift; sourceTree = "<group>"; };
+		AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
+		AAD67B1E2EBF8B6D005E592B /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		AAD67B312EBF8C79005E592B /* TimerBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBanner.swift; sourceTree = "<group>"; };
+		AAD67B322EBF8C79005E592B /* TimerStartSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartSheet.swift; sourceTree = "<group>"; };
+		AAD67B332EBF8C79005E592B /* TimerStopDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStopDialog.swift; sourceTree = "<group>"; };
+		AAD67B392EBF8CEE005E592B /* ActiveTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveTimer.swift; sourceTree = "<group>"; };
 		B21783BD3CFE445097141633 /* Timesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timesheet.swift; sourceTree = "<group>"; };
 		BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollection.swift; sourceTree = "<group>"; };
 		EFF4A303DA5D49C78F37C4A9 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -161,7 +201,30 @@
 		FDE9C2F1205320E1009250D9 /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AAD67B0C2EBF88DE005E592B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AAD67AFA2EBF88DC005E592B /* TimaiWidgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (AAD67B0C2EBF88DE005E592B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = TimaiWidgets; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		AAD67AF22EBF88DC005E592B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAD67AF92EBF88DC005E592B /* SwiftUI.framework in Frameworks */,
+				AAD67AF72EBF88DC005E592B /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD8D547F20853DCC004F1C85 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +270,8 @@
 		AA34B1462EBA0D4D0027C2F5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */,
+				AAD67B1E2EBF8B6D005E592B /* TimerManager.swift */,
 				AAD67AE82EBE5286005E592B /* InstanceManager.swift */,
 				AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */,
 				AA68BDEC2EBB288900D64E58 /* CacheManager.swift */,
@@ -285,6 +350,9 @@
 		AAD67AED2EBE52BC005E592B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AAD67B312EBF8C79005E592B /* TimerBanner.swift */,
+				AAD67B322EBF8C79005E592B /* TimerStartSheet.swift */,
+				AAD67B332EBF8C79005E592B /* TimerStopDialog.swift */,
 				AAD67AEC2EBE52BC005E592B /* InstanceSwitcherSheet.swift */,
 			);
 			path = Components;
@@ -319,6 +387,8 @@
 		FDB0BF561F814CA9005AAA0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AAD67B392EBF8CEE005E592B /* ActiveTimer.swift */,
+				AAD67B1A2EBF8AAD005E592B /* TimerActivityAttributes.swift */,
 				AAD67AE62EBE5278005E592B /* KimaiInstance.swift */,
 				AA68BDF42EBB289E00D64E58 /* CacheSettings.swift */,
 				AA68BDF52EBB289E00D64E58 /* PendingOperation.swift */,
@@ -342,6 +412,7 @@
 			children = (
 				FDD678681F7D9051002F4D33 /* Timai */,
 				FD8D548320853DCC004F1C85 /* TimaiUITests */,
+				AAD67AFA2EBF88DC005E592B /* TimaiWidgets */,
 				FDD678671F7D9051002F4D33 /* Products */,
 				FDD6787F1F7D93E7002F4D33 /* Frameworks */,
 			);
@@ -352,6 +423,7 @@
 			children = (
 				FDD678661F7D9051002F4D33 /* Timai.app */,
 				FD8D548220853DCC004F1C85 /* TimaiUITests.xctest */,
+				AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -381,6 +453,8 @@
 			isa = PBXGroup;
 			children = (
 				FD08AD492039DFF400526CF3 /* KeychainAccess.framework */,
+				AAD67AF62EBF88DC005E592B /* WidgetKit.framework */,
+				AAD67AF82EBF88DC005E592B /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -412,6 +486,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAD67B0D2EBF88DE005E592B /* Build configuration list for PBXNativeTarget "TimaiWidgetsExtension" */;
+			buildPhases = (
+				AAD67AF12EBF88DC005E592B /* Sources */,
+				AAD67AF22EBF88DC005E592B /* Frameworks */,
+				AAD67AF32EBF88DC005E592B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AAD67AFA2EBF88DC005E592B /* TimaiWidgets */,
+			);
+			name = TimaiWidgetsExtension;
+			packageProductDependencies = (
+			);
+			productName = TimaiWidgetsExtension;
+			productReference = AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		FD8D548120853DCC004F1C85 /* TimaiUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD8D548B20853DCC004F1C85 /* Build configuration list for PBXNativeTarget "TimaiUITests" */;
@@ -440,10 +536,12 @@
 				FD08AD4C2039DFF400526CF5 /* Embed Frameworks */,
 				FDD6787E1F7D9387002F4D33 /* ShellScript */,
 				FDAACDE120813DFF006E15DE /* ShellScript */,
+				AA5DBCFC2EBF940F00002C68 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AA5DBD012EBF944300002C68 /* PBXTargetDependency */,
 			);
 			name = Timai;
 			productName = Timai;
@@ -457,10 +555,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				ORGANIZATIONNAME = "Dr. Thomas Entner";
 				TargetAttributes = {
+					AAD67AF42EBF88DC005E592B = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
 					FD8D548120853DCC004F1C85 = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 1000;
@@ -490,11 +591,20 @@
 			targets = (
 				FDD678651F7D9051002F4D33 /* Timai */,
 				FD8D548120853DCC004F1C85 /* TimaiUITests */,
+				AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AAD67AF32EBF88DC005E592B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5DBD222EBF9FF600002C68 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD8D548020853DCC004F1C85 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -544,6 +654,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AAD67AF12EBF88DC005E592B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAD67B1B2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD8D547E20853DCC004F1C85 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -592,6 +710,9 @@
 				AA34B15F2EBA0D4D0027C2F5 /* NetworkService.swift in Sources */,
 				AAD67AE72EBE5278005E592B /* KimaiInstance.swift in Sources */,
 				AA34B1602EBA0D4D0027C2F5 /* TimesheetView.swift in Sources */,
+				AAD67B342EBF8C79005E592B /* TimerStartSheet.swift in Sources */,
+				AAD67B352EBF8C79005E592B /* TimerStopDialog.swift in Sources */,
+				AAD67B362EBF8C79005E592B /* TimerBanner.swift in Sources */,
 				AA34B1612EBA0D4D0027C2F5 /* PrimaryButton.swift in Sources */,
 				AA34B1622EBA0D4D0027C2F5 /* MainTabView.swift in Sources */,
 				AA34B1632EBA0D4D0027C2F5 /* EmptyStateView.swift in Sources */,
@@ -599,13 +720,17 @@
 				F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */,
 				B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */,
 				AAD67AEB2EBE5294005E592B /* AddInstanceView.swift in Sources */,
+				AAD67B3A2EBF8CEE005E592B /* ActiveTimer.swift in Sources */,
 				5E68D7CDAD99403DB8C42535 /* Project.swift in Sources */,
+				AAD67B1C2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */,
 				0699EE5D657847C39AB7ABA5 /* ActivityDetails.swift in Sources */,
 				0798E753E1C54458A75104D5 /* TimesheetUser.swift in Sources */,
 				A4BC116CC8DC4193A010CFA6 /* TimesheetEditForm.swift in Sources */,
 				9F972C4094E645ECA13A334E /* Timesheet.swift in Sources */,
 				AA34B1362EBA0D250027C2F5 /* TimaiApp.swift in Sources */,
 				AA68BDF02EBB288900D64E58 /* OfflineSyncManager.swift in Sources */,
+				AAD67B212EBF8B6D005E592B /* LiveActivityManager.swift in Sources */,
+				AAD67B222EBF8B6D005E592B /* TimerManager.swift in Sources */,
 				AA68BDF12EBB288900D64E58 /* PendingOperationsManager.swift in Sources */,
 				AA68BDF22EBB288900D64E58 /* CacheManager.swift in Sources */,
 				AA68BDF32EBB288900D64E58 /* NetworkMonitor.swift in Sources */,
@@ -616,6 +741,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AA5DBD012EBF944300002C68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+			targetProxy = AA5DBD002EBF944300002C68 /* PBXContainerItemProxy */;
+		};
 		FD8D548820853DCC004F1C85 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FDD678651F7D9051002F4D33 /* Timai */;
@@ -645,6 +775,82 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AAD67B0A2EBF88DE005E592B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimaiWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimaiWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Dr. Thomas Entner. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AAD67B0B2EBF88DE005E592B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimaiWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimaiWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Dr. Thomas Entner. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		FD8D548920853DCC004F1C85 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -864,6 +1070,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AAD67B0D2EBF88DE005E592B /* Build configuration list for PBXNativeTarget "TimaiWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAD67B0A2EBF88DE005E592B /* Debug */,
+				AAD67B0B2EBF88DE005E592B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FD8D548B20853DCC004F1C85 /* Build configuration list for PBXNativeTarget "TimaiUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
