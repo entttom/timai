@@ -10,8 +10,11 @@
 # Storage Mode (git, google_cloud, s3, gitlab_secure_files)
 storage_mode("git")
 
-# App Identifier
-app_identifier(["com.entner.time"])
+# App Identifier - Haupt-App + Widget Extension
+app_identifier([
+  "com.entner.time",
+  "com.entner.time.TimaiWidgets"
+])
 
 # Username (Apple ID)
 # username("your.email@example.com")
