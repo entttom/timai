@@ -3,6 +3,12 @@
 A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built with SwiftUI and following modern iOS development best practices.
 
 <p align="center">
+  <a href="https://apps.apple.com/us/app/timai-time-tracking/id6754925166">
+    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1641340800" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;">
+  </a>
+</p>
+
+<p align="center">
   <img src="fastlane/screenshots/de-DE/iPhone 6.7-01-Login.png" width="250" />
   <img src="fastlane/screenshots/de-DE/iPhone 6.7-02-Dashboard.png" width="250" />
   <img src="fastlane/screenshots/de-DE/iPhone 6.7-04-Reports.png" width="250" />
@@ -15,7 +21,13 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
 ## Features
 
 - ✅ **Secure Authentication**: Login with your Kimai v2 API token, securely stored in the iOS Keychain
-- ⏱️ **Timesheet Management**: View, create, edit, and delete time entries
+- ⏱️ **Live Timer with Live Activities**: 
+  - Start/stop timers directly from the app
+  - Live Activities on Lock Screen showing running timer
+  - Dynamic Island integration (iPhone 14 Pro+)
+  - Timer persists across app restarts
+  - One-tap timer start from previous entries
+- ⏰ **Timesheet Management**: View, create, edit, and delete time entries
 - 📊 **Comprehensive Reports**: 
   - Personal weekly, monthly, and yearly views
   - Team-wide reports for all users
@@ -23,6 +35,9 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
   - Project overview and evaluation
   - Monthly evaluations and inactive projects tracking
 - 💰 **Budget Tracking**: Visual representation of project time budgets and progress
+- 🔄 **Offline Support**: Work without internet, automatic sync when reconnected
+- 🏢 **Multi-Instance**: Manage multiple Kimai servers in one app
+- 🔐 **Biometric Lock**: Secure your app with Face ID/Touch ID
 - 🌍 **Multi-language Support**: Full German and English localization
 - 🎨 **Modern UI**: Clean, native iOS interface built with SwiftUI
 - 📱 **iOS Native**: Optimized for iPhone and iPad
@@ -31,17 +46,22 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
 
 - **Framework**: SwiftUI
 - **Architecture**: MVVM (Model-View-ViewModel)
+- **Live Activities**: ActivityKit for Lock Screen & Dynamic Island
 - **API**: Kimai v2 REST API
 - **Dependencies**: 
   - [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess) - Secure credential storage
 - **Dependency Manager**: Carthage
 - **Language**: Swift 5+
+- **iOS Features**: 
+  - Biometric authentication (Face ID/Touch ID)
+  - Offline caching & synchronization
+  - Multi-instance support
 
 ## Requirements
 
-- iOS 15.0 or later
-- Xcode 14.0 or later
-- Kimai v2 server with API access
+- iOS 17.0 or later
+- Xcode 15.0 or later
+- Kimai v2 server (version 0.5.0 or higher) with API access
 - Valid Kimai API token
 
 ## Build from Source
@@ -130,10 +150,13 @@ Please ensure your code follows Swift best practices and includes appropriate co
 - [x] Offline mode with local caching
 - [x] Automated testing and CI/CD (Fastlane)
 - [x] Dark mode optimization
-- [ ] App Store submission (in progress)
-- [ ] Widget support for quick time tracking
+- [x] App Store submission ✅ [Available now](https://apps.apple.com/us/app/timai-time-tracking/id6754925166)
+- [x] Live Activities with timer tracking
+- [x] Multi-instance support
+- [x] Biometric authentication
 - [ ] Apple Watch companion app
 - [ ] Siri shortcuts integration
+- [ ] Today Widget for quick time entry
 
 ## Support
 

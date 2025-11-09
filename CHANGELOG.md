@@ -7,6 +7,22 @@ Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
 ## [Unreleased]
 
 ### Hinzugefügt
+- **Live Activities**: Timer-Anzeige auf Lock Screen und Dynamic Island
+  - Echtzeit-Timer auf dem Sperrbildschirm
+  - Dynamic Island Integration für iPhone 14 Pro und neuer
+  - Projekt-Kürzel in kompakter Ansicht
+  - Pulsierendes Timer-Icon mit Gradient-Effekten
+  - Expanded View zeigt Projekt, Activity, Kunde und Startzeit
+- **Timer-Funktionalität**: 
+  - Schneller Timer-Start via Floating Action Button
+  - Timer-Start aus bestehendem Eintrag per Kontext-Menü
+  - In-App Timer-Banner mit Live-Anzeige
+  - Timer-Stop-Dialog mit optionaler Beschreibung
+  - Timer-State überlebt App-Neustart
+  - Integration mit Kimai API (laufende Timer ohne end-Datum)
+- **Widget Extension**: Neues TimaiWidgets Target für Live Activities
+
+### Hinzugefügt (vorherige Version)
 - **Benutzer-Rollen-System**: Integration des `/api/users/me` Endpoints zur Abfrage von Benutzerrollen und -berechtigungen
 - **Rollenbasierte Zugriffssteuerung**: Reports werden automatisch basierend auf den Benutzerberechtigungen gefiltert
   - Nur Admins und Super-Admins sehen "Alle Benutzer"-Reports
@@ -41,6 +57,22 @@ Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
 - "Code=-999 Abgebrochen"-Fehler bei parallelen API-Requests eliminiert
 
 ### Technisch
+- **Live Activities Architektur**:
+  - `ActiveTimer` Model für Timer-State mit Elapsed-Time-Berechnung
+  - `TimerActivityAttributes` für ActivityKit Integration
+  - `TimerManager` Service mit Persistenz in UserDefaults
+  - `LiveActivityManager` für Activity Lifecycle Management
+  - Widget Extension Target mit iOS 17+ Support
+- **Timer UI Komponenten**:
+  - `TimerBanner` mit Echtzeit-Updates und Puls-Animation
+  - `TimerStartSheet` mit Projekt-/Activity-Auswahl
+  - `TimerStopDialog` mit Beschreibungs-Option
+- **TimesheetView** erweitert:
+  - FAB (Floating Action Button) für Timer-Start
+  - Kontext-Menü mit "Timer starten" Option
+  - Timer-Banner Integration
+  - Timer-State Observierung
+- `Info.plist` nutzt jetzt Build Settings Platzhalter (`$(MARKETING_VERSION)`, `$(CURRENT_PROJECT_VERSION)`)
 - `TimesheetUser` Model erweitert um `roles: [String]?` Feld
 - Neue Helper-Funktionen: `hasRole(_:)` und `hasAnyRole(_:)`
 - `User` Model erweitert um `userDetails: TimesheetUser?`
