@@ -224,7 +224,7 @@ struct TimesheetView: View {
     private func startTimerForActivity(_ activity: Activity) {
         guard let user = authViewModel.currentUser else { return }
         
-        Task {
+            Task {
             do {
                 try await timerManager.startTimer(
                     projectId: activity.projectId,
@@ -253,8 +253,8 @@ struct TimesheetView: View {
             await viewModel.loadTimesheets()
         } catch {
             print("❌ [TimesheetView] Fehler beim Stoppen des Timers: \(error)")
+            }
         }
-    }
     
     // MARK: - Helpers
     
