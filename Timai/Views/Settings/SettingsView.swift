@@ -37,6 +37,7 @@ struct SettingsView: View {
                     NavigationLink {
                         EditInstanceView(instance: instance)
                             .environmentObject(authViewModel)
+                            .environmentObject(instanceManager)
                     } label: {
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
