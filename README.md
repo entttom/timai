@@ -161,6 +161,18 @@ If you encounter any issues or have questions:
 - Open an [issue](https://github.com/entttom/timai/issues) on GitHub
 - Check the [Kimai documentation](https://www.kimai.org/documentation/) for API-related questions
 
+## Support the Project
+
+If you find Timai useful and would like to support its development, consider buying me a coffee! ☕
+
+<p align="center">
+  <a href="https://paypal.me/Entner">
+    <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal" />
+  </a>
+</p>
+
+Your support helps maintain and improve Timai. Every contribution is greatly appreciated! 🙏
+
 ## Author
 
 **Dr. Thomas Entner**
