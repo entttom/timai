@@ -31,7 +31,7 @@ struct LoginView: View {
             
             VStack(spacing: 0) {
                 // Logo oben
-                Image("TimaiLogo")
+                Image("LogoWhiteTransparent")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 120)
