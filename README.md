@@ -9,9 +9,19 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
 </p>
 
 <p align="center">
-  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2025-11-04 at 20.56.21.png" width="180" />
-  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2025-11-04 at 20.56.26.png" width="180" />
-  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2025-11-04 at 20.56.33.png" width="180" />
+  <img src="screenshots/1-Login.png" width="180" />
+  <img src="screenshots/2-Timeline.png" width="180" />
+  <img src="screenshots/3-Reports.png" width="180" />
+  <img src="screenshots/4-ReportExample.png" width="180" />
+  <img src="screenshots/5-LiveStart.png" width="180" />
+</p>
+
+<p align="center">
+  <img src="screenshots/6-LiveStop.png" width="180" />
+  <img src="screenshots/7-MultiUser.png" width="180" />
+  <img src="screenshots/8-MultiUserQuikChange.png" width="180" />
+  <img src="screenshots/9-LiveActivity.png" width="180" />
+  <img src="screenshots/10-DynamicIsland.png" width="180" />
 </p>
 
 ## Features
