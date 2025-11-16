@@ -36,6 +36,7 @@
 		AA3AC11B2EB8B239007CB3AA /* ReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1122EB8B239007CB3AA /* ReportType.swift */; };
 		AA3AC11D2EB8B239007CB3AA /* ReportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1112EB8B239007CB3AA /* ReportData.swift */; };
 		AA3AC1212EB8B239007CB3AA /* ReportAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1102EB8B239007CB3AA /* ReportAggregator.swift */; };
+		AA41F1112EC71DF3008F4B4A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = AA41F1102EC71DF3008F4B4A /* KeychainAccess */; };
 		AA5DBCFF2EBF944300002C68 /* TimaiWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA5DBD222EBF9FF600002C68 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3E3E751F82E62200B5D291 /* Localizable.strings */; };
 		AA68BDF02EBB288900D64E58 /* OfflineSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */; };
@@ -68,8 +69,6 @@
 		B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4A303DA5D49C78F37C4A9 /* Customer.swift */; };
 		BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */; };
 		F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */; };
-		FD08AD4A2039DFF400526CF3 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD08AD492039DFF400526CF3 /* KeychainAccess.framework */; };
-		FD08AD4B2039DFF400526CF4 /* KeychainAccess.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FD08AD492039DFF400526CF3 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FD3E058A208543F0005AAC63 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3E0589208543F0005AAC63 /* SnapshotHelper.swift */; };
 		FD3E3E731F82E62200B5D291 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3E3E751F82E62200B5D291 /* Localizable.strings */; };
 		FD3E3E7A1F82F92900B5D291 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3E3E791F82F92900B5D291 /* User.swift */; };
@@ -108,17 +107,6 @@
 				AA5DBCFF2EBF944300002C68 /* TimaiWidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FD08AD4C2039DFF400526CF5 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				FD08AD4B2039DFF400526CF4 /* KeychainAccess.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -183,7 +171,6 @@
 		B21783BD3CFE445097141633 /* Timesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timesheet.swift; sourceTree = "<group>"; };
 		BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollection.swift; sourceTree = "<group>"; };
 		EFF4A303DA5D49C78F37C4A9 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
-		FD08AD492039DFF400526CF3 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KeychainAccess.framework; path = Carthage/Build/KeychainAccess.xcframework; sourceTree = "<group>"; };
 		FD3E0589208543F0005AAC63 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		FD3E3E701F82E5C300B5D291 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FD3E3E741F82E62200B5D291 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -236,7 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD08AD4A2039DFF400526CF3 /* KeychainAccess.framework in Frameworks */,
+				AA41F1112EC71DF3008F4B4A /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,16 +436,15 @@
 			path = Timai;
 			sourceTree = "<group>";
 		};
-		FDD6787F1F7D93E7002F4D33 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FD08AD492039DFF400526CF3 /* KeychainAccess.framework */,
-				AAD67AF62EBF88DC005E592B /* WidgetKit.framework */,
-				AAD67AF82EBF88DC005E592B /* SwiftUI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
+	FDD6787F1F7D93E7002F4D33 /* Frameworks */ = {
+		isa = PBXGroup;
+		children = (
+			AAD67AF62EBF88DC005E592B /* WidgetKit.framework */,
+			AAD67AF82EBF88DC005E592B /* SwiftUI.framework */,
+		);
+		name = Frameworks;
+		sourceTree = "<group>";
+	};
 		FDD678861F7D960D002F4D33 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,19 +515,16 @@
 		FDD678651F7D9051002F4D33 /* Timai */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FDD678781F7D9051002F4D33 /* Build configuration list for PBXNativeTarget "Timai" */;
-			buildPhases = (
-				FDD678621F7D9051002F4D33 /* Sources */,
-				FDD678631F7D9051002F4D33 /* Frameworks */,
-				FDD678641F7D9051002F4D33 /* Resources */,
-				FD08AD4C2039DFF400526CF5 /* Embed Frameworks */,
-				FDD6787E1F7D9387002F4D33 /* ShellScript */,
-				FDAACDE120813DFF006E15DE /* ShellScript */,
-				AA5DBCFC2EBF940F00002C68 /* Embed Foundation Extensions */,
-			);
+		buildPhases = (
+			FDD678621F7D9051002F4D33 /* Sources */,
+			FDD678631F7D9051002F4D33 /* Frameworks */,
+			FDD678641F7D9051002F4D33 /* Resources */,
+			FDD6787E1F7D9387002F4D33 /* ShellScript */,
+			FDAACDE120813DFF006E15DE /* ShellScript */,
+		);
 			buildRules = (
 			);
 			dependencies = (
-				AA5DBD012EBF944300002C68 /* PBXTargetDependency */,
 			);
 			name = Timai;
 			productName = Timai;
@@ -585,6 +568,9 @@
 				de,
 			);
 			mainGroup = FDD6785D1F7D9051002F4D33;
+			packageReferences = (
+				AA41F10F2EC71DF3008F4B4A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = FDD678671F7D9051002F4D33 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -616,7 +602,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDD678741F7D9051002F4D33 /* LaunchScreen.storyboard in Resources */,
 				FD3E3E731F82E62200B5D291 /* Localizable.strings in Resources */,
 				FDD678711F7D9051002F4D33 /* Assets.xcassets in Resources */,
 			);
@@ -784,7 +769,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -798,7 +783,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiWidgets;
@@ -810,6 +795,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -823,7 +809,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -837,7 +823,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -847,6 +833,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1018,12 +1005,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = RG7FE682S2;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build",
-				);
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				INFOPLIST_FILE = Timai/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Timai;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
@@ -1032,9 +1018,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1046,12 +1035,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = RG7FE682S2;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build",
-				);
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				INFOPLIST_FILE = Timai/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Timai;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
@@ -1060,9 +1048,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1109,6 +1100,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AA41F10F2EC71DF3008F4B4A /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA41F1102EC71DF3008F4B4A /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA41F10F2EC71DF3008F4B4A /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FDD6785E1F7D9051002F4D33 /* Project object */;
 }

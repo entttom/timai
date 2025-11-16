@@ -10,6 +10,9 @@
 //  Commercial use requires a commercial license.
 //
 import SwiftUI
+#if os(iOS)
+import UIKit
+#endif
 
 struct MainTabView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -68,7 +71,9 @@ struct MainTabView: View {
             }
             .accentColor(.timaiHighlight)
             .onAppear {
+                #if os(iOS)
                 setupTabBarAppearance()
+                #endif
                 
                 // Set current user for view models
                 if let user = authViewModel.currentUser {
@@ -86,6 +91,7 @@ struct MainTabView: View {
         }
     }
     
+    #if os(iOS)
     private func setupTabBarAppearance() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -102,6 +108,7 @@ struct MainTabView: View {
         UITabBar.appearance().scrollEdgeAppearance = appearance
         UITabBar.appearance().isTranslucent = true
     }
+    #endif
 }
 
 // MARK: - Preload Banner Component

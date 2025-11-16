@@ -10,9 +10,9 @@
 //  Commercial use requires a commercial license.
 //
 import Foundation
-#if canImport(ActivityKit)
+
+#if os(iOS)
 import ActivityKit
-#endif
 
 /// Manages Live Activities for the timer
 @available(iOS 16.2, *)
@@ -26,12 +26,15 @@ class LiveActivityManager {
     /// Start a Live Activity for the running timer
     func startTimerActivity(timer: ActiveTimer) async {
         print("🚀 [LiveActivityManager] startTimerActivity aufgerufen für: \(timer.projectName)")
+        print("✅ [LiveActivityManager] ActivityKit verfügbar - starte/aktualisiere Live Activity")
         
-        #if canImport(ActivityKit)
-        print("✅ [LiveActivityManager] ActivityKit verfügbar - starte Live Activity")
-        
-        // Stop any existing activity first
-        await stopTimerActivity()
+        // Check if an activity already exists
+        if let activityId = currentActivityId {
+            // Update existing activity instead of recreating
+            print("🔄 [LiveActivityManager] Live Activity existiert bereits - aktualisiere statt neu zu erstellen")
+            await updateTimerActivity(timer: timer)
+            return
+        }
         
         let attributes = TimerActivityAttributes(
             projectName: timer.projectName,
@@ -39,13 +42,11 @@ class LiveActivityManager {
             customerName: timer.customerName
         )
         
+        // Simple start date - iOS will count up automatically
         let contentState = TimerActivityAttributes.ContentState(
-            startDate: timer.startDate
+            startDate: timer.startDate,
+            lastUpdateTimestamp: Date()
         )
-        
-        print("📊 [LiveActivityManager] Attributes: \(timer.projectName) - \(timer.activityName)")
-        print("📊 [LiveActivityManager] Start Date: \(timer.startDate)")
-        
         do {
             let activity = try ActivityKit.Activity.request(
                 attributes: attributes,
@@ -60,14 +61,10 @@ class LiveActivityManager {
             print("❌ [LiveActivityManager] Fehler beim Starten der Live Activity: \(error)")
             print("❌ [LiveActivityManager] Error Details: \(error.localizedDescription)")
         }
-        #else
-        print("⚠️ [LiveActivityManager] ActivityKit NICHT verfügbar - Live Activity wird nicht gestartet")
-        #endif
     }
     
     /// Stop the current Live Activity
     func stopTimerActivity() async {
-        #if canImport(ActivityKit)
         guard let activityId = currentActivityId else {
             print("ℹ️ [LiveActivityManager] Keine aktive Live Activity zum Stoppen")
             return
@@ -90,14 +87,10 @@ class LiveActivityManager {
         
         print("⚠️ [LiveActivityManager] Activity mit ID \(activityId) nicht gefunden")
         currentActivityId = nil
-        #else
-        print("ℹ️ [LiveActivityManager] ActivityKit nicht verfügbar")
-        #endif
     }
     
     /// Update the Live Activity (if needed)
     func updateTimerActivity(timer: ActiveTimer) async {
-        #if canImport(ActivityKit)
         guard let activityId = currentActivityId else {
             print("⚠️ [LiveActivityManager] Keine aktive Live Activity zum Aktualisieren")
             return
@@ -107,7 +100,8 @@ class LiveActivityManager {
         for activity in ActivityKit.Activity<TimerActivityAttributes>.activities {
             if activity.id == activityId {
                 let contentState = TimerActivityAttributes.ContentState(
-                    startDate: timer.startDate
+                    startDate: timer.startDate,
+                    lastUpdateTimestamp: Date()
                 )
                 
                 let updatedContent = ActivityContent(
@@ -122,9 +116,10 @@ class LiveActivityManager {
         }
         
         print("⚠️ [LiveActivityManager] Activity mit ID \(activityId) nicht gefunden")
-        #else
-        print("⚠️ [LiveActivityManager] ActivityKit nicht verfügbar")
-        #endif
+        print("🔄 [LiveActivityManager] Erstelle neue Live Activity stattdessen...")
+        // If not found, create new one
+        currentActivityId = nil
+        await startTimerActivity(timer: timer)
     }
     
     /// Check if a Live Activity is currently running
@@ -132,3 +127,27 @@ class LiveActivityManager {
         return currentActivityId != nil
     }
 }
+#else
+// macOS stub implementation
+class LiveActivityManager {
+    static let shared = LiveActivityManager()
+    
+    private init() {}
+    
+    func startTimerActivity(timer: ActiveTimer) async {
+        print("ℹ️ [LiveActivityManager] Live Activities sind nur auf iOS verfügbar")
+    }
+    
+    func stopTimerActivity() async {
+        print("ℹ️ [LiveActivityManager] Live Activities sind nur auf iOS verfügbar")
+    }
+    
+    func updateTimerActivity(timer: ActiveTimer) async {
+        print("ℹ️ [LiveActivityManager] Live Activities sind nur auf iOS verfügbar")
+    }
+    
+    var isActivityRunning: Bool {
+        return false
+    }
+}
+#endif

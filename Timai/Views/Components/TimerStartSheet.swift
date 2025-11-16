@@ -103,7 +103,9 @@ struct TimerStartSheet: View {
                 }
             }
             .navigationTitle("timer.start.title".localized())
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("timesheetEdit.button.cancel".localized()) {

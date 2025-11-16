@@ -55,9 +55,11 @@ struct LoginView: View {
                                     .foregroundColor(.primary.opacity(0.4))
                             }
                             TextField("", text: $instanceName)
+                                #if os(iOS)
                                 .autocapitalization(.words)
-                                .focused($focusedField, equals: .name)
                                 .submitLabel(.next)
+                                #endif
+                                .focused($focusedField, equals: .name)
                                 .tint(.timaiHighlight)
                                 .onSubmit {
                                     focusedField = .url
@@ -85,11 +87,13 @@ struct LoginView: View {
                                     .foregroundColor(.primary.opacity(0.4))
                             }
                             TextField("", text: $kimaiURL)
+                                #if os(iOS)
                                 .keyboardType(.URL)
                                 .autocapitalization(.none)
+                                .submitLabel(.next)
+                                #endif
                                 .autocorrectionDisabled()
                                 .focused($focusedField, equals: .url)
-                                .submitLabel(.next)
                                 .tint(.timaiHighlight)
                                 .onSubmit {
                                     focusedField = .token
@@ -112,10 +116,12 @@ struct LoginView: View {
                             .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1)
                         
                         SecureField("API Token", text: $apiToken)
+                            #if os(iOS)
                             .autocapitalization(.none)
+                            .submitLabel(.go)
+                            #endif
                             .autocorrectionDisabled()
                             .focused($focusedField, equals: .token)
-                            .submitLabel(.go)
                             .tint(.timaiHighlight)
                             .onSubmit {
                                 performLogin()

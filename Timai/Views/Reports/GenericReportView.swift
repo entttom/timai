@@ -22,6 +22,9 @@ struct UserWeekReportView: View {
             timesheets: viewModel.timesheets,
             period: .week
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -34,6 +37,9 @@ struct UserMonthReportView: View {
             timesheets: viewModel.timesheets,
             period: .month
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -46,6 +52,9 @@ struct UserYearReportView: View {
             timesheets: viewModel.timesheets,
             period: .year
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -60,6 +69,9 @@ struct AllUsersWeekReportView: View {
             timesheets: viewModel.timesheets,
             period: .week
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -73,6 +85,9 @@ struct AllUsersMonthReportView: View {
             timesheets: viewModel.timesheets,
             period: .month
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -86,6 +101,9 @@ struct AllUsersYearReportView: View {
             timesheets: viewModel.timesheets,
             period: .year
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -98,6 +116,9 @@ struct ProjectDetailsReportView: View {
             title: "reports.projectDetails.title".localized(),
             timesheets: viewModel.timesheets
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -109,6 +130,9 @@ struct ProjectOverviewReportView: View {
             title: "reports.projectOverview.title".localized(),
             timesheets: viewModel.timesheets
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -121,6 +145,9 @@ struct MonthlyEvaluationReportView: View {
             timesheets: viewModel.timesheets,
             period: .month
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -132,6 +159,9 @@ struct InactiveProjectsReportView: View {
             title: "reports.inactiveProjects.title".localized(),
             timesheets: viewModel.timesheets
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -143,6 +173,9 @@ struct ProjectsByMonthActivityUserReportView: View {
             title: "reports.projectsByMonthActivityUser.title".localized(),
             timesheets: viewModel.timesheets
         )
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -154,6 +187,14 @@ struct GenericTimeReportView: View {
     let period: TimePeriod
     
     @State private var selectedDate = Date()
+    
+    private var toolbarTrailingPlacement: ToolbarItemPlacement {
+        #if os(iOS)
+        return .navigationBarTrailing
+        #else
+        return .automatic
+        #endif
+    }
     
     enum TimePeriod {
         case week, month, year
@@ -306,9 +347,11 @@ struct GenericTimeReportView: View {
             }
         }
         .navigationTitle(title)
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: toolbarTrailingPlacement) {
                 Button("Heute") {
                     selectedDate = Date()
                 }
@@ -450,7 +493,9 @@ struct AllUsersReportView: View {
             }
         }
         .navigationTitle(title)
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 
@@ -496,7 +541,12 @@ struct ProjectReportView: View {
             }
         }
         .navigationTitle(title)
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
+        .refreshable {
+            await viewModel.loadReportData()
+        }
     }
 }
 
@@ -622,7 +672,9 @@ struct InactiveProjectsListView: View {
             }
         }
         .navigationTitle(title)
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 

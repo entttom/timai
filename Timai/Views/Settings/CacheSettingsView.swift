@@ -244,7 +244,9 @@ struct CacheSettingsView: View {
             }
         }
         .navigationTitle("cacheSettings.navigationTitle".localized())
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .alert("cacheSettings.alert.clear.title".localized(), isPresented: $showClearConfirmation) {
             Button("Abbrechen", role: .cancel) {}
             Button("Löschen", role: .destructive) {

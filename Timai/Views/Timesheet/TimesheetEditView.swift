@@ -89,7 +89,9 @@ struct TimesheetEditView: View {
             }
         }
         .navigationTitle(mode.isEdit ? "timesheetEdit.navigationTitle.edit".localized() : "timesheetEdit.navigationTitle.create".localized())
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("timesheetEdit.button.cancel".localized()) {
@@ -306,7 +308,9 @@ struct TimesheetEditView: View {
                 Text("timesheetEdit.field.fixedRate".localized())
                 Spacer()
                 TextField("0.00", text: $fixedRate)
+                    #if os(iOS)
                     .keyboardType(.decimalPad)
+                    #endif
                     .multilineTextAlignment(.trailing)
                     .frame(width: 100)
             }
@@ -316,7 +320,9 @@ struct TimesheetEditView: View {
                 Text("timesheetEdit.field.hourlyRate".localized())
                 Spacer()
                 TextField("0.00", text: $hourlyRate)
+                    #if os(iOS)
                     .keyboardType(.decimalPad)
+                    #endif
                     .multilineTextAlignment(.trailing)
                     .frame(width: 100)
             }

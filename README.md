@@ -26,27 +26,27 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
 
 ## Features
 
-- ✅ **Secure Authentication**: Login with your Kimai v2 API token, securely stored in the iOS Keychain
-- ⏱️ **Live Timer with Live Activities**: 
+- **Secure Authentication**: Login with your Kimai v2 API token, securely stored in the iOS Keychain
+- **Live Timer with Live Activities**: 
   - Start/stop timers directly from the app
   - Live Activities on Lock Screen showing running timer
   - Dynamic Island integration (iPhone 14 Pro+)
   - Timer persists across app restarts
   - One-tap timer start from previous entries
-- ⏰ **Timesheet Management**: View, create, edit, and delete time entries
-- 📊 **Comprehensive Reports**: 
+- **Timesheet Management**: View, create, edit, and delete time entries
+- **Comprehensive Reports**: 
   - Personal weekly, monthly, and yearly views
   - Team-wide reports for all users
   - Project details with budget tracking
   - Project overview and evaluation
   - Monthly evaluations and inactive projects tracking
-- 💰 **Budget Tracking**: Visual representation of project time budgets and progress
-- 🔄 **Offline Support**: Work without internet, automatic sync when reconnected
-- 🏢 **Multi-Instance**: Manage multiple Kimai servers in one app
-- 🔐 **Biometric Lock**: Secure your app with Face ID/Touch ID
-- 🌍 **Multi-language Support**: Full German and English localization
-- 🎨 **Modern UI**: Clean, native iOS interface built with SwiftUI
-- 📱 **iOS Native**: Optimized for iPhone and iPad
+- **Budget Tracking**: Visual representation of project time budgets and progress
+- **Offline Support**: Work without internet, automatic sync when reconnected
+- **Multi-Instance**: Manage multiple Kimai servers in one app
+- **Biometric Lock**: Secure your app with Face ID/Touch ID
+- **Multi-language Support**: Full German and English localization
+- **Modern UI**: Clean, native iOS interface built with SwiftUI
+- **iOS Native**: Optimized for iPhone and iPad
 
 ## Technology Stack
 
@@ -156,7 +156,7 @@ Please ensure your code follows Swift best practices and includes appropriate co
 - [x] Offline mode with local caching
 - [x] Automated testing and CI/CD (Fastlane)
 - [x] Dark mode optimization
-- [x] App Store submission ✅ [Available now](https://apps.apple.com/us/app/timai-time-tracking/id6754925166)
+- [x] App Store submission [Available now](https://apps.apple.com/us/app/timai-time-tracking/id6754925166)
 - [x] Live Activities with timer tracking
 - [x] Multi-instance support
 - [x] Biometric authentication
@@ -173,7 +173,7 @@ If you encounter any issues or have questions:
 
 ## Support the Project
 
-If you find Timai useful and would like to support its development, consider buying me a coffee! ☕
+If you find Timai useful and would like to support its development, consider buying me a coffee!
 
 <p align="center">
   <a href="https://paypal.me/Entner">
@@ -181,7 +181,7 @@ If you find Timai useful and would like to support its development, consider buy
   </a>
 </p>
 
-Your support helps maintain and improve Timai. Every contribution is greatly appreciated! 🙏
+Your support helps maintain and improve Timai. Every contribution is greatly appreciated!
 
 ## Author
 
@@ -191,4 +191,4 @@ Your support helps maintain and improve Timai. Every contribution is greatly app
 
 ---
 
-Made with ❤️ for the Kimai community
+Made with love for the Kimai community

@@ -10,6 +10,9 @@
 //  Commercial use requires a commercial license.
 //
 import SwiftUI
+#if os(macOS)
+import AppKit
+#endif
 
 /// Dialog for stopping timer and adding description
 struct TimerStopDialog: View {
@@ -19,6 +22,22 @@ struct TimerStopDialog: View {
     
     @State private var descriptionText = ""
     @FocusState private var isDescriptionFocused: Bool
+    
+    private var cancelButtonBackgroundColor: Color {
+        #if os(iOS)
+        return Color(.systemGray5)
+        #else
+        return Color(white: 0.9)
+        #endif
+    }
+    
+    private var dialogBackgroundColor: Color {
+        #if os(iOS)
+        return Color(.systemBackground)
+        #else
+        return Color(NSColor.windowBackgroundColor)
+        #endif
+    }
     
     var body: some View {
         VStack(spacing: 20) {
@@ -31,7 +50,7 @@ struct TimerStopDialog: View {
                 Text("timer.stop.title".localized())
                     .font(.system(size: 20, weight: .bold))
                 
-                Text(timer.formattedElapsedTime)
+                Text(timer.startDate, style: .timer)
                     .font(.system(size: 28, weight: .bold, design: .rounded))
                     .monospacedDigit()
                     .foregroundColor(.blue)
@@ -67,7 +86,7 @@ struct TimerStopDialog: View {
                         .font(.system(size: 16, weight: .medium))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
-                        .background(Color(.systemGray5))
+                        .background(cancelButtonBackgroundColor)
                         .foregroundColor(.primary)
                         .cornerRadius(10)
                 }
@@ -86,7 +105,7 @@ struct TimerStopDialog: View {
             }
         }
         .padding(24)
-        .background(Color(.systemBackground))
+        .background(dialogBackgroundColor)
         .cornerRadius(20)
         .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 10)
         .padding(40)

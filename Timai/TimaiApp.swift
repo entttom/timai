@@ -27,11 +27,13 @@ struct TimaiApp: App {
         resetStateForUITesting()
         
         // Connect LiveActivityManager to TimerManager
+        #if os(iOS)
         if #available(iOS 16.2, *) {
             Task { @MainActor in
                 TimerManager.shared.setLiveActivityManager(LiveActivityManager.shared)
             }
         }
+        #endif
     }
     
     var body: some Scene {
@@ -57,7 +59,7 @@ struct TimaiApp: App {
                         .zIndex(999)
                 }
             }
-            .onChange(of: scenePhase) { newPhase in
+            .onChange(of: scenePhase) { _, newPhase in
                 handleScenePhaseChange(newPhase)
             }
         }
@@ -75,6 +77,13 @@ struct TimaiApp: App {
         case .active:
             print("📱 [App] App wird aktiv")
             // App Lock wird nicht automatisch entsperrt - Benutzer muss sich authentifizieren
+            
+            // Sync timer state with server when app becomes active
+            Task { @MainActor in
+                if let user = authViewModel.currentUser {
+                    await TimerManager.shared.syncActiveTimerFromServer(user: user)
+                }
+            }
             
         case .inactive:
             print("📱 [App] App wird inaktiv")

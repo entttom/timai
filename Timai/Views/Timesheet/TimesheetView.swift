@@ -10,6 +10,9 @@
 //  Commercial use requires a commercial license.
 //
 import SwiftUI
+#if os(macOS)
+import AppKit
+#endif
 
 struct TimesheetView: View {
     @EnvironmentObject var viewModel: TimesheetViewModel
@@ -21,6 +24,30 @@ struct TimesheetView: View {
     @State private var showingTimerStartSheet = false
     @State private var showingTimerStopDialog = false
     @State private var showToast = false
+    
+    private var circleBackgroundColor: Color {
+        #if os(iOS)
+        return Color(.systemBackground)
+        #else
+        return Color(NSColor.windowBackgroundColor)
+        #endif
+    }
+    
+    private var toolbarLeadingPlacement: ToolbarItemPlacement {
+        #if os(iOS)
+        return .navigationBarLeading
+        #else
+        return .automatic
+        #endif
+    }
+    
+    private var toolbarTrailingPlacement: ToolbarItemPlacement {
+        #if os(iOS)
+        return .navigationBarTrailing
+        #else
+        return .automatic
+        #endif
+    }
     
     var body: some View {
         ZStack {
@@ -50,7 +77,7 @@ struct TimesheetView: View {
                                 .foregroundColor(.blue)
                                 .background(
                                     Circle()
-                                        .fill(Color(.systemBackground))
+                                        .fill(circleBackgroundColor)
                                         .frame(width: 60, height: 60)
                                 )
                                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
@@ -89,7 +116,7 @@ struct TimesheetView: View {
         .toolbar {
             // Instance Badge (only show when multiple instances)
             if instanceManager.hasMultipleInstances, let activeInstance = instanceManager.activeInstance {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: toolbarLeadingPlacement) {
                     Button {
                         showingInstanceSwitcher = true
                     } label: {
@@ -105,7 +132,7 @@ struct TimesheetView: View {
                 }
             }
             
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: toolbarTrailingPlacement) {
                 Button(action: { showingAddSheet = true }) {
                     Image(systemName: "plus")
                 }
@@ -140,9 +167,9 @@ struct TimesheetView: View {
         .task {
             await viewModel.loadTimesheets()
             
-            // Restore timer if needed
+            // Sync active timer from server
             if let user = authViewModel.currentUser {
-                await timerManager.restoreTimerIfNeeded(user: user)
+                await timerManager.syncActiveTimerFromServer(user: user)
             }
         }
         .toast(
@@ -209,7 +236,11 @@ struct TimesheetView: View {
                         }
                     }
                 }
+                #if os(iOS)
                 .listStyle(.insetGrouped)
+                #else
+                .listStyle(.sidebar)
+                #endif
                 .background(Color.timaiGray)
                 .scrollContentBackground(.hidden)
             }

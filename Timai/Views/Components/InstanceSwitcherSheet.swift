@@ -65,7 +65,9 @@ struct InstanceSwitcherSheet: View {
                 }
             }
             .navigationTitle("instanceSwitcher.title".localized())
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("instanceSwitcher.button.close".localized()) {

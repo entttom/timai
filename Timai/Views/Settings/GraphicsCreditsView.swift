@@ -45,7 +45,9 @@ struct GraphicsCreditsView: View {
             }
         }
         .navigationTitle("graphicsDetail.navigationTitle".localized())
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 

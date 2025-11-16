@@ -45,7 +45,9 @@ struct EditInstanceView: View {
             Section {
                 TextField("editInstance.name.placeholder".localized(), text: $instanceName)
                     .focused($focusedField, equals: .name)
+                    #if os(iOS)
                     .submitLabel(.next)
+                    #endif
                     .onSubmit { focusedField = .url }
             } header: {
                 Text("editInstance.section.name".localized())
@@ -55,11 +57,15 @@ struct EditInstanceView: View {
             
             Section {
                 TextField("editInstance.url.placeholder".localized(), text: $kimaiURL)
+                    #if os(iOS)
                     .keyboardType(.URL)
                     .autocapitalization(.none)
+                    #endif
                     .autocorrectionDisabled()
                     .focused($focusedField, equals: .url)
+                    #if os(iOS)
                     .submitLabel(.next)
+                    #endif
                     .onSubmit { focusedField = .token }
             } header: {
                 Text("editInstance.section.url".localized())
@@ -69,10 +75,14 @@ struct EditInstanceView: View {
             
             Section {
                 SecureField("editInstance.token.placeholder".localized(), text: $apiToken)
+                    #if os(iOS)
                     .autocapitalization(.none)
+                    #endif
                     .autocorrectionDisabled()
                     .focused($focusedField, equals: .token)
+                    #if os(iOS)
                     .submitLabel(.done)
+                    #endif
                     .onSubmit { saveChanges() }
             } header: {
                 Text("editInstance.section.token".localized())
@@ -94,7 +104,9 @@ struct EditInstanceView: View {
             }
         }
         .navigationTitle("editInstance.title".localized())
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("editInstance.button.save".localized()) {

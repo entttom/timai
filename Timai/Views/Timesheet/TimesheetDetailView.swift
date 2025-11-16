@@ -57,13 +57,23 @@ struct TimesheetDetailView: View {
             }
         }
         .navigationTitle("timesheetDetail.navigationTitle".localized())
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
+            #if os(iOS)
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("timesheetDetail.button.edit".localized()) {
                     showingEditSheet = true
                 }
             }
+            #else
+            ToolbarItem(placement: .automatic) {
+                Button("timesheetDetail.button.edit".localized()) {
+                    showingEditSheet = true
+                }
+            }
+            #endif
         }
         .alert("timesheetDetail.alert.delete.title".localized(), isPresented: $showingDeleteAlert) {
             Button("timesheetDetail.alert.delete.cancel".localized(), role: .cancel) {}

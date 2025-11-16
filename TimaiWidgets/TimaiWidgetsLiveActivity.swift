@@ -11,6 +11,8 @@
 //
 import SwiftUI
 import WidgetKit
+
+#if os(iOS)
 import ActivityKit
 
 /// Live Activity Widget for running timer
@@ -23,29 +25,14 @@ struct TimaiWidgetsLiveActivity: Widget {
         } dynamicIsland: { context in
             DynamicIsland {
                 // ===== EXPANDED VIEW =====
-                
-                // Leading: Projekt-Info mit Icon
                 DynamicIslandExpandedRegion(.leading) {
-                    HStack(spacing: 10) {
-                        // Pulsierendes Icon
-                        ZStack {
-                            Circle()
-                                .fill(
-                                    LinearGradient(
-                                        colors: [Color.blue.opacity(0.3), Color.blue.opacity(0.1)],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
-                                .frame(width: 32, height: 32)
-                            
-                            Image(systemName: "timer")
-                                .foregroundStyle(.blue)
-                                .font(.system(size: 16, weight: .semibold))
-                                .symbolEffect(.pulse)
-                        }
+                    HStack(spacing: 12) {
+                        Image(systemName: "timer")
+                            .font(.system(size: 24, weight: .semibold))
+                            .foregroundStyle(.blue)
+                            .symbolEffect(.pulse)
                         
-                        VStack(alignment: .leading, spacing: 3) {
+                        VStack(alignment: .leading, spacing: 2) {
                             Text(context.attributes.projectName)
                                 .font(.system(size: 15, weight: .semibold))
                                 .lineLimit(1)
@@ -58,97 +45,39 @@ struct TimaiWidgetsLiveActivity: Widget {
                     }
                 }
                 
-                // Trailing: Timer Display
                 DynamicIslandExpandedRegion(.trailing) {
-                    VStack(alignment: .trailing, spacing: 4) {
-                        Text(context.state.startDate, style: .timer)
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .monospacedDigit()
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.blue, .cyan],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                        
-                        Text(NSLocalizedString("timer.running", comment: ""))
-                            .font(.system(size: 10, weight: .medium))
-                            .foregroundStyle(.secondary)
-                            .textCase(.uppercase)
-                    }
-                }
-                
-                // Bottom: Kunde + Startzeit
-                DynamicIslandExpandedRegion(.bottom) {
-                    HStack {
-                        // Kunde
-                        HStack(spacing: 4) {
-                            Image(systemName: "building.2.fill")
-                                .font(.system(size: 11))
-                            Text(context.attributes.customerName)
-                                .font(.system(size: 12, weight: .medium))
-                        }
-                        .foregroundStyle(.secondary)
-                        
-                        Spacer()
-                        
-                        // Startzeit
-                        HStack(spacing: 4) {
-                            Image(systemName: "clock.arrow.circlepath")
-                                .font(.system(size: 11))
-                            Text(context.state.startDate, style: .time)
-                                .font(.system(size: 12, weight: .medium))
-                        }
-                        .foregroundStyle(.secondary)
-                    }
+                    Text(context.state.startDate, style: .timer)
+                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .monospacedDigit()
+                        .foregroundStyle(.blue)
                 }
                 
                 // ===== COMPACT VIEW =====
             } compactLeading: {
-                // Projekt-Kürzel (erste Zeichen)
-                HStack(spacing: 2) {
+                HStack(spacing: 4) {
                     Image(systemName: "timer")
                         .font(.system(size: 10))
                         .foregroundStyle(.blue)
                         .symbolEffect(.pulse)
                     
-                    Text(projectAbbreviation(context.attributes.projectName))
-                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                    Text(context.attributes.projectName)
+                        .font(.system(size: 12, weight: .semibold))
                         .foregroundStyle(.blue)
                         .lineLimit(1)
                 }
             } compactTrailing: {
-                // Timer
                 Text(context.state.startDate, style: .timer)
                     .monospacedDigit()
-                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [.blue, .cyan],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(.blue)
                 
                 // ===== MINIMAL VIEW =====
             } minimal: {
-                // Projekt-Initial
-                Text(String(context.attributes.projectName.prefix(1)))
-                    .font(.system(size: 13, weight: .bold))
+                Image(systemName: "timer")
                     .foregroundStyle(.blue)
             }
             .keylineTint(.blue)
         }
-    }
-    
-    // Helper: Get project abbreviation (max 6 characters)
-    private func projectAbbreviation(_ projectName: String) -> String {
-        let maxLength = 6
-        if projectName.count <= maxLength {
-            return projectName
-        }
-        return String(projectName.prefix(maxLength))
     }
 }
 
@@ -160,26 +89,14 @@ struct TimerLockScreenView: View {
     var body: some View {
         VStack(spacing: 12) {
             HStack(spacing: 14) {
-                // Icon mit Gradient-Hintergrund & Pulseffekt
-                ZStack {
-                    Circle()
-                        .fill(
-                            LinearGradient(
-                                colors: [Color.blue.opacity(0.25), Color.blue.opacity(0.1)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(width: 48, height: 48)
-                    
-                    Image(systemName: "timer")
-                        .foregroundStyle(.blue)
-                        .font(.system(size: 22, weight: .semibold))
-                        .symbolEffect(.pulse)
-                }
+                // Icon mit Pulseffekt
+                Image(systemName: "timer")
+                    .font(.system(size: 32, weight: .semibold))
+                    .foregroundStyle(.blue)
+                    .symbolEffect(.pulse)
                 
                 // Projekt & Activity Info
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text(context.attributes.projectName)
                         .font(.system(size: 17, weight: .bold))
                         .lineLimit(1)
@@ -188,60 +105,15 @@ struct TimerLockScreenView: View {
                         .font(.system(size: 15))
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
-                    
-                    HStack(spacing: 5) {
-                        Image(systemName: "building.2.fill")
-                            .font(.system(size: 10))
-                        Text(context.attributes.customerName)
-                            .font(.system(size: 12, weight: .medium))
-                    }
-                    .foregroundStyle(.tertiary)
                 }
                 
                 Spacer()
                 
-                // Timer Display - Prominent
-                VStack(alignment: .trailing, spacing: 6) {
-                    Text(context.state.startDate, style: .timer)
-                        .font(.system(size: 32, weight: .heavy, design: .rounded))
-                        .monospacedDigit()
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.blue, .cyan],
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
-                    
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(Color.red)
-                            .frame(width: 6, height: 6)
-                        
-                        Text(NSLocalizedString("timer.running", comment: ""))
-                            .font(.system(size: 11, weight: .semibold))
-                            .foregroundStyle(.secondary)
-                            .textCase(.uppercase)
-                    }
-                }
-            }
-            
-            // Trennlinie & Startzeit
-            Divider()
-                .background(Color.blue.opacity(0.2))
-            
-            HStack {
-                HStack(spacing: 5) {
-                    Image(systemName: "clock.arrow.circlepath")
-                        .font(.system(size: 11))
-                    Text(NSLocalizedString("timer.startedAt", comment: ""))
-                        .font(.system(size: 12))
-                    Text(context.state.startDate, style: .time)
-                        .font(.system(size: 12, weight: .semibold))
-                }
-                .foregroundStyle(.secondary)
-                
-                Spacer()
+                // Timer Display
+                Text(context.state.startDate, style: .timer)
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(.blue)
             }
         }
         .padding(16)
@@ -249,4 +121,5 @@ struct TimerLockScreenView: View {
         .activitySystemActionForegroundColor(.blue)
     }
 }
+#endif
 

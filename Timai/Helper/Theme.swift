@@ -11,6 +11,11 @@
 //
 import SwiftUI
 import Foundation
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 // MARK: - Color Theme
 extension Color {
@@ -56,6 +61,7 @@ extension Color {
 // MARK: - Color Helper für Light/Dark Mode
 extension Color {
     init(light: Color, dark: Color) {
+        #if os(iOS)
         self.init(UIColor { traitCollection in
             switch traitCollection.userInterfaceStyle {
             case .dark:
@@ -64,8 +70,38 @@ extension Color {
                 return UIColor(light)
             }
         })
+        #elseif os(macOS)
+        // macOS: Verwende NSColor mit dynamischer Appearance
+        // Konvertiere SwiftUI Colors zu CGColor für die Konvertierung
+        let lightCG = light.cgColor ?? CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        let darkCG = dark.cgColor ?? CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        
+        let lightNS = NSColor(cgColor: lightCG) ?? NSColor.white
+        let darkNS = NSColor(cgColor: darkCG) ?? NSColor.black
+        
+        self.init(NSColor(name: nil) { appearance in
+            switch appearance.name {
+            case .darkAqua, .vibrantDark, .accessibilityHighContrastDarkAqua, .accessibilityHighContrastVibrantDark:
+                return darkNS
+            default:
+                return lightNS
+            }
+        })
+        #else
+        // Fallback für andere Plattformen
+        self = light
+        #endif
     }
 }
+
+#if os(macOS)
+extension Color {
+    var cgColor: CGColor? {
+        let nsColor = NSColor(self)
+        return nsColor.cgColor
+    }
+}
+#endif
 
 // MARK: - Theme Management
 enum AppThemeMode: String, CaseIterable, Identifiable {

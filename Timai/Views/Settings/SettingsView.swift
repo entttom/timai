@@ -10,6 +10,11 @@
 //  Commercial use requires a commercial license.
 //
 import SwiftUI
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 struct SettingsView: View {
     @EnvironmentObject var settingsViewModel: SettingsViewModel
@@ -132,7 +137,11 @@ struct SettingsView: View {
             Section("Unterstützung") {
                 Button(action: {
                     if let url = URL(string: "https://paypal.me/Entner") {
+                        #if os(iOS)
                         UIApplication.shared.open(url)
+                        #elseif os(macOS)
+                        NSWorkspace.shared.open(url)
+                        #endif
                     }
                 }) {
                     HStack {

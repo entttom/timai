@@ -46,7 +46,9 @@ struct OSSCreditsView: View {
             }
         }
         .navigationTitle("ossDetail.navigationTitle".localized())
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 

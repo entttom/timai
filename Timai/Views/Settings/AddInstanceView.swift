@@ -34,7 +34,9 @@ struct AddInstanceView: View {
                 Section {
                     TextField("addInstance.name.placeholder".localized(), text: $instanceName)
                         .focused($focusedField, equals: .name)
+                        #if os(iOS)
                         .submitLabel(.next)
+                        #endif
                         .onSubmit { focusedField = .url }
                 } header: {
                     Text("addInstance.section.name".localized())
@@ -44,11 +46,13 @@ struct AddInstanceView: View {
                 
                 Section {
                     TextField("addInstance.url.placeholder".localized(), text: $kimaiURL)
+                        #if os(iOS)
                         .keyboardType(.URL)
                         .autocapitalization(.none)
+                        .submitLabel(.next)
+                        #endif
                         .autocorrectionDisabled()
                         .focused($focusedField, equals: .url)
-                        .submitLabel(.next)
                         .onSubmit { focusedField = .token }
                 } header: {
                     Text("addInstance.section.url".localized())
@@ -58,10 +62,12 @@ struct AddInstanceView: View {
                 
                 Section {
                     SecureField("addInstance.token.placeholder".localized(), text: $apiToken)
+                        #if os(iOS)
                         .autocapitalization(.none)
+                        .submitLabel(.done)
+                        #endif
                         .autocorrectionDisabled()
                         .focused($focusedField, equals: .token)
-                        .submitLabel(.done)
                         .onSubmit { addInstance() }
                 } header: {
                     Text("addInstance.section.token".localized())
@@ -70,7 +76,9 @@ struct AddInstanceView: View {
                 }
             }
             .navigationTitle("addInstance.title".localized())
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("addInstance.button.cancel".localized()) {

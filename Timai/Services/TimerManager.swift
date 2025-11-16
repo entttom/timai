@@ -189,38 +189,66 @@ class TimerManager: ObservableObject {
         print("✅ [TimerManager] Timer erfolgreich gestoppt")
     }
     
-    /// Restore timer state on app launch (check if still valid)
-    func restoreTimerIfNeeded(user: User) async {
+    /// Check for active timer on server and sync with local state
+    func syncActiveTimerFromServer(user: User) async {
+        print("🔍 [TimerManager] Prüfe auf aktive Timer auf dem Server...")
+        
+        do {
+            // Fetch running timer from server (end = nil)
+            guard let runningTimesheet = try await networkService.getActiveTimesheet(user: user) else {
+                print("ℹ️ [TimerManager] Kein laufender Timer auf Server gefunden")
+                // Clear local timer if exists but not on server
+                if activeTimer != nil {
+                    print("🧹 [TimerManager] Lösche veralteten lokalen Timer")
+                    activeTimer = nil
+                    clearTimerState()
+                    await liveActivityManager?.stopTimerActivity()
+                }
+                return
+            }
+            
+            print("✅ [TimerManager] Laufender Timer gefunden: \(runningTimesheet.projectName)")
+            print("📊 [TimerManager] Timer-ID: \(runningTimesheet.id)")
+            print("📊 [TimerManager] Start: \(runningTimesheet.begin)")
+            
+            // Create or update local timer with server data
+            let timer = ActiveTimer(
+                timesheetId: runningTimesheet.id,
+                projectId: runningTimesheet.project.id,
+                projectName: runningTimesheet.projectName,
+                activityId: runningTimesheet.activity.id,
+                activityName: runningTimesheet.task,
+                customerId: runningTimesheet.project.customer.id,
+                customerName: runningTimesheet.customerName,
+                startDate: runningTimesheet.begin,  // ✅ Vom Server!
+                description: runningTimesheet.description
+            )
+            
+            activeTimer = timer
+            saveTimerState()
+            
+            // Start Live Activity with correct start date
+            print("🔔 [TimerManager] Starte Live Activity mit Server-Startzeit")
+            await liveActivityManager?.startTimerActivity(timer: timer)
+            
+        } catch {
+            print("❌ [TimerManager] Fehler beim Sync mit Server: \(error)")
+            // Fallback to restoring from local state if available
+            await restoreTimerFromLocalState()
+        }
+    }
+    
+    /// Restore timer state from local storage (fallback)
+    private func restoreTimerFromLocalState() async {
         guard let timer = activeTimer else { 
-            print("ℹ️ [TimerManager] Kein gespeicherter Timer-State - nichts wiederherzustellen")
+            print("ℹ️ [TimerManager] Kein lokaler Timer-State vorhanden")
             return 
         }
         
-        print("🔄 [TimerManager] Stelle Timer-State wieder her für: \(timer.projectName)")
-        print("🔍 [TimerManager] Timer-ID auf Server: \(timer.timesheetId ?? -1)")
+        print("🔄 [TimerManager] Stelle Timer aus lokalem State wieder her: \(timer.projectName)")
         
-        // Check if timer is still running on server
-        if let timesheetId = timer.timesheetId {
-            do {
-                // Try to fetch active timesheets from server
-                // A running timer has end = null, so we need to check the raw timesheet
-                print("📡 [TimerManager] Prüfe ob Timer ID \(timesheetId) noch auf Server läuft...")
-                
-                // For now, just restore the Live Activity
-                // TODO: Could call /api/timesheets/{id} to check if end is null
-                print("✅ [TimerManager] Timer-State vorhanden - stelle Live Activity wieder her")
-                await liveActivityManager?.startTimerActivity(timer: timer)
-                
-            } catch {
-                print("⚠️ [TimerManager] Konnte Timer-Status nicht prüfen: \(error)")
-                // Keep local timer state and restart Live Activity
-                await liveActivityManager?.startTimerActivity(timer: timer)
-            }
-        } else {
-            // Timer was only local - restart Live Activity
-            print("📱 [TimerManager] Lokaler Timer (noch nicht synchronisiert) - Live Activity wiederherstellen")
-            await liveActivityManager?.startTimerActivity(timer: timer)
-        }
+        // Restart Live Activity with local data
+        await liveActivityManager?.startTimerActivity(timer: timer)
     }
     
     // MARK: - Persistence
@@ -260,6 +288,7 @@ class TimerManager: ObservableObject {
         print("🗑️ [TimerManager] Timer-State gelöscht")
     }
 }
+
 
 // MARK: - Notification Names
 extension Notification.Name {

@@ -17,6 +17,14 @@ struct ReportsView: View {
     @StateObject private var instanceManager = InstanceManager.shared
     @State private var showingInstanceSwitcher = false
     
+    private var toolbarPlacement: ToolbarItemPlacement {
+        #if os(iOS)
+        return .navigationBarLeading
+        #else
+        return .automatic
+        #endif
+    }
+    
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 16) {
@@ -34,7 +42,7 @@ struct ReportsView: View {
         .toolbar {
             // Instance Badge (only show when multiple instances)
             if instanceManager.hasMultipleInstances, let activeInstance = instanceManager.activeInstance {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: toolbarPlacement) {
                     Button {
                         showingInstanceSwitcher = true
                     } label: {
@@ -55,6 +63,9 @@ struct ReportsView: View {
                 .environmentObject(authViewModel)
         }
         .task {
+            await viewModel.loadReportData()
+        }
+        .refreshable {
             await viewModel.loadReportData()
         }
     }

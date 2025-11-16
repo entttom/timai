@@ -148,6 +148,29 @@ class NetworkService {
         }
     }
     
+    /// Get active (running) timesheet from server
+    func getActiveTimesheet(user: User) async throws -> Timesheet? {
+        var urlComponents = URLComponents(url: user.apiEndpoint.appendingPathComponent("timesheets"), resolvingAgainstBaseURL: false)!
+        urlComponents.queryItems = [
+            URLQueryItem(name: "active", value: "1"),  // Only active timers
+            URLQueryItem(name: "size", value: "1"),
+            URLQueryItem(name: "full", value: "true")
+        ]
+        
+        guard let url = urlComponents.url else {
+            throw APIError.invalidResponse(nil)
+        }
+        
+        print("📡 [NetworkService] GET \(url) (Suche aktiven Timer)")
+        let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
+        
+        let timesheets = try customDateDecoder.decode([Timesheet].self, from: data)
+        print("✅ [NetworkService] \(timesheets.count) aktive Timesheets gefunden")
+        
+        // Return first active timesheet (should only be one)
+        return timesheets.first(where: { $0.end == nil })
+    }
+    
     /// Get timesheet for a user
     func getTimesheetFor(_ user: User) async throws -> [Activity] {
         if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
@@ -617,7 +640,7 @@ class NetworkService {
         }
     }
     
-    /// Preload all reference data for offline use
+    /// Preload all reference data for offline use (PARALLELISIERT)
     func preloadReferenceData(for user: User) async throws {
         print("📥 [NetworkService] Starte Preload aller Referenzdaten...")
         
@@ -626,30 +649,77 @@ class NetworkService {
         let customers = try await getCustomers(user: user)
         print("✅ [NetworkService] \(customers.count) Customers geladen und gecacht")
         
-        // 2. Load all projects for each customer
-        print("📥 [NetworkService] Lade Projects für alle Customers...")
-        var totalProjects = 0
-        for customer in customers {
-            do {
-                let projects = try await getProjects(customer: customer, user: user)
-                totalProjects += projects.count
-                print("  ✅ Customer '\(customer.name)': \(projects.count) Projects")
-                
-                // 3. Load activities for each project
-                for project in projects {
+        // 2. Load all projects for each customer IN PARALLEL
+        print("📥 [NetworkService] Lade Projects für alle Customers (parallel)...")
+        let projectResults = await withTaskGroup(of: (Customer, Result<[Project], Error>).self) { group in
+            for customer in customers {
+                group.addTask {
                     do {
-                        let activities = try await getActivities(projectId: project.id, user: user)
-                        print("    ✅ Project '\(project.name)': \(activities.count) Activities")
+                        let projects = try await self.getProjects(customer: customer, user: user)
+                        return (customer, .success(projects))
                     } catch {
-                        print("    ⚠️ Project '\(project.name)': Activities konnten nicht geladen werden")
+                        return (customer, .failure(error))
                     }
                 }
-            } catch {
+            }
+            
+            var results: [(Customer, Result<[Project], Error>)] = []
+            for await result in group {
+                results.append(result)
+            }
+            return results
+        }
+        
+        // Collect all projects
+        var allProjects: [(Customer, [Project])] = []
+        var totalProjects = 0
+        for (customer, result) in projectResults {
+            switch result {
+            case .success(let projects):
+                allProjects.append((customer, projects))
+                totalProjects += projects.count
+                print("  ✅ Customer '\(customer.name)': \(projects.count) Projects")
+            case .failure:
                 print("  ⚠️ Customer '\(customer.name)': Projects konnten nicht geladen werden")
             }
         }
         
-        print("✅ [NetworkService] Preload abgeschlossen: \(customers.count) Customers, \(totalProjects) Projects")
+        // 3. Load activities for each project IN PARALLEL
+        print("📥 [NetworkService] Lade Activities für alle Projects (parallel)...")
+        let activityResults = await withTaskGroup(of: (String, Result<[ActivityDetails], Error>).self) { group in
+            for (customer, projects) in allProjects {
+                for project in projects {
+                    group.addTask {
+                        do {
+                            let activities = try await self.getActivities(projectId: project.id, user: user)
+                            return (project.name, .success(activities))
+                        } catch {
+                            return (project.name, .failure(error))
+                        }
+                    }
+                }
+            }
+            
+            var results: [(String, Result<[ActivityDetails], Error>)] = []
+            for await result in group {
+                results.append(result)
+            }
+            return results
+        }
+        
+        // Log activity results
+        var totalActivities = 0
+        for (projectName, result) in activityResults {
+            switch result {
+            case .success(let activities):
+                totalActivities += activities.count
+                print("    ✅ Project '\(projectName)': \(activities.count) Activities")
+            case .failure:
+                print("    ⚠️ Project '\(projectName)': Activities konnten nicht geladen werden")
+            }
+        }
+        
+        print("✅ [NetworkService] Preload abgeschlossen: \(customers.count) Customers, \(totalProjects) Projects, \(totalActivities) Activities")
     }
     
     /// Get current user information including roles

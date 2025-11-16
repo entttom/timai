@@ -55,7 +55,7 @@ struct TimerBanner: View {
             
             // Timer display
             VStack(alignment: .trailing, spacing: 2) {
-                Text(timer.formattedElapsedTime)
+                Text(timer.startDate, style: .timer)
                     .font(.system(size: 24, weight: .bold, design: .rounded))
                     .monospacedDigit()
                     .foregroundColor(.white)
