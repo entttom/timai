@@ -133,6 +133,9 @@ class OfflineSyncManager: ObservableObject {
     private func syncOperation(_ item: PendingOperationItem, user: User) async throws {
         switch item.operation {
         case .createTimesheet(let form, let tempId):
+            // Stelle sicher, dass alle Tags existieren, bevor wir das Timesheet erstellen
+            try await ensureTagsExist(form: form, user: user)
+            
             let timesheet = try await networkService.createTimesheet(form: form, user: user)
             
             // Get temp hash for matching
@@ -149,12 +152,12 @@ class OfflineSyncManager: ObservableObject {
             // Check if this is a negative (temp) ID
             if id < 0 {
                 // Check if there's a CREATE operation for this temp ID
-                let hasCreateOp = pendingOpsManager.pendingOperations.contains { item in
-                    if case .createTimesheet(_, _) = item.operation, item.tempIdHash == id {
+                let hasCreateOp = pendingOpsManager.pendingOperations.contains(where: { item in
+                    if case .createTimesheet = item.operation, item.tempIdHash == id {
                         return true
                     }
                     return false
-                }
+                })
                 
                 if hasCreateOp {
                     // CREATE will be synced first, then this UPDATE will be updated
@@ -168,6 +171,9 @@ class OfflineSyncManager: ObservableObject {
                 }
             }
             
+            // Stelle sicher, dass alle Tags existieren, bevor wir das Timesheet aktualisieren
+            try await ensureTagsExist(form: form, user: user)
+            
             _ = try await networkService.updateTimesheet(id: id, form: form, user: user)
             pendingOpsManager.markAsCompleted(item)
             print("✅ [OfflineSyncManager] Timesheet aktualisiert - ID: \(id)")
@@ -176,12 +182,12 @@ class OfflineSyncManager: ObservableObject {
             // Check if this is a negative (temp) ID
             if id < 0 {
                 // Check if there's a CREATE operation for this temp ID
-                let hasCreateOp = pendingOpsManager.pendingOperations.contains { item in
-                    if case .createTimesheet(_, _) = item.operation, item.tempIdHash == id {
+                let hasCreateOp = pendingOpsManager.pendingOperations.contains(where: { item in
+                    if case .createTimesheet = item.operation, item.tempIdHash == id {
                         return true
                     }
                     return false
-                }
+                })
                 
                 if hasCreateOp {
                     // CREATE will be synced first, then this DELETE will be updated
@@ -198,6 +204,39 @@ class OfflineSyncManager: ObservableObject {
             try await networkService.deleteTimesheet(id: id, user: user)
             pendingOpsManager.markAsCompleted(item)
             print("✅ [OfflineSyncManager] Timesheet gelöscht - ID: \(id)")
+        }
+    }
+    
+    // MARK: - Tag Management
+    
+    /// Stellt sicher, dass alle Tags aus dem Form existieren, bevor ein Timesheet erstellt/aktualisiert wird
+    private func ensureTagsExist(form: TimesheetEditForm, user: User) async throws {
+        guard let tagsString = form.tags, !tagsString.isEmpty else {
+            return // Keine Tags vorhanden
+        }
+        
+        let tags = TagUtils.tags(from: tagsString)
+        guard !tags.isEmpty else {
+            return // Keine gültigen Tags
+        }
+        
+        for tagName in tags {
+            // Prüfe, ob Tag bereits existiert
+            do {
+                if let _ = try await networkService.findTagByName(tagName, user: user) {
+                    continue
+                }
+            } catch {
+                // Bei Fehler beim Prüfen: versuche trotzdem zu erstellen
+            }
+            
+            // Tag existiert nicht - erstelle ihn
+            do {
+                _ = try await networkService.createTag(name: tagName, user: user)
+            } catch {
+                // Fehler beim Erstellen eines Tags ist nicht kritisch - das Timesheet kann trotzdem gespeichert werden
+                // Die API wird den nicht-existierenden Tag einfach ignorieren
+            }
         }
     }
     

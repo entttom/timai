@@ -16,6 +16,7 @@ struct Activity: Identifiable {
     
     let recordId: Int
     let description: String?
+    let tags: [String]?
     let customerName: String
     let customerId: Int
     let projectName: String
@@ -28,6 +29,7 @@ struct Activity: Identifiable {
     enum CodingKeys: String, CodingKey {
         case recordId = "timeEntryID"
         case description
+        case tags
         case customerName
         case customerId
         case projectName
@@ -45,6 +47,7 @@ extension Activity: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         recordId = Int(try container.decode(String.self, forKey: .recordId))!
         description = try container.decodeIfPresent(String.self, forKey: .description)
+        tags = try container.decodeIfPresent([String].self, forKey: .tags)
         customerName = try container.decode(String.self, forKey: .customerName)
         customerId = try container.decode(Int.self, forKey: .customerId)
         projectName = try container.decode(String.self, forKey: .projectName)

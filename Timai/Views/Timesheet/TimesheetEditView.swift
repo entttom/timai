@@ -37,7 +37,10 @@ struct TimesheetEditView: View {
     @State private var startDate = Date()
     @State private var endDate = Date().addingTimeInterval(3600) // +1 Stunde als Standard
     @State private var descriptionText = ""
-    @State private var tagsText = ""
+    @State private var tags: [String] = []
+    @State private var createdTagIds: [String: Int] = [:] // Tracking: Tag-Name -> Tag-ID für neu erstellte Tags
+    @State private var initialTags: [String] = [] // Initiale Tags beim Öffnen (für Cleanup)
+    @State private var hasBeenSaved = false // Flag, um zu verhindern, dass Cleanup nach erfolgreichem Speichern läuft
     @State private var fixedRate: String = ""
     @State private var hourlyRate: String = ""
     @State private var billable = true
@@ -92,9 +95,20 @@ struct TimesheetEditView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .onDisappear {
+            // Wird auch beim Swipe-to-Dismiss aufgerufen
+            if !hasBeenSaved {
+                Task {
+                    await cleanupUnusedTags()
+                }
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("timesheetEdit.button.cancel".localized()) {
+                    Task {
+                        await cleanupUnusedTags()
+                    }
                     dismiss()
                 }
             }
@@ -112,6 +126,7 @@ struct TimesheetEditView: View {
             if let user = authViewModel.currentUser {
                 editViewModel.setUser(user)
                 await editViewModel.loadCustomers()
+                await editViewModel.loadKnownTags()
                 
                 // Show warning if no customers loaded
                 if editViewModel.customers.isEmpty {
@@ -125,6 +140,8 @@ struct TimesheetEditView: View {
                     startDate = activity.startDateTime
                     endDate = activity.endDateTime
                     descriptionText = activity.description ?? ""
+                    tags = activity.tags ?? []
+                    initialTags = activity.tags ?? [] // Speichere initiale Tags für Cleanup
                     
                     // For offline-created entries, customer ID might be 0
                     // In that case, try to find customer from project cache
@@ -297,7 +314,20 @@ struct TimesheetEditView: View {
     
     private var tagsSection: some View {
         Section("timesheetEdit.section.tags".localized()) {
-            TextField("timesheetEdit.placeholder.tags".localized(), text: $tagsText)
+            TagInputView(
+                tags: $tags,
+                knownTags: editViewModel.knownTags,
+                placeholder: "timesheetEdit.placeholder.tags".localized(),
+                onCreateTag: { tagName in
+                    try await createTag(tagName)
+                },
+                onRemoveTag: { tagName in
+                    await deleteTagIfCreated(tagName)
+                },
+                onSearchTags: { searchTerm in
+                    await editViewModel.loadTagsForSearch(searchTerm)
+                }
+            )
         }
     }
     
@@ -368,7 +398,7 @@ struct TimesheetEditView: View {
                 startDate: startDate,
                 endDate: endDate,
                 description: descriptionText.isEmpty ? nil : descriptionText,
-                tags: tagsText.isEmpty ? nil : tagsText,
+                tags: tags,
                 fixedRate: fixedRateValue,
                 hourlyRate: hourlyRateValue,
                 billable: billable
@@ -381,7 +411,7 @@ struct TimesheetEditView: View {
                 startDate: startDate,
                 endDate: endDate,
                 description: descriptionText.isEmpty ? nil : descriptionText,
-                tags: tagsText.isEmpty ? nil : tagsText,
+                tags: tags,
                 fixedRate: fixedRateValue,
                 hourlyRate: hourlyRateValue,
                 billable: billable
@@ -389,8 +419,113 @@ struct TimesheetEditView: View {
         }
         
         if success {
+            hasBeenSaved = true
+            // Cleanup: Lösche Tags, die erstellt aber nicht verwendet wurden
+            await cleanupUnusedTags()
             onSaved()
         }
+    }
+    
+    // MARK: - Tag Management
+    
+    private func createTag(_ tagName: String) async throws {
+        guard let user = authViewModel.currentUser else {
+            throw NSError(domain: "TimesheetEditView", code: 1, userInfo: [NSLocalizedDescriptionKey: "Kein Benutzer angemeldet"])
+        }
+        
+        // Prüfe Netzwerkverbindung
+        guard NetworkMonitor.shared.isConnected else {
+            // Im Offline-Fall: Tag wird einfach verwendet, Erstellung erfolgt später beim Sync
+            // Füge Tag zu knownTags hinzu, damit er als Vorschlag erscheint
+            if !editViewModel.knownTags.contains(where: { $0.caseInsensitiveCompare(tagName) == .orderedSame }) {
+                editViewModel.knownTags.append(tagName)
+                editViewModel.knownTags.sort { $0.lowercased() < $1.lowercased() }
+            }
+            // Im Offline-Fall: kein Fehler werfen, Tag kann verwendet werden
+            return
+        }
+        
+        // Prüfe, ob Tag bereits existiert
+        do {
+            if let _ = try await NetworkService.shared.findTagByName(tagName, user: user) {
+                return
+            }
+        } catch let error as NetworkService.APIError {
+            // Bei Netzwerkfehler: Tag trotzdem verwenden (wird beim Sync erstellt)
+            if case .requestError = error {
+                if !editViewModel.knownTags.contains(where: { $0.caseInsensitiveCompare(tagName) == .orderedSame }) {
+                    editViewModel.knownTags.append(tagName)
+                    editViewModel.knownTags.sort { $0.lowercased() < $1.lowercased() }
+                }
+                return
+            }
+            // Bei anderen API-Fehlern: Fehler weiterwerfen
+            throw error
+        } catch {
+            // Bei unbekannten Fehlern: Tag trotzdem verwenden (wird beim Sync erstellt)
+            if !editViewModel.knownTags.contains(where: { $0.caseInsensitiveCompare(tagName) == .orderedSame }) {
+                editViewModel.knownTags.append(tagName)
+                editViewModel.knownTags.sort { $0.lowercased() < $1.lowercased() }
+            }
+            return
+        }
+        
+        // Erstelle neuen Tag (nur online)
+        do {
+            let tag = try await NetworkService.shared.createTag(name: tagName, user: user)
+            createdTagIds[tagName.lowercased()] = tag.id
+            
+            // Aktualisiere bekannte Tags
+            await editViewModel.loadKnownTags()
+        } catch let error as NetworkService.APIError {
+            // Bei Netzwerkfehler: Tag trotzdem verwenden (wird beim Sync erstellt)
+            if case .requestError = error {
+                if !editViewModel.knownTags.contains(where: { $0.caseInsensitiveCompare(tagName) == .orderedSame }) {
+                    editViewModel.knownTags.append(tagName)
+                    editViewModel.knownTags.sort { $0.lowercased() < $1.lowercased() }
+                }
+                return
+            }
+            // Bei anderen API-Fehlern: Fehler weiterwerfen
+            throw error
+        } catch {
+            // Bei unbekannten Fehlern: Tag trotzdem verwenden (wird beim Sync erstellt)
+            if !editViewModel.knownTags.contains(where: { $0.caseInsensitiveCompare(tagName) == .orderedSame }) {
+                editViewModel.knownTags.append(tagName)
+                editViewModel.knownTags.sort { $0.lowercased() < $1.lowercased() }
+            }
+            return
+        }
+    }
+    
+    private func deleteTagIfCreated(_ tagName: String) async {
+        // Diese Funktion wird aufgerufen, wenn ein Tag entfernt wird
+        // Das Cleanup wird in cleanupUnusedTags() gemacht, nicht hier
+    }
+    
+    private func cleanupUnusedTags() async {
+        guard let user = authViewModel.currentUser else { return }
+        
+        // Prüfe Netzwerkverbindung - Cleanup nur online
+        guard NetworkMonitor.shared.isConnected else {
+            return
+        }
+        
+        // Finde Tags, die erstellt wurden aber nicht in der finalen Liste sind
+        let finalTags = Set(tags.map { $0.lowercased() })
+        let tagsToDelete = createdTagIds.filter { !finalTags.contains($0.key) }
+        
+        for (tagName, tagId) in tagsToDelete {
+            do {
+                try await NetworkService.shared.deleteTag(id: tagId, user: user)
+                createdTagIds.removeValue(forKey: tagName)
+            } catch {
+                // Fehler beim Löschen ist nicht kritisch
+            }
+        }
+        
+        // Aktualisiere bekannte Tags (nur online)
+        await editViewModel.loadKnownTags()
     }
 }
 
@@ -405,12 +540,98 @@ class TimesheetEditViewModel: ObservableObject {
     @Published var isLoadingActivities = false
     @Published var isSaving = false
     @Published var errorMessage: String?
+    @Published var knownTags: [String] = []
     
     private let networkService = NetworkService.shared
     private var currentUser: User?
     
     func setUser(_ user: User) {
         self.currentUser = user
+    }
+
+    /// Lädt bekannte Tags aus der Kimai API (/api/tags/find) mit Fallback auf Cache/Timesheets
+    func loadKnownTags() async {
+        guard let user = currentUser else { return }
+        
+        // WICHTIG: Die Tags-API listet nur explizit erstellte Tags, nicht alle in Timesheets verwendeten
+        // Deshalb extrahieren wir Tags immer aus den Timesheets als Basis
+        
+        // Lade Tags aus Timesheets (Hauptquelle für Vorschläge)
+        do {
+            let timesheets = try await CacheManager.shared.load([Timesheet].self, for: user, cacheType: .timesheets)
+            let allTags = timesheets.flatMap { $0.tags }
+            
+            var seen = Set<String>()
+            var unique: [String] = []
+            
+            for tag in allTags {
+                let key = tag.lowercased()
+                if !seen.contains(key) {
+                    seen.insert(key)
+                    unique.append(tag)
+                }
+            }
+            
+            knownTags = unique.sorted { $0.lowercased() < $1.lowercased() }
+        } catch {
+            knownTags = []
+        }
+        
+        // Versuche zusätzlich Tags von der API zu laden (optional, für explizit erstellte Tags)
+        do {
+            let tags = try await networkService.getTags(user: user)
+            let apiTags = tags.map { $0.name }
+            
+            if !apiTags.isEmpty {
+                // Kombiniere API-Tags mit Timesheet-Tags (keine Duplikate)
+                let existingTagNames = Set(knownTags.map { $0.lowercased() })
+                let newApiTags = apiTags.filter { !existingTagNames.contains($0.lowercased()) }
+                
+                knownTags.append(contentsOf: newApiTags)
+                knownTags = knownTags.sorted { $0.lowercased() < $1.lowercased() }
+            }
+        } catch {
+            // Fehler beim Laden von API-Tags ist nicht kritisch
+        }
+    }
+    
+    /// Lädt Tags dynamisch basierend auf Suchbegriff (API benötigt mindestens 2 Zeichen)
+    func loadTagsForSearch(_ searchTerm: String) async -> [String] {
+        guard let user = currentUser else { return [] }
+        guard searchTerm.count >= 2 else {
+            // Bei weniger als 2 Zeichen: nur lokale Tags verwenden
+            return knownTags.filter { $0.localizedCaseInsensitiveContains(searchTerm) }
+        }
+        
+        // Prüfe Netzwerkverbindung
+        guard NetworkMonitor.shared.isConnected else {
+            // Offline: nur lokale Tags verwenden
+            return knownTags.filter { $0.localizedCaseInsensitiveContains(searchTerm) }
+        }
+        
+        // Bei 2+ Zeichen: API abfragen (nur online)
+        do {
+            let tags = try await networkService.getTags(user: user, searchTerm: searchTerm)
+            let apiTagNames = tags.map { $0.name }
+            
+            // Kombiniere mit lokalen Tags
+            let localMatches = knownTags.filter { $0.localizedCaseInsensitiveContains(searchTerm) }
+            let apiMatches = apiTagNames.filter { $0.localizedCaseInsensitiveContains(searchTerm) }
+            
+            // Kombiniere und entferne Duplikate
+            var combined = Set<String>()
+            for tag in localMatches {
+                combined.insert(tag)
+            }
+            for tag in apiMatches {
+                combined.insert(tag)
+            }
+            
+            return Array(combined).sorted { $0.lowercased() < $1.lowercased() }
+        } catch {
+            // Bei Fehler: nur lokale Tags verwenden
+            return knownTags.filter { $0.localizedCaseInsensitiveContains(searchTerm) }
+        }
     }
     
     /// Find customer ID for a given project by searching all cached projects
@@ -533,11 +754,13 @@ class TimesheetEditViewModel: ObservableObject {
         isLoadingActivities = false
     }
     
-    func createTimesheet(projectId: Int, activityId: Int, startDate: Date, endDate: Date, description: String?, tags: String?, fixedRate: Double?, hourlyRate: Double?, billable: Bool) async -> Bool {
+    func createTimesheet(projectId: Int, activityId: Int, startDate: Date, endDate: Date, description: String?, tags: [String], fixedRate: Double?, hourlyRate: Double?, billable: Bool) async -> Bool {
         guard let user = currentUser else { return false }
         
         isSaving = true
         errorMessage = nil
+        
+        let tagsString = TagUtils.string(from: tags)
         
         let form = TimesheetEditForm(
             project: projectId,
@@ -545,7 +768,7 @@ class TimesheetEditViewModel: ObservableObject {
             begin: startDate.ISO8601Format(),
             end: endDate.ISO8601Format(),
             description: description,
-            tags: tags,
+            tags: tagsString,
             fixedRate: fixedRate,
             hourlyRate: hourlyRate,
             user: nil,
@@ -555,6 +778,7 @@ class TimesheetEditViewModel: ObservableObject {
         
         do {
             _ = try await networkService.createTimesheet(form: form, user: user)
+            await loadKnownTags()
             isSaving = false
             return true
         } catch {
@@ -565,11 +789,13 @@ class TimesheetEditViewModel: ObservableObject {
         }
     }
     
-    func updateTimesheet(id: Int, projectId: Int, activityId: Int, startDate: Date, endDate: Date, description: String?, tags: String?, fixedRate: Double?, hourlyRate: Double?, billable: Bool) async -> Bool {
+    func updateTimesheet(id: Int, projectId: Int, activityId: Int, startDate: Date, endDate: Date, description: String?, tags: [String], fixedRate: Double?, hourlyRate: Double?, billable: Bool) async -> Bool {
         guard let user = currentUser else { return false }
         
         isSaving = true
         errorMessage = nil
+        
+        let tagsString = TagUtils.string(from: tags)
         
         let form = TimesheetEditForm(
             project: projectId,
@@ -577,7 +803,7 @@ class TimesheetEditViewModel: ObservableObject {
             begin: startDate.ISO8601Format(),
             end: endDate.ISO8601Format(),
             description: description,
-            tags: tags,
+            tags: tagsString,
             fixedRate: fixedRate,
             hourlyRate: hourlyRate,
             user: nil,
@@ -587,6 +813,7 @@ class TimesheetEditViewModel: ObservableObject {
         
         do {
             _ = try await networkService.updateTimesheet(id: id, form: form, user: user)
+            await loadKnownTags()
             isSaving = false
             return true
         } catch {

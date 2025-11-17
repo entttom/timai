@@ -27,6 +27,7 @@ class CacheManager: ObservableObject {
         case projects
         case activities
         case users
+        case tags
         case projectsForCustomer // Format: projects_customerId
         case activitiesForProject // Format: activities_projectId
     }

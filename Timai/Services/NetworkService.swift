@@ -200,6 +200,7 @@ class NetworkService {
         
         let timesheets = try customDateDecoder.decode([Timesheet].self, from: data)
         print("✅ [NetworkService] \(timesheets.count) Timesheets erfolgreich dekodiert")
+        
                 
                 // Cache the timesheets
                 try await cacheManager.cache(timesheets, for: user, type: .timesheets)
@@ -209,6 +210,7 @@ class NetworkService {
             Activity(
                 recordId: timesheet.id,
                 description: timesheet.description,
+                tags: timesheet.tags,
                 customerName: timesheet.customerName,
                 customerId: timesheet.project.customer.id,
                 projectName: timesheet.projectName,
@@ -235,6 +237,7 @@ class NetworkService {
                 Activity(
                     recordId: timesheet.id,
                     description: timesheet.description,
+                    tags: timesheet.tags,
                     customerName: timesheet.customerName,
                     customerId: timesheet.project.customer.id,
                     projectName: timesheet.projectName,
@@ -290,7 +293,11 @@ class NetworkService {
     }
     
     /// Get projects for a customer
-    func getProjects(customer: Customer, user: User) async throws -> [Project] {
+    /// - Parameters:
+    ///   - customer: The customer to get projects for
+    ///   - user: The user making the request
+    ///   - includeBudget: Whether to load detailed budget information (default: false). Set to true only if budget data is needed (e.g., for reports).
+    func getProjects(customer: Customer, user: User, includeBudget: Bool = false) async throws -> [Project] {
         // Try to fetch from API if online
         if networkMonitor.isConnected {
             do {
@@ -316,25 +323,52 @@ class NetworkService {
             return []
         }
         
-        // Get detailed project info with budget
-        var projectsWithBudget: [Project] = []
+        let projects: [Project]
         
-        for projectCollection in projectCollections {
-            do {
-                let project = try await getProjectDetails(projectId: projectCollection.id, customer: customer, user: user)
-                projectsWithBudget.append(project)
-            } catch {
-                // Fallback: Verwende Project ohne Budget
-                projectsWithBudget.append(projectCollection.toProject(customer: customer))
+        if includeBudget {
+            // Get detailed project info with budget - PARALLELISIERT für bessere Performance
+            projects = await withTaskGroup(of: (Int, Result<Project, Error>).self) { group in
+                for projectCollection in projectCollections {
+                    group.addTask {
+                        do {
+                            let project = try await self.getProjectDetails(projectId: projectCollection.id, customer: customer, user: user)
+                            return (projectCollection.id, .success(project))
+                        } catch {
+                            // Fallback: Verwende Project ohne Budget
+                            let fallbackProject = projectCollection.toProject(customer: customer)
+                            return (projectCollection.id, .success(fallbackProject))
+                        }
+                    }
+                }
+                
+                // Sammle Ergebnisse und behalte die ursprüngliche Reihenfolge bei
+                var results: [Int: Project] = [:]
+                for await (projectId, result) in group {
+                    switch result {
+                    case .success(let project):
+                        results[projectId] = project
+                    case .failure:
+                        // Sollte nicht passieren, da wir im catch-Block bereits ein Fallback-Project erstellen
+                        break
+                    }
+                }
+                
+                // Rekonstruiere die ursprüngliche Reihenfolge
+                return projectCollections.compactMap { collection in
+                    results[collection.id]
+                }
             }
+            print("✅ [NetworkService] \(projects.count) Projects mit Budget-Daten geladen (parallel)")
+        } else {
+            // Keine Budget-Daten benötigt - verwende direkt ProjectCollections (viel schneller!)
+            projects = projectCollections.map { $0.toProject(customer: customer) }
+            print("✅ [NetworkService] \(projects.count) Projects geladen (ohne Budget-Daten)")
         }
-        
-        print("✅ [NetworkService] \(projectsWithBudget.count) Projects mit Budget-Daten geladen")
                 
                 // Cache the projects for this customer
-                try await cacheManager.cache(projectsWithBudget, for: user, type: .projectsForCustomer, identifier: "\(customer.id)")
+                try await cacheManager.cache(projects, for: user, type: .projectsForCustomer, identifier: "\(customer.id)")
                 
-        return projectsWithBudget
+        return projects
             } catch {
                 print("⚠️ [NetworkService] API-Fehler, versuche Cache: \(error)")
             }
@@ -457,6 +491,11 @@ class NetworkService {
         
         print("📦 [NetworkService] Create Response empfangen: \(data.count) bytes")
         
+        // Debug: Zeige Response-Body
+        if let responseString = String(data: data, encoding: .utf8) {
+            print("📄 [NetworkService] Create Response Body: \(responseString)")
+        }
+        
         let timesheet = try customDateDecoder.decode(Timesheet.self, from: data)
         print("✅ [NetworkService] Timesheet erfolgreich erstellt mit ID: \(timesheet.id)")
                 
@@ -511,9 +550,19 @@ class NetworkService {
         encoder.dateEncodingStrategy = .iso8601
         let body = try encoder.encode(form)
         
+        // Debug: Zeige Request-Body
+        if let bodyString = String(data: body, encoding: .utf8) {
+            print("📤 [NetworkService] Update Request Body: \(bodyString)")
+        }
+        
         let data = try await performRESTRequest(url: url, method: "PATCH", body: body, user: user)
         
         print("📦 [NetworkService] Update Response empfangen: \(data.count) bytes")
+        
+        // Debug: Zeige Response-Body
+        if let responseString = String(data: data, encoding: .utf8) {
+            print("📄 [NetworkService] Update Response Body: \(responseString)")
+        }
         
         let timesheet = try customDateDecoder.decode(Timesheet.self, from: data)
         print("✅ [NetworkService] Timesheet erfolgreich aktualisiert mit ID: \(timesheet.id)")
@@ -719,6 +768,15 @@ class NetworkService {
             }
         }
         
+        // 4. Load tags (optional - nicht kritisch wenn fehlschlägt)
+        print("📥 [NetworkService] Lade Tags...")
+        do {
+            let tags = try await getTags(user: user)
+            print("✅ [NetworkService] \(tags.count) Tags geladen und gecacht")
+        } catch {
+            print("⚠️ [NetworkService] Tags konnten nicht geladen werden (nicht kritisch): \(error)")
+        }
+        
         print("✅ [NetworkService] Preload abgeschlossen: \(customers.count) Customers, \(totalProjects) Projects, \(totalActivities) Activities")
     }
     
@@ -751,6 +809,92 @@ class NetworkService {
         let users = try decoder.decode([TimesheetUser].self, from: data)
         print("✅ [NetworkService] \(users.count) Users dekodiert")
         return users
+    }
+    
+    /// Get all tags (using /api/tags/find endpoint)
+    func getTags(user: User, searchTerm: String? = nil) async throws -> [Tag] {
+        // Try to fetch from API if online
+        if networkMonitor.isConnected {
+            do {
+                var urlComponents = URLComponents(url: user.apiEndpoint.appendingPathComponent("tags/find"), resolvingAgainstBaseURL: false)!
+                if let searchTerm = searchTerm, !searchTerm.isEmpty {
+                    urlComponents.queryItems = [URLQueryItem(name: "name", value: searchTerm)]
+                }
+                
+                guard let url = urlComponents.url else {
+                    throw APIError.invalidResponse(nil)
+                }
+                
+                let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
+                
+                let decoder = JSONDecoder()
+                let tags = try decoder.decode([Tag].self, from: data)
+                
+                // Cache the tags
+                try await cacheManager.cache(tags, for: user, type: .tags)
+                
+                return tags
+            } catch {
+                print("⚠️ [NetworkService] API-Fehler beim Laden der Tags, versuche Cache: \(error)")
+            }
+        }
+        
+        // Load from cache (offline or API failed)
+        do {
+            let tags = try await cacheManager.load([Tag].self, for: user, cacheType: .tags)
+            return tags
+        } catch {
+            throw APIError.offlineNoCache
+        }
+    }
+    
+    /// Create a new tag (POST /api/tags)
+    func createTag(name: String, user: User) async throws -> Tag {
+        let url = user.apiEndpoint.appendingPathComponent("tags")
+        
+        struct TagCreateRequest: Codable {
+            let name: String
+            let color: String?
+            let visible: Bool?
+        }
+        
+        let request = TagCreateRequest(name: name, color: nil, visible: true)
+        let encoder = JSONEncoder()
+        let body = try encoder.encode(request)
+        
+        let data = try await performRESTRequest(url: url, method: "POST", body: body, user: user)
+        
+        let decoder = JSONDecoder()
+        let tag = try decoder.decode(Tag.self, from: data)
+        
+        // Update cache - reload tags to include the new one
+        do {
+            _ = try await getTags(user: user)
+        } catch {
+            // Fehler beim Cache-Update ist nicht kritisch
+        }
+        
+        return tag
+    }
+    
+    /// Delete a tag (DELETE /api/tags/{id})
+    func deleteTag(id: Int, user: User) async throws {
+        let url = user.apiEndpoint.appendingPathComponent("tags/\(id)")
+        
+        _ = try await performRESTRequest(url: url, method: "DELETE", body: nil, user: user)
+        
+        // Update cache - reload tags
+        do {
+            _ = try await getTags(user: user)
+        } catch {
+            // Fehler beim Cache-Update ist nicht kritisch
+        }
+    }
+    
+    /// Check if a tag exists by name (case-insensitive)
+    func findTagByName(_ name: String, user: User) async throws -> Tag? {
+        let tags = try await getTags(user: user, searchTerm: name)
+        return tags.first { $0.name.caseInsensitiveCompare(name) == .orderedSame }
     }
     
     /// Get timesheets with full project objects (including budget)
@@ -922,7 +1066,7 @@ class NetworkService {
             hourlyRate: form.hourlyRate,
             exported: false,
             billable: form.billable ?? true,
-            tags: form.tags.map { [$0] } ?? []
+            tags: TagUtils.tags(from: form.tags)
         )
     }
     

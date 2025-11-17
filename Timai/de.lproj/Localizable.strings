@@ -122,6 +122,7 @@
 "timesheetDetail.field.end" = "Ende";
 "timesheetDetail.field.duration" = "Dauer";
 "timesheetDetail.section.description" = "Beschreibung";
+"timesheetDetail.section.tags" = "Schlagworte";
 "timesheetDetail.navigationTitle" = "Details";
 "timesheetDetail.button.edit" = "Bearbeiten";
 "timesheetDetail.button.delete" = "Löschen";
@@ -147,6 +148,7 @@
 "timesheetEdit.picker.activity" = "Aktivität auswählen";
 "timesheetEdit.picker.placeholder" = "Bitte wählen";
 "timesheetEdit.placeholder.tags" = "z.B. projektname, wichtig";
+"timesheetEdit.tags.suggestions" = "Vorschläge";
 "timesheetEdit.field.fixedRate" = "Festpreis";
 "timesheetEdit.field.hourlyRate" = "Preis pro Stunde";
 "timesheetEdit.field.billable" = "Abrechenbar";

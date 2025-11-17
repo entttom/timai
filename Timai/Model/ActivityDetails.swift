@@ -20,6 +20,18 @@ struct ActivityDetails: Identifiable, Hashable {
     let billable: Bool
     let number: String?
     let color: String?
+    
+    // Öffentlicher Initializer für manuelle Erstellung
+    init(id: Int, project: Project?, name: String, comment: String?, visible: Bool, billable: Bool, number: String?, color: String?) {
+        self.id = id
+        self.project = project
+        self.name = name
+        self.comment = comment
+        self.visible = visible
+        self.billable = billable
+        self.number = number
+        self.color = color
+    }
 }
 
 // MARK: - Codable Implementation
@@ -42,13 +54,13 @@ extension ActivityDetails: Codable {
         // Flexibler Project Decoder - kann Int, Project oder null sein
         if let projectObject = try? container.decode(Project.self, forKey: .project) {
             project = projectObject
-            print("✅ [ActivityDetails] Project als Objekt dekodiert: \(projectObject.name)")
+            // Erfolgreiche Dekodierung - kein Log nötig
         } else if let projectId = try? container.decode(Int.self, forKey: .project) {
             // Fallback: Project-ID wurde zurückgegeben statt Objekt
-            print("⚠️ [ActivityDetails] Project als ID dekodiert: \(projectId) - setze auf nil")
+            // Wird nachträglich in getActivities() gesetzt, wenn Project-Objekt übergeben wird
             project = nil
         } else {
-            // Null oder nicht vorhanden
+            // Null oder nicht vorhanden (globale Activity)
             project = nil
         }
     }
@@ -64,6 +76,23 @@ extension ActivityDetails: Codable {
         try container.encode(billable, forKey: .billable)
         try container.encodeIfPresent(number, forKey: .number)
         try container.encodeIfPresent(color, forKey: .color)
+    }
+}
+
+// MARK: - Helper Extension
+extension ActivityDetails {
+    /// Erstellt eine neue ActivityDetails-Instanz mit gesetztem Project-Objekt
+    func withProject(_ project: Project?) -> ActivityDetails {
+        ActivityDetails(
+            id: self.id,
+            project: project,
+            name: self.name,
+            comment: self.comment,
+            visible: self.visible,
+            billable: self.billable,
+            number: self.number,
+            color: self.color
+        )
     }
 }
 

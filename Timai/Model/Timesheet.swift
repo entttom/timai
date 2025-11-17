@@ -91,7 +91,7 @@ extension Timesheet: Codable {
         // Flexibler Activity Decoder - kann sowohl Int als auch ActivityDetails sein
         if let activityObject = try? container.decode(ActivityDetails.self, forKey: .activity) {
             activity = activityObject
-            print("✅ [Timesheet] Activity als Objekt dekodiert: \(activityObject.name)")
+            // Erfolgreiche Dekodierung - kein Log nötig
         } else if let activityId = try? container.decode(Int.self, forKey: .activity) {
             // Fallback: Erstelle eine minimale Activity mit nur der ID
             print("⚠️ [Timesheet] Activity als ID dekodiert: \(activityId) - verwende Fallback")
@@ -107,7 +107,7 @@ extension Timesheet: Codable {
         // Flexibler Project Decoder - kann sowohl Int als auch Project sein
         if let projectObject = try? container.decode(Project.self, forKey: .project) {
             project = projectObject
-            print("✅ [Timesheet] Project als Objekt dekodiert: \(projectObject.name)")
+            // Erfolgreiche Dekodierung - kein Log nötig
         } else if let projectId = try? container.decode(Int.self, forKey: .project) {
             // Fallback: Erstelle ein minimales Project mit nur der ID
             print("⚠️ [Timesheet] Project als ID dekodiert: \(projectId) - verwende Fallback")

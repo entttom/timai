@@ -43,6 +43,56 @@ enum PendingOperation: Codable {
     case updateTimesheet(id: Int, form: TimesheetEditForm)
     case deleteTimesheet(id: Int)
     
+    enum CodingKeys: String, CodingKey {
+        case type
+        case form
+        case tempId
+        case id
+    }
+    
+    enum OperationType: String, Codable {
+        case createTimesheet
+        case updateTimesheet
+        case deleteTimesheet
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let type = try container.decode(OperationType.self, forKey: .type)
+        
+        switch type {
+        case .createTimesheet:
+            let form = try container.decode(TimesheetEditForm.self, forKey: .form)
+            let tempId = try container.decode(String.self, forKey: .tempId)
+            self = .createTimesheet(form: form, tempId: tempId)
+        case .updateTimesheet:
+            let id = try container.decode(Int.self, forKey: .id)
+            let form = try container.decode(TimesheetEditForm.self, forKey: .form)
+            self = .updateTimesheet(id: id, form: form)
+        case .deleteTimesheet:
+            let id = try container.decode(Int.self, forKey: .id)
+            self = .deleteTimesheet(id: id)
+        }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        switch self {
+        case .createTimesheet(let form, let tempId):
+            try container.encode(OperationType.createTimesheet, forKey: .type)
+            try container.encode(form, forKey: .form)
+            try container.encode(tempId, forKey: .tempId)
+        case .updateTimesheet(let id, let form):
+            try container.encode(OperationType.updateTimesheet, forKey: .type)
+            try container.encode(id, forKey: .id)
+            try container.encode(form, forKey: .form)
+        case .deleteTimesheet(let id):
+            try container.encode(OperationType.deleteTimesheet, forKey: .type)
+            try container.encode(id, forKey: .id)
+        }
+    }
+    
     var description: String {
         switch self {
         case .createTimesheet:

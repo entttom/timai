@@ -297,6 +297,13 @@ class PendingOperationsManager: ObservableObject {
             print("✅ [PendingOperationsManager] Queue geladen: \(pendingOperations.count) pending, \(failedOperations.count) failed")
         } catch {
             print("❌ [PendingOperationsManager] Fehler beim Laden der Queue: \(error)")
+            print("🔄 [PendingOperationsManager] Lösche alte Queue-Datei (inkompatibles Format)")
+            // Lösche die alte Queue, da sie ein inkompatibles Format hat
+            // (z.B. tags als Array statt String)
+            if let url = queueURL {
+                try? fileManager.removeItem(at: url)
+                print("✅ [PendingOperationsManager] Alte Queue gelöscht - starte mit leerer Queue")
+            }
         }
     }
     

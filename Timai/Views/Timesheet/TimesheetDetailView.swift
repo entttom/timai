@@ -46,6 +46,13 @@ struct TimesheetDetailView: View {
                 }
             }
             
+            // Tags Section
+            if let tags = activity.tags, !tags.isEmpty {
+                Section("timesheetDetail.section.tags".localized()) {
+                    TagDisplayView(tags: tags)
+                }
+            }
+            
             // Actions Section
             Section {
                 Button(role: .destructive, action: { showingDeleteAlert = true }) {
@@ -128,11 +135,49 @@ struct DetailRow: View {
     }
 }
 
+/// Anzeige von Tags in der Detailansicht (nur lesend, ohne Entfernen-Funktion)
+struct TagDisplayView: View {
+    let tags: [String]
+    
+    var body: some View {
+        FlowLayout(spacing: 8) {
+            ForEach(tags, id: \.self) { tag in
+                tagChip(tag)
+            }
+        }
+        .padding(.vertical, 4)
+    }
+    
+    private func tagChip(_ tag: String) -> some View {
+        HStack(spacing: 6) {
+            Image(systemName: "tag.fill")
+                .font(.system(size: 10))
+                .foregroundColor(.timaiHighlight.opacity(0.8))
+            
+            Text(tag)
+                .font(.system(size: 13, weight: .medium))
+                .foregroundColor(.timaiTextBlack)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(
+            Capsule()
+                .fill(Color.timaiHighlight.opacity(0.12))
+                .overlay(
+                    Capsule()
+                        .stroke(Color.timaiHighlight.opacity(0.25), lineWidth: 1)
+                )
+        )
+        .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
+    }
+}
+
 #Preview {
     NavigationStack {
         TimesheetDetailView(activity: Activity(
             recordId: 1,
             description: "Test Beschreibung",
+            tags: ["Tag A", "Tag B"],
             customerName: "Test Kunde",
             customerId: 1,
             projectName: "Test Projekt",

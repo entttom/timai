@@ -24,4 +24,3 @@ struct TimesheetEditForm: Codable {
     let exported: Bool?
     let billable: Bool?
 }
-
