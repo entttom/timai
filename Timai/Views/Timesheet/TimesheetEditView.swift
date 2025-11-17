@@ -147,7 +147,6 @@ struct TimesheetEditView: View {
                     // In that case, try to find customer from project cache
                     var effectiveCustomerId = activity.customerId
                     if effectiveCustomerId == 0 {
-                        print("⚠️ [TimesheetEditView] Customer ID ist 0 - versuche aus Project-Cache zu laden")
                         effectiveCustomerId = await editViewModel.findCustomerIdForProject(activity.projectId)
                     }
                     
@@ -160,21 +159,13 @@ struct TimesheetEditView: View {
                     
                     // Set selected IDs after data is loaded
                     selectedCustomerId = customer?.id
-                    print("🔍 [Edit] Customer ID gesetzt: \(customer?.id ?? -1) - \(customer?.name ?? "nil")")
-                    
                     selectedProjectId = project?.id
-                    print("🔍 [Edit] Projekt ID gesetzt: \(project?.id ?? -1) - \(project?.name ?? "nil")")
-                    print("🔍 [Edit] Verfügbare Projekte: \(editViewModel.projects.map { "\($0.id): \($0.name)" })")
-                    
                     selectedActivityId = activityDetails?.id
-                    print("🔍 [Edit] Aktivität ID gesetzt: \(activityDetails?.id ?? -1) - \(activityDetails?.name ?? "nil")")
-                    print("🔍 [Edit] Verfügbare Aktivitäten: \(editViewModel.activities.map { "\($0.id): \($0.name)" })")
                     
                     // Kleine Verzögerung für UI-Update
                     try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 Sekunden
                     
                     isInitializing = false
-                    print("✅ [Edit] Initialisierung abgeschlossen")
                 }
             }
         }
@@ -285,7 +276,6 @@ struct TimesheetEditView: View {
                     if newStartDate >= endDate {
                         isAdjustingDates = true
                         endDate = newStartDate.addingTimeInterval(3600)
-                        print("⏰ [TimesheetEditView] Start nach Ende - Endzeit auf +1h gesetzt")
                         isAdjustingDates = false
                     }
                 }
@@ -298,7 +288,6 @@ struct TimesheetEditView: View {
                     if newEndDate <= startDate {
                         isAdjustingDates = true
                         startDate = newEndDate.addingTimeInterval(-3600)
-                        print("⏰ [TimesheetEditView] Ende vor Start - Startzeit auf -1h gesetzt")
                         isAdjustingDates = false
                     }
                 }
@@ -638,8 +627,6 @@ class TimesheetEditViewModel: ObservableObject {
     func findCustomerIdForProject(_ projectId: Int) async -> Int {
         guard let user = currentUser else { return 0 }
         
-        print("🔍 [TimesheetEditViewModel] Suche Customer für Project ID: \(projectId)")
-        
         // Load all customers first
         do {
             let cachedCustomers = try await networkService.getCustomers(user: user)
@@ -648,13 +635,12 @@ class TimesheetEditViewModel: ObservableObject {
             for customer in cachedCustomers {
                 if let projects = try? await CacheManager.shared.load([Project].self, for: user, cacheType: .projectsForCustomer, identifier: "\(customer.id)") {
                     if projects.contains(where: { $0.id == projectId }) {
-                        print("✅ [TimesheetEditViewModel] Customer gefunden: \(customer.name) (ID: \(customer.id))")
                         return customer.id
                     }
                 }
             }
         } catch {
-            print("⚠️ [TimesheetEditViewModel] Konnte Customer nicht finden")
+            // Customer not found
         }
         
         return 0
@@ -668,10 +654,7 @@ class TimesheetEditViewModel: ObservableObject {
         
         do {
             customers = try await networkService.getCustomers(user: user)
-            print("✅ [TimesheetEditViewModel] \(customers.count) Kunden geladen")
         } catch {
-            print("❌ [TimesheetEditViewModel] Fehler beim Laden der Kunden: \(error)")
-            
             // Check if it's offline/no cache error
             if let apiError = error as? NetworkService.APIError,
                case .offlineNoCache = apiError {
@@ -689,33 +672,49 @@ class TimesheetEditViewModel: ObservableObject {
             return (nil, nil, nil)
         }
         
-        // Find customer by ID
-        guard let customer = customers.first(where: { $0.id == customerId }) else {
-            print("⚠️ [TimesheetEditViewModel] Kunde mit ID \(customerId) nicht gefunden")
+        // Ensure customers are loaded
+        if customers.isEmpty {
+            await loadCustomers()
+        }
+        
+        // Find customer by ID in loaded list
+        var customer = customers.first(where: { $0.id == customerId })
+        
+        // If customer not found, try to load directly from cache/API
+        if customer == nil {
+            do {
+                let allCustomers = try await networkService.getCustomers(user: user)
+                customer = allCustomers.first(where: { $0.id == customerId })
+                if let foundCustomer = customer {
+                    // Update customers list if not already there
+                    if !customers.contains(where: { $0.id == foundCustomer.id }) {
+                        customers.append(foundCustomer)
+                    }
+                } else {
+                    return (nil, nil, nil)
+                }
+            } catch {
+                return (nil, nil, nil)
+            }
+        }
+        
+        guard let customer = customer else {
             return (nil, nil, nil)
         }
         
         // Load projects for this customer
         await loadProjects(for: customer)
-        print("✅ [TimesheetEditViewModel] \(projects.count) Projekte für Kunde '\(customer.name)' geladen")
         
         // Find project by ID
         guard let project = projects.first(where: { $0.id == projectId }) else {
-            print("⚠️ [TimesheetEditViewModel] Projekt mit ID \(projectId) nicht gefunden")
             return (customer, nil, nil)
         }
         
         // Load activities for this project
         await loadActivities(for: project)
-        print("✅ [TimesheetEditViewModel] \(activities.count) Aktivitäten für Projekt '\(project.name)' geladen")
         
         // Find activity by ID
         let activity = activities.first(where: { $0.id == activityId })
-        if activity == nil {
-            print("⚠️ [TimesheetEditViewModel] Aktivität mit ID \(activityId) nicht gefunden")
-        } else {
-            print("✅ [TimesheetEditViewModel] Aktivität '\(activity!.name)' gefunden")
-        }
         
         return (customer, project, activity)
     }
@@ -730,7 +729,6 @@ class TimesheetEditViewModel: ObservableObject {
         do {
             projects = try await networkService.getProjects(customer: customer, user: user)
         } catch {
-            print("❌ [TimesheetEditViewModel] Fehler beim Laden der Projekte: \(error)")
             errorMessage = "timesheetEdit.error.loadingProjects".localized()
         }
         
@@ -747,7 +745,6 @@ class TimesheetEditViewModel: ObservableObject {
         do {
             activities = try await networkService.getActivities(projectId: project.id, user: user)
         } catch {
-            print("❌ [TimesheetEditViewModel] Fehler beim Laden der Aktivitäten: \(error)")
             errorMessage = "timesheetEdit.error.loadingActivities".localized()
         }
         
@@ -782,7 +779,6 @@ class TimesheetEditViewModel: ObservableObject {
             isSaving = false
             return true
         } catch {
-            print("❌ [TimesheetEditViewModel] Fehler beim Erstellen: \(error)")
             errorMessage = "timesheetEdit.error.saving".localized()
             isSaving = false
             return false
@@ -817,7 +813,6 @@ class TimesheetEditViewModel: ObservableObject {
             isSaving = false
             return true
         } catch {
-            print("❌ [TimesheetEditViewModel] Fehler beim Aktualisieren: \(error)")
             errorMessage = "timesheetEdit.error.saving".localized()
             isSaving = false
             return false

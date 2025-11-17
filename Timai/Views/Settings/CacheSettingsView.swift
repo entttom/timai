@@ -19,12 +19,14 @@ struct CacheSettingsView: View {
     
     @State private var autoSyncEnabled = CacheSettings.autoSyncEnabled
     @State private var maxCacheEntries = CacheSettings.maxCacheEntries
+    @State private var previousMaxCacheEntries = CacheSettings.maxCacheEntries
     @State private var cacheRetentionDays = CacheSettings.cacheRetentionDays
     @State private var showClearConfirmation = false
     @State private var showClearSuccess = false
     @State private var isPreloading = false
     @State private var preloadError: String?
     @State private var showPreloadSuccess = false
+    @State private var cacheStats: CacheStatistics?
     
     private var cacheSizeFormatted: String {
         let formatter = ByteCountFormatter()
@@ -62,13 +64,14 @@ struct CacheSettingsView: View {
                 }
                 
                 if let user = authViewModel.currentUser {
-                    let stats = cacheManager.getCacheStatistics(for: user)
+                    let stats = cacheStats ?? cacheManager.getCacheStatistics(for: user)
                     
                     HStack {
                         Text("cacheSettings.field.timesheets".localized())
                         Spacer()
                         Text("\(stats.timesheetsCount)")
                             .foregroundColor(.timaiGrayTone2)
+                            .id("timesheets_\(stats.timesheetsCount)") // Force view update
                     }
                     
                     HStack {
@@ -76,6 +79,7 @@ struct CacheSettingsView: View {
                         Spacer()
                         Text("\(stats.customersCount)")
                             .foregroundColor(.timaiGrayTone2)
+                            .id("customers_\(stats.customersCount)") // Force view update
                     }
                 }
                 
@@ -175,15 +179,42 @@ struct CacheSettingsView: View {
             }
             
             // Cache Settings Section
-            Section("cacheSettings.section.settings".localized()) {
+            Section {
                 Picker("cacheSettings.field.maxEntries".localized(), selection: $maxCacheEntries) {
                     Text("50").tag(50)
                     Text("100").tag(100)
+                    Text("150").tag(150)
                     Text("200").tag(200)
-                    Text("500").tag(500)
                 }
                 .onChange(of: maxCacheEntries) { newValue in
+                    let oldValue = previousMaxCacheEntries
+                    previousMaxCacheEntries = newValue
                     CacheSettings.maxCacheEntries = newValue
+                    
+                    Task {
+                        if let user = authViewModel.currentUser {
+                            if newValue > oldValue {
+                                // Limit erhöht - lade zusätzliche Daten
+                                await loadAdditionalCacheEntries(for: user, from: oldValue, to: newValue)
+                            } else {
+                                // Limit reduziert - bereinige Cache
+                                await trimCacheIfNeeded(for: user)
+                            }
+                            
+                            // Längere Verzögerung, damit Cache definitiv geschrieben wurde
+                            try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 Sekunden
+                            // Aktualisiere Statistiken immer
+                            // Setze zuerst auf nil, damit SwiftUI die Änderung erkennt
+                            await MainActor.run {
+                                cacheStats = nil
+                            }
+                            // Dann lade neue Statistiken
+                            await MainActor.run {
+                                cacheStats = cacheManager.getCacheStatistics(for: user)
+                                cacheManager.calculateCacheSize()
+                            }
+                        }
+                    }
                 }
                 
                 Picker("Aufbewahrungsdauer", selection: $cacheRetentionDays) {
@@ -195,6 +226,10 @@ struct CacheSettingsView: View {
                 .onChange(of: cacheRetentionDays) { newValue in
                     CacheSettings.cacheRetentionDays = newValue
                 }
+            } header: {
+                Text("cacheSettings.section.settings".localized())
+            } footer: {
+                Text("cacheSettings.field.maxEntries.footer".localized())
             }
             
             // Failed Operations Section
@@ -247,12 +282,29 @@ struct CacheSettingsView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .task {
+            // Lade initiale Statistiken
+            if let user = authViewModel.currentUser {
+                cacheStats = cacheManager.getCacheStatistics(for: user)
+            }
+        }
+        .onChange(of: authViewModel.currentUser) { newUser in
+            // Aktualisiere Statistiken wenn User wechselt
+            if let user = newUser {
+                cacheStats = cacheManager.getCacheStatistics(for: user)
+            }
+        }
         .alert("cacheSettings.alert.clear.title".localized(), isPresented: $showClearConfirmation) {
             Button("Abbrechen", role: .cancel) {}
             Button("Löschen", role: .destructive) {
                 Task {
                     if let user = authViewModel.currentUser {
                         try? await cacheManager.clearCache(for: user)
+                        // Aktualisiere Statistiken nach Löschen
+                        await MainActor.run {
+                            cacheStats = cacheManager.getCacheStatistics(for: user)
+                            cacheManager.calculateCacheSize()
+                        }
                         showClearSuccess = true
                     }
                 }
@@ -265,11 +317,71 @@ struct CacheSettingsView: View {
             message: "cacheSettings.toast.cleared".localized(),
             type: .success
         )
-        .toast(
-            isShowing: $showPreloadSuccess,
-            message: "Alle Daten erfolgreich heruntergeladen",
-            type: .success
-        )
+            .toast(
+                isShowing: $showPreloadSuccess,
+                message: "Alle Daten erfolgreich heruntergeladen",
+                type: .success
+            )
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func loadAdditionalCacheEntries(for user: User, from oldLimit: Int, to newLimit: Int) async {
+        do {
+            // Versuche aktuellen Cache zu laden
+            var currentCount = 0
+            do {
+                let cachedTimesheets = try await cacheManager.load([Timesheet].self, for: user, cacheType: .timesheets)
+                currentCount = cachedTimesheets.count
+            } catch {
+                // Cache existiert nicht oder ist leer - das ist ok, wir laden einfach neue Daten
+                print("ℹ️ [CacheSettingsView] Kein Cache vorhanden oder leer, lade neue Daten...")
+            }
+            
+            // Lade neue Daten, wenn der Cache weniger Einträge hat als das neue Limit
+            if currentCount < newLimit {
+                print("📥 [CacheSettingsView] Limit erhöht von \(oldLimit) auf \(newLimit), Cache hat \(currentCount) Einträge, lade zusätzliche Daten...")
+                
+                // Lade neue Timesheets vom Server
+                // Die API lädt alle verfügbaren Daten, die Begrenzung erfolgt nur beim Caching
+                let networkService = NetworkService.shared
+                let newActivities = try await networkService.getTimesheetFor(user)
+                
+                print("✅ [CacheSettingsView] \(newActivities.count) neue Activities geladen, Cache sollte jetzt bis zu \(newLimit) Einträge haben")
+                
+                // Warte kurz, damit Cache geschrieben wird, dann aktualisiere Statistiken
+                try? await Task.sleep(nanoseconds: 200_000_000) // 0.2 Sekunden
+                await MainActor.run {
+                    cacheStats = cacheManager.getCacheStatistics(for: user)
+                    cacheManager.calculateCacheSize()
+                }
+            } else {
+                print("ℹ️ [CacheSettingsView] Cache hat bereits \(currentCount) Einträge (neues Limit: \(newLimit)), keine zusätzlichen Daten nötig")
+            }
+        } catch {
+            print("⚠️ [CacheSettingsView] Konnte zusätzliche Daten nicht laden: \(error)")
+        }
+    }
+    
+    private func trimCacheIfNeeded(for user: User) async {
+        do {
+            // Lade aktuellen Cache
+            var cachedTimesheets = try await cacheManager.load([Timesheet].self, for: user, cacheType: .timesheets)
+            let originalCount = cachedTimesheets.count
+            
+            // Prüfe ob Cache zu groß ist
+            let maxEntries = CacheSettings.maxCacheEntries
+            if cachedTimesheets.count > maxEntries {
+                // Behalte nur die neuesten Einträge (sortiert nach begin DESC, also neueste zuerst)
+                cachedTimesheets = Array(cachedTimesheets.prefix(maxEntries))
+                
+                // Speichere bereinigten Cache
+                try await cacheManager.cache(cachedTimesheets, for: user, type: .timesheets)
+                print("✅ [CacheSettingsView] Cache auf \(maxEntries) Einträge bereinigt (von \(originalCount) Einträgen)")
+            }
+        } catch {
+            print("⚠️ [CacheSettingsView] Konnte Cache nicht bereinigen: \(error)")
+        }
     }
 }
 

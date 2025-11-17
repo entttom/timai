@@ -28,10 +28,17 @@ struct CacheSettings {
     static var maxCacheEntries: Int {
         get {
             let value = UserDefaults.standard.integer(forKey: "maxCacheEntries")
-            return value > 0 ? value : 100 // Default to 100
+            let defaultValue = 200
+            if value > 0 {
+                // Begrenze auf Maximum 200 (API-Limit)
+                return min(value, 200)
+            }
+            return defaultValue
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "maxCacheEntries")
+            // Begrenze auf Maximum 200 (API-Limit)
+            let limitedValue = min(newValue, 200)
+            UserDefaults.standard.set(limitedValue, forKey: "maxCacheEntries")
         }
     }
     
@@ -42,6 +49,16 @@ struct CacheSettings {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "cacheRetentionDays")
+        }
+    }
+    
+    // Alias für maxCacheEntries - beide verwenden jetzt die gleiche Einstellung
+    static var maxTimesheetEntries: Int {
+        get {
+            return maxCacheEntries
+        }
+        set {
+            maxCacheEntries = newValue
         }
     }
 }

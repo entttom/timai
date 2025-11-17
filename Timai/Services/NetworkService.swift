@@ -183,8 +183,10 @@ class NetworkService {
             print("📋 [NetworkService] Online - Lade Timesheets vom Server...")
             do {
         var urlComponents = URLComponents(url: user.apiEndpoint.appendingPathComponent("timesheets"), resolvingAgainstBaseURL: false)!
+        // Begrenze size auf Maximum 200 (API-Limit)
+        let apiSize = min(CacheSettings.maxTimesheetEntries, 200)
         urlComponents.queryItems = [
-            URLQueryItem(name: "size", value: "100"),
+            URLQueryItem(name: "size", value: "\(apiSize)"),
             URLQueryItem(name: "orderBy", value: "begin"),
             URLQueryItem(name: "order", value: "DESC"),
             URLQueryItem(name: "full", value: "true")
@@ -198,9 +200,15 @@ class NetworkService {
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
         print("📦 [NetworkService] Timesheet Daten empfangen: \(data.count) bytes")
         
-        let timesheets = try customDateDecoder.decode([Timesheet].self, from: data)
+        var timesheets = try customDateDecoder.decode([Timesheet].self, from: data)
         print("✅ [NetworkService] \(timesheets.count) Timesheets erfolgreich dekodiert")
         
+        // Limit cache size before caching (verwende maxCacheEntries für Cache-Limit)
+        let maxEntries = CacheSettings.maxCacheEntries
+        if timesheets.count > maxEntries {
+            timesheets = Array(timesheets.prefix(maxEntries))
+            print("📦 [NetworkService] Timesheets auf \(maxEntries) Einträge begrenzt (Cache-Limit)")
+        }
                 
                 // Cache the timesheets
                 try await cacheManager.cache(timesheets, for: user, type: .timesheets)
@@ -909,8 +917,10 @@ class NetworkService {
             do {
                 print("📋 [NetworkService] Online - Lade Timesheets mit Projekten vom Server...")
         var urlComponents = URLComponents(url: user.apiEndpoint.appendingPathComponent("timesheets"), resolvingAgainstBaseURL: false)!
+        // Begrenze size auf Maximum 200 (API-Limit)
+        let apiSize = min(CacheSettings.maxTimesheetEntries, 200)
         urlComponents.queryItems = [
-            URLQueryItem(name: "size", value: "100"),
+            URLQueryItem(name: "size", value: "\(apiSize)"),
             URLQueryItem(name: "orderBy", value: "begin"),
             URLQueryItem(name: "order", value: "DESC"),
             URLQueryItem(name: "full", value: "true")
@@ -925,8 +935,15 @@ class NetworkService {
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
         print("📦 [NetworkService] Timesheet Daten empfangen: \(data.count) bytes")
         
-        let timesheets = try customDateDecoder.decode([Timesheet].self, from: data)
+        var timesheets = try customDateDecoder.decode([Timesheet].self, from: data)
         print("✅ [NetworkService] \(timesheets.count) Timesheets mit Projekten dekodiert")
+        
+        // Limit cache size before caching (verwende maxCacheEntries für Cache-Limit)
+        let maxEntries = CacheSettings.maxCacheEntries
+        if timesheets.count > maxEntries {
+            timesheets = Array(timesheets.prefix(maxEntries))
+            print("📦 [NetworkService] Timesheets auf \(maxEntries) Einträge begrenzt (Cache-Limit)")
+        }
         
                 // Cache the timesheets
                 try await cacheManager.cache(timesheets, for: user, type: .timesheets)

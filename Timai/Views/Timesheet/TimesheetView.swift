@@ -23,6 +23,7 @@ struct TimesheetView: View {
     @State private var showingInstanceSwitcher = false
     @State private var showingTimerStartSheet = false
     @State private var showingTimerStopDialog = false
+    @State private var showingSearchSheet = false
     @State private var showToast = false
     
     private var circleBackgroundColor: Color {
@@ -133,8 +134,24 @@ struct TimesheetView: View {
             }
             
             ToolbarItem(placement: toolbarTrailingPlacement) {
-                Button(action: { showingAddSheet = true }) {
-                    Image(systemName: "plus")
+                HStack(spacing: 16) {
+                    // Suchsymbol mit Badge wenn Filter aktiv sind
+                    Button(action: { showingSearchSheet = true }) {
+                        ZStack {
+                            Image(systemName: "magnifyingglass")
+                            
+                            if viewModel.searchFilters.hasActiveFilters || !viewModel.searchText.isEmpty {
+                                Circle()
+                                    .fill(Color.red)
+                                    .frame(width: 8, height: 8)
+                                    .offset(x: 8, y: -8)
+                            }
+                        }
+                    }
+                    
+                    Button(action: { showingAddSheet = true }) {
+                        Image(systemName: "plus")
+                    }
                 }
             }
         }
@@ -164,6 +181,19 @@ struct TimesheetView: View {
             InstanceSwitcherSheet()
                 .environmentObject(authViewModel)
         }
+        .sheet(isPresented: $showingSearchSheet) {
+            SearchSheet(
+                searchText: $viewModel.searchText,
+                searchFilters: $viewModel.searchFilters
+            )
+            .environmentObject(authViewModel)
+        }
+        .onChange(of: viewModel.searchText) { _ in
+            viewModel.calculateSections()
+        }
+        .onChange(of: viewModel.searchFilters) { _ in
+            viewModel.calculateSections()
+        }
         .task {
             await viewModel.loadTimesheets()
             
@@ -188,13 +218,13 @@ struct TimesheetView: View {
         ZStack {
             if viewModel.isLoading && viewModel.activities.isEmpty {
                 LoadingView()
-            } else if viewModel.activities.isEmpty && !viewModel.isLoading {
+            } else if viewModel.filteredActivities.isEmpty && !viewModel.isLoading {
                 EmptyStateView(
-                    icon: "clock",
-                    title: "Keine Einträge",
-                    message: "error.message.noTimesheetRecords".localized(),
-                    actionTitle: "Eintrag hinzufügen",
-                    action: { showingAddSheet = true }
+                    icon: "magnifyingglass",
+                    title: viewModel.searchFilters.hasActiveFilters || !viewModel.searchText.isEmpty ? "search.noResults".localized() : "Keine Einträge",
+                    message: viewModel.searchFilters.hasActiveFilters || !viewModel.searchText.isEmpty ? "search.noResults.message".localized() : "error.message.noTimesheetRecords".localized(),
+                    actionTitle: viewModel.searchFilters.hasActiveFilters || !viewModel.searchText.isEmpty ? nil : "Eintrag hinzufügen",
+                    action: viewModel.searchFilters.hasActiveFilters || !viewModel.searchText.isEmpty ? nil : { showingAddSheet = true }
                 )
             } else {
                 List {

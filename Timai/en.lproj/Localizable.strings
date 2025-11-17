@@ -179,6 +179,7 @@
 "cacheSettings.sync.preload.subtitle" = "Loads Customers, Projects & Activities for offline use";
 "cacheSettings.section.settings" = "Cache Settings";
 "cacheSettings.field.maxEntries" = "Maximum Entries";
+"cacheSettings.field.maxEntries.footer" = "Determines how many timesheet entries are loaded from the API and stored in the cache. More entries require more storage space but enable more comprehensive search and offline access.";
 "cacheSettings.field.retentionDays" = "Retention (Days)";
 "cacheSettings.button.clearCache" = "Clear Cache";
 "cacheSettings.alert.clear.title" = "Clear cache?";
@@ -291,3 +292,18 @@
 "timer.stop.description.label" = "Description";
 "timer.stop.description.placeholder" = "What did you work on?";
 "timer.startedAt" = "Started at";
+
+// Search
+"search.title" = "Search";
+"search.placeholder" = "Search for customer, project, task, description or tags...";
+"search.filters.date" = "Date";
+"search.filters.dateFrom" = "From";
+"search.filters.dateTo" = "To";
+"search.filters.customer" = "Customer";
+"search.filters.project" = "Project";
+"search.filters.tags" = "Tags";
+"search.filters.tags.empty" = "No tags available";
+"search.filters.reset" = "Reset";
+"search.filters.done" = "Done";
+"search.noResults" = "No Results";
+"search.noResults.message" = "No entries found matching the search criteria.";

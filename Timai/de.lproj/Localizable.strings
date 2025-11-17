@@ -179,6 +179,7 @@
 "cacheSettings.sync.preload.subtitle" = "Lädt Customers, Projects & Activities für Offline-Nutzung";
 "cacheSettings.section.settings" = "Cache-Einstellungen";
 "cacheSettings.field.maxEntries" = "Maximale Einträge";
+"cacheSettings.field.maxEntries.footer" = "Bestimmt, wie viele Zeiteinträge von der API geladen und im Cache gespeichert werden. Mehr Einträge benötigen mehr Speicherplatz, ermöglichen aber eine umfassendere Suche und Offline-Zugriff.";
 "cacheSettings.field.retentionDays" = "Aufbewahrung (Tage)";
 "cacheSettings.button.clearCache" = "Cache löschen";
 "cacheSettings.alert.clear.title" = "Cache löschen?";
@@ -291,3 +292,18 @@
 "timer.stop.description.label" = "Beschreibung";
 "timer.stop.description.placeholder" = "Was hast du gemacht?";
 "timer.startedAt" = "Gestartet um";
+
+// Search
+"search.title" = "Suche";
+"search.placeholder" = "Suche nach Kunde, Projekt, Aufgabe, Beschreibung oder Tags...";
+"search.filters.date" = "Datum";
+"search.filters.dateFrom" = "Von";
+"search.filters.dateTo" = "Bis";
+"search.filters.customer" = "Kunde";
+"search.filters.project" = "Projekt";
+"search.filters.tags" = "Schlagworte";
+"search.filters.tags.empty" = "Keine Tags verfügbar";
+"search.filters.reset" = "Zurücksetzen";
+"search.filters.done" = "Fertig";
+"search.noResults" = "Keine Ergebnisse";
+"search.noResults.message" = "Es wurden keine Einträge gefunden, die den Suchkriterien entsprechen.";

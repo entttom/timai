@@ -20,6 +20,8 @@ class TimesheetViewModel: ObservableObject {
     @Published var stats: TimesheetStats?
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var searchText: String = ""
+    @Published var searchFilters: SearchFilters = SearchFilters()
     
     private let networkService = NetworkService.shared
     private let pendingOpsManager = PendingOperationsManager.shared
@@ -99,6 +101,7 @@ class TimesheetViewModel: ObservableObject {
             } else {
                 // Filter out locally deleted items
                 activities = fetchedActivities.filter { !locallyDeletedIds.contains($0.recordId) }
+                // Sections werden automatisch neu berechnet wenn filteredActivities sich ändert
                 calculateSections()
                 calculateStats()
             }
@@ -121,6 +124,7 @@ class TimesheetViewModel: ObservableObject {
         // Optimistically remove from local list
         locallyDeletedIds.insert(id)
         activities.removeAll { $0.recordId == id }
+        // Sections werden automatisch neu berechnet wenn filteredActivities sich ändert
         calculateSections()
         calculateStats()
         
@@ -174,12 +178,74 @@ class TimesheetViewModel: ObservableObject {
         locallyDeletedIds.removeAll()
     }
     
-    private func calculateSections() {
+    /// Gefilterte Aktivitäten basierend auf Suchtext und Filtern
+    var filteredActivities: [Activity] {
+        var filtered = activities
+        
+        // Textsuche
+        if !searchText.isEmpty {
+            let searchLower = searchText.lowercased()
+            filtered = filtered.filter { activity in
+                activity.customerName.lowercased().contains(searchLower) ||
+                activity.projectName.lowercased().contains(searchLower) ||
+                activity.task.lowercased().contains(searchLower) ||
+                (activity.description?.lowercased().contains(searchLower) ?? false) ||
+                (activity.tags?.contains { $0.lowercased().contains(searchLower) } ?? false)
+            }
+        }
+        
+        // Datumsfilter
+        if let dateFrom = searchFilters.dateFrom {
+            filtered = filtered.filter { activity in
+                activity.startDateTime >= dateFrom
+            }
+        }
+        
+        if let dateTo = searchFilters.dateTo {
+            // Setze dateTo auf Ende des Tages (23:59:59)
+            let endOfDay = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: dateTo) ?? dateTo
+            filtered = filtered.filter { activity in
+                activity.startDateTime <= endOfDay
+            }
+        }
+        
+        // Kundenfilter
+        if let customerId = searchFilters.selectedCustomerId {
+            filtered = filtered.filter { activity in
+                activity.customerId == customerId
+            }
+        }
+        
+        // Projektfilter
+        if let projectId = searchFilters.selectedProjectId {
+            filtered = filtered.filter { activity in
+                activity.projectId == projectId
+            }
+        }
+        
+        // Tag-Filter (mindestens ein Tag muss übereinstimmen)
+        if !searchFilters.selectedTags.isEmpty {
+            let selectedTagsLower = Set(searchFilters.selectedTags.map { $0.lowercased() })
+            filtered = filtered.filter { activity in
+                guard let tags = activity.tags else { return false }
+                return tags.contains { tag in
+                    selectedTagsLower.contains(tag.lowercased())
+                }
+            }
+        }
+        
+        return filtered
+    }
+    
+    func calculateSections() {
         var lastDate: Date?
         var tempSections: [(date: Date, activities: [Activity])] = []
         var currentSectionActivities: [Activity] = []
         
-        for activity in activities {
+        // Verwende gefilterte Aktivitäten für Sections
+        let activitiesToUse = filteredActivities
+        
+        for activity in activitiesToUse {
             let activityDate = Calendar.current.startOfDay(for: activity.startDateTime)
             
             if let last = lastDate {
