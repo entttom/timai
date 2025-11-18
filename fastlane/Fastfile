@@ -285,17 +285,21 @@ platform :ios do
   end
   
   # ==========================================
-  # LANE: Carthage Update
+  # LANE: Update Dependencies
   # ==========================================
-  desc "Aktualisiert Carthage Dependencies"
+  desc "Hinweis: Swift Package Manager Dependencies werden automatisch von Xcode verwaltet"
   lane :update_dependencies do
-    carthage(
-      command: "update",
-      platform: "iOS",
-      use_xcframeworks: true
-    )
+    UI.important("ℹ️  Dieses Projekt verwendet Swift Package Manager.")
+    UI.message("Dependencies werden automatisch von Xcode verwaltet.")
+    UI.message("")
+    UI.message("Um Dependencies manuell zu aktualisieren:")
+    UI.message("1. Öffne das Projekt in Xcode")
+    UI.message("2. Gehe zu File > Packages > Update to Latest Package Versions")
+    UI.message("")
+    UI.message("Oder verwende den Xcode-Befehl:")
+    UI.message("xcodebuild -resolvePackageDependencies")
     
-    UI.success("✅ Carthage Dependencies aktualisiert!")
+    UI.success("✅ Swift Package Manager wird verwendet - keine manuelle Aktualisierung nötig!")
   end
   
   # ==========================================

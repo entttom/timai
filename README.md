@@ -66,7 +66,7 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
 - **API**: Kimai v2 REST API
 - **Dependencies**: 
   - [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess) - Secure credential storage
-- **Dependency Manager**: Carthage
+- **Dependency Manager**: Swift Package Manager
 - **Language**: Swift 5+
 - **iOS Features**: 
   - Biometric authentication (Face ID/Touch ID)
@@ -90,22 +90,14 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
    cd timai
    ```
 
-2. **Install Carthage** (if not already installed):
-   ```bash
-   brew install carthage
-   ```
-
-3. **Install dependencies**:
-   ```bash
-   carthage update --platform iOS --use-xcframeworks
-   ```
-
-4. **Open the project**:
+2. **Open the project**:
    ```bash
    open Timai.xcodeproj
    ```
+   
+   Xcode will automatically resolve Swift Package Manager dependencies when you open the project.
 
-5. **Build and run**:
+3. **Build and run**:
    - Select your target device or simulator
    - Press `Cmd + R` to build and run
 
