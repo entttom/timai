@@ -23,14 +23,63 @@ class TimerManager: ObservableObject {
     private let userDefaultsKey = "activeTimer"
     private let networkService = NetworkService.shared
     private var liveActivityManager: LiveActivityManager?
+    #if os(iOS)
+    private var watchConnectivityService: WatchConnectivityService?
+    #endif
+    private var cancellables = Set<AnyCancellable>()
     
     private init() {
         loadTimerState()
+        setupTimerObservers()
     }
     
     /// Set the LiveActivityManager (avoid circular dependency)
     func setLiveActivityManager(_ manager: LiveActivityManager) {
         self.liveActivityManager = manager
+    }
+    
+    /// Set the WatchConnectivityService (avoid circular dependency)
+    #if os(iOS)
+    func setWatchConnectivityService(_ service: WatchConnectivityService) {
+        self.watchConnectivityService = service
+    }
+    #endif
+    
+    /// Setup observers for timer changes
+    private func setupTimerObservers() {
+        // Observe timer changes and send to Watch
+        $activeTimer
+            .sink { [weak self] timer in
+                #if os(iOS)
+                if let service = self?.watchConnectivityService {
+                    service.sendTimerStatus(timer)
+                }
+                #endif
+            }
+            .store(in: &cancellables)
+        
+        // Observe timer start/stop notifications
+        NotificationCenter.default.publisher(for: .timerDidStart)
+            .sink { [weak self] notification in
+                if let timer = notification.object as? ActiveTimer {
+                    #if os(iOS)
+                    if let service = self?.watchConnectivityService {
+                        service.sendTimerStatus(timer)
+                    }
+                    #endif
+                }
+            }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: .timerDidStop)
+            .sink { [weak self] _ in
+                #if os(iOS)
+                if let service = self?.watchConnectivityService {
+                    service.sendTimerStatus(nil)
+                }
+                #endif
+            }
+            .store(in: &cancellables)
     }
     
     /// Check if a timer is currently running
@@ -112,6 +161,13 @@ class TimerManager: ObservableObject {
         // Post notification
         NotificationCenter.default.post(name: .timerDidStart, object: timer)
         
+        // Send to Watch (already handled by observer, but send immediately)
+        #if os(iOS)
+        if let service = watchConnectivityService {
+            service.sendTimerStatus(timer)
+        }
+        #endif
+        
         print("✅ [TimerManager] Timer erfolgreich gestartet")
     }
     
@@ -186,6 +242,13 @@ class TimerManager: ObservableObject {
         // Post notification
         NotificationCenter.default.post(name: .timerDidStop, object: nil)
         
+        // Send to Watch (already handled by observer, but send immediately)
+        #if os(iOS)
+        if let service = watchConnectivityService {
+            service.sendTimerStatus(nil)
+        }
+        #endif
+        
         print("✅ [TimerManager] Timer erfolgreich gestoppt")
     }
     
@@ -230,6 +293,13 @@ class TimerManager: ObservableObject {
             // Start Live Activity with correct start date
             print("🔔 [TimerManager] Starte Live Activity mit Server-Startzeit")
             await liveActivityManager?.startTimerActivity(timer: timer)
+            
+            // Send to Watch
+            #if os(iOS)
+            if let service = watchConnectivityService {
+                service.sendTimerStatus(timer)
+            }
+            #endif
             
         } catch {
             print("❌ [TimerManager] Fehler beim Sync mit Server: \(error)")

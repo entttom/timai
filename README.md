@@ -33,6 +33,14 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
   - Dynamic Island integration (iPhone 14 Pro+)
   - Timer persists across app restarts
   - One-tap timer start from previous entries
+- **Apple Watch Companion App**:
+  - Start and stop timers directly from your Apple Watch
+  - View running timer with real-time elapsed time
+  - Browse and view recent time entries with details
+  - Create manual time entries with date and time selection
+  - Switch between multiple Kimai instances
+  - Watch Complications for quick access from Watch face
+  - Full localization support (German and English)
 - **Timesheet Management**: View, create, edit, and delete time entries
 - **Comprehensive Reports**: 
   - Personal weekly, monthly, and yearly views
@@ -53,6 +61,8 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
 - **Framework**: SwiftUI
 - **Architecture**: MVVM (Model-View-ViewModel)
 - **Live Activities**: ActivityKit for Lock Screen & Dynamic Island
+- **Watch Connectivity**: WatchConnectivity framework for iPhone-Watch communication
+- **Watch Complications**: ClockKit for Watch face complications
 - **API**: Kimai v2 REST API
 - **Dependencies**: 
   - [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess) - Secure credential storage
@@ -62,10 +72,12 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
   - Biometric authentication (Face ID/Touch ID)
   - Offline caching & synchronization
   - Multi-instance support
+  - Apple Watch companion app
 
 ## Requirements
 
 - iOS 17.0 or later
+- watchOS 10.0 or later (for Apple Watch app)
 - Xcode 15.0 or later
 - Kimai v2 server (version 0.5.0 or higher) with API access
 - Valid Kimai API token
@@ -117,8 +129,22 @@ Timai/
 │   └── Settings/       # Settings views
 ├── ViewModels/         # View models for business logic
 ├── Services/           # Network and API services
+│   └── WatchConnectivityService.swift  # iPhone-Watch communication
 ├── Components/         # Reusable UI components
 └── Helper/             # Utility files and extensions
+
+TimaiWatch Watch App/
+├── Views/              # Watch app views
+│   ├── TimerView.swift              # Main timer view
+│   ├── CustomerSelectionView.swift  # Customer selection
+│   ├── ProjectSelectionView.swift  # Project selection
+│   ├── ActivitySelectionView.swift # Activity selection
+│   ├── TimerSummaryView.swift      # Timer summary before start
+│   ├── ManualTimesheetView.swift   # Manual time entry flow
+│   └── TimesheetListView.swift    # Recent entries list
+├── ViewModels/         # Watch app view models
+├── Services/           # WatchConnectivityService (Watch side)
+└── Complications/      # Watch face complications
 ```
 
 ## License
@@ -160,7 +186,13 @@ Please ensure your code follows Swift best practices and includes appropriate co
 - [x] Live Activities with timer tracking
 - [x] Multi-instance support
 - [x] Biometric authentication
-- [ ] Apple Watch companion app
+- [x] Apple Watch companion app
+  - [x] Timer start/stop from Watch
+  - [x] View running timer
+  - [x] Browse recent time entries
+  - [x] Manual time entry creation
+  - [x] Multi-instance support
+  - [x] Watch Complications
 - [ ] Siri shortcuts integration
 - [ ] Today Widget for quick time entry
 

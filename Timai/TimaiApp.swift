@@ -33,6 +33,11 @@ struct TimaiApp: App {
                 TimerManager.shared.setLiveActivityManager(LiveActivityManager.shared)
             }
         }
+        
+        // Connect WatchConnectivityService to TimerManager
+        Task { @MainActor in
+            TimerManager.shared.setWatchConnectivityService(WatchConnectivityService.shared)
+        }
         #endif
     }
     
@@ -50,6 +55,13 @@ struct TimaiApp: App {
                         Task {
                             await authViewModel.checkAutoLogin()
                         }
+                    }
+                    .onChange(of: authViewModel.currentUser) { _, newUser in
+                        #if os(iOS)
+                        if let user = newUser {
+                            WatchConnectivityService.shared.setUser(user)
+                        }
+                        #endif
                     }
                 
                 // App Lock Overlay

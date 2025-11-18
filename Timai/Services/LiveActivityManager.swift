@@ -26,14 +26,28 @@ class LiveActivityManager {
     /// Start a Live Activity for the running timer
     func startTimerActivity(timer: ActiveTimer) async {
         print("🚀 [LiveActivityManager] startTimerActivity aufgerufen für: \(timer.projectName)")
-        print("✅ [LiveActivityManager] ActivityKit verfügbar - starte/aktualisiere Live Activity")
+        
+        // Log authorization info for debugging
+        let authInfo = ActivityKit.ActivityAuthorizationInfo()
+        print("ℹ️ [LiveActivityManager] ActivityKit Status - areActivitiesEnabled: \(authInfo.areActivitiesEnabled), frequentPushesEnabled: \(authInfo.frequentPushesEnabled)")
+        
+        // Try to start activity - let iOS decide if it's possible
+        // Don't block on authorization check as it might be too strict
         
         // Check if an activity already exists
         if let activityId = currentActivityId {
-            // Update existing activity instead of recreating
-            print("🔄 [LiveActivityManager] Live Activity existiert bereits - aktualisiere statt neu zu erstellen")
-            await updateTimerActivity(timer: timer)
-            return
+            // Check if activity still exists
+            let existingActivities = ActivityKit.Activity<TimerActivityAttributes>.activities
+            if existingActivities.contains(where: { $0.id == activityId }) {
+                // Update existing activity instead of recreating
+                print("🔄 [LiveActivityManager] Live Activity existiert bereits - aktualisiere statt neu zu erstellen")
+                await updateTimerActivity(timer: timer)
+                return
+            } else {
+                // Activity doesn't exist anymore, clear the ID
+                print("⚠️ [LiveActivityManager] Live Activity mit ID \(activityId) existiert nicht mehr")
+                currentActivityId = nil
+            }
         }
         
         let attributes = TimerActivityAttributes(
@@ -57,9 +71,11 @@ class LiveActivityManager {
             currentActivityId = activity.id
             print("✅ [LiveActivityManager] Live Activity gestartet: \(activity.id)")
             print("✅ [LiveActivityManager] Activity State: \(activity.activityState)")
+            print("✅ [LiveActivityManager] Activity sollte jetzt in Dynamic Island sichtbar sein")
         } catch {
             print("❌ [LiveActivityManager] Fehler beim Starten der Live Activity: \(error)")
             print("❌ [LiveActivityManager] Error Details: \(error.localizedDescription)")
+            print("❌ [LiveActivityManager] Error Type: \(type(of: error))")
         }
     }
     

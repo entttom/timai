@@ -122,4 +122,3 @@ struct TimerLockScreenView: View {
     }
 }
 #endif
-
