@@ -40,6 +40,18 @@
 		AA41F1A52ECA3945008F4B4A /* TagInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1A42ECA3945008F4B4A /* TagInputView.swift */; };
 		AA41F1A92ECA620A008F4B4A /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1A82ECA620A008F4B4A /* Tag.swift */; };
 		AA41F1AB2ECA66AA008F4B4A /* TimesheetEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1AA2ECA66AA008F4B4A /* TimesheetEditForm.swift */; };
+		AA41F1AD2ECB2308008F4B4A /* SearchFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1AC2ECB2307008F4B4A /* SearchFilters.swift */; };
+		AA41F1AF2ECB2327008F4B4A /* SearchSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1AE2ECB2327008F4B4A /* SearchSheet.swift */; };
+		AA41F1D02ECB3DD4008F4B4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDD678721F7D9051002F4D33 /* LaunchScreen.storyboard */; };
+		AA41F2022ECB6400008F4B4A /* TimaiWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = AA41F1F82ECB6400008F4B4A /* TimaiWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA41F2222ECB646A008F4B4A /* ActiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B392EBF8CEE005E592B /* ActiveTimer.swift */; };
+		AA41F2232ECB6471008F4B4A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4A303DA5D49C78F37C4A9 /* Customer.swift */; };
+		AA41F2242ECB6479008F4B4A /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74829760C01C4CB7B99E35E4 /* Project.swift */; };
+		AA41F2252ECB6480008F4B4A /* ActivityDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59417D4EA39948F8AE6F4B07 /* ActivityDetails.swift */; };
+		AA41F2262ECB648E008F4B4A /* TimesheetEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1AA2ECA66AA008F4B4A /* TimesheetEditForm.swift */; };
+		AA41F2272ECB6498008F4B4A /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB0BF571F814CBB005AAA0F /* Activity.swift */; };
+		AA41F22C2ECB64DE008F4B4A /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA41F22A2ECB64DC008F4B4A /* WatchConnectivity.framework */; platformFilter = ios; };
+		AA41F3632ECB7B2A008F4B4A /* TimaiWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA5DBD222EBF9FF600002C68 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3E3E751F82E62200B5D291 /* Localizable.strings */; };
 		AA68BDF02EBB288900D64E58 /* OfflineSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */; };
 		AA68BDF12EBB288900D64E58 /* PendingOperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEF2EBB288900D64E58 /* PendingOperationsManager.swift */; };
@@ -64,6 +76,7 @@
 		AAD67B1C2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1A2EBF8AAD005E592B /* TimerActivityAttributes.swift */; };
 		AAD67B212EBF8B6D005E592B /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */; };
 		AAD67B222EBF8B6D005E592B /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1E2EBF8B6D005E592B /* TimerManager.swift */; };
+		AAD67B232EBF8B6D005E592B /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1F2EBF8B6D005E592B /* WatchConnectivityService.swift */; };
 		AAD67B342EBF8C79005E592B /* TimerStartSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B322EBF8C79005E592B /* TimerStartSheet.swift */; };
 		AAD67B352EBF8C79005E592B /* TimerStopDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B332EBF8C79005E592B /* TimerStopDialog.swift */; };
 		AAD67B362EBF8C79005E592B /* TimerBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B312EBF8C79005E592B /* TimerBanner.swift */; };
@@ -82,6 +95,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AA41F2002ECB6400008F4B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA41F1F72ECB6400008F4B4A;
+			remoteInfo = "TimaiWatch Watch App";
+		};
+		AA41F3642ECB7B2A008F4B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAD67AF42EBF88DC005E592B;
+			remoteInfo = TimaiWidgetsExtension;
+		};
+		AA41F3672ECB7B39008F4B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAD67AF42EBF88DC005E592B;
+			remoteInfo = TimaiWidgetsExtension;
+		};
+		AA41F3692ECB7B4E008F4B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAD67AF42EBF88DC005E592B;
+			remoteInfo = TimaiWidgetsExtension;
+		};
+		AA41F36B2ECB7B59008F4B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAD67AF42EBF88DC005E592B;
+			remoteInfo = TimaiWidgetsExtension;
+		};
 		FD8D548720853DCC004F1C85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
@@ -90,6 +138,31 @@
 			remoteInfo = Timai;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA41F1F02ECB63CB008F4B4A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				AA41F2022ECB6400008F4B4A /* TimaiWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA41F3662ECB7B2A008F4B4A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AA41F3632ECB7B2A008F4B4A /* TimaiWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		59417D4EA39948F8AE6F4B07 /* ActivityDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetails.swift; sourceTree = "<group>"; };
@@ -124,6 +197,11 @@
 		AA41F1A42ECA3945008F4B4A /* TagInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInputView.swift; sourceTree = "<group>"; };
 		AA41F1A82ECA620A008F4B4A /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		AA41F1AA2ECA66AA008F4B4A /* TimesheetEditForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetEditForm.swift; sourceTree = "<group>"; };
+		AA41F1AC2ECB2307008F4B4A /* SearchFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilters.swift; sourceTree = "<group>"; };
+		AA41F1AE2ECB2327008F4B4A /* SearchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSheet.swift; sourceTree = "<group>"; };
+		AA41F1F82ECB6400008F4B4A /* TimaiWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TimaiWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA41F2282ECB64C3008F4B4A /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.0.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
+		AA41F22A2ECB64DC008F4B4A /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		AA68BDEC2EBB288900D64E58 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		AA68BDED2EBB288900D64E58 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncManager.swift; sourceTree = "<group>"; };
@@ -147,6 +225,7 @@
 		AAD67B1A2EBF8AAD005E592B /* TimerActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerActivityAttributes.swift; sourceTree = "<group>"; };
 		AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
 		AAD67B1E2EBF8B6D005E592B /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		AAD67B1F2EBF8B6D005E592B /* WatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityService.swift; sourceTree = "<group>"; };
 		AAD67B312EBF8C79005E592B /* TimerBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBanner.swift; sourceTree = "<group>"; };
 		AAD67B322EBF8C79005E592B /* TimerStartSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartSheet.swift; sourceTree = "<group>"; };
 		AAD67B332EBF8C79005E592B /* TimerStopDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStopDialog.swift; sourceTree = "<group>"; };
@@ -182,10 +261,18 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		AA41F1F92ECB6400008F4B4A /* TimaiWatch Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "TimaiWatch Watch App"; sourceTree = "<group>"; };
 		AAD67AFA2EBF88DC005E592B /* TimaiWidgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (AAD67B0C2EBF88DE005E592B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = TimaiWidgets; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA41F1F52ECB6400008F4B4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAD67AF22EBF88DC005E592B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA41F1112EC71DF3008F4B4A /* KeychainAccess in Frameworks */,
+				AA41F22C2ECB64DE008F4B4A /* WatchConnectivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +330,7 @@
 			children = (
 				AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */,
 				AAD67B1E2EBF8B6D005E592B /* TimerManager.swift */,
+				AAD67B1F2EBF8B6D005E592B /* WatchConnectivityService.swift */,
 				AAD67AE82EBE5286005E592B /* InstanceManager.swift */,
 				AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */,
 				AA68BDEC2EBB288900D64E58 /* CacheManager.swift */,
@@ -278,6 +367,7 @@
 		AA34B1512EBA0D4D0027C2F5 /* Timesheet */ = {
 			isa = PBXGroup;
 			children = (
+				AA41F1AE2ECB2327008F4B4A /* SearchSheet.swift */,
 				AA34B14E2EBA0D4D0027C2F5 /* TimesheetDetailView.swift */,
 				AA34B14F2EBA0D4D0027C2F5 /* TimesheetEditView.swift */,
 				AA34B1502EBA0D4D0027C2F5 /* TimesheetView.swift */,
@@ -358,6 +448,7 @@
 		FDB0BF561F814CA9005AAA0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AA41F1AC2ECB2307008F4B4A /* SearchFilters.swift */,
 				AA41F1AA2ECA66AA008F4B4A /* TimesheetEditForm.swift */,
 				AA41F1A82ECA620A008F4B4A /* Tag.swift */,
 				AA41F1A22ECA3936008F4B4A /* TagUtils.swift */,
@@ -386,6 +477,7 @@
 				FDD678681F7D9051002F4D33 /* Timai */,
 				FD8D548320853DCC004F1C85 /* TimaiUITests */,
 				AAD67AFA2EBF88DC005E592B /* TimaiWidgets */,
+				AA41F1F92ECB6400008F4B4A /* TimaiWatch Watch App */,
 				FDD678671F7D9051002F4D33 /* Products */,
 				FDD6787F1F7D93E7002F4D33 /* Frameworks */,
 			);
@@ -397,6 +489,7 @@
 				FDD678661F7D9051002F4D33 /* Timai.app */,
 				FD8D548220853DCC004F1C85 /* TimaiUITests.xctest */,
 				AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */,
+				AA41F1F82ECB6400008F4B4A /* TimaiWatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -425,6 +518,8 @@
 		FDD6787F1F7D93E7002F4D33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA41F2282ECB64C3008F4B4A /* WatchConnectivity.framework */,
+				AA41F22A2ECB64DC008F4B4A /* WatchConnectivity.framework */,
 				AAD67AF62EBF88DC005E592B /* WidgetKit.framework */,
 				AAD67AF82EBF88DC005E592B /* SwiftUI.framework */,
 			);
@@ -458,6 +553,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA41F1F72ECB6400008F4B4A /* TimaiWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA41F2032ECB6400008F4B4A /* Build configuration list for PBXNativeTarget "TimaiWatch Watch App" */;
+			buildPhases = (
+				AA41F1F42ECB6400008F4B4A /* Sources */,
+				AA41F1F52ECB6400008F4B4A /* Frameworks */,
+				AA41F1F62ECB6400008F4B4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AA41F1F92ECB6400008F4B4A /* TimaiWatch Watch App */,
+			);
+			name = "TimaiWatch Watch App";
+			packageProductDependencies = (
+			);
+			productName = "TimaiWatch Watch App";
+			productReference = AA41F1F82ECB6400008F4B4A /* TimaiWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAD67B0D2EBF88DE005E592B /* Build configuration list for PBXNativeTarget "TimaiWidgetsExtension" */;
@@ -507,10 +624,17 @@
 				FDD678641F7D9051002F4D33 /* Resources */,
 				FDD6787E1F7D9387002F4D33 /* ShellScript */,
 				FDAACDE120813DFF006E15DE /* ShellScript */,
+				AA41F1F02ECB63CB008F4B4A /* Embed Watch Content */,
+				AA41F3662ECB7B2A008F4B4A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AA41F2012ECB6400008F4B4A /* PBXTargetDependency */,
+				AA41F3652ECB7B2A008F4B4A /* PBXTargetDependency */,
+				AA41F3682ECB7B39008F4B4A /* PBXTargetDependency */,
+				AA41F36A2ECB7B4E008F4B4A /* PBXTargetDependency */,
+				AA41F36C2ECB7B59008F4B4A /* PBXTargetDependency */,
 			);
 			name = Timai;
 			productName = Timai;
@@ -528,6 +652,9 @@
 				LastUpgradeCheck = 2600;
 				ORGANIZATIONNAME = "Dr. Thomas Entner";
 				TargetAttributes = {
+					AA41F1F72ECB6400008F4B4A = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
 					AAD67AF42EBF88DC005E592B = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
@@ -564,11 +691,19 @@
 				FDD678651F7D9051002F4D33 /* Timai */,
 				FD8D548120853DCC004F1C85 /* TimaiUITests */,
 				AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */,
+				AA41F1F72ECB6400008F4B4A /* TimaiWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AA41F1F62ECB6400008F4B4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAD67AF32EBF88DC005E592B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -588,6 +723,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA41F1D02ECB3DD4008F4B4A /* LaunchScreen.storyboard in Resources */,
 				FD3E3E731F82E62200B5D291 /* Localizable.strings in Resources */,
 				FDD678711F7D9051002F4D33 /* Assets.xcassets in Resources */,
 			);
@@ -625,6 +761,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AA41F1F42ECB6400008F4B4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA41F2272ECB6498008F4B4A /* Activity.swift in Sources */,
+				AA41F2262ECB648E008F4B4A /* TimesheetEditForm.swift in Sources */,
+				AA41F2242ECB6479008F4B4A /* Project.swift in Sources */,
+				AA41F2252ECB6480008F4B4A /* ActivityDetails.swift in Sources */,
+				AA41F2232ECB6471008F4B4A /* Customer.swift in Sources */,
+				AA41F2222ECB646A008F4B4A /* ActiveTimer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAD67AF12EBF88DC005E592B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -675,12 +824,14 @@
 				AA34B1572EBA0D4D0027C2F5 /* GraphicsCreditsView.swift in Sources */,
 				AAD67AF02EBE59D4005E592B /* EditInstanceView.swift in Sources */,
 				AA34B1582EBA0D4D0027C2F5 /* GenericReportView.swift in Sources */,
+				AA41F1AD2ECB2308008F4B4A /* SearchFilters.swift in Sources */,
 				AA34B1592EBA0D4D0027C2F5 /* OSSCreditsView.swift in Sources */,
 				AA34B15A2EBA0D4D0027C2F5 /* ReportsView.swift in Sources */,
 				AA34B15B2EBA0D4D0027C2F5 /* ToastView.swift in Sources */,
 				AA34B15C2EBA0D4D0027C2F5 /* SettingsView.swift in Sources */,
 				AA34B15D2EBA0D4D0027C2F5 /* LoginView.swift in Sources */,
 				AA34B15E2EBA0D4D0027C2F5 /* TimesheetEditView.swift in Sources */,
+				AA41F1AF2ECB2327008F4B4A /* SearchSheet.swift in Sources */,
 				AA34B15F2EBA0D4D0027C2F5 /* NetworkService.swift in Sources */,
 				AAD67AE72EBE5278005E592B /* KimaiInstance.swift in Sources */,
 				AA34B1602EBA0D4D0027C2F5 /* TimesheetView.swift in Sources */,
@@ -705,6 +856,7 @@
 				AA68BDF02EBB288900D64E58 /* OfflineSyncManager.swift in Sources */,
 				AAD67B212EBF8B6D005E592B /* LiveActivityManager.swift in Sources */,
 				AAD67B222EBF8B6D005E592B /* TimerManager.swift in Sources */,
+				AAD67B232EBF8B6D005E592B /* WatchConnectivityService.swift in Sources */,
 				AA68BDF12EBB288900D64E58 /* PendingOperationsManager.swift in Sources */,
 				AA68BDF22EBB288900D64E58 /* CacheManager.swift in Sources */,
 				AA68BDF32EBB288900D64E58 /* NetworkMonitor.swift in Sources */,
@@ -715,6 +867,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AA41F2012ECB6400008F4B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA41F1F72ECB6400008F4B4A /* TimaiWatch Watch App */;
+			targetProxy = AA41F2002ECB6400008F4B4A /* PBXContainerItemProxy */;
+		};
+		AA41F3652ECB7B2A008F4B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+			targetProxy = AA41F3642ECB7B2A008F4B4A /* PBXContainerItemProxy */;
+		};
+		AA41F3682ECB7B39008F4B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+			targetProxy = AA41F3672ECB7B39008F4B4A /* PBXContainerItemProxy */;
+		};
+		AA41F36A2ECB7B4E008F4B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+			targetProxy = AA41F3692ECB7B4E008F4B4A /* PBXContainerItemProxy */;
+		};
+		AA41F36C2ECB7B59008F4B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+			targetProxy = AA41F36B2ECB7B59008F4B4A /* PBXContainerItemProxy */;
+		};
 		FD8D548820853DCC004F1C85 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FDD678651F7D9051002F4D33 /* Timai */;
@@ -744,6 +921,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AA41F2042ECB6400008F4B4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = TimaiWatch;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).TimerComplicationController";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.entner.time;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		AA41F2052ECB6400008F4B4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = TimaiWatch;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).TimerComplicationController";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.entner.time;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
 		AAD67B0A2EBF88DE005E592B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -753,7 +1012,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -767,7 +1026,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiWidgets;
@@ -793,7 +1052,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -807,7 +1066,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -989,7 +1248,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1002,12 +1261,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1019,7 +1279,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1032,12 +1292,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1047,6 +1308,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA41F2032ECB6400008F4B4A /* Build configuration list for PBXNativeTarget "TimaiWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA41F2042ECB6400008F4B4A /* Debug */,
+				AA41F2052ECB6400008F4B4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AAD67B0D2EBF88DE005E592B /* Build configuration list for PBXNativeTarget "TimaiWidgetsExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

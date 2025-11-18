@@ -113,7 +113,6 @@ struct TimesheetView: View {
         }
         .animation(.easeInOut, value: timerManager.activeTimer != nil)
         .animation(.easeInOut, value: showingTimerStopDialog)
-        .navigationTitle("timesheet.navigationTitle".localized())
         .toolbar {
             // Instance Badge (only show when multiple instances)
             if instanceManager.hasMultipleInstances, let activeInstance = instanceManager.activeInstance {

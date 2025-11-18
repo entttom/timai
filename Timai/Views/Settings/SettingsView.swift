@@ -285,7 +285,6 @@ struct SettingsView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
         }
-        .navigationTitle("settings.navigationTitle".localized())
         .alert("settings.alert.logout.title".localized(), isPresented: $showingLogoutAlert) {
             Button("settings.alert.logout.cancel".localized(), role: .cancel) {}
             Button("settings.alert.logout.confirm".localized(), role: .destructive) {

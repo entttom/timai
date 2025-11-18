@@ -38,7 +38,6 @@ struct ReportsView: View {
             .padding()
         }
         .background(Color.timaiGray.ignoresSafeArea())
-        .navigationTitle("reports.navigationTitle".localized())
         .toolbar {
             // Instance Badge (only show when multiple instances)
             if instanceManager.hasMultipleInstances, let activeInstance = instanceManager.activeInstance {
