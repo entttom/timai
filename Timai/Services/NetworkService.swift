@@ -19,6 +19,7 @@ class NetworkService {
         case noResponse(Error?)
         case invalidResponse(Error?)
         case requestError(Error?)
+        case validationError(String) // Für 400 Bad Request mit Validierungsfehlern
         case offlineNoCache
         
         var errorDescription: String? {
@@ -31,6 +32,8 @@ class NetworkService {
                 return "Ungültige Serverantwort"
             case .requestError:
                 return "Netzwerkfehler"
+            case .validationError(let message):
+                return message
             case .offlineNoCache:
                 return "Offline - Keine Daten im Cache"
             }
@@ -240,7 +243,9 @@ class NetworkService {
         // Load from cache (offline or API failed)
         print("💾 [NetworkService] Lade Timesheets aus Cache...")
         do {
-            let cachedTimesheets = try await cacheManager.load([Timesheet].self, for: user, cacheType: .timesheets)
+            var cachedTimesheets = try await cacheManager.load([Timesheet].self, for: user, cacheType: .timesheets)
+            // Sortiere nach begin DESC (neueste zuerst) - wichtig für korrekte Anzeige
+            cachedTimesheets.sort { $0.begin > $1.begin }
             let activities = cachedTimesheets.map { timesheet in
                 Activity(
                     recordId: timesheet.id,
@@ -511,6 +516,25 @@ class NetworkService {
                 await updateCacheAfterCreate(timesheet: timesheet, user: user)
                 
         return timesheet
+            } catch let error as APIError {
+                // Validierungsfehler sollten NICHT zur Pending Queue hinzugefügt werden
+                // da sie sich durch Wiederholung nicht beheben lassen
+                if case .validationError = error {
+                    print("❌ [NetworkService] Validierungsfehler - NICHT zur Pending Queue hinzugefügt: \(error.localizedDescription)")
+                    throw error // Wirf den Fehler weiter, damit der Aufrufer ihn behandeln kann
+                }
+                
+                print("❌ [NetworkService] Online-Create fehlgeschlagen: \(error)")
+                
+                // Fallback to offline mode nur bei Netzwerkfehlern, nicht bei Validierungsfehlern
+                let tempId = UUID().uuidString
+                pendingOpsManager.addOperation(.createTimesheet(form: form, tempId: tempId))
+                print("📥 [NetworkService] Create fehlgeschlagen - zur Pending Queue hinzugefügt (tempId: \(tempId))")
+                
+                let tempTimesheet = await createTemporaryTimesheet(from: form, tempId: tempId, user: user)
+                await updateCacheAfterCreate(timesheet: tempTimesheet, user: user)
+                
+                return tempTimesheet
             } catch {
                 print("❌ [NetworkService] Online-Create fehlgeschlagen: \(error)")
                 
@@ -579,6 +603,24 @@ class NetworkService {
                 await updateCacheAfterUpdate(timesheet: timesheet, user: user)
                 
         return timesheet
+            } catch let error as APIError {
+                // Validierungsfehler sollten NICHT zur Pending Queue hinzugefügt werden
+                // da sie sich durch Wiederholung nicht beheben lassen
+                if case .validationError = error {
+                    print("❌ [NetworkService] Validierungsfehler - NICHT zur Pending Queue hinzugefügt: \(error.localizedDescription)")
+                    throw error // Wirf den Fehler weiter, damit der Aufrufer ihn behandeln kann
+                }
+                
+                print("❌ [NetworkService] Online-Update fehlgeschlagen: \(error)")
+                
+                // Fallback to offline mode nur bei Netzwerkfehlern, nicht bei Validierungsfehlern
+                pendingOpsManager.addOperation(.updateTimesheet(id: id, form: form))
+                print("📥 [NetworkService] Update fehlgeschlagen - zur Pending Queue hinzugefügt (id: \(id))")
+                
+                let tempTimesheet = await createTemporaryTimesheet(from: form, tempId: "\(id)", user: user, existingId: id)
+                await updateCacheAfterUpdate(timesheet: tempTimesheet, user: user)
+                
+                return tempTimesheet
             } catch {
                 print("❌ [NetworkService] Online-Update fehlgeschlagen: \(error)")
                 
@@ -653,8 +695,11 @@ class NetworkService {
             
             // Check if timesheet already exists (avoid duplicates)
             if !cachedTimesheets.contains(where: { $0.id == timesheet.id }) {
-                cachedTimesheets.insert(timesheet, at: 0) // Add at beginning (newest first)
+                cachedTimesheets.append(timesheet)
             }
+            
+            // Sortiere nach begin DESC (neueste zuerst)
+            cachedTimesheets.sort { $0.begin > $1.begin }
             
             // Limit cache size
             let maxEntries = CacheSettings.maxCacheEntries
@@ -1113,11 +1158,50 @@ class NetworkService {
             guard 200..<300 ~= httpResp.statusCode else {
                 print("❌ [NetworkService] HTTP Status code: \(httpResp.statusCode)")
                 
-                // Bei 400 Error, zeige Response Body für Details
-                if httpResp.statusCode == 400,
-                   let errorMessage = String(data: data, encoding: .utf8) {
-                    print("❌ [NetworkService] 400 Bad Request - Server Response:")
-                    print("📄 [NetworkService] \(errorMessage)")
+                // Bei 400 Error, parse Validation-Fehler
+                if httpResp.statusCode == 400 {
+                    if let errorMessage = String(data: data, encoding: .utf8) {
+                        print("❌ [NetworkService] 400 Bad Request - Server Response:")
+                        print("📄 [NetworkService] \(errorMessage)")
+                        
+                        // Versuche, die Validierungsfehler zu parsen
+                        if let jsonObject = try? JSONSerialization.jsonObject(with: data),
+                           let errorDict = jsonObject as? [String: Any] {
+                            // Extrahiere spezifische Fehlermeldungen
+                            var validationMessages: [String] = []
+                            
+                            if let errorsAny = errorDict["errors"],
+                               let errorsValue = errorsAny as? [String: Any] {
+                                if let childrenAny = errorsValue["children"],
+                                   let childrenValue = childrenAny as? [String: Any] {
+                                    for (field, fieldErrors) in childrenValue {
+                                        if let fieldErrorDict = fieldErrors as? [String: Any],
+                                           let fieldErrorArray = fieldErrorDict["errors"] as? [String],
+                                           !fieldErrorArray.isEmpty {
+                                            for errorMsg in fieldErrorArray {
+                                                validationMessages.append("\(field): \(errorMsg)")
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            if !validationMessages.isEmpty {
+                                let message = validationMessages.joined(separator: ", ")
+                                throw APIError.validationError(message)
+                            }
+                            
+                            // Fallback: Verwende die generische Fehlermeldung
+                            if let messageAny = errorDict["message"],
+                               let message = messageAny as? String {
+                                throw APIError.validationError(message)
+                            }
+                        }
+                        
+                        throw APIError.validationError("Validierungsfehler: \(errorMessage)")
+                    } else {
+                        throw APIError.validationError("Ungültige Anfrage")
+                    }
                 }
                 
                 if httpResp.statusCode == 401 {

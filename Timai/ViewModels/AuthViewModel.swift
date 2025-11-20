@@ -175,6 +175,9 @@ class AuthViewModel: ObservableObject {
             case .requestError:
                 print("❌ [AuthViewModel] Netzwerk-Fehler")
                 errorMessage = "error.message.endpointConnectionError".localized()
+            case .validationError(let message):
+                print("❌ [AuthViewModel] Validierungsfehler: \(message)")
+                errorMessage = message
             case .offlineNoCache:
                 print("❌ [AuthViewModel] Offline ohne Cache")
                 errorMessage = "error.message.endpointConnectionError".localized()

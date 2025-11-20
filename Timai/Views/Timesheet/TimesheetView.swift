@@ -163,6 +163,10 @@ struct TimesheetView: View {
             NavigationStack {
                 TimesheetEditView(mode: .create, onSaved: {
                     showingAddSheet = false
+                    // Lade die Liste neu, um das neue Timesheet anzuzeigen
+                    Task {
+                        await viewModel.loadTimesheets()
+                    }
                 })
                 .environmentObject(viewModel)
             }

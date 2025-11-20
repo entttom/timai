@@ -778,6 +778,15 @@ class TimesheetEditViewModel: ObservableObject {
             await loadKnownTags()
             isSaving = false
             return true
+        } catch let error as NetworkService.APIError {
+            // Zeige spezifische Validierungsfehler an
+            if case .validationError(let message) = error {
+                errorMessage = message
+            } else {
+                errorMessage = error.localizedDescription
+            }
+            isSaving = false
+            return false
         } catch {
             errorMessage = "timesheetEdit.error.saving".localized()
             isSaving = false
@@ -812,6 +821,15 @@ class TimesheetEditViewModel: ObservableObject {
             await loadKnownTags()
             isSaving = false
             return true
+        } catch let error as NetworkService.APIError {
+            // Zeige spezifische Validierungsfehler an
+            if case .validationError(let message) = error {
+                errorMessage = message
+            } else {
+                errorMessage = error.localizedDescription
+            }
+            isSaving = false
+            return false
         } catch {
             errorMessage = "timesheetEdit.error.saving".localized()
             isSaving = false

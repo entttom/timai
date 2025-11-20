@@ -184,51 +184,108 @@ class TimerManager: ObservableObject {
         
         // Stop timer on server
         if let timesheetId = timer.timesheetId {
-            // Update existing timesheet with end date
-            let form = TimesheetEditForm(
-                project: timer.projectId,
-                activity: timer.activityId,
-                begin: timer.startDate.ISO8601Format(),
-                end: endDate.ISO8601Format(),
-                description: finalDescription ?? timer.description,
-                tags: nil,
-                fixedRate: nil,
-                hourlyRate: nil,
-                user: nil,
-                exported: nil,
-                billable: true
-            )
-            
-            do {
-                _ = try await networkService.updateTimesheet(id: timesheetId, form: form, user: user)
-                print("✅ [TimerManager] Timer auf Server gestoppt")
-            } catch {
-                print("⚠️ [TimerManager] Konnte Timer nicht auf Server stoppen: \(error)")
-                print("📥 [TimerManager] Timer-Stop wird später synchronisiert")
-                // Offline mode will queue this operation
+            // Check if this is a negative (temp) ID from an offline timer
+            if timesheetId < 0 {
+                // Timer was created offline - try to update the pending CREATE operation instead of creating an UPDATE
+                let pendingOpsManager = PendingOperationsManager.shared
+                if let tempIdHash = pendingOpsManager.updatePendingTimerCreateOperation(
+                    projectId: timer.projectId,
+                    activityId: timer.activityId,
+                    beginDate: timer.startDate,
+                    endDate: endDate,
+                    description: finalDescription ?? timer.description
+                ) {
+                    print("✅ [TimerManager] Pending CREATE Operation für Timer aktualisiert (end-Datum hinzugefügt)")
+                    // Update cache with the new end date
+                    await updateCacheForStoppedTimer(timesheetId: tempIdHash, endDate: endDate, user: user)
+                    // No need to create an UPDATE operation - the CREATE operation now has the end date
+                } else {
+                    // CREATE operation not found - create UPDATE operation as fallback
+                    let form = TimesheetEditForm(
+                        project: timer.projectId,
+                        activity: timer.activityId,
+                        begin: timer.startDate.ISO8601Format(),
+                        end: endDate.ISO8601Format(),
+                        description: finalDescription ?? timer.description,
+                        tags: nil,
+                        fixedRate: nil,
+                        hourlyRate: nil,
+                        user: nil,
+                        exported: nil,
+                        billable: true
+                    )
+                    
+                    do {
+                        _ = try await networkService.updateTimesheet(id: timesheetId, form: form, user: user)
+                        print("✅ [TimerManager] Timer auf Server gestoppt")
+                    } catch {
+                        print("⚠️ [TimerManager] Konnte Timer nicht auf Server stoppen: \(error)")
+                        print("📥 [TimerManager] Timer-Stop wird später synchronisiert")
+                        // Offline mode will queue this operation
+                    }
+                }
+            } else {
+                // Positive ID - timer exists on server, update it
+                let form = TimesheetEditForm(
+                    project: timer.projectId,
+                    activity: timer.activityId,
+                    begin: timer.startDate.ISO8601Format(),
+                    end: endDate.ISO8601Format(),
+                    description: finalDescription ?? timer.description,
+                    tags: nil,
+                    fixedRate: nil,
+                    hourlyRate: nil,
+                    user: nil,
+                    exported: nil,
+                    billable: true
+                )
+                
+                do {
+                    _ = try await networkService.updateTimesheet(id: timesheetId, form: form, user: user)
+                    print("✅ [TimerManager] Timer auf Server gestoppt")
+                } catch {
+                    print("⚠️ [TimerManager] Konnte Timer nicht auf Server stoppen: \(error)")
+                    print("📥 [TimerManager] Timer-Stop wird später synchronisiert")
+                    // Offline mode will queue this operation
+                }
             }
         } else {
-            // Create new timesheet (timer was only local)
-            let form = TimesheetEditForm(
-                project: timer.projectId,
-                activity: timer.activityId,
-                begin: timer.startDate.ISO8601Format(),
-                end: endDate.ISO8601Format(),
-                description: finalDescription ?? timer.description,
-                tags: nil,
-                fixedRate: nil,
-                hourlyRate: nil,
-                user: nil,
-                exported: nil,
-                billable: true
-            )
-            
-            do {
-                _ = try await networkService.createTimesheet(form: form, user: user)
-                print("✅ [TimerManager] Lokaler Timer als Timesheet auf Server erstellt")
-            } catch {
-                print("⚠️ [TimerManager] Konnte Timesheet nicht erstellen: \(error)")
-                print("📥 [TimerManager] Timesheet wird später synchronisiert")
+            // Timer was only local - check if there's a pending CREATE operation for this timer
+            let pendingOpsManager = PendingOperationsManager.shared
+            if let tempIdHash = pendingOpsManager.updatePendingTimerCreateOperation(
+                projectId: timer.projectId,
+                activityId: timer.activityId,
+                beginDate: timer.startDate,
+                endDate: endDate,
+                description: finalDescription ?? timer.description
+            ) {
+                print("✅ [TimerManager] Pending CREATE Operation für Timer aktualisiert (end-Datum hinzugefügt)")
+                // Update cache with the new end date
+                await updateCacheForStoppedTimer(timesheetId: tempIdHash, endDate: endDate, user: user)
+                // No need to create a new timesheet - the existing CREATE operation will be synced with the end date
+            } else {
+                // No pending CREATE operation found - create new timesheet
+                let form = TimesheetEditForm(
+                    project: timer.projectId,
+                    activity: timer.activityId,
+                    begin: timer.startDate.ISO8601Format(),
+                    end: endDate.ISO8601Format(),
+                    description: finalDescription ?? timer.description,
+                    tags: nil,
+                    fixedRate: nil,
+                    hourlyRate: nil,
+                    user: nil,
+                    exported: nil,
+                    billable: true
+                )
+                
+                do {
+                    _ = try await networkService.createTimesheet(form: form, user: user)
+                    print("✅ [TimerManager] Lokaler Timer als Timesheet auf Server erstellt")
+                } catch {
+                    print("⚠️ [TimerManager] Konnte Timesheet nicht erstellen: \(error)")
+                    print("📥 [TimerManager] Timesheet wird später synchronisiert")
+                }
             }
         }
         
@@ -356,6 +413,49 @@ class TimerManager: ObservableObject {
     private func clearTimerState() {
         UserDefaults.standard.removeObject(forKey: userDefaultsKey)
         print("🗑️ [TimerManager] Timer-State gelöscht")
+    }
+    
+    /// Update cache for a stopped timer (when CREATE operation was updated)
+    private func updateCacheForStoppedTimer(timesheetId: Int, endDate: Date, user: User) async {
+        let cacheManager = CacheManager.shared
+        
+        do {
+            var cachedTimesheets = (try? await cacheManager.load([Timesheet].self, for: user, cacheType: .timesheets)) ?? []
+            
+            // Find the timesheet with matching ID
+            if let index = cachedTimesheets.firstIndex(where: { $0.id == timesheetId }) {
+                let timesheet = cachedTimesheets[index]
+                
+                // Update the end date by creating a new Timesheet with updated values
+                let updatedTimesheet = Timesheet(
+                    id: timesheet.id,
+                    begin: timesheet.begin,
+                    end: endDate,
+                    duration: Int(endDate.timeIntervalSince(timesheet.begin)),
+                    user: timesheet.user,
+                    activity: timesheet.activity,
+                    project: timesheet.project,
+                    description: timesheet.description,
+                    rate: timesheet.rate,
+                    internalRate: timesheet.internalRate,
+                    fixedRate: timesheet.fixedRate,
+                    hourlyRate: timesheet.hourlyRate,
+                    exported: timesheet.exported,
+                    billable: timesheet.billable,
+                    tags: timesheet.tags
+                )
+                
+                cachedTimesheets[index] = updatedTimesheet
+                
+                // Sortiere nach begin DESC (neueste zuerst)
+                cachedTimesheets.sort { $0.begin > $1.begin }
+                
+                try await cacheManager.cache(cachedTimesheets, for: user, type: .timesheets)
+                print("💾 [TimerManager] Cache aktualisiert - Timer \(timesheetId) mit end-Datum")
+            }
+        } catch {
+            print("⚠️ [TimerManager] Konnte Cache nicht aktualisieren: \(error)")
+        }
     }
 }
 

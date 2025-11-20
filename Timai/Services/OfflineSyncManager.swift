@@ -100,6 +100,15 @@ class OfflineSyncManager: ObservableObject {
                 try await syncOperation(item, user: currentUser)
                 pendingOpsManager.markAsCompleted(item, serverId: nil)
                 print("✅ [OfflineSyncManager] Operation synchronisiert: \(item.operation.description)")
+            } catch let error as NetworkService.APIError {
+                // Validierungsfehler sollten nicht wiederholt werden - entferne die Operation
+                if case .validationError(let message) = error {
+                    print("❌ [OfflineSyncManager] Validierungsfehler - entferne Operation (wird nicht wiederholt): \(message)")
+                    pendingOpsManager.markAsCompleted(item) // Als "abgeschlossen" markieren, um sie zu entfernen
+                } else {
+                    print("❌ [OfflineSyncManager] Fehler beim Sync: \(error.localizedDescription)")
+                    pendingOpsManager.markAsFailed(item, error: error.localizedDescription)
+                }
             } catch {
                 print("❌ [OfflineSyncManager] Fehler beim Sync: \(error.localizedDescription)")
                 pendingOpsManager.markAsFailed(item, error: error.localizedDescription)
@@ -151,10 +160,11 @@ class OfflineSyncManager: ObservableObject {
         case .updateTimesheet(let id, let form):
             // Check if this is a negative (temp) ID
             if id < 0 {
-                // Check if there's a CREATE operation for this temp ID
-                let hasCreateOp = pendingOpsManager.pendingOperations.contains(where: { item in
-                    if case .createTimesheet = item.operation, item.tempIdHash == id {
-                        return true
+                // Check if there's a CREATE operation for this temp ID that hasn't been synced yet
+                let hasCreateOp = pendingOpsManager.pendingOperations.contains(where: { otherItem in
+                    if case .createTimesheet = otherItem.operation, otherItem.tempIdHash == id {
+                        // Only consider it if it hasn't been completed yet
+                        return otherItem.status != .completed
                     }
                     return false
                 })
@@ -164,6 +174,20 @@ class OfflineSyncManager: ObservableObject {
                     print("⚠️ [OfflineSyncManager] UPDATE mit negativer ID: \(id) - warte auf CREATE Sync")
                     throw NSError(domain: "OfflineSync", code: 404, userInfo: [NSLocalizedDescriptionKey: "Negative ID - CREATE Operation noch nicht synchronisiert"])
                 } else {
+                    // Check if the operation was already updated in the queue
+                    // (this can happen if updateOperationsWithTempId was called earlier in this sync session)
+                    if let currentItem = pendingOpsManager.pendingOperations.first(where: { $0.id == item.id }),
+                       case .updateTimesheet(let currentId, _) = currentItem.operation,
+                       currentId != id && currentId > 0 {
+                        // The operation was already updated - use the new ID
+                        print("🔄 [OfflineSyncManager] UPDATE Operation wurde bereits aktualisiert: \(id) -> \(currentId)")
+                        try await ensureTagsExist(form: form, user: user)
+                        _ = try await networkService.updateTimesheet(id: currentId, form: form, user: user)
+                        pendingOpsManager.markAsCompleted(currentItem)
+                        print("✅ [OfflineSyncManager] Timesheet aktualisiert - ID: \(currentId)")
+                        return
+                    }
+                    
                     // CREATE was already synced in a previous session - this UPDATE is orphaned
                     print("⚠️ [OfflineSyncManager] Verwaiste UPDATE-Operation mit negativer ID: \(id) - CREATE wurde bereits synchronisiert, lösche Operation")
                     pendingOpsManager.markAsCompleted(item)

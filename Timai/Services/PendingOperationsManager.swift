@@ -164,6 +164,52 @@ class PendingOperationsManager: ObservableObject {
         }
     }
     
+    /// Find and update a pending CREATE operation for a timer (without end date) to include the end date
+    /// Returns the tempId hash if an operation was found and updated, nil otherwise
+    func updatePendingTimerCreateOperation(projectId: Int, activityId: Int, beginDate: Date, endDate: Date, description: String?) -> Int? {
+        let beginString = beginDate.ISO8601Format()
+        let endString = endDate.ISO8601Format()
+        
+        for (index, var item) in pendingOperations.enumerated() {
+            if case .createTimesheet(let form, let tempId) = item.operation {
+                // Check if this CREATE operation matches the timer:
+                // - Same project and activity
+                // - Same begin date
+                // - No end date (running timer)
+                if form.project == projectId,
+                   form.activity == activityId,
+                   form.begin == beginString,
+                   form.end == nil {
+                    // Update the form to include the end date
+                    let updatedForm = TimesheetEditForm(
+                        project: form.project,
+                        activity: form.activity,
+                        begin: form.begin,
+                        end: endString,
+                        description: description ?? form.description,
+                        tags: form.tags,
+                        fixedRate: form.fixedRate,
+                        hourlyRate: form.hourlyRate,
+                        user: form.user,
+                        exported: form.exported,
+                        billable: form.billable
+                    )
+                    
+                    item.operation = .createTimesheet(form: updatedForm, tempId: tempId)
+                    pendingOperations[index] = item
+                    saveQueue()
+                    
+                    // Return the temp ID hash for cache update
+                    let hash = item.tempIdHash ?? -(abs(tempId.hashValue) % 1_000_000)
+                    print("🔄 [PendingOperationsManager] CREATE Operation für Timer aktualisiert: end-Datum hinzugefügt (hash: \(hash))")
+                    return hash
+                }
+            }
+        }
+        
+        return nil
+    }
+    
     func retryFailedOperation(_ item: PendingOperationItem) {
         if let index = failedOperations.firstIndex(where: { $0.id == item.id }) {
             var updated = failedOperations[index]
