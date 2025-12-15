@@ -106,6 +106,11 @@ struct TimesheetView: View {
                     },
                     onCancel: {
                         showingTimerStopDialog = false
+                    },
+                    onSaveDescription: { description in
+                        Task {
+                            await saveTimerDescription(description: description)
+                        }
                     }
                 )
                 .transition(.scale.combined(with: .opacity))
@@ -319,6 +324,17 @@ struct TimesheetView: View {
             print("❌ [TimesheetView] Fehler beim Stoppen des Timers: \(error)")
             }
         }
+    
+    private func saveTimerDescription(description: String?) async {
+        guard let user = authViewModel.currentUser else { return }
+        
+        do {
+            try await timerManager.updateRunningTimerDescription(description, user: user)
+            showingTimerStopDialog = false
+        } catch {
+            print("❌ [TimesheetView] Fehler beim Aktualisieren der Timer-Beschreibung: \(error)")
+        }
+    }
     
     // MARK: - Helpers
     

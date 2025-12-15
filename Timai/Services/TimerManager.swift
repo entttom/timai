@@ -87,6 +87,82 @@ class TimerManager: ObservableObject {
         return activeTimer != nil
     }
     
+    /// Update the description of the currently running timer without stopping it.
+    /// - Parameters:
+    ///   - newDescription: The new description text (nil to clear).
+    ///   - user: The authenticated user.
+    func updateRunningTimerDescription(_ newDescription: String?, user: User) async throws {
+        // Update local timer state first so the UI immediately reflects the change
+        if let currentTimer = activeTimer {
+            let updatedTimer = ActiveTimer(
+                timesheetId: currentTimer.timesheetId,
+                projectId: currentTimer.projectId,
+                projectName: currentTimer.projectName,
+                activityId: currentTimer.activityId,
+                activityName: currentTimer.activityName,
+                customerId: currentTimer.customerId,
+                customerName: currentTimer.customerName,
+                startDate: currentTimer.startDate,
+                description: newDescription
+            )
+            
+            activeTimer = updatedTimer
+            saveTimerState()
+        }
+        
+        // Try to update description on the Kimai server
+        do {
+            // 1) Fetch active timesheet from server to verify that a timer is running
+            guard let runningTimesheet = try await networkService.getActiveTimesheet(user: user) else {
+                // No active timesheet on server – nothing to update remotely
+                return
+            }
+            
+            // 2) Build an update form that preserves all fields except description
+            let form = TimesheetEditForm(
+                project: runningTimesheet.project.id,
+                activity: runningTimesheet.activity.id,
+                begin: runningTimesheet.begin.ISO8601Format(),
+                end: runningTimesheet.end?.ISO8601Format(),
+                description: newDescription,
+                tags: TagUtils.string(from: runningTimesheet.tags),
+                fixedRate: runningTimesheet.fixedRate,
+                hourlyRate: runningTimesheet.hourlyRate,
+                user: runningTimesheet.user.id,
+                exported: runningTimesheet.exported,
+                billable: runningTimesheet.billable
+            )
+            
+            // 3) Send PATCH request for this specific entry
+            let updatedTimesheet = try await networkService.updateTimesheet(
+                id: runningTimesheet.id,
+                form: form,
+                user: user
+            )
+            
+            // 4) Sync local active timer description with server result (if still running)
+            if let currentTimer = activeTimer {
+                let syncedTimer = ActiveTimer(
+                    timesheetId: currentTimer.timesheetId ?? updatedTimesheet.id,
+                    projectId: currentTimer.projectId,
+                    projectName: currentTimer.projectName,
+                    activityId: currentTimer.activityId,
+                    activityName: currentTimer.activityName,
+                    customerId: currentTimer.customerId,
+                    customerName: currentTimer.customerName,
+                    startDate: currentTimer.startDate,
+                    description: updatedTimesheet.description
+                )
+                
+                activeTimer = syncedTimer
+                saveTimerState()
+            }
+        } catch {
+            // Keep local change but propagate error so caller can react (e.g. show toast)
+            throw error
+        }
+    }
+    
     /// Start a new timer
     func startTimer(
         projectId: Int,

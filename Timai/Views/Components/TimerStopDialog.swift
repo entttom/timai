@@ -19,6 +19,7 @@ struct TimerStopDialog: View {
     let timer: ActiveTimer
     let onStop: (String?) -> Void
     let onCancel: () -> Void
+    let onSaveDescription: (String?) -> Void
     
     @State private var descriptionText = ""
     @FocusState private var isDescriptionFocused: Bool
@@ -37,6 +38,14 @@ struct TimerStopDialog: View {
         #else
         return Color(NSColor.windowBackgroundColor)
         #endif
+    }
+    
+    private var initialDescription: String {
+        timer.description ?? ""
+    }
+    
+    private var hasDescriptionChanges: Bool {
+        descriptionText != initialDescription
     }
     
     var body: some View {
@@ -91,6 +100,20 @@ struct TimerStopDialog: View {
                         .cornerRadius(10)
                 }
                 
+                if hasDescriptionChanges {
+                    Button(action: {
+                        onSaveDescription(descriptionText.isEmpty ? nil : descriptionText)
+                    }) {
+                        Text("timesheetEdit.button.save".localized())
+                            .font(.system(size: 16, weight: .medium))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                            .background(Color.blue.opacity(0.15))
+                            .foregroundColor(.blue)
+                            .cornerRadius(10)
+                    }
+                }
+                
                 Button(action: {
                     onStop(descriptionText.isEmpty ? timer.description : descriptionText)
                 }) {
@@ -136,7 +159,8 @@ struct TimerStopDialog: View {
                 description: nil
             ),
             onStop: { _ in },
-            onCancel: {}
+            onCancel: {},
+            onSaveDescription: { _ in }
         )
     }
 }

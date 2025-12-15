@@ -40,7 +40,11 @@ struct KimaiInstance: Codable, Identifiable, Equatable {
     var apiToken: String? {
         get {
             do {
-                return try keychain.get(keychainKey)
+                // Entferne führende und abschließende Whitespaces/Zeilenumbrüche automatisch
+                if let rawToken = try keychain.get(keychainKey) {
+                    return rawToken.trimmingCharacters(in: .whitespacesAndNewlines)
+                }
+                return nil
             } catch {
                 print("❌ [KimaiInstance] Fehler beim Laden des API-Tokens für Instanz '\(name)': \(error)")
                 return nil
@@ -50,8 +54,11 @@ struct KimaiInstance: Codable, Identifiable, Equatable {
     
     /// Save the API token for this instance to the Keychain
     func saveToken(_ token: String) throws {
+        // Entferne führende und abschließende Whitespaces/Zeilenumbrüche automatisch
+        let trimmedToken = token.trimmingCharacters(in: .whitespacesAndNewlines)
+        
         do {
-            try keychain.set(token, key: keychainKey)
+            try keychain.set(trimmedToken, key: keychainKey)
             print("✅ [KimaiInstance] API-Token für Instanz '\(name)' gespeichert")
         } catch {
             print("❌ [KimaiInstance] Fehler beim Speichern des API-Tokens für Instanz '\(name)': \(error)")

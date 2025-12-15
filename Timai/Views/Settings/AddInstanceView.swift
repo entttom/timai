@@ -115,17 +115,29 @@ struct AddInstanceView: View {
     }
     
     private func addInstance() {
-        guard let url = URL(string: kimaiURL) else {
+        // Trim Whitespace am Anfang/Ende der Eingaben
+        let trimmedURLString = kimaiURL.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedToken = apiToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard let url = URL(string: trimmedURLString) else {
             errorMessage = "addInstance.error.invalidURL".localized()
             showError = true
             return
+        }
+        
+        // Aktualisiere Felder im UI mit getrimmten Werten
+        if trimmedURLString != kimaiURL {
+            kimaiURL = trimmedURLString
+        }
+        if trimmedToken != apiToken {
+            apiToken = trimmedToken
         }
         
         isLoading = true
         errorMessage = nil
         
         Task {
-            await authViewModel.login(kimaiURL: url, apiToken: apiToken, instanceName: instanceName)
+            await authViewModel.login(kimaiURL: url, apiToken: trimmedToken, instanceName: instanceName)
             
             isLoading = false
             

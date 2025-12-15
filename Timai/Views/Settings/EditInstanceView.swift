@@ -169,10 +169,22 @@ struct EditInstanceView: View {
     }
     
     private func saveChanges() {
-        guard let url = URL(string: kimaiURL) else {
+        // Trim Whitespace am Anfang/Ende der Eingaben
+        let trimmedURLString = kimaiURL.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedToken = apiToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard let url = URL(string: trimmedURLString) else {
             errorMessage = "editInstance.error.invalidURL".localized()
             showError = true
             return
+        }
+        
+        // Aktualisiere Felder im UI mit getrimmten Werten
+        if trimmedURLString != kimaiURL {
+            kimaiURL = trimmedURLString
+        }
+        if trimmedToken != apiToken {
+            apiToken = trimmedToken
         }
         
         isLoading = true
@@ -189,7 +201,7 @@ struct EditInstanceView: View {
                     api = url.appendingPathComponent("api")
                 }
                 
-                let tempUser = User(apiEndpoint: api, apiToken: apiToken)
+                let tempUser = User(apiEndpoint: api, apiToken: trimmedToken)
                 let _ = try await NetworkService.shared.checkVersion(for: api, with: tempUser)
                 
                 // Verification successful - update instance
@@ -197,7 +209,7 @@ struct EditInstanceView: View {
                 updatedInstance.name = instanceName
                 
                 // Save new token
-                try updatedInstance.saveToken(apiToken)
+                try updatedInstance.saveToken(trimmedToken)
                 
                 // If URL changed, we need to create a new instance
                 if api != instance.apiEndpoint {
@@ -210,7 +222,7 @@ struct EditInstanceView: View {
                         apiEndpoint: api,
                         isActive: instance.isActive
                     )
-                    try newInstance.saveToken(apiToken)
+                    try newInstance.saveToken(trimmedToken)
                     instanceManager.addInstance(newInstance)
                     
                     // If it was active, switch to it
@@ -220,7 +232,7 @@ struct EditInstanceView: View {
                         // Update AuthViewModel
                         authViewModel.currentUser = User(
                             apiEndpoint: api,
-                            apiToken: apiToken,
+                            apiToken: trimmedToken,
                             instanceId: newInstance.id
                         )
                     }
@@ -232,7 +244,7 @@ struct EditInstanceView: View {
                     if instance.isActive {
                         authViewModel.currentUser = User(
                             apiEndpoint: api,
-                            apiToken: apiToken,
+                            apiToken: trimmedToken,
                             instanceId: updatedInstance.id
                         )
                     }

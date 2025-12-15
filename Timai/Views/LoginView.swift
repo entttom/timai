@@ -164,16 +164,28 @@ struct LoginView: View {
     }
     
     private func performLogin() {
-        guard let url = URL(string: kimaiURL) else {
+        // Trim Whitespace am Anfang/Ende der Eingaben
+        let trimmedURLString = kimaiURL.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedToken = apiToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard let url = URL(string: trimmedURLString) else {
             authViewModel.errorMessage = "Bitte gültige URL eingeben"
             showToast = true
             return
         }
         
+        // Aktualisiere Felder im UI mit getrimmten Werten
+        if trimmedURLString != kimaiURL {
+            kimaiURL = trimmedURLString
+        }
+        if trimmedToken != apiToken {
+            apiToken = trimmedToken
+        }
+        
         let name = instanceName.isEmpty ? "Kimai Instance" : instanceName
         
         Task {
-            await authViewModel.login(kimaiURL: url, apiToken: apiToken, instanceName: name)
+            await authViewModel.login(kimaiURL: url, apiToken: trimmedToken, instanceName: name)
         }
     }
 }
