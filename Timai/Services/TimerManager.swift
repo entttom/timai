@@ -100,11 +100,8 @@ class TimerManager: ObservableObject {
     ) async throws {
         // Stop any existing timer first
         if let existing = activeTimer {
-            print("⚠️ [TimerManager] Timer läuft bereits - stoppe zuerst den alten Timer")
             try await stopTimer(user: user)
         }
-        
-        print("▶️ [TimerManager] Starte Timer für Projekt: \(projectName) - Activity: \(activityName)")
         
         // Create timer on Kimai server (without end date = running timer)
         let form = TimesheetEditForm(
@@ -126,10 +123,7 @@ class TimerManager: ObservableObject {
         do {
             let timesheet = try await networkService.createTimesheet(form: form, user: user)
             timesheetId = timesheet.id
-            print("✅ [TimerManager] Timer auf Server gestartet mit ID: \(timesheet.id)")
         } catch {
-            print("⚠️ [TimerManager] Konnte Timer nicht auf Server starten: \(error)")
-            print("📱 [TimerManager] Timer wird lokal gestartet und später synchronisiert")
             // Continue with local timer - will sync when online
         }
         
@@ -150,12 +144,8 @@ class TimerManager: ObservableObject {
         saveTimerState()
         
         // Start Live Activity
-        print("🔔 [TimerManager] Rufe LiveActivityManager auf...")
         if let lam = liveActivityManager {
-            print("✅ [TimerManager] LiveActivityManager gefunden - starte Activity")
             await lam.startTimerActivity(timer: timer)
-        } else {
-            print("❌ [TimerManager] LiveActivityManager ist NIL!")
         }
         
         // Post notification
@@ -167,18 +157,13 @@ class TimerManager: ObservableObject {
             service.sendTimerStatus(timer)
         }
         #endif
-        
-        print("✅ [TimerManager] Timer erfolgreich gestartet")
     }
     
     /// Stop the active timer
     func stopTimer(user: User, finalDescription: String? = nil) async throws {
         guard let timer = activeTimer else {
-            print("⚠️ [TimerManager] Kein aktiver Timer zum Stoppen")
             return
         }
-        
-        print("⏹️ [TimerManager] Stoppe Timer für Projekt: \(timer.projectName)")
         
         let endDate = Date()
         
@@ -195,7 +180,6 @@ class TimerManager: ObservableObject {
                     endDate: endDate,
                     description: finalDescription ?? timer.description
                 ) {
-                    print("✅ [TimerManager] Pending CREATE Operation für Timer aktualisiert (end-Datum hinzugefügt)")
                     // Update cache with the new end date
                     await updateCacheForStoppedTimer(timesheetId: tempIdHash, endDate: endDate, user: user)
                     // No need to create an UPDATE operation - the CREATE operation now has the end date
@@ -217,10 +201,7 @@ class TimerManager: ObservableObject {
                     
                     do {
                         _ = try await networkService.updateTimesheet(id: timesheetId, form: form, user: user)
-                        print("✅ [TimerManager] Timer auf Server gestoppt")
                     } catch {
-                        print("⚠️ [TimerManager] Konnte Timer nicht auf Server stoppen: \(error)")
-                        print("📥 [TimerManager] Timer-Stop wird später synchronisiert")
                         // Offline mode will queue this operation
                     }
                 }
@@ -242,10 +223,7 @@ class TimerManager: ObservableObject {
                 
                 do {
                     _ = try await networkService.updateTimesheet(id: timesheetId, form: form, user: user)
-                    print("✅ [TimerManager] Timer auf Server gestoppt")
                 } catch {
-                    print("⚠️ [TimerManager] Konnte Timer nicht auf Server stoppen: \(error)")
-                    print("📥 [TimerManager] Timer-Stop wird später synchronisiert")
                     // Offline mode will queue this operation
                 }
             }
@@ -259,7 +237,6 @@ class TimerManager: ObservableObject {
                 endDate: endDate,
                 description: finalDescription ?? timer.description
             ) {
-                print("✅ [TimerManager] Pending CREATE Operation für Timer aktualisiert (end-Datum hinzugefügt)")
                 // Update cache with the new end date
                 await updateCacheForStoppedTimer(timesheetId: tempIdHash, endDate: endDate, user: user)
                 // No need to create a new timesheet - the existing CREATE operation will be synced with the end date
@@ -281,10 +258,8 @@ class TimerManager: ObservableObject {
                 
                 do {
                     _ = try await networkService.createTimesheet(form: form, user: user)
-                    print("✅ [TimerManager] Lokaler Timer als Timesheet auf Server erstellt")
                 } catch {
-                    print("⚠️ [TimerManager] Konnte Timesheet nicht erstellen: \(error)")
-                    print("📥 [TimerManager] Timesheet wird später synchronisiert")
+                    // Will be synced later
                 }
             }
         }
@@ -305,31 +280,24 @@ class TimerManager: ObservableObject {
             service.sendTimerStatus(nil)
         }
         #endif
-        
-        print("✅ [TimerManager] Timer erfolgreich gestoppt")
     }
     
     /// Check for active timer on server and sync with local state
     func syncActiveTimerFromServer(user: User) async {
-        print("🔍 [TimerManager] Prüfe auf aktive Timer auf dem Server...")
-        
         do {
             // Fetch running timer from server (end = nil)
             guard let runningTimesheet = try await networkService.getActiveTimesheet(user: user) else {
-                print("ℹ️ [TimerManager] Kein laufender Timer auf Server gefunden")
                 // Clear local timer if exists but not on server
                 if activeTimer != nil {
-                    print("🧹 [TimerManager] Lösche veralteten lokalen Timer")
                     activeTimer = nil
                     clearTimerState()
                     await liveActivityManager?.stopTimerActivity()
+                } else {
+                    // No timer locally, but validate Live Activity state anyway
+                    await liveActivityManager?.validateLiveActivityState(hasActiveTimer: false)
                 }
                 return
             }
-            
-            print("✅ [TimerManager] Laufender Timer gefunden: \(runningTimesheet.projectName)")
-            print("📊 [TimerManager] Timer-ID: \(runningTimesheet.id)")
-            print("📊 [TimerManager] Start: \(runningTimesheet.begin)")
             
             // Create or update local timer with server data
             let timer = ActiveTimer(
@@ -348,7 +316,6 @@ class TimerManager: ObservableObject {
             saveTimerState()
             
             // Start Live Activity with correct start date
-            print("🔔 [TimerManager] Starte Live Activity mit Server-Startzeit")
             await liveActivityManager?.startTimerActivity(timer: timer)
             
             // Send to Watch
@@ -359,20 +326,25 @@ class TimerManager: ObservableObject {
             #endif
             
         } catch {
-            print("❌ [TimerManager] Fehler beim Sync mit Server: \(error)")
             // Fallback to restoring from local state if available
             await restoreTimerFromLocalState()
         }
+        
+        // Always validate Live Activity state after sync
+        await liveActivityManager?.validateLiveActivityState(hasActiveTimer: activeTimer != nil)
+    }
+    
+    /// Validate Live Activity state - should be called periodically
+    /// This ensures Live Activity matches the actual timer state
+    func validateLiveActivityState() async {
+        await liveActivityManager?.validateLiveActivityState(hasActiveTimer: activeTimer != nil)
     }
     
     /// Restore timer state from local storage (fallback)
     private func restoreTimerFromLocalState() async {
         guard let timer = activeTimer else { 
-            print("ℹ️ [TimerManager] Kein lokaler Timer-State vorhanden")
             return 
         }
-        
-        print("🔄 [TimerManager] Stelle Timer aus lokalem State wieder her: \(timer.projectName)")
         
         // Restart Live Activity with local data
         await liveActivityManager?.startTimerActivity(timer: timer)
@@ -387,15 +359,13 @@ class TimerManager: ObservableObject {
             let encoder = JSONEncoder()
             let data = try encoder.encode(timer)
             UserDefaults.standard.set(data, forKey: userDefaultsKey)
-            print("💾 [TimerManager] Timer-State gespeichert")
         } catch {
-            print("❌ [TimerManager] Fehler beim Speichern des Timer-State: \(error)")
+            // Fehler beim Speichern - ignorieren
         }
     }
     
     private func loadTimerState() {
         guard let data = UserDefaults.standard.data(forKey: userDefaultsKey) else {
-            print("ℹ️ [TimerManager] Kein gespeicherter Timer-State vorhanden")
             return
         }
         
@@ -403,16 +373,13 @@ class TimerManager: ObservableObject {
             let decoder = JSONDecoder()
             let timer = try decoder.decode(ActiveTimer.self, from: data)
             activeTimer = timer
-            print("✅ [TimerManager] Timer-State geladen: \(timer.projectName)")
         } catch {
-            print("❌ [TimerManager] Fehler beim Laden des Timer-State: \(error)")
             clearTimerState()
         }
     }
     
     private func clearTimerState() {
         UserDefaults.standard.removeObject(forKey: userDefaultsKey)
-        print("🗑️ [TimerManager] Timer-State gelöscht")
     }
     
     /// Update cache for a stopped timer (when CREATE operation was updated)
@@ -451,10 +418,9 @@ class TimerManager: ObservableObject {
                 cachedTimesheets.sort { $0.begin > $1.begin }
                 
                 try await cacheManager.cache(cachedTimesheets, for: user, type: .timesheets)
-                print("💾 [TimerManager] Cache aktualisiert - Timer \(timesheetId) mit end-Datum")
             }
         } catch {
-            print("⚠️ [TimerManager] Konnte Cache nicht aktualisieren: \(error)")
+            // Fehler beim Cache-Update - ignorieren
         }
     }
 }

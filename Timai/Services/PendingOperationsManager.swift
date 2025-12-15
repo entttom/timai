@@ -39,14 +39,12 @@ class PendingOperationsManager: ObservableObject {
     private init() {
         setupQueueDirectory()
         loadQueue()
-        print("📋 [PendingOperationsManager] Initialisiert - \(pendingOperations.count) ausstehende Operationen")
     }
     
     // MARK: - Setup
     
     private func setupQueueDirectory() {
         guard let documentsPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            print("❌ [PendingOperationsManager] Konnte Documents-Verzeichnis nicht finden")
             return
         }
         
@@ -68,15 +66,11 @@ class PendingOperationsManager: ObservableObject {
             let hash = -(abs(tempId.hashValue) % 1_000_000)
             tempIdToHash[tempId] = hash
             itemHash = hash
-            print("🔗 [PendingOperationsManager] Temp ID Hash Mapping: \(tempId) -> \(hash)")
         }
         
         let item = PendingOperationItem(operation: operation, tempIdHash: itemHash)
         pendingOperations.append(item)
         
-        print("➕ [PendingOperationsManager] Operation hinzugefügt: \(operation.description) (\(item.id))")
-        print("📊 [PendingOperationsManager] Gesamt pending: \(pendingOperations.count)")
-        print("🔔 [PendingOperationsManager] hasPendingOperations: \(hasPendingOperations)")
         saveQueue()
         
         // Force UI update
@@ -86,7 +80,6 @@ class PendingOperationsManager: ObservableObject {
     func removeOperation(_ item: PendingOperationItem) {
         pendingOperations.removeAll { $0.id == item.id }
         saveQueue()
-        print("➖ [PendingOperationsManager] Operation entfernt: \(item.operation.description) (\(item.id))")
     }
     
     func markAsCompleted(_ item: PendingOperationItem, serverId: Int? = nil) {
@@ -97,12 +90,10 @@ class PendingOperationsManager: ObservableObject {
             // Store temp ID mapping if this was a create operation
             if let tempId = item.operation.tempId, let serverId = serverId {
                 tempIdMapping[tempId] = serverId
-                print("🔗 [PendingOperationsManager] Temp ID Mapping: \(tempId) -> \(serverId)")
             }
             
             pendingOperations.remove(at: index)
             saveQueue()
-            print("✅ [PendingOperationsManager] Operation abgeschlossen: \(item.operation.description)")
         }
     }
     
@@ -116,11 +107,9 @@ class PendingOperationsManager: ObservableObject {
                 updated.status = .failed
                 pendingOperations.remove(at: index)
                 failedOperations.append(updated)
-                print("❌ [PendingOperationsManager] Operation fehlgeschlagen (max retries): \(item.operation.description)")
             } else {
                 updated.status = .pending
                 pendingOperations[index] = updated
-                print("⚠️ [PendingOperationsManager] Operation fehlgeschlagen (retry \(updated.retryCount)/\(maxRetries)): \(item.operation.description)")
             }
             
             saveQueue()
@@ -144,14 +133,12 @@ class PendingOperationsManager: ObservableObject {
                     item.operation = .updateTimesheet(id: newId, form: form)
                     pendingOperations[index] = item
                     updated = true
-                    print("🔄 [PendingOperationsManager] UPDATE Operation aktualisiert: \(tempId) -> \(newId)")
                 }
             case .deleteTimesheet(let id):
                 if id == tempId {
                     item.operation = .deleteTimesheet(id: newId)
                     pendingOperations[index] = item
                     updated = true
-                    print("🔄 [PendingOperationsManager] DELETE Operation aktualisiert: \(tempId) -> \(newId)")
                 }
             case .createTimesheet:
                 // CREATE operations don't need updating
@@ -169,40 +156,55 @@ class PendingOperationsManager: ObservableObject {
     func updatePendingTimerCreateOperation(projectId: Int, activityId: Int, beginDate: Date, endDate: Date, description: String?) -> Int? {
         let beginString = beginDate.ISO8601Format()
         let endString = endDate.ISO8601Format()
+        let formatter = ISO8601DateFormatter()
         
         for (index, var item) in pendingOperations.enumerated() {
             if case .createTimesheet(let form, let tempId) = item.operation {
                 // Check if this CREATE operation matches the timer:
                 // - Same project and activity
-                // - Same begin date
+                // - Same begin date (with tolerance for small differences)
                 // - No end date (running timer)
                 if form.project == projectId,
                    form.activity == activityId,
-                   form.begin == beginString,
                    form.end == nil {
-                    // Update the form to include the end date
-                    let updatedForm = TimesheetEditForm(
-                        project: form.project,
-                        activity: form.activity,
-                        begin: form.begin,
-                        end: endString,
-                        description: description ?? form.description,
-                        tags: form.tags,
-                        fixedRate: form.fixedRate,
-                        hourlyRate: form.hourlyRate,
-                        user: form.user,
-                        exported: form.exported,
-                        billable: form.billable
-                    )
+                    // Compare begin dates with tolerance (within 5 seconds)
+                    var beginMatches = false
+                    if let formBegin = form.begin {
+                        if formBegin == beginString {
+                            beginMatches = true
+                        } else if let formBeginDate = formatter.date(from: formBegin) {
+                            // Allow small differences (e.g., due to rounding or timezone)
+                            let timeDifference = abs(formBeginDate.timeIntervalSince(beginDate))
+                            if timeDifference < 5.0 { // 5 seconds tolerance
+                                beginMatches = true
+                            }
+                        }
+                    }
                     
-                    item.operation = .createTimesheet(form: updatedForm, tempId: tempId)
-                    pendingOperations[index] = item
-                    saveQueue()
-                    
-                    // Return the temp ID hash for cache update
-                    let hash = item.tempIdHash ?? -(abs(tempId.hashValue) % 1_000_000)
-                    print("🔄 [PendingOperationsManager] CREATE Operation für Timer aktualisiert: end-Datum hinzugefügt (hash: \(hash))")
-                    return hash
+                    if beginMatches {
+                        // Update the form to include the end date
+                        let updatedForm = TimesheetEditForm(
+                            project: form.project,
+                            activity: form.activity,
+                            begin: form.begin, // Keep original begin date from form
+                            end: endString,
+                            description: description ?? form.description,
+                            tags: form.tags,
+                            fixedRate: form.fixedRate,
+                            hourlyRate: form.hourlyRate,
+                            user: form.user,
+                            exported: form.exported,
+                            billable: form.billable
+                        )
+                        
+                        item.operation = .createTimesheet(form: updatedForm, tempId: tempId)
+                        pendingOperations[index] = item
+                        saveQueue()
+                        
+                        // Return the temp ID hash for cache update
+                        let hash = item.tempIdHash ?? -(abs(tempId.hashValue) % 1_000_000)
+                        return hash
+                    }
                 }
             }
         }
@@ -220,14 +222,12 @@ class PendingOperationsManager: ObservableObject {
             failedOperations.remove(at: index)
             pendingOperations.append(updated)
             saveQueue()
-            print("🔄 [PendingOperationsManager] Wiederhole fehlgeschlagene Operation: \(item.operation.description)")
         }
     }
     
     func discardFailedOperation(_ item: PendingOperationItem) {
         failedOperations.removeAll { $0.id == item.id }
         saveQueue()
-        print("🗑️ [PendingOperationsManager] Fehlgeschlagene Operation verworfen: \(item.operation.description)")
     }
     
     func clearAllOperations() {
@@ -235,7 +235,6 @@ class PendingOperationsManager: ObservableObject {
         failedOperations.removeAll()
         tempIdMapping.removeAll()
         saveQueue()
-        print("🗑️ [PendingOperationsManager] Alle Operationen gelöscht")
     }
     
     // MARK: - Temp ID Mapping
@@ -254,11 +253,7 @@ class PendingOperationsManager: ObservableObject {
             if case .createTimesheet(_, let tempId) = item.operation {
                 // Try stored hash first, then calculate
                 let hash = item.tempIdHash ?? -(abs(tempId.hashValue) % 1_000_000)
-                let match = hash == id
-                if match {
-                    print("🟡 [PendingOps] MATCH gefunden: CREATE hash=\(hash) == id=\(id)")
-                }
-                return match
+                return hash == id
             }
             
             // For UPDATE and DELETE, compare IDs directly
@@ -292,7 +287,7 @@ class PendingOperationsManager: ObservableObject {
             let encoded = try encoder.encode(data)
             try encoded.write(to: url)
         } catch {
-            print("❌ [PendingOperationsManager] Fehler beim Speichern der Queue: \(error)")
+            // Fehler beim Speichern - ignorieren
         }
     }
     
@@ -321,7 +316,6 @@ class PendingOperationsManager: ObservableObject {
                     // Store in tempIdToHash map
                     if tempIdToHash[tempId] == nil {
                         tempIdToHash[tempId] = hash
-                        print("🔗 [PendingOperationsManager] Rekonstruiere Hash Mapping: \(tempId) -> \(hash)")
                         needsSave = true
                     }
                     
@@ -329,7 +323,6 @@ class PendingOperationsManager: ObservableObject {
                     if item.tempIdHash == nil {
                         item.tempIdHash = hash
                         pendingOperations[index] = item
-                        print("🔗 [PendingOperationsManager] Item Hash aktualisiert: \(hash)")
                         needsSave = true
                     }
                 }
@@ -339,16 +332,11 @@ class PendingOperationsManager: ObservableObject {
             if needsSave {
                 saveQueue()
             }
-            
-            print("✅ [PendingOperationsManager] Queue geladen: \(pendingOperations.count) pending, \(failedOperations.count) failed")
         } catch {
-            print("❌ [PendingOperationsManager] Fehler beim Laden der Queue: \(error)")
-            print("🔄 [PendingOperationsManager] Lösche alte Queue-Datei (inkompatibles Format)")
             // Lösche die alte Queue, da sie ein inkompatibles Format hat
             // (z.B. tags als Array statt String)
             if let url = queueURL {
                 try? fileManager.removeItem(at: url)
-                print("✅ [PendingOperationsManager] Alte Queue gelöscht - starte mit leerer Queue")
             }
         }
     }

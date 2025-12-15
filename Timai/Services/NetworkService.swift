@@ -98,7 +98,6 @@ class NetworkService {
                 }
             }
             
-            print("❌ [NetworkService] Konnte Datum nicht parsen: '\(dateString)'")
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string: \(dateString)")
         }
         return decoder
@@ -109,14 +108,11 @@ class NetworkService {
     /// Check version of kimai instance
     func checkVersion(for kimaiURL: URL, with user: User) async throws -> InstanceMetadata {
         let pingEndpoint = kimaiURL.appendingPathComponent("version")
-        print("📡 [NetworkService] GET \(pingEndpoint)")
         
         var request = URLRequest(url: pingEndpoint)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         if let authToken = user.apiToken {
-            let maskedToken = String(authToken.prefix(4)) + "..." + String(authToken.suffix(4))
-            print("🔑 [NetworkService] Authorization: Bearer \(maskedToken)")
             request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         }
         
@@ -127,26 +123,16 @@ class NetworkService {
                 throw APIError.invalidCredentials(nil)
             }
             
-            print("📥 [NetworkService] HTTP Status: \(httpResponse.statusCode)")
-            
             guard 200..<300 ~= httpResponse.statusCode else {
-                print("❌ [NetworkService] HTTP Fehler \(httpResponse.statusCode)")
-                if let responseString = String(data: data, encoding: .utf8) {
-                    print("📄 [NetworkService] Response Body: \(responseString)")
-                }
                 throw APIError.invalidCredentials(nil)
             }
             
-            print("📦 [NetworkService] Daten empfangen: \(data.count) bytes")
-            
             let decoder = JSONDecoder()
             let metadata = try decoder.decode(InstanceMetadata.self, from: data)
-            print("✅ [NetworkService] Version Check erfolgreich dekodiert")
             return metadata
         } catch let error as APIError {
             throw error
         } catch {
-            print("❌ [NetworkService] Request Fehler: \(error.localizedDescription)")
             throw APIError.requestError(error)
         }
     }
@@ -164,11 +150,9 @@ class NetworkService {
             throw APIError.invalidResponse(nil)
         }
         
-        print("📡 [NetworkService] GET \(url) (Suche aktiven Timer)")
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
         
         let timesheets = try customDateDecoder.decode([Timesheet].self, from: data)
-        print("✅ [NetworkService] \(timesheets.count) aktive Timesheets gefunden")
         
         // Return first active timesheet (should only be one)
         return timesheets.first(where: { $0.end == nil })
@@ -177,13 +161,11 @@ class NetworkService {
     /// Get timesheet for a user
     func getTimesheetFor(_ user: User) async throws -> [Activity] {
         if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
-            print("🧪 [NetworkService] UI-Testing Modus - verwende Mock-Daten")
             return []
         }
         
         // Try to fetch from API if online
         if networkMonitor.isConnected {
-            print("📋 [NetworkService] Online - Lade Timesheets vom Server...")
             do {
         var urlComponents = URLComponents(url: user.apiEndpoint.appendingPathComponent("timesheets"), resolvingAgainstBaseURL: false)!
         // Begrenze size auf Maximum 200 (API-Limit)
@@ -199,18 +181,14 @@ class NetworkService {
             throw APIError.invalidResponse(nil)
         }
         
-        print("📡 [NetworkService] GET \(url)")
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
-        print("📦 [NetworkService] Timesheet Daten empfangen: \(data.count) bytes")
         
         var timesheets = try customDateDecoder.decode([Timesheet].self, from: data)
-        print("✅ [NetworkService] \(timesheets.count) Timesheets erfolgreich dekodiert")
         
         // Limit cache size before caching (verwende maxCacheEntries für Cache-Limit)
         let maxEntries = CacheSettings.maxCacheEntries
         if timesheets.count > maxEntries {
             timesheets = Array(timesheets.prefix(maxEntries))
-            print("📦 [NetworkService] Timesheets auf \(maxEntries) Einträge begrenzt (Cache-Limit)")
         }
                 
                 // Cache the timesheets
@@ -232,16 +210,13 @@ class NetworkService {
                 endDateTime: timesheet.endDateTime
             )
         }
-        print("✅ [NetworkService] \(activities.count) Activities konvertiert")
         return activities
             } catch {
-                print("⚠️ [NetworkService] API-Fehler, versuche Cache: \(error)")
                 // Fallthrough to cache
             }
         }
         
         // Load from cache (offline or API failed)
-        print("💾 [NetworkService] Lade Timesheets aus Cache...")
         do {
             var cachedTimesheets = try await cacheManager.load([Timesheet].self, for: user, cacheType: .timesheets)
             // Sortiere nach begin DESC (neueste zuerst) - wichtig für korrekte Anzeige
@@ -261,10 +236,8 @@ class NetworkService {
                     endDateTime: timesheet.endDateTime
                 )
             }
-            print("💾 [NetworkService] \(activities.count) Timesheets aus Cache geladen")
             return activities
         } catch {
-            print("❌ [NetworkService] Kein Cache verfügbar: \(error)")
             throw APIError.offlineNoCache
         }
     }
@@ -275,32 +248,26 @@ class NetworkService {
         if networkMonitor.isConnected {
             do {
         let url = user.apiEndpoint.appendingPathComponent("customers")
-        print("📡 [NetworkService] GET \(url)")
         
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
-        print("📦 [NetworkService] Customers Daten empfangen: \(data.count) bytes")
         
         let decoder = JSONDecoder()
         let customers = try decoder.decode([Customer].self, from: data)
-        print("✅ [NetworkService] \(customers.count) Customers dekodiert")
                 
                 // Cache the customers
                 try await cacheManager.cache(customers, for: user, type: .customers)
                 
                 return customers
             } catch {
-                print("⚠️ [NetworkService] API-Fehler, versuche Cache: \(error)")
+                // Fallthrough to cache
             }
         }
         
         // Load from cache
-        print("💾 [NetworkService] Lade Customers aus Cache...")
         do {
             let customers = try await cacheManager.load([Customer].self, for: user, cacheType: .customers)
-            print("💾 [NetworkService] \(customers.count) Customers aus Cache geladen")
         return customers
         } catch {
-            print("❌ [NetworkService] Kein Cache verfügbar")
             throw APIError.offlineNoCache
         }
     }
@@ -324,13 +291,9 @@ class NetworkService {
             throw APIError.invalidResponse(nil)
         }
         
-        print("📡 [NetworkService] GET \(url)")
-        
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
-        print("📦 [NetworkService] Projects Daten empfangen: \(data.count) bytes")
         
         let projectCollections = try customDateDecoder.decode([ProjectCollection].self, from: data)
-        print("✅ [NetworkService] \(projectCollections.count) ProjectCollections dekodiert")
         
         if projectCollections.isEmpty {
             return []
@@ -371,11 +334,9 @@ class NetworkService {
                     results[collection.id]
                 }
             }
-            print("✅ [NetworkService] \(projects.count) Projects mit Budget-Daten geladen (parallel)")
         } else {
             // Keine Budget-Daten benötigt - verwende direkt ProjectCollections (viel schneller!)
             projects = projectCollections.map { $0.toProject(customer: customer) }
-            print("✅ [NetworkService] \(projects.count) Projects geladen (ohne Budget-Daten)")
         }
                 
                 // Cache the projects for this customer
@@ -383,18 +344,15 @@ class NetworkService {
                 
         return projects
             } catch {
-                print("⚠️ [NetworkService] API-Fehler, versuche Cache: \(error)")
+                // Fallthrough to cache
             }
         }
         
         // Load from cache
-        print("💾 [NetworkService] Lade Projects aus Cache...")
         do {
             let projects = try await cacheManager.load([Project].self, for: user, cacheType: .projectsForCustomer, identifier: "\(customer.id)")
-            print("💾 [NetworkService] \(projects.count) Projects aus Cache geladen")
             return projects
         } catch {
-            print("❌ [NetworkService] Kein Cache verfügbar")
             throw APIError.offlineNoCache
         }
     }
@@ -402,7 +360,6 @@ class NetworkService {
     /// Get project by ID with full details including budget
     func getProjectById(_ projectId: Int, user: User) async throws -> Project {
         let url = user.apiEndpoint.appendingPathComponent("projects/\(projectId)")
-        print("📡 [NetworkService] GET \(url) (für Budget-Daten)")
         
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
         
@@ -412,20 +369,17 @@ class NetworkService {
         let customer = Customer(id: projectCollection.customer, name: "", number: "", comment: nil, visible: true, billable: true, company: nil, country: "DE", currency: "EUR", color: nil)
         
         let project = projectCollection.toProject(customer: customer)
-        print("✅ [NetworkService] Project \(project.name) mit Budget geladen: \(project.timeBudget ?? 0)s")
         return project
     }
     
     /// Get detailed project information including budget
     private func getProjectDetails(projectId: Int, customer: Customer, user: User) async throws -> Project {
         let url = user.apiEndpoint.appendingPathComponent("projects/\(projectId)")
-        print("📡 [NetworkService] GET \(url) (für Budget-Daten)")
         
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
         
         let projectCollection = try customDateDecoder.decode(ProjectCollection.self, from: data)
         let project = projectCollection.toProject(customer: customer)
-        print("✅ [NetworkService] Project \(project.name) mit Budget geladen: \(project.timeBudget ?? 0)s")
         return project
     }
     
@@ -458,19 +412,15 @@ class NetworkService {
                 
                 return activities
             } catch {
-                print("⚠️ [NetworkService] API-Fehler, versuche Cache: \(error)")
             }
         }
         
         // Load from cache
         if let projectId = projectId {
-            print("💾 [NetworkService] Lade Activities aus Cache...")
             do {
                 let activities = try await cacheManager.load([ActivityDetails].self, for: user, cacheType: .activitiesForProject, identifier: "\(projectId)")
-                print("💾 [NetworkService] \(activities.count) Activities aus Cache geladen")
         return activities
             } catch {
-                print("❌ [NetworkService] Kein Cache verfügbar")
                 throw APIError.offlineNoCache
             }
         }
@@ -490,27 +440,22 @@ class NetworkService {
             throw APIError.invalidResponse(nil)
         }
         
-        print("📡 [NetworkService] POST \(url)")
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let body = try encoder.encode(form)
         
         if let bodyString = String(data: body, encoding: .utf8) {
-            print("📤 [NetworkService] Request Body: \(bodyString)")
         }
         
         let data = try await performRESTRequest(url: url, method: "POST", body: body, user: user)
         
-        print("📦 [NetworkService] Create Response empfangen: \(data.count) bytes")
         
         // Debug: Zeige Response-Body
         if let responseString = String(data: data, encoding: .utf8) {
-            print("📄 [NetworkService] Create Response Body: \(responseString)")
         }
         
         let timesheet = try customDateDecoder.decode(Timesheet.self, from: data)
-        print("✅ [NetworkService] Timesheet erfolgreich erstellt mit ID: \(timesheet.id)")
                 
                 // Update cache with new timesheet
                 await updateCacheAfterCreate(timesheet: timesheet, user: user)
@@ -520,28 +465,23 @@ class NetworkService {
                 // Validierungsfehler sollten NICHT zur Pending Queue hinzugefügt werden
                 // da sie sich durch Wiederholung nicht beheben lassen
                 if case .validationError = error {
-                    print("❌ [NetworkService] Validierungsfehler - NICHT zur Pending Queue hinzugefügt: \(error.localizedDescription)")
                     throw error // Wirf den Fehler weiter, damit der Aufrufer ihn behandeln kann
                 }
                 
-                print("❌ [NetworkService] Online-Create fehlgeschlagen: \(error)")
                 
                 // Fallback to offline mode nur bei Netzwerkfehlern, nicht bei Validierungsfehlern
                 let tempId = UUID().uuidString
                 pendingOpsManager.addOperation(.createTimesheet(form: form, tempId: tempId))
-                print("📥 [NetworkService] Create fehlgeschlagen - zur Pending Queue hinzugefügt (tempId: \(tempId))")
                 
                 let tempTimesheet = await createTemporaryTimesheet(from: form, tempId: tempId, user: user)
                 await updateCacheAfterCreate(timesheet: tempTimesheet, user: user)
                 
                 return tempTimesheet
             } catch {
-                print("❌ [NetworkService] Online-Create fehlgeschlagen: \(error)")
                 
                 // Fallback to offline mode
                 let tempId = UUID().uuidString
                 pendingOpsManager.addOperation(.createTimesheet(form: form, tempId: tempId))
-                print("📥 [NetworkService] Create fehlgeschlagen - zur Pending Queue hinzugefügt (tempId: \(tempId))")
                 
                 let tempTimesheet = await createTemporaryTimesheet(from: form, tempId: tempId, user: user)
                 await updateCacheAfterCreate(timesheet: tempTimesheet, user: user)
@@ -552,7 +492,6 @@ class NetworkService {
             // Offline: Add to pending operations
             let tempId = UUID().uuidString
             pendingOpsManager.addOperation(.createTimesheet(form: form, tempId: tempId))
-            print("📥 [NetworkService] Offline - Timesheet zur Pending Queue hinzugefügt (tempId: \(tempId))")
             
             // Create a temporary timesheet for display
             let tempTimesheet = await createTemporaryTimesheet(from: form, tempId: tempId, user: user)
@@ -576,7 +515,6 @@ class NetworkService {
             throw APIError.invalidResponse(nil)
         }
         
-        print("📡 [NetworkService] PATCH \(url)")
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
@@ -584,20 +522,16 @@ class NetworkService {
         
         // Debug: Zeige Request-Body
         if let bodyString = String(data: body, encoding: .utf8) {
-            print("📤 [NetworkService] Update Request Body: \(bodyString)")
         }
         
         let data = try await performRESTRequest(url: url, method: "PATCH", body: body, user: user)
         
-        print("📦 [NetworkService] Update Response empfangen: \(data.count) bytes")
         
         // Debug: Zeige Response-Body
         if let responseString = String(data: data, encoding: .utf8) {
-            print("📄 [NetworkService] Update Response Body: \(responseString)")
         }
         
         let timesheet = try customDateDecoder.decode(Timesheet.self, from: data)
-        print("✅ [NetworkService] Timesheet erfolgreich aktualisiert mit ID: \(timesheet.id)")
                 
                 // Update cache with modified timesheet
                 await updateCacheAfterUpdate(timesheet: timesheet, user: user)
@@ -607,26 +541,21 @@ class NetworkService {
                 // Validierungsfehler sollten NICHT zur Pending Queue hinzugefügt werden
                 // da sie sich durch Wiederholung nicht beheben lassen
                 if case .validationError = error {
-                    print("❌ [NetworkService] Validierungsfehler - NICHT zur Pending Queue hinzugefügt: \(error.localizedDescription)")
                     throw error // Wirf den Fehler weiter, damit der Aufrufer ihn behandeln kann
                 }
                 
-                print("❌ [NetworkService] Online-Update fehlgeschlagen: \(error)")
                 
                 // Fallback to offline mode nur bei Netzwerkfehlern, nicht bei Validierungsfehlern
                 pendingOpsManager.addOperation(.updateTimesheet(id: id, form: form))
-                print("📥 [NetworkService] Update fehlgeschlagen - zur Pending Queue hinzugefügt (id: \(id))")
                 
                 let tempTimesheet = await createTemporaryTimesheet(from: form, tempId: "\(id)", user: user, existingId: id)
                 await updateCacheAfterUpdate(timesheet: tempTimesheet, user: user)
                 
                 return tempTimesheet
             } catch {
-                print("❌ [NetworkService] Online-Update fehlgeschlagen: \(error)")
                 
                 // Fallback to offline mode
                 pendingOpsManager.addOperation(.updateTimesheet(id: id, form: form))
-                print("📥 [NetworkService] Update fehlgeschlagen - zur Pending Queue hinzugefügt (id: \(id))")
                 
                 let tempTimesheet = await createTemporaryTimesheet(from: form, tempId: "\(id)", user: user, existingId: id)
                 await updateCacheAfterUpdate(timesheet: tempTimesheet, user: user)
@@ -636,7 +565,6 @@ class NetworkService {
         } else {
             // Offline: Add to pending operations
             pendingOpsManager.addOperation(.updateTimesheet(id: id, form: form))
-            print("📥 [NetworkService] Offline - Timesheet Update zur Pending Queue hinzugefügt (id: \(id))")
             
             // Create a temporary timesheet for display
             let tempTimesheet = await createTemporaryTimesheet(from: form, tempId: "\(id)", user: user, existingId: id)
@@ -650,27 +578,20 @@ class NetworkService {
     
     /// Delete a timesheet
     func deleteTimesheet(id: Int, user: User) async throws {
-        print("🗑️ [NetworkService] deleteTimesheet aufgerufen für ID: \(id)")
-        print("🌐 [NetworkService] Netzwerk-Status: \(networkMonitor.isConnected ? "Online" : "Offline")")
         
         if networkMonitor.isConnected {
             // Online: Try to delete directly
             do {
         let url = user.apiEndpoint.appendingPathComponent("timesheets/\(id)")
-        print("📡 [NetworkService] DELETE \(url)")
         
         _ = try await performRESTRequest(url: url, method: "DELETE", body: nil, user: user)
-        print("✅ [NetworkService] DELETE erfolgreich - Timesheet \(id) gelöscht")
                 
                 // Update cache by removing the deleted item
                 await updateCacheAfterDelete(id: id, user: user)
             } catch {
-                print("❌ [NetworkService] Online-Delete fehlgeschlagen: \(error)")
                 
                 // Add to pending operations even if online request failed
-                print("📥 [NetworkService] Füge fehlgeschlagene Delete-Operation zur Queue hinzu")
                 pendingOpsManager.addOperation(.deleteTimesheet(id: id))
-                print("✅ [NetworkService] Operation hinzugefügt - Queue hat jetzt \(pendingOpsManager.pendingCount) Operationen")
                 
                 // Still update cache optimistically
                 await updateCacheAfterDelete(id: id, user: user)
@@ -679,9 +600,7 @@ class NetworkService {
             }
         } else {
             // Offline: Add to pending operations
-            print("📥 [NetworkService] Offline - füge Delete-Operation zur Queue hinzu")
             pendingOpsManager.addOperation(.deleteTimesheet(id: id))
-            print("✅ [NetworkService] Operation hinzugefügt - Queue hat jetzt \(pendingOpsManager.pendingCount) Operationen")
             
             // Optimistically update cache
             await updateCacheAfterDelete(id: id, user: user)
@@ -708,9 +627,7 @@ class NetworkService {
             }
             
             try await cacheManager.cache(cachedTimesheets, for: user, type: .timesheets)
-            print("💾 [NetworkService] Cache aktualisiert - Timesheet \(timesheet.id) hinzugefügt")
         } catch {
-            print("⚠️ [NetworkService] Konnte Cache nicht aktualisieren: \(error)")
         }
     }
     
@@ -723,10 +640,8 @@ class NetworkService {
             if let index = cachedTimesheets.firstIndex(where: { $0.id == timesheet.id }) {
                 cachedTimesheets[index] = timesheet
                 try await cacheManager.cache(cachedTimesheets, for: user, type: .timesheets)
-                print("💾 [NetworkService] Cache aktualisiert - Timesheet \(timesheet.id) aktualisiert")
             }
         } catch {
-            print("⚠️ [NetworkService] Konnte Cache nicht aktualisieren: \(error)")
         }
     }
     
@@ -736,23 +651,44 @@ class NetworkService {
             var cachedTimesheets = try await cacheManager.load([Timesheet].self, for: user, cacheType: .timesheets)
             cachedTimesheets.removeAll { $0.id == id }
             try await cacheManager.cache(cachedTimesheets, for: user, type: .timesheets)
-            print("💾 [NetworkService] Cache aktualisiert - Timesheet \(id) entfernt")
         } catch {
-            print("⚠️ [NetworkService] Konnte Cache nicht aktualisieren: \(error)")
+        }
+    }
+    
+    /// Replace temporary timesheet (negative ID) with real timesheet (server ID) in cache
+    func replaceTemporaryTimesheetInCache(tempId: Int, realTimesheet: Timesheet, user: User) async {
+        do {
+            var cachedTimesheets = (try? await cacheManager.load([Timesheet].self, for: user, cacheType: .timesheets)) ?? []
+            
+            // Remove temporary timesheet with negative ID
+            cachedTimesheets.removeAll { $0.id == tempId }
+            
+            // Add real timesheet if it doesn't already exist
+            if !cachedTimesheets.contains(where: { $0.id == realTimesheet.id }) {
+                cachedTimesheets.append(realTimesheet)
+            }
+            
+            // Sortiere nach begin DESC (neueste zuerst)
+            cachedTimesheets.sort { $0.begin > $1.begin }
+            
+            // Limit cache size
+            let maxEntries = CacheSettings.maxCacheEntries
+            if cachedTimesheets.count > maxEntries {
+                cachedTimesheets = Array(cachedTimesheets.prefix(maxEntries))
+            }
+            
+            try await cacheManager.cache(cachedTimesheets, for: user, type: .timesheets)
+        } catch {
         }
     }
     
     /// Preload all reference data for offline use (PARALLELISIERT)
     func preloadReferenceData(for user: User) async throws {
-        print("📥 [NetworkService] Starte Preload aller Referenzdaten...")
         
         // 1. Load customers
-        print("📥 [NetworkService] Lade Customers...")
         let customers = try await getCustomers(user: user)
-        print("✅ [NetworkService] \(customers.count) Customers geladen und gecacht")
         
         // 2. Load all projects for each customer IN PARALLEL
-        print("📥 [NetworkService] Lade Projects für alle Customers (parallel)...")
         let projectResults = await withTaskGroup(of: (Customer, Result<[Project], Error>).self) { group in
             for customer in customers {
                 group.addTask {
@@ -787,7 +723,6 @@ class NetworkService {
         }
         
         // 3. Load activities for each project IN PARALLEL
-        print("📥 [NetworkService] Lade Activities für alle Projects (parallel)...")
         let activityResults = await withTaskGroup(of: (String, Result<[ActivityDetails], Error>).self) { group in
             for (customer, projects) in allProjects {
                 for project in projects {
@@ -822,30 +757,22 @@ class NetworkService {
         }
         
         // 4. Load tags (optional - nicht kritisch wenn fehlschlägt)
-        print("📥 [NetworkService] Lade Tags...")
         do {
             let tags = try await getTags(user: user)
-            print("✅ [NetworkService] \(tags.count) Tags geladen und gecacht")
         } catch {
-            print("⚠️ [NetworkService] Tags konnten nicht geladen werden (nicht kritisch): \(error)")
         }
         
-        print("✅ [NetworkService] Preload abgeschlossen: \(customers.count) Customers, \(totalProjects) Projects, \(totalActivities) Activities")
     }
     
     /// Get current user information including roles
     func getCurrentUser(user: User) async throws -> TimesheetUser {
         let url = user.apiEndpoint.appendingPathComponent("users/me")
-        print("📡 [NetworkService] GET \(url)")
         
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
-        print("📦 [NetworkService] Current User Daten empfangen: \(data.count) bytes")
         
         let decoder = JSONDecoder()
         let currentUser = try decoder.decode(TimesheetUser.self, from: data)
-        print("✅ [NetworkService] Current User dekodiert: \(currentUser.username)")
         if let roles = currentUser.roles {
-            print("🔑 [NetworkService] User Rollen: \(roles.joined(separator: ", "))")
         }
         return currentUser
     }
@@ -853,14 +780,11 @@ class NetworkService {
     /// Get all users (for reports with all users)
     func getAllUsers(user: User) async throws -> [TimesheetUser] {
         let url = user.apiEndpoint.appendingPathComponent("users")
-        print("📡 [NetworkService] GET \(url)")
         
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
-        print("📦 [NetworkService] Users Daten empfangen: \(data.count) bytes")
         
         let decoder = JSONDecoder()
         let users = try decoder.decode([TimesheetUser].self, from: data)
-        print("✅ [NetworkService] \(users.count) Users dekodiert")
         return users
     }
     
@@ -888,7 +812,6 @@ class NetworkService {
                 
                 return tags
             } catch {
-                print("⚠️ [NetworkService] API-Fehler beim Laden der Tags, versuche Cache: \(error)")
             }
         }
         
@@ -953,14 +876,12 @@ class NetworkService {
     /// Get timesheets with full project objects (including budget)
     func getTimesheetsWithProjects(_ user: User) async throws -> [Timesheet] {
         if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
-            print("🧪 [NetworkService] UI-Testing Modus - keine Timesheets verfügbar")
             return []
         }
         
         // Try to fetch from API if online
         if networkMonitor.isConnected {
             do {
-                print("📋 [NetworkService] Online - Lade Timesheets mit Projekten vom Server...")
         var urlComponents = URLComponents(url: user.apiEndpoint.appendingPathComponent("timesheets"), resolvingAgainstBaseURL: false)!
         // Begrenze size auf Maximum 200 (API-Limit)
         let apiSize = min(CacheSettings.maxTimesheetEntries, 200)
@@ -975,19 +896,15 @@ class NetworkService {
             throw APIError.invalidResponse(nil)
         }
         
-        print("📡 [NetworkService] GET \(url)")
         
         let data = try await performRESTRequest(url: url, method: "GET", body: nil, user: user)
-        print("📦 [NetworkService] Timesheet Daten empfangen: \(data.count) bytes")
         
         var timesheets = try customDateDecoder.decode([Timesheet].self, from: data)
-        print("✅ [NetworkService] \(timesheets.count) Timesheets mit Projekten dekodiert")
         
         // Limit cache size before caching (verwende maxCacheEntries für Cache-Limit)
         let maxEntries = CacheSettings.maxCacheEntries
         if timesheets.count > maxEntries {
             timesheets = Array(timesheets.prefix(maxEntries))
-            print("📦 [NetworkService] Timesheets auf \(maxEntries) Einträge begrenzt (Cache-Limit)")
         }
         
                 // Cache the timesheets
@@ -995,18 +912,14 @@ class NetworkService {
                 
                 return timesheets
             } catch {
-                print("⚠️ [NetworkService] API-Fehler, versuche Cache: \(error)")
             }
         }
         
         // Load from cache
-        print("💾 [NetworkService] Lade Timesheets aus Cache...")
         do {
             let timesheets = try await cacheManager.load([Timesheet].self, for: user, cacheType: .timesheets)
-            print("💾 [NetworkService] \(timesheets.count) Timesheets aus Cache geladen")
         return timesheets
         } catch {
-            print("❌ [NetworkService] Kein Cache verfügbar")
             throw APIError.offlineNoCache
         }
     }
@@ -1038,7 +951,6 @@ class NetworkService {
         
         // Try to load customers
         if let cachedCustomers = try? await cacheManager.load([Customer].self, for: user, cacheType: .customers) {
-            print("🔍 [NetworkService] Gefundene Customers im Cache: \(cachedCustomers.count)")
             
             // Search for the project in all customer caches
             for cachedCustomer in cachedCustomers {
@@ -1046,7 +958,6 @@ class NetworkService {
                     if let foundProject = projects.first(where: { $0.id == form.project }) {
                         customer = cachedCustomer
                         project = foundProject
-                        print("✅ [NetworkService] Customer & Project aus Cache geladen: \(cachedCustomer.name) / \(foundProject.name)")
                         break
                     }
                 }
@@ -1056,14 +967,12 @@ class NetworkService {
             if let activities = try? await cacheManager.load([ActivityDetails].self, for: user, cacheType: .activitiesForProject, identifier: "\(form.project)") {
                 activity = activities.first(where: { $0.id == form.activity })
                 if let activity = activity {
-                    print("✅ [NetworkService] Activity aus Cache geladen: \(activity.name)")
                 }
             }
         }
         
         // Fallback to dummy data if cache loading failed
         if customer == nil {
-            print("⚠️ [NetworkService] Konnte Customer nicht aus Cache laden - verwende Fallback")
             customer = Customer(
                 id: 0,
                 name: "Offline-Eintrag",
@@ -1079,7 +988,6 @@ class NetworkService {
         }
         
         if project == nil {
-            print("⚠️ [NetworkService] Konnte Project nicht aus Cache laden - verwende Fallback")
             project = Project(
                 id: form.project,
                 customer: customer!,
@@ -1097,7 +1005,6 @@ class NetworkService {
         }
         
         if activity == nil {
-            print("⚠️ [NetworkService] Konnte Activity nicht aus Cache laden - verwende Fallback")
             activity = ActivityDetails(
                 id: form.activity,
                 project: nil,
@@ -1156,13 +1063,10 @@ class NetworkService {
             }
             
             guard 200..<300 ~= httpResp.statusCode else {
-                print("❌ [NetworkService] HTTP Status code: \(httpResp.statusCode)")
                 
                 // Bei 400 Error, parse Validation-Fehler
                 if httpResp.statusCode == 400 {
                     if let errorMessage = String(data: data, encoding: .utf8) {
-                        print("❌ [NetworkService] 400 Bad Request - Server Response:")
-                        print("📄 [NetworkService] \(errorMessage)")
                         
                         // Versuche, die Validierungsfehler zu parsen
                         if let jsonObject = try? JSONSerialization.jsonObject(with: data),

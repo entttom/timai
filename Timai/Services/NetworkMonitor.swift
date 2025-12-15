@@ -41,7 +41,6 @@ class NetworkMonitor: ObservableObject {
         }
         
         monitor.start(queue: queue)
-        print("🌐 [NetworkMonitor] Initialisiert und gestartet")
     }
     
     deinit {
@@ -68,10 +67,8 @@ class NetworkMonitor: ObservableObject {
         // Log status changes
         if wasConnected != isConnected {
             if isConnected {
-                print("✅ [NetworkMonitor] Verbindung wiederhergestellt - Typ: \(connectionType)")
                 NotificationCenter.default.post(name: .networkConnectionRestored, object: nil)
             } else {
-                print("❌ [NetworkMonitor] Verbindung verloren")
                 NotificationCenter.default.post(name: .networkConnectionLost, object: nil)
             }
         }
@@ -89,6 +86,7 @@ extension Notification.Name {
     static let networkConnectionRestored = Notification.Name("networkConnectionRestored")
     static let networkConnectionLost = Notification.Name("networkConnectionLost")
     static let syncCompleted = Notification.Name("syncCompleted")
+    static let syncValidationError = Notification.Name("syncValidationError")
 }
 
 

@@ -142,6 +142,28 @@ class LiveActivityManager {
     var isActivityRunning: Bool {
         return currentActivityId != nil
     }
+    
+    /// Validate and sync Live Activity state with actual timer state
+    /// This should be called periodically to ensure Live Activity matches timer state
+    func validateLiveActivityState(hasActiveTimer: Bool) async {
+        let hasActivity = currentActivityId != nil
+        
+        // Check if activity still exists in ActivityKit
+        if let activityId = currentActivityId {
+            let existingActivities = ActivityKit.Activity<TimerActivityAttributes>.activities
+            if !existingActivities.contains(where: { $0.id == activityId }) {
+                // Activity was removed by system - clear our reference
+                currentActivityId = nil
+            }
+        }
+        
+        // If we have a Live Activity but no active timer, stop the activity
+        if hasActivity && !hasActiveTimer {
+            await stopTimerActivity()
+        }
+        // If we have an active timer but no Live Activity, we should start one
+        // (But this is handled by TimerManager when it detects a timer)
+    }
 }
 #else
 // macOS stub implementation
@@ -164,6 +186,10 @@ class LiveActivityManager {
     
     var isActivityRunning: Bool {
         return false
+    }
+    
+    func validateLiveActivityState(hasActiveTimer: Bool) async {
+        // No-op on macOS
     }
 }
 #endif

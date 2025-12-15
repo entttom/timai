@@ -22,6 +22,7 @@ class OfflineSyncManager: ObservableObject {
     private let networkMonitor = NetworkMonitor.shared
     private let pendingOpsManager = PendingOperationsManager.shared
     private let networkService = NetworkService.shared
+    private let instanceManager = InstanceManager.shared
     
     private var cancellables = Set<AnyCancellable>()
     private var isSyncing = false
@@ -29,7 +30,6 @@ class OfflineSyncManager: ObservableObject {
     private init() {
         setupNetworkMonitoring()
         loadLastSyncDate()
-        print("🔄 [OfflineSyncManager] Initialisiert")
     }
     
     // MARK: - Setup
@@ -43,17 +43,25 @@ class OfflineSyncManager: ObservableObject {
                 }
             }
             .store(in: &cancellables)
-        
-        print("🔄 [OfflineSyncManager] Netzwerk-Monitoring aktiv")
     }
     
     private func onNetworkRestored() async {
-        print("✅ [OfflineSyncManager] Netzwerk wiederhergestellt - starte Auto-Sync")
-        
         // Check if auto-sync is enabled
         let autoSyncEnabled = UserDefaults.standard.bool(forKey: "autoSyncEnabled")
         if autoSyncEnabled || UserDefaults.standard.object(forKey: "autoSyncEnabled") == nil {
-            await syncPendingOperations()
+            // Get current user from InstanceManager (similar to AuthViewModel)
+            guard let activeInstance = instanceManager.activeInstance,
+                  let apiToken = activeInstance.apiToken else {
+                return
+            }
+            
+            let user = User(
+                apiEndpoint: activeInstance.apiEndpoint,
+                apiToken: apiToken,
+                instanceId: activeInstance.id
+            )
+            
+            await syncPendingOperations(for: user)
         }
     }
     
@@ -61,31 +69,26 @@ class OfflineSyncManager: ObservableObject {
     
     func syncPendingOperations(for user: User? = nil) async {
         guard !isSyncing else {
-            print("⚠️ [OfflineSyncManager] Sync läuft bereits")
             return
         }
         
         guard networkMonitor.isConnected else {
-            print("⚠️ [OfflineSyncManager] Keine Netzwerkverbindung - Sync abgebrochen")
             syncStatus = .failed(error: "Keine Netzwerkverbindung")
             return
         }
         
         guard pendingOpsManager.hasPendingOperations else {
-            print("ℹ️ [OfflineSyncManager] Keine ausstehenden Operationen")
             syncStatus = .idle
             return
         }
         
         // Get current user if not provided
         guard let currentUser = user else {
-            print("⚠️ [OfflineSyncManager] Kein User verfügbar")
             return
         }
         
         isSyncing = true
         syncStatus = .syncing(progress: 0.0)
-        print("🔄 [OfflineSyncManager] Starte Synchronisierung von \(pendingOpsManager.pendingCount) Operationen")
         
         let operations = pendingOpsManager.pendingOperations
         let totalOps = operations.count
@@ -98,19 +101,32 @@ class OfflineSyncManager: ObservableObject {
             
             do {
                 try await syncOperation(item, user: currentUser)
-                pendingOpsManager.markAsCompleted(item, serverId: nil)
-                print("✅ [OfflineSyncManager] Operation synchronisiert: \(item.operation.description)")
+                // Note: markAsCompleted is already called in syncOperation for CREATE operations
+                // Only call it here for other operation types that don't call it themselves
+                if case .createTimesheet = item.operation {
+                    // Already marked as completed in syncOperation with serverId
+                } else {
+                    pendingOpsManager.markAsCompleted(item, serverId: nil)
+                }
             } catch let error as NetworkService.APIError {
                 // Validierungsfehler sollten nicht wiederholt werden - entferne die Operation
                 if case .validationError(let message) = error {
-                    print("❌ [OfflineSyncManager] Validierungsfehler - entferne Operation (wird nicht wiederholt): \(message)")
+                    // Post notification about validation error
+                    let errorInfo: [String: Any] = [
+                        "operation": item.operation.description,
+                        "error": message
+                    ]
+                    NotificationCenter.default.post(
+                        name: .syncValidationError,
+                        object: nil,
+                        userInfo: errorInfo
+                    )
+                    
                     pendingOpsManager.markAsCompleted(item) // Als "abgeschlossen" markieren, um sie zu entfernen
                 } else {
-                    print("❌ [OfflineSyncManager] Fehler beim Sync: \(error.localizedDescription)")
                     pendingOpsManager.markAsFailed(item, error: error.localizedDescription)
                 }
             } catch {
-                print("❌ [OfflineSyncManager] Fehler beim Sync: \(error.localizedDescription)")
                 pendingOpsManager.markAsFailed(item, error: error.localizedDescription)
             }
             
@@ -126,7 +142,6 @@ class OfflineSyncManager: ObservableObject {
             syncStatus = .completed
             lastSyncDate = Date()
             saveLastSyncDate()
-            print("✅ [OfflineSyncManager] Synchronisierung erfolgreich abgeschlossen")
             
             // Notify that sync completed
             NotificationCenter.default.post(name: .syncCompleted, object: nil)
@@ -145,7 +160,49 @@ class OfflineSyncManager: ObservableObject {
             // Stelle sicher, dass alle Tags existieren, bevor wir das Timesheet erstellen
             try await ensureTagsExist(form: form, user: user)
             
-            let timesheet = try await networkService.createTimesheet(form: form, user: user)
+            // Prüfe, ob die Activity noch gültig ist (mit Timeout, um nicht zu hängen)
+            var validatedForm = form
+            
+            // Versuche Activity-Validierung mit Timeout (3 Sekunden)
+            // Wenn die Validierung zu lange dauert oder fehlschlägt, verwenden wir die ursprüngliche Activity
+            do {
+                let activities = try await withTimeout(seconds: 3) {
+                    try await self.networkService.getActivities(projectId: form.project, user: user)
+                }
+                
+                if activities.isEmpty {
+                    // Keine Activities gefunden - verwende ursprüngliche Activity
+                } else {
+                    let activityExists = activities.contains(where: { $0.id == form.activity })
+                    
+                    if !activityExists {
+                        // Verwende die erste verfügbare Activity für das Projekt
+                        if let firstActivity = activities.first {
+                            validatedForm = TimesheetEditForm(
+                                project: form.project,
+                                activity: firstActivity.id,
+                                begin: form.begin,
+                                end: form.end,
+                                description: form.description,
+                                tags: form.tags,
+                                fixedRate: form.fixedRate,
+                                hourlyRate: form.hourlyRate,
+                                user: form.user,
+                                exported: form.exported,
+                                billable: form.billable
+                            )
+                        } else {
+                            throw NetworkService.APIError.validationError("Keine gültige Activity für dieses Projekt verfügbar")
+                        }
+                    }
+                }
+            } catch is TimeoutError {
+                // Fallback: Verwende die ursprüngliche Activity und lasse den Server entscheiden
+            } catch {
+                // Fallback: Verwende die ursprüngliche Activity und lasse den Server entscheiden
+            }
+            
+            let timesheet = try await networkService.createTimesheet(form: validatedForm, user: user)
             
             // Get temp hash for matching
             let tempHash = item.tempIdHash ?? -(abs(tempId.hashValue) % 1_000_000)
@@ -153,9 +210,11 @@ class OfflineSyncManager: ObservableObject {
             // Update all pending UPDATE/DELETE operations that reference this temp ID
             pendingOpsManager.updateOperationsWithTempId(tempHash, newId: timesheet.id)
             
+            // Remove temporary timesheet from cache (negative ID) and replace with real one
+            await networkService.replaceTemporaryTimesheetInCache(tempId: tempHash, realTimesheet: timesheet, user: user)
+            
             // Store temp ID mapping
             pendingOpsManager.markAsCompleted(item, serverId: timesheet.id)
-            print("✅ [OfflineSyncManager] Timesheet erstellt - Temp ID: \(tempId) (hash: \(tempHash)) -> Server ID: \(timesheet.id)")
             
         case .updateTimesheet(let id, let form):
             // Check if this is a negative (temp) ID
@@ -171,7 +230,6 @@ class OfflineSyncManager: ObservableObject {
                 
                 if hasCreateOp {
                     // CREATE will be synced first, then this UPDATE will be updated
-                    print("⚠️ [OfflineSyncManager] UPDATE mit negativer ID: \(id) - warte auf CREATE Sync")
                     throw NSError(domain: "OfflineSync", code: 404, userInfo: [NSLocalizedDescriptionKey: "Negative ID - CREATE Operation noch nicht synchronisiert"])
                 } else {
                     // Check if the operation was already updated in the queue
@@ -180,16 +238,13 @@ class OfflineSyncManager: ObservableObject {
                        case .updateTimesheet(let currentId, _) = currentItem.operation,
                        currentId != id && currentId > 0 {
                         // The operation was already updated - use the new ID
-                        print("🔄 [OfflineSyncManager] UPDATE Operation wurde bereits aktualisiert: \(id) -> \(currentId)")
                         try await ensureTagsExist(form: form, user: user)
                         _ = try await networkService.updateTimesheet(id: currentId, form: form, user: user)
                         pendingOpsManager.markAsCompleted(currentItem)
-                        print("✅ [OfflineSyncManager] Timesheet aktualisiert - ID: \(currentId)")
                         return
                     }
                     
                     // CREATE was already synced in a previous session - this UPDATE is orphaned
-                    print("⚠️ [OfflineSyncManager] Verwaiste UPDATE-Operation mit negativer ID: \(id) - CREATE wurde bereits synchronisiert, lösche Operation")
                     pendingOpsManager.markAsCompleted(item)
                     return
                 }
@@ -200,7 +255,6 @@ class OfflineSyncManager: ObservableObject {
             
             _ = try await networkService.updateTimesheet(id: id, form: form, user: user)
             pendingOpsManager.markAsCompleted(item)
-            print("✅ [OfflineSyncManager] Timesheet aktualisiert - ID: \(id)")
             
         case .deleteTimesheet(let id):
             // Check if this is a negative (temp) ID
@@ -215,11 +269,9 @@ class OfflineSyncManager: ObservableObject {
                 
                 if hasCreateOp {
                     // CREATE will be synced first, then this DELETE will be updated
-                    print("⚠️ [OfflineSyncManager] DELETE mit negativer ID: \(id) - warte auf CREATE Sync")
                     throw NSError(domain: "OfflineSync", code: 404, userInfo: [NSLocalizedDescriptionKey: "Negative ID - CREATE Operation noch nicht synchronisiert"])
                 } else {
                     // CREATE was already synced in a previous session - this DELETE is orphaned
-                    print("⚠️ [OfflineSyncManager] Verwaiste DELETE-Operation mit negativer ID: \(id) - CREATE wurde bereits synchronisiert, lösche Operation")
                     pendingOpsManager.markAsCompleted(item)
                     return
                 }
@@ -227,9 +279,33 @@ class OfflineSyncManager: ObservableObject {
             
             try await networkService.deleteTimesheet(id: id, user: user)
             pendingOpsManager.markAsCompleted(item)
-            print("✅ [OfflineSyncManager] Timesheet gelöscht - ID: \(id)")
         }
     }
+    
+    // MARK: - Helper Functions
+    
+    /// Execute an async operation with a timeout
+    private func withTimeout<T>(seconds: TimeInterval, operation: @escaping () async throws -> T) async throws -> T {
+        return try await withThrowingTaskGroup(of: T.self) { group in
+            group.addTask {
+                return try await operation()
+            }
+            
+            group.addTask {
+                try await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
+                throw TimeoutError()
+            }
+            
+            guard let result = try await group.next() else {
+                throw TimeoutError()
+            }
+            
+            group.cancelAll()
+            return result
+        }
+    }
+    
+    private struct TimeoutError: Error {}
     
     // MARK: - Tag Management
     
@@ -267,7 +343,6 @@ class OfflineSyncManager: ObservableObject {
     // MARK: - Manual Sync Trigger
     
     func triggerManualSync(for user: User) async {
-        print("🔄 [OfflineSyncManager] Manueller Sync ausgelöst")
         await syncPendingOperations(for: user)
     }
     

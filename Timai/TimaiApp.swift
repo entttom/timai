@@ -94,6 +94,10 @@ struct TimaiApp: App {
             Task { @MainActor in
                 if let user = authViewModel.currentUser {
                     await TimerManager.shared.syncActiveTimerFromServer(user: user)
+                } else {
+                    // Even if not logged in, validate Live Activity state
+                    // (in case user logged out but Live Activity is still running)
+                    await TimerManager.shared.validateLiveActivityState()
                 }
             }
             
