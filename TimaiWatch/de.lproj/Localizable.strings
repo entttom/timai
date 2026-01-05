@@ -1,0 +1,55 @@
+//
+//  Localizable.strings
+//  TimaiWatch
+//
+//  Copyright (c) 2025 Dr. Thomas Entner.
+//  All rights reserved.
+//
+//  Licensed under the Business Source License 1.1.
+//  Usage is free for non-commercial and personal use.
+//  Commercial use requires a commercial license.
+//
+
+// Timer View
+"watch.timer.title" = "Timer";
+"watch.timer.noTimer" = "Kein Timer aktiv";
+"watch.timer.start" = "Starten";
+"watch.timer.stop" = "Stoppen";
+"watch.timer.timesheets" = "Zeiteinträge";
+
+// Project Selection
+"watch.selection.title" = "Timer starten";
+"watch.selection.customer" = "Kunde";
+"watch.selection.project" = "Projekt";
+"watch.selection.activity" = "Aktivität";
+"watch.selection.description" = "Beschreibung";
+"watch.selection.description.placeholder" = "Beschreibung (optional)";
+"watch.selection.cancel" = "Abbrechen";
+
+// Timesheet List
+"watch.timesheets.title" = "Zeiteinträge";
+"watch.timesheets.empty" = "Keine Zeiteinträge";
+"watch.timesheets.close" = "Schließen";
+
+// Timesheet Detail
+"watch.detail.title" = "Details";
+"watch.detail.project" = "Projekt";
+"watch.detail.activity" = "Aktivität";
+"watch.detail.customer" = "Kunde";
+"watch.detail.description" = "Beschreibung";
+"watch.detail.tags" = "Tags";
+"watch.detail.time" = "Zeit";
+"watch.detail.start" = "Start";
+"watch.detail.end" = "Ende";
+"watch.detail.duration" = "Dauer";
+"watch.detail.close" = "Schließen";
+
+// Errors
+"watch.error.title" = "Fehler";
+"watch.error.ok" = "OK";
+
+// Complications
+"watch.complication.name" = "Timer";
+"watch.complication.description" = "Zeigt den aktuellen Timer-Status";
+"watch.complication.noTimer" = "Kein Timer";
+

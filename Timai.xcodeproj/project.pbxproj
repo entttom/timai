@@ -1,0 +1,1414 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0699EE5D657847C39AB7ABA5 /* ActivityDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59417D4EA39948F8AE6F4B07 /* ActivityDetails.swift */; };
+		0798E753E1C54458A75104D5 /* TimesheetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C10F0E4E884E63ACE6FF3F /* TimesheetUser.swift */; };
+		5E68D7CDAD99403DB8C42535 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74829760C01C4CB7B99E35E4 /* Project.swift */; };
+		9F972C4094E645ECA13A334E /* Timesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21783BD3CFE445097141633 /* Timesheet.swift */; };
+		AA34B1362EBA0D250027C2F5 /* TimaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1352EBA0D250027C2F5 /* TimaiApp.swift */; };
+		AA34B13C2EBA0D370027C2F5 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */; };
+		AA34B13D2EBA0D370027C2F5 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */; };
+		AA34B13E2EBA0D370027C2F5 /* TimesheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B13A2EBA0D370027C2F5 /* TimesheetViewModel.swift */; };
+		AA34B13F2EBA0D370027C2F5 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1392EBA0D370027C2F5 /* SettingsViewModel.swift */; };
+		AA34B1552EBA0D4D0027C2F5 /* TimesheetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B14E2EBA0D4D0027C2F5 /* TimesheetDetailView.swift */; };
+		AA34B1562EBA0D4D0027C2F5 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1412EBA0D4D0027C2F5 /* LoadingView.swift */; };
+		AA34B1572EBA0D4D0027C2F5 /* GraphicsCreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B14A2EBA0D4D0027C2F5 /* GraphicsCreditsView.swift */; };
+		AA34B1582EBA0D4D0027C2F5 /* GenericReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1472EBA0D4D0027C2F5 /* GenericReportView.swift */; };
+		AA34B1592EBA0D4D0027C2F5 /* OSSCreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B14B2EBA0D4D0027C2F5 /* OSSCreditsView.swift */; };
+		AA34B15A2EBA0D4D0027C2F5 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1482EBA0D4D0027C2F5 /* ReportsView.swift */; };
+		AA34B15B2EBA0D4D0027C2F5 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1432EBA0D4D0027C2F5 /* ToastView.swift */; };
+		AA34B15C2EBA0D4D0027C2F5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B14C2EBA0D4D0027C2F5 /* SettingsView.swift */; };
+		AA34B15D2EBA0D4D0027C2F5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1522EBA0D4D0027C2F5 /* LoginView.swift */; };
+		AA34B15E2EBA0D4D0027C2F5 /* TimesheetEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B14F2EBA0D4D0027C2F5 /* TimesheetEditView.swift */; };
+		AA34B15F2EBA0D4D0027C2F5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1452EBA0D4D0027C2F5 /* NetworkService.swift */; };
+		AA34B1602EBA0D4D0027C2F5 /* TimesheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1502EBA0D4D0027C2F5 /* TimesheetView.swift */; };
+		AA34B1612EBA0D4D0027C2F5 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1422EBA0D4D0027C2F5 /* PrimaryButton.swift */; };
+		AA34B1622EBA0D4D0027C2F5 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1532EBA0D4D0027C2F5 /* MainTabView.swift */; };
+		AA34B1632EBA0D4D0027C2F5 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1402EBA0D4D0027C2F5 /* EmptyStateView.swift */; };
+		AA34B1652EBA0D620027C2F5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1642EBA0D620027C2F5 /* Theme.swift */; };
+		AA3AC11B2EB8B239007CB3AA /* ReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1122EB8B239007CB3AA /* ReportType.swift */; };
+		AA3AC11D2EB8B239007CB3AA /* ReportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1112EB8B239007CB3AA /* ReportData.swift */; };
+		AA3AC1212EB8B239007CB3AA /* ReportAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3AC1102EB8B239007CB3AA /* ReportAggregator.swift */; };
+		AA41F1112EC71DF3008F4B4A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = AA41F1102EC71DF3008F4B4A /* KeychainAccess */; };
+		AA41F1A32ECA3936008F4B4A /* TagUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1A22ECA3936008F4B4A /* TagUtils.swift */; };
+		AA41F1A52ECA3945008F4B4A /* TagInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1A42ECA3945008F4B4A /* TagInputView.swift */; };
+		AA41F1A92ECA620A008F4B4A /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1A82ECA620A008F4B4A /* Tag.swift */; };
+		AA41F1AB2ECA66AA008F4B4A /* TimesheetEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1AA2ECA66AA008F4B4A /* TimesheetEditForm.swift */; };
+		AA41F1AD2ECB2308008F4B4A /* SearchFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1AC2ECB2307008F4B4A /* SearchFilters.swift */; };
+		AA41F1AF2ECB2327008F4B4A /* SearchSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1AE2ECB2327008F4B4A /* SearchSheet.swift */; };
+		AA41F1D02ECB3DD4008F4B4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDD678721F7D9051002F4D33 /* LaunchScreen.storyboard */; };
+		AA41F2022ECB6400008F4B4A /* TimaiWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = AA41F1F82ECB6400008F4B4A /* TimaiWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA41F2222ECB646A008F4B4A /* ActiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B392EBF8CEE005E592B /* ActiveTimer.swift */; };
+		AA41F2232ECB6471008F4B4A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4A303DA5D49C78F37C4A9 /* Customer.swift */; };
+		AA41F2242ECB6479008F4B4A /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74829760C01C4CB7B99E35E4 /* Project.swift */; };
+		AA41F2252ECB6480008F4B4A /* ActivityDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59417D4EA39948F8AE6F4B07 /* ActivityDetails.swift */; };
+		AA41F2262ECB648E008F4B4A /* TimesheetEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA41F1AA2ECA66AA008F4B4A /* TimesheetEditForm.swift */; };
+		AA41F2272ECB6498008F4B4A /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB0BF571F814CBB005AAA0F /* Activity.swift */; };
+		AA41F22C2ECB64DE008F4B4A /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA41F22A2ECB64DC008F4B4A /* WatchConnectivity.framework */; platformFilter = ios; };
+		AA41F3632ECB7B2A008F4B4A /* TimaiWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA5DBD222EBF9FF600002C68 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3E3E751F82E62200B5D291 /* Localizable.strings */; };
+		AA68BDF02EBB288900D64E58 /* OfflineSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */; };
+		AA68BDF12EBB288900D64E58 /* PendingOperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEF2EBB288900D64E58 /* PendingOperationsManager.swift */; };
+		AA68BDF22EBB288900D64E58 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEC2EBB288900D64E58 /* CacheManager.swift */; };
+		AA68BDF32EBB288900D64E58 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDED2EBB288900D64E58 /* NetworkMonitor.swift */; };
+		AA68BDF72EBB289E00D64E58 /* PendingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDF52EBB289E00D64E58 /* PendingOperation.swift */; };
+		AA68BDF82EBB289E00D64E58 /* CacheSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDF42EBB289E00D64E58 /* CacheSettings.swift */; };
+		AA68BDF92EBB289E00D64E58 /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDF62EBB289E00D64E58 /* SyncStatus.swift */; };
+		AA68BDFC2EBB28AC00D64E58 /* OfflineBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFA2EBB28AC00D64E58 /* OfflineBanner.swift */; };
+		AA68BDFD2EBB28AC00D64E58 /* SyncStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */; };
+		AA68BDFF2EBB28B800D64E58 /* CacheSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */; };
+		AA9C3B8B2F0A1B2C0033D4E5 /* LastSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C3B8A2F0A1B2C0033D4E5 /* LastSelectionStore.swift */; };
+		AAD67AE32EBCC813005E592B /* BiometricAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */; };
+		AAD67AE52EBCC81C005E592B /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE42EBCC81C005E592B /* AppLockView.swift */; };
+		AAD67AE72EBE5278005E592B /* KimaiInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE62EBE5278005E592B /* KimaiInstance.swift */; };
+		AAD67AE92EBE5286005E592B /* InstanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE82EBE5286005E592B /* InstanceManager.swift */; };
+		AAD67AEB2EBE5294005E592B /* AddInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AEA2EBE5294005E592B /* AddInstanceView.swift */; };
+		AAD67AEE2EBE52BC005E592B /* InstanceSwitcherSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AEC2EBE52BC005E592B /* InstanceSwitcherSheet.swift */; };
+		AAD67AF02EBE59D4005E592B /* EditInstanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AEF2EBE59D4005E592B /* EditInstanceView.swift */; };
+		AAD67AF72EBF88DC005E592B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD67AF62EBF88DC005E592B /* WidgetKit.framework */; };
+		AAD67AF92EBF88DC005E592B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD67AF82EBF88DC005E592B /* SwiftUI.framework */; };
+		AAD67B1B2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1A2EBF8AAD005E592B /* TimerActivityAttributes.swift */; };
+		AAD67B1C2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1A2EBF8AAD005E592B /* TimerActivityAttributes.swift */; };
+		AAD67B212EBF8B6D005E592B /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */; };
+		AAD67B222EBF8B6D005E592B /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1E2EBF8B6D005E592B /* TimerManager.swift */; };
+		AAD67B232EBF8B6D005E592B /* WatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B1F2EBF8B6D005E592B /* WatchConnectivityService.swift */; };
+		AAD67B342EBF8C79005E592B /* TimerStartSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B322EBF8C79005E592B /* TimerStartSheet.swift */; };
+		AAD67B352EBF8C79005E592B /* TimerStopDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B332EBF8C79005E592B /* TimerStopDialog.swift */; };
+		AAD67B362EBF8C79005E592B /* TimerBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B312EBF8C79005E592B /* TimerBanner.swift */; };
+		AAD67B3A2EBF8CEE005E592B /* ActiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B392EBF8CEE005E592B /* ActiveTimer.swift */; };
+		AAE1C3002F6B4A1C00ABD001 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C2002F6B4A1C00ABC001 /* Entities.swift */; };
+		AAE1C3012F6B4A1C00ABD002 /* StartTimerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C2012F6B4A1C00ABC002 /* StartTimerIntent.swift */; };
+		AAE1C3022F6B4A1C00ABD003 /* StopTimerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C2022F6B4A1C00ABC003 /* StopTimerIntent.swift */; };
+		AAE1C3032F6B4A1C00ABD004 /* TimaiShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C2032F6B4A1C00ABC004 /* TimaiShortcutsProvider.swift */; };
+		AAE1C3042F6B4A1C00ABD005 /* ShortcutUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C2042F6B4A1C00ABC005 /* ShortcutUserProvider.swift */; };
+		AAE1C3052F6B4A1C00ABD006 /* OptionsProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C2052F6B4A1C00ABC006 /* OptionsProviders.swift */; };
+		B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4A303DA5D49C78F37C4A9 /* Customer.swift */; };
+		BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */; };
+		F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */; };
+		FD3E058A208543F0005AAC63 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3E0589208543F0005AAC63 /* SnapshotHelper.swift */; };
+		FD3E3E731F82E62200B5D291 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3E3E751F82E62200B5D291 /* Localizable.strings */; };
+		FD3E3E7A1F82F92900B5D291 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3E3E791F82F92900B5D291 /* User.swift */; };
+		FD73611521580608002DC15E /* InstanceMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD73611421580608002DC15E /* InstanceMetadata.swift */; };
+		FD8D548520853DCC004F1C85 /* TimaiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8D548420853DCC004F1C85 /* TimaiUITests.swift */; };
+		FDB0BF581F814CBB005AAA0F /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB0BF571F814CBB005AAA0F /* Activity.swift */; };
+		FDD678711F7D9051002F4D33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDD678701F7D9051002F4D33 /* Assets.xcassets */; };
+		FDE9C2F2205320E1009250D9 /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE9C2F1205320E1009250D9 /* Credits.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA41F2002ECB6400008F4B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA41F1F72ECB6400008F4B4A;
+			remoteInfo = "TimaiWatch Watch App";
+		};
+		AA41F3642ECB7B2A008F4B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAD67AF42EBF88DC005E592B;
+			remoteInfo = TimaiWidgetsExtension;
+		};
+		AA41F3672ECB7B39008F4B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAD67AF42EBF88DC005E592B;
+			remoteInfo = TimaiWidgetsExtension;
+		};
+		AA41F3692ECB7B4E008F4B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAD67AF42EBF88DC005E592B;
+			remoteInfo = TimaiWidgetsExtension;
+		};
+		AA41F36B2ECB7B59008F4B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAD67AF42EBF88DC005E592B;
+			remoteInfo = TimaiWidgetsExtension;
+		};
+		FD8D548720853DCC004F1C85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDD678651F7D9051002F4D33;
+			remoteInfo = Timai;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA41F1F02ECB63CB008F4B4A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				AA41F2022ECB6400008F4B4A /* TimaiWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA41F3662ECB7B2A008F4B4A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AA41F3632ECB7B2A008F4B4A /* TimaiWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		59417D4EA39948F8AE6F4B07 /* ActivityDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetails.swift; sourceTree = "<group>"; };
+		73C10F0E4E884E63ACE6FF3F /* TimesheetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetUser.swift; sourceTree = "<group>"; };
+		74829760C01C4CB7B99E35E4 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBackgroundView.swift; sourceTree = "<group>"; };
+		AA34B1352EBA0D250027C2F5 /* TimaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimaiApp.swift; sourceTree = "<group>"; };
+		AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
+		AA34B1392EBA0D370027C2F5 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		AA34B13A2EBA0D370027C2F5 /* TimesheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetViewModel.swift; sourceTree = "<group>"; };
+		AA34B1402EBA0D4D0027C2F5 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		AA34B1412EBA0D4D0027C2F5 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		AA34B1422EBA0D4D0027C2F5 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		AA34B1432EBA0D4D0027C2F5 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		AA34B1452EBA0D4D0027C2F5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		AA34B1472EBA0D4D0027C2F5 /* GenericReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericReportView.swift; sourceTree = "<group>"; };
+		AA34B1482EBA0D4D0027C2F5 /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
+		AA34B14A2EBA0D4D0027C2F5 /* GraphicsCreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsCreditsView.swift; sourceTree = "<group>"; };
+		AA34B14B2EBA0D4D0027C2F5 /* OSSCreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSCreditsView.swift; sourceTree = "<group>"; };
+		AA34B14C2EBA0D4D0027C2F5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA34B14E2EBA0D4D0027C2F5 /* TimesheetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetDetailView.swift; sourceTree = "<group>"; };
+		AA34B14F2EBA0D4D0027C2F5 /* TimesheetEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetEditView.swift; sourceTree = "<group>"; };
+		AA34B1502EBA0D4D0027C2F5 /* TimesheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetView.swift; sourceTree = "<group>"; };
+		AA34B1522EBA0D4D0027C2F5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AA34B1532EBA0D4D0027C2F5 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		AA34B1642EBA0D620027C2F5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		AA3AC1102EB8B239007CB3AA /* ReportAggregator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAggregator.swift; sourceTree = "<group>"; };
+		AA3AC1112EB8B239007CB3AA /* ReportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportData.swift; sourceTree = "<group>"; };
+		AA3AC1122EB8B239007CB3AA /* ReportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportType.swift; sourceTree = "<group>"; };
+		AA41F1A22ECA3936008F4B4A /* TagUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagUtils.swift; sourceTree = "<group>"; };
+		AA41F1A42ECA3945008F4B4A /* TagInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInputView.swift; sourceTree = "<group>"; };
+		AA41F1A82ECA620A008F4B4A /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		AA41F1AA2ECA66AA008F4B4A /* TimesheetEditForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetEditForm.swift; sourceTree = "<group>"; };
+		AA41F1AC2ECB2307008F4B4A /* SearchFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilters.swift; sourceTree = "<group>"; };
+		AA41F1AE2ECB2327008F4B4A /* SearchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSheet.swift; sourceTree = "<group>"; };
+		AA41F1F82ECB6400008F4B4A /* TimaiWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TimaiWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA41F2282ECB64C3008F4B4A /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.0.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
+		AA41F22A2ECB64DC008F4B4A /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
+		AA68BDEC2EBB288900D64E58 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		AA68BDED2EBB288900D64E58 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncManager.swift; sourceTree = "<group>"; };
+		AA68BDEF2EBB288900D64E58 /* PendingOperationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperationsManager.swift; sourceTree = "<group>"; };
+		AA68BDF42EBB289E00D64E58 /* CacheSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheSettings.swift; sourceTree = "<group>"; };
+		AA68BDF52EBB289E00D64E58 /* PendingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperation.swift; sourceTree = "<group>"; };
+		AA68BDF62EBB289E00D64E58 /* SyncStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatus.swift; sourceTree = "<group>"; };
+		AA68BDFA2EBB28AC00D64E58 /* OfflineBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineBanner.swift; sourceTree = "<group>"; };
+		AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatusIndicator.swift; sourceTree = "<group>"; };
+		AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheSettingsView.swift; sourceTree = "<group>"; };
+		AA9C3B8A2F0A1B2C0033D4E5 /* LastSelectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSelectionStore.swift; sourceTree = "<group>"; };
+		AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthService.swift; sourceTree = "<group>"; };
+		AAD67AE42EBCC81C005E592B /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
+		AAD67AE62EBE5278005E592B /* KimaiInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimaiInstance.swift; sourceTree = "<group>"; };
+		AAD67AE82EBE5286005E592B /* InstanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceManager.swift; sourceTree = "<group>"; };
+		AAD67AEA2EBE5294005E592B /* AddInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstanceView.swift; sourceTree = "<group>"; };
+		AAD67AEC2EBE52BC005E592B /* InstanceSwitcherSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSwitcherSheet.swift; sourceTree = "<group>"; };
+		AAD67AEF2EBE59D4005E592B /* EditInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInstanceView.swift; sourceTree = "<group>"; };
+		AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimaiWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAD67AF62EBF88DC005E592B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		AAD67AF82EBF88DC005E592B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		AAD67B1A2EBF8AAD005E592B /* TimerActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerActivityAttributes.swift; sourceTree = "<group>"; };
+		AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
+		AAD67B1E2EBF8B6D005E592B /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		AAD67B1F2EBF8B6D005E592B /* WatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityService.swift; sourceTree = "<group>"; };
+		AAD67B312EBF8C79005E592B /* TimerBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBanner.swift; sourceTree = "<group>"; };
+		AAD67B322EBF8C79005E592B /* TimerStartSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartSheet.swift; sourceTree = "<group>"; };
+		AAD67B332EBF8C79005E592B /* TimerStopDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStopDialog.swift; sourceTree = "<group>"; };
+		AAD67B392EBF8CEE005E592B /* ActiveTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveTimer.swift; sourceTree = "<group>"; };
+		AAE1C2002F6B4A1C00ABC001 /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
+		AAE1C2012F6B4A1C00ABC002 /* StartTimerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerIntent.swift; sourceTree = "<group>"; };
+		AAE1C2022F6B4A1C00ABC003 /* StopTimerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTimerIntent.swift; sourceTree = "<group>"; };
+		AAE1C2032F6B4A1C00ABC004 /* TimaiShortcutsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimaiShortcutsProvider.swift; sourceTree = "<group>"; };
+		AAE1C2042F6B4A1C00ABC005 /* ShortcutUserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutUserProvider.swift; sourceTree = "<group>"; };
+		AAE1C2052F6B4A1C00ABC006 /* OptionsProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsProviders.swift; sourceTree = "<group>"; };
+		B21783BD3CFE445097141633 /* Timesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timesheet.swift; sourceTree = "<group>"; };
+		BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollection.swift; sourceTree = "<group>"; };
+		EFF4A303DA5D49C78F37C4A9 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		FD3E0589208543F0005AAC63 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		FD3E3E701F82E5C300B5D291 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		FD3E3E741F82E62200B5D291 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FD3E3E761F82E62400B5D291 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FD3E3E791F82F92900B5D291 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FD73611421580608002DC15E /* InstanceMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceMetadata.swift; sourceTree = "<group>"; };
+		FD8D548220853DCC004F1C85 /* TimaiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimaiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD8D548420853DCC004F1C85 /* TimaiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimaiUITests.swift; sourceTree = "<group>"; };
+		FD8D548620853DCC004F1C85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDB0BF571F814CBB005AAA0F /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		FDD678661F7D9051002F4D33 /* Timai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timai.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDD678701F7D9051002F4D33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FDD678731F7D9051002F4D33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FDD678751F7D9051002F4D33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDE9C2F1205320E1009250D9 /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AAD67B0C2EBF88DE005E592B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AA41F1F92ECB6400008F4B4A /* TimaiWatch Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "TimaiWatch Watch App"; sourceTree = "<group>"; };
+		AAD67AFA2EBF88DC005E592B /* TimaiWidgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (AAD67B0C2EBF88DE005E592B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = TimaiWidgets; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA41F1F52ECB6400008F4B4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAD67AF22EBF88DC005E592B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAD67AF92EBF88DC005E592B /* SwiftUI.framework in Frameworks */,
+				AAD67AF72EBF88DC005E592B /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD8D547F20853DCC004F1C85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDD678631F7D9051002F4D33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA41F1112EC71DF3008F4B4A /* KeychainAccess in Frameworks */,
+				AA41F22C2ECB64DE008F4B4A /* WatchConnectivity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA34B13B2EBA0D370027C2F5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */,
+				AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */,
+				AA34B1392EBA0D370027C2F5 /* SettingsViewModel.swift */,
+				AA34B13A2EBA0D370027C2F5 /* TimesheetViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA34B1442EBA0D4D0027C2F5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AA68BDFA2EBB28AC00D64E58 /* OfflineBanner.swift */,
+				AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */,
+				AA34B1402EBA0D4D0027C2F5 /* EmptyStateView.swift */,
+				AA34B1412EBA0D4D0027C2F5 /* LoadingView.swift */,
+				AA34B1422EBA0D4D0027C2F5 /* PrimaryButton.swift */,
+				AA34B1432EBA0D4D0027C2F5 /* ToastView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AA34B1462EBA0D4D0027C2F5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */,
+				AAD67B1E2EBF8B6D005E592B /* TimerManager.swift */,
+				AAD67B1F2EBF8B6D005E592B /* WatchConnectivityService.swift */,
+				AAD67AE82EBE5286005E592B /* InstanceManager.swift */,
+				AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */,
+				AA68BDEC2EBB288900D64E58 /* CacheManager.swift */,
+				AA68BDED2EBB288900D64E58 /* NetworkMonitor.swift */,
+				AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */,
+				AA68BDEF2EBB288900D64E58 /* PendingOperationsManager.swift */,
+				AA34B1452EBA0D4D0027C2F5 /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AA34B1492EBA0D4D0027C2F5 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				AA34B1472EBA0D4D0027C2F5 /* GenericReportView.swift */,
+				AA34B1482EBA0D4D0027C2F5 /* ReportsView.swift */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		AA34B14D2EBA0D4D0027C2F5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AAD67AEF2EBE59D4005E592B /* EditInstanceView.swift */,
+				AAD67AEA2EBE5294005E592B /* AddInstanceView.swift */,
+				AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */,
+				AA34B14A2EBA0D4D0027C2F5 /* GraphicsCreditsView.swift */,
+				AA34B14B2EBA0D4D0027C2F5 /* OSSCreditsView.swift */,
+				AA34B14C2EBA0D4D0027C2F5 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		AA34B1512EBA0D4D0027C2F5 /* Timesheet */ = {
+			isa = PBXGroup;
+			children = (
+				AA41F1AE2ECB2327008F4B4A /* SearchSheet.swift */,
+				AA34B14E2EBA0D4D0027C2F5 /* TimesheetDetailView.swift */,
+				AA34B14F2EBA0D4D0027C2F5 /* TimesheetEditView.swift */,
+				AA34B1502EBA0D4D0027C2F5 /* TimesheetView.swift */,
+			);
+			path = Timesheet;
+			sourceTree = "<group>";
+		};
+		AA34B1542EBA0D4D0027C2F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAD67AED2EBE52BC005E592B /* Components */,
+				AAD67AE42EBCC81C005E592B /* AppLockView.swift */,
+				AA34B1492EBA0D4D0027C2F5 /* Reports */,
+				AA34B14D2EBA0D4D0027C2F5 /* Settings */,
+				AA34B1512EBA0D4D0027C2F5 /* Timesheet */,
+				AA34B1522EBA0D4D0027C2F5 /* LoginView.swift */,
+				AA34B1532EBA0D4D0027C2F5 /* MainTabView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA3AC1132EB8B239007CB3AA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA3AC1102EB8B239007CB3AA /* ReportAggregator.swift */,
+				AA3AC1112EB8B239007CB3AA /* ReportData.swift */,
+				AA3AC1122EB8B239007CB3AA /* ReportType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AA3AC1172EB8B239007CB3AA /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				AA3AC1132EB8B239007CB3AA /* Model */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		AAD67AED2EBE52BC005E592B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AA41F1A42ECA3945008F4B4A /* TagInputView.swift */,
+				AAD67B312EBF8C79005E592B /* TimerBanner.swift */,
+				AAD67B322EBF8C79005E592B /* TimerStartSheet.swift */,
+				AAD67B332EBF8C79005E592B /* TimerStopDialog.swift */,
+				AAD67AEC2EBE52BC005E592B /* InstanceSwitcherSheet.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AAE1C2102F6B4A1C00ABC010 /* Shortcuts */ = {
+			isa = PBXGroup;
+			children = (
+				AAE1C2042F6B4A1C00ABC005 /* ShortcutUserProvider.swift */,
+				AAE1C2002F6B4A1C00ABC001 /* Entities.swift */,
+				AAE1C2052F6B4A1C00ABC006 /* OptionsProviders.swift */,
+				AAE1C2012F6B4A1C00ABC002 /* StartTimerIntent.swift */,
+				AAE1C2022F6B4A1C00ABC003 /* StopTimerIntent.swift */,
+				AAE1C2032F6B4A1C00ABC004 /* TimaiShortcutsProvider.swift */,
+			);
+			path = Shortcuts;
+			sourceTree = "<group>";
+		};
+		FD6C12DA2051D4570068D584 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FDDC10542083DF5C00D8A0A6 /* Model */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FD6FC36C2038797A001012CA /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FDDC10592083DFC900D8A0A6 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FD8D548320853DCC004F1C85 /* TimaiUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FD8D548420853DCC004F1C85 /* TimaiUITests.swift */,
+				FD3E0589208543F0005AAC63 /* SnapshotHelper.swift */,
+				FD8D548620853DCC004F1C85 /* Info.plist */,
+			);
+			path = TimaiUITests;
+			sourceTree = "<group>";
+		};
+		FDB0BF561F814CA9005AAA0F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA41F1AC2ECB2307008F4B4A /* SearchFilters.swift */,
+				AA41F1AA2ECA66AA008F4B4A /* TimesheetEditForm.swift */,
+				AA41F1A82ECA620A008F4B4A /* Tag.swift */,
+				AA41F1A22ECA3936008F4B4A /* TagUtils.swift */,
+				AAD67B392EBF8CEE005E592B /* ActiveTimer.swift */,
+				AAD67B1A2EBF8AAD005E592B /* TimerActivityAttributes.swift */,
+				AAD67AE62EBE5278005E592B /* KimaiInstance.swift */,
+				AA68BDF42EBB289E00D64E58 /* CacheSettings.swift */,
+				AA68BDF52EBB289E00D64E58 /* PendingOperation.swift */,
+				AA68BDF62EBB289E00D64E58 /* SyncStatus.swift */,
+				FDB0BF571F814CBB005AAA0F /* Activity.swift */,
+				FD3E3E791F82F92900B5D291 /* User.swift */,
+				FD73611421580608002DC15E /* InstanceMetadata.swift */,
+				BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */,
+				EFF4A303DA5D49C78F37C4A9 /* Customer.swift */,
+				74829760C01C4CB7B99E35E4 /* Project.swift */,
+				59417D4EA39948F8AE6F4B07 /* ActivityDetails.swift */,
+				73C10F0E4E884E63ACE6FF3F /* TimesheetUser.swift */,
+				B21783BD3CFE445097141633 /* Timesheet.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FDD6785D1F7D9051002F4D33 = {
+			isa = PBXGroup;
+			children = (
+				FDD678681F7D9051002F4D33 /* Timai */,
+				FD8D548320853DCC004F1C85 /* TimaiUITests */,
+				AAD67AFA2EBF88DC005E592B /* TimaiWidgets */,
+				AA41F1F92ECB6400008F4B4A /* TimaiWatch Watch App */,
+				FDD678671F7D9051002F4D33 /* Products */,
+				FDD6787F1F7D93E7002F4D33 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FDD678671F7D9051002F4D33 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FDD678661F7D9051002F4D33 /* Timai.app */,
+				FD8D548220853DCC004F1C85 /* TimaiUITests.xctest */,
+				AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */,
+				AA41F1F82ECB6400008F4B4A /* TimaiWatch Watch App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FDD678681F7D9051002F4D33 /* Timai */ = {
+			isa = PBXGroup;
+			children = (
+				AA34B1442EBA0D4D0027C2F5 /* Components */,
+				AAE1C2102F6B4A1C00ABC010 /* Shortcuts */,
+				AA34B1462EBA0D4D0027C2F5 /* Services */,
+				AA34B1542EBA0D4D0027C2F5 /* Views */,
+				AA34B13B2EBA0D370027C2F5 /* ViewModels */,
+				AA34B1352EBA0D250027C2F5 /* TimaiApp.swift */,
+				AA3AC1172EB8B239007CB3AA /* Reports */,
+				FD6C12DA2051D4570068D584 /* Settings */,
+				FD6FC36C2038797A001012CA /* Login */,
+				FDB0BF561F814CA9005AAA0F /* Model */,
+				FDD678861F7D960D002F4D33 /* Helper */,
+				FDD678701F7D9051002F4D33 /* Assets.xcassets */,
+				FDD678721F7D9051002F4D33 /* LaunchScreen.storyboard */,
+				FDD678751F7D9051002F4D33 /* Info.plist */,
+				FD3E3E751F82E62200B5D291 /* Localizable.strings */,
+			);
+			path = Timai;
+			sourceTree = "<group>";
+		};
+		FDD6787F1F7D93E7002F4D33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA41F2282ECB64C3008F4B4A /* WatchConnectivity.framework */,
+				AA41F22A2ECB64DC008F4B4A /* WatchConnectivity.framework */,
+				AAD67AF62EBF88DC005E592B /* WidgetKit.framework */,
+				AAD67AF82EBF88DC005E592B /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDD678861F7D960D002F4D33 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				AA34B1642EBA0D620027C2F5 /* Theme.swift */,
+				AA9C3B8A2F0A1B2C0033D4E5 /* LastSelectionStore.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		FDDC10542083DF5C00D8A0A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FDE9C2F1205320E1009250D9 /* Credits.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FDDC10592083DFC900D8A0A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA41F1F72ECB6400008F4B4A /* TimaiWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA41F2032ECB6400008F4B4A /* Build configuration list for PBXNativeTarget "TimaiWatch Watch App" */;
+			buildPhases = (
+				AA41F1F42ECB6400008F4B4A /* Sources */,
+				AA41F1F52ECB6400008F4B4A /* Frameworks */,
+				AA41F1F62ECB6400008F4B4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AA41F1F92ECB6400008F4B4A /* TimaiWatch Watch App */,
+			);
+			name = "TimaiWatch Watch App";
+			packageProductDependencies = (
+			);
+			productName = "TimaiWatch Watch App";
+			productReference = AA41F1F82ECB6400008F4B4A /* TimaiWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAD67B0D2EBF88DE005E592B /* Build configuration list for PBXNativeTarget "TimaiWidgetsExtension" */;
+			buildPhases = (
+				AAD67AF12EBF88DC005E592B /* Sources */,
+				AAD67AF22EBF88DC005E592B /* Frameworks */,
+				AAD67AF32EBF88DC005E592B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AAD67AFA2EBF88DC005E592B /* TimaiWidgets */,
+			);
+			name = TimaiWidgetsExtension;
+			packageProductDependencies = (
+			);
+			productName = TimaiWidgetsExtension;
+			productReference = AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		FD8D548120853DCC004F1C85 /* TimaiUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD8D548B20853DCC004F1C85 /* Build configuration list for PBXNativeTarget "TimaiUITests" */;
+			buildPhases = (
+				FD8D547E20853DCC004F1C85 /* Sources */,
+				FD8D547F20853DCC004F1C85 /* Frameworks */,
+				FD8D548020853DCC004F1C85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD8D548820853DCC004F1C85 /* PBXTargetDependency */,
+			);
+			name = TimaiUITests;
+			productName = TimaiUITests;
+			productReference = FD8D548220853DCC004F1C85 /* TimaiUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		FDD678651F7D9051002F4D33 /* Timai */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDD678781F7D9051002F4D33 /* Build configuration list for PBXNativeTarget "Timai" */;
+			buildPhases = (
+				FDD678621F7D9051002F4D33 /* Sources */,
+				FDD678631F7D9051002F4D33 /* Frameworks */,
+				FDD678641F7D9051002F4D33 /* Resources */,
+				FDD6787E1F7D9387002F4D33 /* ShellScript */,
+				FDAACDE120813DFF006E15DE /* ShellScript */,
+				AA41F1F02ECB63CB008F4B4A /* Embed Watch Content */,
+				AA41F3662ECB7B2A008F4B4A /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA41F2012ECB6400008F4B4A /* PBXTargetDependency */,
+				AA41F3652ECB7B2A008F4B4A /* PBXTargetDependency */,
+				AA41F3682ECB7B39008F4B4A /* PBXTargetDependency */,
+				AA41F36A2ECB7B4E008F4B4A /* PBXTargetDependency */,
+				AA41F36C2ECB7B59008F4B4A /* PBXTargetDependency */,
+			);
+			name = Timai;
+			productName = Timai;
+			productReference = FDD678661F7D9051002F4D33 /* Timai.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FDD6785E1F7D9051002F4D33 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				ORGANIZATIONNAME = "Dr. Thomas Entner";
+				TargetAttributes = {
+					AA41F1F72ECB6400008F4B4A = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+					AAD67AF42EBF88DC005E592B = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+					FD8D548120853DCC004F1C85 = {
+						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FDD678651F7D9051002F4D33;
+					};
+					FDD678651F7D9051002F4D33 = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1000;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = FDD678611F7D9051002F4D33 /* Build configuration list for PBXProject "Timai" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				de,
+			);
+			mainGroup = FDD6785D1F7D9051002F4D33;
+			packageReferences = (
+				AA41F10F2EC71DF3008F4B4A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
+			productRefGroup = FDD678671F7D9051002F4D33 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FDD678651F7D9051002F4D33 /* Timai */,
+				FD8D548120853DCC004F1C85 /* TimaiUITests */,
+				AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */,
+				AA41F1F72ECB6400008F4B4A /* TimaiWatch Watch App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA41F1F62ECB6400008F4B4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAD67AF32EBF88DC005E592B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5DBD222EBF9FF600002C68 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD8D548020853DCC004F1C85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDD678641F7D9051002F4D33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA41F1D02ECB3DD4008F4B4A /* LaunchScreen.storyboard in Resources */,
+				FD3E3E731F82E62200B5D291 /* Localizable.strings in Resources */,
+				FDD678711F7D9051002F4D33 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FDAACDE120813DFF006E15DE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		FDD6787E1F7D9387002F4D33 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# XCFrameworks don't need copy-frameworks script\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA41F1F42ECB6400008F4B4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA41F2272ECB6498008F4B4A /* Activity.swift in Sources */,
+				AA41F2262ECB648E008F4B4A /* TimesheetEditForm.swift in Sources */,
+				AA41F2242ECB6479008F4B4A /* Project.swift in Sources */,
+				AA41F2252ECB6480008F4B4A /* ActivityDetails.swift in Sources */,
+				AA41F2232ECB6471008F4B4A /* Customer.swift in Sources */,
+				AA41F2222ECB646A008F4B4A /* ActiveTimer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAD67AF12EBF88DC005E592B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAD67B1B2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD8D547E20853DCC004F1C85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD8D548520853DCC004F1C85 /* TimaiUITests.swift in Sources */,
+				FD3E058A208543F0005AAC63 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDD678621F7D9051002F4D33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA3AC11B2EB8B239007CB3AA /* ReportType.swift in Sources */,
+				AAD67AE52EBCC81C005E592B /* AppLockView.swift in Sources */,
+				AA68BDFC2EBB28AC00D64E58 /* OfflineBanner.swift in Sources */,
+				AA68BDFD2EBB28AC00D64E58 /* SyncStatusIndicator.swift in Sources */,
+				AA34B13C2EBA0D370027C2F5 /* AuthViewModel.swift in Sources */,
+				AA34B13D2EBA0D370027C2F5 /* ReportsViewModel.swift in Sources */,
+				AA34B13E2EBA0D370027C2F5 /* TimesheetViewModel.swift in Sources */,
+				AAD67AE32EBCC813005E592B /* BiometricAuthService.swift in Sources */,
+				AA34B13F2EBA0D370027C2F5 /* SettingsViewModel.swift in Sources */,
+				AA68BDF72EBB289E00D64E58 /* PendingOperation.swift in Sources */,
+				AA68BDF82EBB289E00D64E58 /* CacheSettings.swift in Sources */,
+				AA68BDF92EBB289E00D64E58 /* SyncStatus.swift in Sources */,
+				AA3AC11D2EB8B239007CB3AA /* ReportData.swift in Sources */,
+				AAD67AEE2EBE52BC005E592B /* InstanceSwitcherSheet.swift in Sources */,
+				AA3AC1212EB8B239007CB3AA /* ReportAggregator.swift in Sources */,
+				AA41F1AB2ECA66AA008F4B4A /* TimesheetEditForm.swift in Sources */,
+				AAD67AE92EBE5286005E592B /* InstanceManager.swift in Sources */,
+				AA41F1A32ECA3936008F4B4A /* TagUtils.swift in Sources */,
+				FDE9C2F2205320E1009250D9 /* Credits.swift in Sources */,
+				FD73611521580608002DC15E /* InstanceMetadata.swift in Sources */,
+				AA34B1652EBA0D620027C2F5 /* Theme.swift in Sources */,
+				AA9C3B8B2F0A1B2C0033D4E5 /* LastSelectionStore.swift in Sources */,
+				FDB0BF581F814CBB005AAA0F /* Activity.swift in Sources */,
+				AA68BDFF2EBB28B800D64E58 /* CacheSettingsView.swift in Sources */,
+				AA34B1552EBA0D4D0027C2F5 /* TimesheetDetailView.swift in Sources */,
+				AA34B1562EBA0D4D0027C2F5 /* LoadingView.swift in Sources */,
+				AA41F1A92ECA620A008F4B4A /* Tag.swift in Sources */,
+				AA34B1572EBA0D4D0027C2F5 /* GraphicsCreditsView.swift in Sources */,
+				AAD67AF02EBE59D4005E592B /* EditInstanceView.swift in Sources */,
+				AA34B1582EBA0D4D0027C2F5 /* GenericReportView.swift in Sources */,
+				AA41F1AD2ECB2308008F4B4A /* SearchFilters.swift in Sources */,
+				AA34B1592EBA0D4D0027C2F5 /* OSSCreditsView.swift in Sources */,
+				AA34B15A2EBA0D4D0027C2F5 /* ReportsView.swift in Sources */,
+				AA34B15B2EBA0D4D0027C2F5 /* ToastView.swift in Sources */,
+				AA34B15C2EBA0D4D0027C2F5 /* SettingsView.swift in Sources */,
+				AA34B15D2EBA0D4D0027C2F5 /* LoginView.swift in Sources */,
+				AA34B15E2EBA0D4D0027C2F5 /* TimesheetEditView.swift in Sources */,
+				AA41F1AF2ECB2327008F4B4A /* SearchSheet.swift in Sources */,
+				AA34B15F2EBA0D4D0027C2F5 /* NetworkService.swift in Sources */,
+				AAD67AE72EBE5278005E592B /* KimaiInstance.swift in Sources */,
+				AA34B1602EBA0D4D0027C2F5 /* TimesheetView.swift in Sources */,
+				AAD67B342EBF8C79005E592B /* TimerStartSheet.swift in Sources */,
+				AAD67B352EBF8C79005E592B /* TimerStopDialog.swift in Sources */,
+				AAD67B362EBF8C79005E592B /* TimerBanner.swift in Sources */,
+				AA34B1612EBA0D4D0027C2F5 /* PrimaryButton.swift in Sources */,
+				AA34B1622EBA0D4D0027C2F5 /* MainTabView.swift in Sources */,
+				AA34B1632EBA0D4D0027C2F5 /* EmptyStateView.swift in Sources */,
+				BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */,
+				F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */,
+				AA41F1A52ECA3945008F4B4A /* TagInputView.swift in Sources */,
+				B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */,
+				AAD67AEB2EBE5294005E592B /* AddInstanceView.swift in Sources */,
+				AAD67B3A2EBF8CEE005E592B /* ActiveTimer.swift in Sources */,
+				5E68D7CDAD99403DB8C42535 /* Project.swift in Sources */,
+				AAD67B1C2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */,
+				0699EE5D657847C39AB7ABA5 /* ActivityDetails.swift in Sources */,
+				0798E753E1C54458A75104D5 /* TimesheetUser.swift in Sources */,
+				9F972C4094E645ECA13A334E /* Timesheet.swift in Sources */,
+				AA34B1362EBA0D250027C2F5 /* TimaiApp.swift in Sources */,
+				AAE1C3002F6B4A1C00ABD001 /* Entities.swift in Sources */,
+				AAE1C3052F6B4A1C00ABD006 /* OptionsProviders.swift in Sources */,
+				AAE1C3012F6B4A1C00ABD002 /* StartTimerIntent.swift in Sources */,
+				AAE1C3022F6B4A1C00ABD003 /* StopTimerIntent.swift in Sources */,
+				AAE1C3032F6B4A1C00ABD004 /* TimaiShortcutsProvider.swift in Sources */,
+				AAE1C3042F6B4A1C00ABD005 /* ShortcutUserProvider.swift in Sources */,
+				AA68BDF02EBB288900D64E58 /* OfflineSyncManager.swift in Sources */,
+				AAD67B212EBF8B6D005E592B /* LiveActivityManager.swift in Sources */,
+				AAD67B222EBF8B6D005E592B /* TimerManager.swift in Sources */,
+				AAD67B232EBF8B6D005E592B /* WatchConnectivityService.swift in Sources */,
+				AA68BDF12EBB288900D64E58 /* PendingOperationsManager.swift in Sources */,
+				AA68BDF22EBB288900D64E58 /* CacheManager.swift in Sources */,
+				AA68BDF32EBB288900D64E58 /* NetworkMonitor.swift in Sources */,
+				FD3E3E7A1F82F92900B5D291 /* User.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA41F2012ECB6400008F4B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA41F1F72ECB6400008F4B4A /* TimaiWatch Watch App */;
+			targetProxy = AA41F2002ECB6400008F4B4A /* PBXContainerItemProxy */;
+		};
+		AA41F3652ECB7B2A008F4B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+			targetProxy = AA41F3642ECB7B2A008F4B4A /* PBXContainerItemProxy */;
+		};
+		AA41F3682ECB7B39008F4B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+			targetProxy = AA41F3672ECB7B39008F4B4A /* PBXContainerItemProxy */;
+		};
+		AA41F36A2ECB7B4E008F4B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+			targetProxy = AA41F3692ECB7B4E008F4B4A /* PBXContainerItemProxy */;
+		};
+		AA41F36C2ECB7B59008F4B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */;
+			targetProxy = AA41F36B2ECB7B59008F4B4A /* PBXContainerItemProxy */;
+		};
+		FD8D548820853DCC004F1C85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDD678651F7D9051002F4D33 /* Timai */;
+			targetProxy = FD8D548720853DCC004F1C85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FD3E3E751F82E62200B5D291 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FD3E3E741F82E62200B5D291 /* en */,
+				FD3E3E761F82E62400B5D291 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		FDD678721F7D9051002F4D33 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDD678731F7D9051002F4D33 /* Base */,
+				FD3E3E701F82E5C300B5D291 /* de */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AA41F2042ECB6400008F4B4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = TimaiWatch;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).TimerComplicationController";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.entner.time;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		AA41F2052ECB6400008F4B4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = TimaiWatch;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).TimerComplicationController";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.entner.time;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		AAD67B0A2EBF88DE005E592B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimaiWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimaiWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Dr. Thomas Entner. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AAD67B0B2EBF88DE005E592B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimaiWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimaiWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Dr. Thomas Entner. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.3;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FD8D548920853DCC004F1C85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				INFOPLIST_FILE = TimaiUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Timai;
+			};
+			name = Debug;
+		};
+		FD8D548A20853DCC004F1C85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				INFOPLIST_FILE = TimaiUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Timai;
+			};
+			name = Release;
+		};
+		FDD678761F7D9051002F4D33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FDD678771F7D9051002F4D33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FDD678791F7D9051002F4D33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				INFOPLIST_FILE = Timai/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Timai;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FDD6787A1F7D9051002F4D33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = RG7FE682S2;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				INFOPLIST_FILE = Timai/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Timai;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA41F2032ECB6400008F4B4A /* Build configuration list for PBXNativeTarget "TimaiWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA41F2042ECB6400008F4B4A /* Debug */,
+				AA41F2052ECB6400008F4B4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAD67B0D2EBF88DE005E592B /* Build configuration list for PBXNativeTarget "TimaiWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAD67B0A2EBF88DE005E592B /* Debug */,
+				AAD67B0B2EBF88DE005E592B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD8D548B20853DCC004F1C85 /* Build configuration list for PBXNativeTarget "TimaiUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD8D548920853DCC004F1C85 /* Debug */,
+				FD8D548A20853DCC004F1C85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDD678611F7D9051002F4D33 /* Build configuration list for PBXProject "Timai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDD678761F7D9051002F4D33 /* Debug */,
+				FDD678771F7D9051002F4D33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDD678781F7D9051002F4D33 /* Build configuration list for PBXNativeTarget "Timai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDD678791F7D9051002F4D33 /* Debug */,
+				FDD6787A1F7D9051002F4D33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AA41F10F2EC71DF3008F4B4A /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA41F1102EC71DF3008F4B4A /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA41F10F2EC71DF3008F4B4A /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = FDD6785E1F7D9051002F4D33 /* Project object */;
+}

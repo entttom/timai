@@ -1,0 +1,323 @@
+//
+//  Localizable.strings
+//  Timai
+//
+//  Copyright © 2018 Dr. Thomas Entner.
+//  All rights reserved.
+//
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+
+// Login View
+"login.button.signin" = "Einloggen";
+"login.button.needHelp" = "Hilfe benötigt?";
+"login.button.tryDemo" = "Demo ausprobieren";
+"login.placeholder.username" = "Benutzername";
+"login.placeholder.password" = "Passwort";
+
+// Timesheet View
+"timesheet.navigationTitle" = "Timesheet";
+"timesheet.tabTitle" = "Zeiterfassung";
+"timesheet.tableView.section.today" = "Heute";
+"timesheet.tableView.section.yesterday" = "Gestern";
+"timesheet.tableView.cellAction.delete" = "Löschen";
+"timesheet.tableView.cellAction.duplicate" = "Duplizieren";
+"selection.useLast" = "Letzten Eintrag übernehmen";
+"timesheet.stats.today" = "Stunden heute";
+"timesheet.stats.week" = "Stunden dieser Woche";
+"timesheet.stats.month" = "Stunden diesen Monat";
+
+// TimesheetRecordDetail View
+"timesheetRecordDetail.startTimeTitle" = "Start";
+"timesheetRecordDetail.endTimeTitle" = "Ende";
+"timesheetRecordDetail.navigationTitle" = "Kalenderwoche";
+
+// Settings View
+"settings.navigationTitle" = "Einstellungen";
+"settings.tabTitle" = "Einstellungen";
+"settings.button.signout" = "Ausloggen";
+"settings.tableView.section.appearance" = "Darstellung";
+"settings.tableView.cell.theme" = "Theme";
+"settings.theme.system" = "System";
+"settings.theme.light" = "Hell";
+"settings.theme.dark" = "Dunkel";
+"settings.tableView.section.language" = "Sprache";
+"settings.tableView.cell.language" = "Sprache";
+"settings.tableView.section.credits" = "Credits";
+"settings.tableView.section.about" = "Über";
+"settings.tableView.cell.openSource" = "Open Source Software";
+"settings.tableView.cell.graphics" = "Grafiken & Bilder";
+"settings.tableView.cell.contributors" = "Mitwirkende";
+"settings.tableView.cell.source" = "Quelltext";
+"settings.tableView.cell.appVersion" = "App Version";
+"settings.label.madeBy" = "Timai wird entwickelt von Dr. Thomas Entner";
+"settings.alert.logout.title" = "Abmelden?";
+"settings.alert.logout.message" = "Möchten Sie sich wirklich abmelden?";
+"settings.alert.logout.messageWithInstance" = "Möchten Sie sich wirklich von '%@' abmelden? Sie werden aus dieser Instanz ausgeloggt.";
+"settings.alert.logout.confirm" = "Abmelden";
+"settings.alert.logout.cancel" = "Abbrechen";
+"settings.alert.language.title" = "Sprache ändern";
+"settings.alert.language.message" = "Die Sprache wird geändert. Einige Texte werden erst nach einem Neustart der App vollständig aktualisiert.";
+"settings.alert.language.confirm" = "Ändern";
+"settings.alert.language.cancel" = "Abbrechen";
+
+// OSSDetails View
+"ossDetail.navigationTitle" = "Open Source Software";
+"ossDetail.detailText.seperator" = "von";
+
+// GraphicsDetail View
+"graphicsDetail.navigationTitle" = "Grafiken & Bilder";
+"graphicsDetail.detailText.seperator" = "von";
+
+// AddTimesheetRecord View
+"addTimesheetRecord.comingSoon.title" = "Nicht implementiert";
+"addTimesheetRecord.comingSoon.description" = "Entschuldigung, diese Funktionalität ist noch nicht implementiert.";
+
+// Reports View
+"reports.navigationTitle" = "Berichte";
+"reports.tabTitle" = "Berichte";
+
+// Report Types - Titles
+"reports.userWeek.title" = "Wochenansicht";
+"reports.userMonth.title" = "Monatsansicht";
+"reports.userYear.title" = "Jahresansicht";
+"reports.allUsersWeek.title" = "Wochenansicht (Alle)";
+"reports.allUsersMonth.title" = "Monatsansicht (Alle)";
+"reports.allUsersYear.title" = "Jahresansicht (Alle)";
+"reports.projectDetails.title" = "Projektdetails";
+"reports.projectOverview.title" = "Projektübersicht";
+"reports.monthlyEvaluation.title" = "Monatsauswertung";
+"reports.inactiveProjects.title" = "Inaktive Projekte";
+"reports.projectsByMonthActivityUser.title" = "Projekte nach Monat";
+
+// Report Types - Descriptions
+"reports.userWeek.description" = "Ihre Zeiterfassung dieser Woche";
+"reports.userMonth.description" = "Ihre Zeiterfassung diesen Monat";
+"reports.userYear.description" = "Ihre Zeiterfassung dieses Jahr";
+"reports.allUsersWeek.description" = "Zeiterfassung aller Benutzer diese Woche";
+"reports.allUsersMonth.description" = "Zeiterfassung aller Benutzer diesen Monat";
+"reports.allUsersYear.description" = "Zeiterfassung aller Benutzer dieses Jahr";
+"reports.projectDetails.description" = "Detaillierte Projektinformationen";
+"reports.projectOverview.description" = "Übersicht aller Projekte";
+"reports.monthlyEvaluation.description" = "Auswertung des aktuellen Monats";
+"reports.inactiveProjects.description" = "Projekte ohne kürzliche Aktivität";
+"reports.projectsByMonthActivityUser.description" = "Gruppiert nach Monat, Tätigkeit und Benutzer";
+
+// Error messages
+"error.message.wrongCredentials" = "Falscher Benutzername oder Passwort";
+"error.message.unsupportedVersion" = "Nicht unterstützte Kimai Version";
+"error.message.endpointConnectionError" = "Konnte keine Verbindung zu Kimai herstellen";
+"error.message.noTimesheetRecords" = "Keine Einträge gefunden";
+"error.message.couldntReceiveRecords" = "Konnte keine Einträge vom Server laden";
+"error.message.loadingFailed" = "Daten konnten nicht geladen werden";
+
+// Timesheet Detail View
+"timesheetDetail.section.project" = "Projekt";
+"timesheetDetail.field.customer" = "Kunde";
+"timesheetDetail.field.project" = "Projekt";
+"timesheetDetail.field.activity" = "Aktivität";
+"timesheetDetail.section.time" = "Zeit";
+"timesheetDetail.field.start" = "Start";
+"timesheetDetail.field.end" = "Ende";
+"timesheetDetail.field.duration" = "Dauer";
+"timesheetDetail.section.description" = "Beschreibung";
+"timesheetDetail.section.tags" = "Schlagworte";
+"timesheetDetail.navigationTitle" = "Details";
+"timesheetDetail.button.edit" = "Bearbeiten";
+"timesheetDetail.button.delete" = "Löschen";
+"timesheetDetail.alert.delete.title" = "Eintrag löschen?";
+"timesheetDetail.alert.delete.message" = "Möchten Sie diesen Eintrag wirklich löschen?";
+"timesheetDetail.alert.delete.confirm" = "Löschen";
+"timesheetDetail.alert.delete.cancel" = "Abbrechen";
+
+// Timesheet Edit View
+"timesheetEdit.navigationTitle.create" = "Neuer Eintrag";
+"timesheetEdit.navigationTitle.edit" = "Bearbeiten";
+"timesheetEdit.button.save" = "Speichern";
+"timesheetEdit.button.cancel" = "Abbrechen";
+"timesheetEdit.section.customer" = "Kunde";
+"timesheetEdit.section.project" = "Projekt";
+"timesheetEdit.section.activity" = "Aktivität";
+"timesheetEdit.section.time" = "Zeit";
+"timesheetEdit.section.description" = "Beschreibung";
+"timesheetEdit.section.tags" = "Schlagworte";
+"timesheetEdit.section.advancedSettings" = "Erweiterte Einstellungen";
+"timesheetEdit.picker.customer" = "Kunde auswählen";
+"timesheetEdit.picker.project" = "Projekt auswählen";
+"timesheetEdit.picker.activity" = "Aktivität auswählen";
+"timesheetEdit.picker.placeholder" = "Bitte wählen";
+"timesheetEdit.placeholder.tags" = "z.B. projektname, wichtig";
+"timesheetEdit.tags.suggestions" = "Vorschläge";
+"timesheetEdit.field.fixedRate" = "Festpreis";
+"timesheetEdit.field.hourlyRate" = "Preis pro Stunde";
+"timesheetEdit.field.billable" = "Abrechenbar";
+"timesheetEdit.loading.customers" = "Lade Kunden...";
+"timesheetEdit.loading.projects" = "Lade Projekte...";
+"timesheetEdit.loading.activities" = "Lade Aktivitäten...";
+"timesheetEdit.warning.noData.title" = "Keine Daten verfügbar";
+"timesheetEdit.warning.noData.message" = "Bitte stellen Sie eine Internetverbindung her, um Kunden, Projekte und Aktivitäten zu laden.";
+"timesheetEdit.error.loadingCustomers" = "Fehler beim Laden der Kunden";
+"timesheetEdit.error.loadingProjects" = "Fehler beim Laden der Projekte";
+"timesheetEdit.error.loadingActivities" = "Fehler beim Laden der Aktivitäten";
+"timesheetEdit.error.saving" = "Fehler beim Speichern";
+
+// Settings - Cache Section
+"settings.section.offlineCache" = "Offline & Cache";
+"settings.cache.management" = "Cache-Verwaltung";
+"settings.cache.autoSync" = "Automatische Synchronisierung";
+
+// Cache Settings View
+"cacheSettings.navigationTitle" = "Cache-Verwaltung";
+"cacheSettings.section.statistics" = "Cache-Statistiken";
+"cacheSettings.field.cacheSize" = "Cache-Größe";
+"cacheSettings.field.timesheets" = "Timesheets im Cache";
+"cacheSettings.field.customers" = "Customers im Cache";
+"cacheSettings.section.sync" = "Synchronisierung";
+"cacheSettings.sync.auto" = "Automatische Synchronisierung";
+"cacheSettings.sync.preload.title" = "Referenzdaten vorladen";
+"cacheSettings.sync.preload.subtitle" = "Lädt Customers, Projects & Activities für Offline-Nutzung";
+"cacheSettings.section.settings" = "Cache-Einstellungen";
+"cacheSettings.field.maxEntries" = "Maximale Einträge";
+"cacheSettings.field.maxEntries.footer" = "Bestimmt, wie viele Zeiteinträge von der API geladen und im Cache gespeichert werden. Mehr Einträge benötigen mehr Speicherplatz, ermöglichen aber eine umfassendere Suche und Offline-Zugriff.";
+"cacheSettings.field.retentionDays" = "Aufbewahrung (Tage)";
+"cacheSettings.button.clearCache" = "Cache löschen";
+"cacheSettings.alert.clear.title" = "Cache löschen?";
+"cacheSettings.alert.clear.message" = "Dies löscht alle zwischengespeicherten Daten.";
+"cacheSettings.alert.clear.confirm" = "Löschen";
+"cacheSettings.alert.clear.cancel" = "Abbrechen";
+"cacheSettings.toast.cleared" = "Cache erfolgreich gelöscht";
+
+// Reports - Generic
+"reports.section.summary" = "Zusammenfassung";
+"reports.field.totalHours" = "Gesamtstunden";
+"reports.field.entryCount" = "Anzahl Einträge";
+"reports.section.byProject" = "Nach Projekt";
+"reports.section.byUser" = "Nach Benutzer";
+"reports.section.details" = "Details";
+"reports.field.budget" = "Budget";
+"reports.field.entries" = "Einträge";
+"reports.field.startTime" = "Startzeit";
+"reports.field.endTime" = "Endzeit";
+"reports.field.duration" = "Dauer";
+"reports.field.running" = "läuft noch";
+"reports.field.year" = "Jahr";
+"reports.projects.inactive.empty.title" = "Alle Projekte aktiv";
+"reports.projects.inactive.empty.message" = "Es gibt keine inaktiven Projekte in den letzten 30 Tagen";
+"reports.projectDetail.empty.title" = "Keine Einträge";
+"reports.projectDetail.empty.message" = "Keine Zeiteinträge für dieses Projekt im ausgewählten Jahr gefunden";
+"reports.projectDetail.editTime.title" = "Zeit bearbeiten";
+"reports.projectDetail.editTime.save" = "Speichern";
+"reports.projectDetail.editTime.cancel" = "Abbrechen";
+
+// App Lock
+"appLock.title" = "App ist gesperrt";
+"appLock.button.unlock" = "Entsperren";
+"appLock.error.title" = "Fehler";
+"appLock.error.message" = "Authentifizierung fehlgeschlagen. Bitte versuche es erneut.";
+"appLock.error.button" = "OK";
+"appLock.message.faceID" = "Verwende Face ID um die App zu entsperren";
+"appLock.message.touchID" = "Verwende Touch ID um die App zu entsperren";
+"appLock.message.opticID" = "Verwende Optic ID um die App zu entsperren";
+"appLock.message.passcode" = "Verwende deinen Gerätecode um die App zu entsperren";
+
+// Settings - Security
+"settings.section.security" = "Sicherheit";
+"settings.security.appLock" = "App-Sperre";
+"settings.security.appLock.with" = "Mit";
+"settings.security.appLock.withPasscode" = "Mit Gerätecode";
+"settings.security.appLock.footer.biometric" = "Schütze deine Daten mit %@. Die App wird beim Starten gesperrt.";
+"settings.security.appLock.footer.passcode" = "Schütze deine Daten mit deinem Gerätecode. Die App wird beim Starten gesperrt.";
+
+// Preload Banner
+"preload.title" = "Lade Referenzdaten";
+"preload.subtitle" = "Kunden, Projekte & Aktivitäten für Offline-Nutzung";
+
+// Instance Management
+"settings.section.instances" = "Kimai Instanzen";
+"settings.instances.addNew" = "Neue Instanz hinzufügen";
+"settings.instances.activate" = "Aktivieren";
+"settings.instances.delete" = "Löschen";
+"settings.instances.delete.title" = "Instanz löschen?";
+"settings.instances.delete.message" = "Möchten Sie die Instanz '%@' wirklich löschen? Alle zugehörigen Daten werden ebenfalls gelöscht.";
+"settings.instances.delete.confirm" = "Löschen";
+"settings.instances.delete.cancel" = "Abbrechen";
+
+// Add Instance View
+"addInstance.title" = "Instanz hinzufügen";
+"addInstance.button.add" = "Hinzufügen";
+"addInstance.button.cancel" = "Abbrechen";
+"addInstance.section.name" = "Name";
+"addInstance.section.name.footer" = "Ein beschreibender Name für diese Instanz (z.B. 'Firma', 'Privat')";
+"addInstance.name.placeholder" = "Instanzname";
+"addInstance.section.url" = "Server URL";
+"addInstance.section.url.footer" = "Die URL Ihres Kimai-Servers (z.B. https://kimai.example.com)";
+"addInstance.url.placeholder" = "https://kimai.example.com";
+"addInstance.section.token" = "API Token";
+"addInstance.section.token.footer" = "Ihr persönlicher API Token aus den Kimai-Einstellungen";
+"addInstance.token.placeholder" = "API Token";
+"addInstance.error.title" = "Fehler";
+"addInstance.error.unknown" = "Ein unbekannter Fehler ist aufgetreten";
+"addInstance.error.invalidURL" = "Bitte geben Sie eine gültige URL ein";
+
+// Instance Switcher
+"instanceSwitcher.title" = "Instanz wechseln";
+"instanceSwitcher.section.instances" = "Verfügbare Instanzen";
+"instanceSwitcher.button.addNew" = "Neue Instanz hinzufügen";
+"instanceSwitcher.button.close" = "Schließen";
+"instanceSwitcher.switching" = "Wechsle Instanz...";
+
+// Edit Instance View
+"editInstance.title" = "Instanz bearbeiten";
+"editInstance.button.save" = "Speichern";
+"editInstance.button.delete" = "Ausloggen";
+"editInstance.section.name" = "Name";
+"editInstance.section.name.footer" = "Der beschreibende Name für diese Instanz";
+"editInstance.name.placeholder" = "Instanzname";
+"editInstance.section.url" = "Server URL";
+"editInstance.section.url.footer" = "Die URL Ihres Kimai-Servers";
+"editInstance.url.placeholder" = "https://kimai.example.com";
+"editInstance.section.token" = "API Token";
+"editInstance.section.token.footer" = "Ihr persönlicher API Token";
+"editInstance.token.placeholder" = "API Token";
+"editInstance.verifying" = "Überprüfe Verbindung...";
+"editInstance.error.title" = "Fehler";
+"editInstance.error.unknown" = "Ein unbekannter Fehler ist aufgetreten";
+"editInstance.error.invalidURL" = "Bitte geben Sie eine gültige URL ein";
+"editInstance.success.title" = "Gespeichert";
+"editInstance.success.message" = "Die Änderungen wurden erfolgreich gespeichert";
+"editInstance.delete.title" = "Ausloggen?";
+"editInstance.delete.message" = "Möchten Sie sich wirklich von '%@' ausloggen?";
+"editInstance.delete.confirm" = "Ausloggen";
+"editInstance.delete.cancel" = "Abbrechen";
+
+// Timer
+"timer.running" = "Läuft";
+"timer.start.title" = "Timer starten";
+"timer.start.button" = "Starten";
+"timer.start.fromEntry" = "Timer für dieses Projekt starten";
+"timer.start.blocked.menuTitle" = "Live‑Timer aktiv";
+"timer.start.blocked.liveTimerRunning" = "Beende den Live‑Timer zuerst, um einen neuen für dieses Projekt zu starten.";
+"timer.stopAndStart.menuTitle" = "Aktuellen Timer beenden und neuen Timer für dieses Projekt starten";
+"timer.description.placeholder" = "Beschreibung (optional)";
+"timer.stop.title" = "Timer stoppen";
+"timer.stop.button" = "Stoppen";
+"timer.stop.description.label" = "Beschreibung";
+"timer.stop.description.placeholder" = "Was hast du gemacht?";
+"timer.startedAt" = "Gestartet um";
+
+// Search
+"search.title" = "Suche";
+"search.placeholder" = "Suche nach Kunde, Projekt, Aufgabe, Beschreibung oder Tags...";
+"search.filters.date" = "Datum";
+"search.filters.dateFrom" = "Von";
+"search.filters.dateTo" = "Bis";
+"search.filters.customer" = "Kunde";
+"search.filters.project" = "Projekt";
+"search.filters.tags" = "Schlagworte";
+"search.filters.tags.empty" = "Keine Tags verfügbar";
+"search.filters.reset" = "Zurücksetzen";
+"search.filters.done" = "Fertig";
+"search.noResults" = "Keine Ergebnisse";
+"search.noResults.message" = "Es wurden keine Einträge gefunden, die den Suchkriterien entsprechen.";
