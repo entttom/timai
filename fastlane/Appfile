@@ -1,0 +1,13 @@
+# App Identifier (Bundle ID)
+app_identifier("com.entner.time")
+
+# Apple ID für App Store Connect
+apple_id("thomas@drentner.at")
+
+# iTunes Connect Team ID
+itc_team_id("536198")
+
+# Für ein anderes Schema (optional)
+# scheme("Timai")
+
+

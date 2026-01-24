@@ -45,6 +45,8 @@
 "settings.theme.dark" = "Dark";
 "settings.tableView.section.language" = "Language";
 "settings.tableView.cell.language" = "Language";
+"settings.language.german" = "German";
+"settings.language.english" = "English";
 "settings.tableView.section.credits" = "Credits";
 "settings.tableView.section.about" = "About";
 "settings.tableView.cell.openSource" = "Open Source Software";
@@ -62,6 +64,13 @@
 "settings.alert.language.message" = "The language will be changed. Some texts will only be fully updated after restarting the app.";
 "settings.alert.language.confirm" = "Change";
 "settings.alert.language.cancel" = "Cancel";
+"settings.section.support" = "Support";
+"settings.support.developer" = "Support the developer";
+"settings.section.account" = "Account";
+"settings.account.user" = "User";
+"settings.account.userId" = "User ID";
+"settings.account.roles" = "Roles";
+"settings.account.server" = "Server";
 
 // OSSDetails View
 "ossDetail.navigationTitle" = "Open Source Software";
@@ -168,26 +177,107 @@
 "settings.cache.management" = "Cache Management";
 "settings.cache.autoSync" = "Automatic Synchronization";
 
+// Common
+"common.loading" = "Loading...";
+"common.done" = "Done";
+"common.cancel" = "Cancel";
+"common.unknown" = "Unknown";
+
+// Sync Status
+"sync.status.ready" = "Ready";
+"sync.status.syncing" = "Synchronizing... %d%%";
+"sync.status.completed" = "Synchronized";
+"sync.status.failed" = "Error: %@";
+
+// Pending Operations
+"pendingOperation.createTimesheet" = "Create timesheet";
+"pendingOperation.updateTimesheet" = "Update timesheet";
+"pendingOperation.deleteTimesheet" = "Delete timesheet";
+"pendingOperation.createExpense" = "Create expense";
+"pendingOperation.updateExpense" = "Update expense";
+"pendingOperation.deleteExpense" = "Delete expense";
+
+// Offline
+"offline.error.noDataAvailable" = "Offline - no data available.";
+"offline.error.noCacheData" = "Offline - no cached data. Please connect once while online.";
+"offline.error.noCache" = "Offline - no cached data";
+"offline.banner.offlineMode" = "Offline mode";
+"offline.banner.pendingChanges" = "Pending changes";
+"offline.banner.pendingChanges.count" = "%d pending changes";
+"offline.banner.syncing" = "Synchronizing...";
+"offline.banner.unsynced.single" = "%d entry not synced";
+"offline.banner.unsynced.multiple" = "%d entries not synced";
+
+// Offline Sync
+"offlineSync.error.noNetwork" = "No network connection";
+"offlineSync.error.syncFailed" = "Some operations could not be synchronized";
+"offlineSync.error.invalidActivity" = "No valid activity available for this project";
+"offlineSync.error.invalidExpenseCategory" = "No valid expense category available";
+"offlineSync.error.negativeIdNotSynced" = "Negative ID - CREATE operation not yet synchronized";
+
+// Network Errors
+"network.error.invalidCredentials" = "Invalid credentials";
+"network.error.noResponse" = "No response from server";
+"network.error.invalidResponse" = "Invalid server response";
+"network.error.requestError" = "Network error";
+
+// Biometric
+"biometric.type.faceID" = "Face ID";
+"biometric.type.touchID" = "Touch ID";
+"biometric.type.opticID" = "Optic ID";
+"biometric.type.passcode" = "Device Passcode";
+
+// Login
+"login.instanceName.placeholder" = "Instance name (e.g. Company)";
+"login.serverUrl.placeholder" = "Kimai server URL";
+"login.apiToken.placeholder" = "API Token";
+"login.instanceName.default" = "Kimai Instance";
+"login.error.invalidUrl" = "Please enter a valid URL";
+"login.error.missingCredentials" = "Please enter URL and API token";
+
+// Auth
+"auth.error.unexpected" = "An unexpected error occurred";
+"auth.error.noCredentialsForInstance" = "No credentials found for this instance";
+"auth.error.logoutFailed" = "Logout failed";
+"auth.error.noUser" = "No user available";
+
+// Reports
+"reports.error.loadingFailed" = "Failed to load report data";
+
 // Cache Settings View
 "cacheSettings.navigationTitle" = "Cache Management";
 "cacheSettings.section.statistics" = "Cache Statistics";
 "cacheSettings.field.cacheSize" = "Cache Size";
+"cacheSettings.field.lastSync" = "Last Sync";
+"cacheSettings.lastSync.never" = "Never";
 "cacheSettings.field.timesheets" = "Timesheets in cache";
 "cacheSettings.field.customers" = "Customers in cache";
+"cacheSettings.pendingChanges" = "Pending changes";
+"cacheSettings.failedOps" = "Failed ops";
 "cacheSettings.section.sync" = "Synchronization";
 "cacheSettings.sync.auto" = "Automatic Synchronization";
+"cacheSettings.pendingChanges.sync" = "Sync pending changes";
+"cacheSettings.pendingChanges.discard" = "Discard all pending operations";
+"cacheSettings.section.referenceData" = "Reference data";
+"cacheSettings.referenceData.downloadAll" = "Download all data";
 "cacheSettings.sync.preload.title" = "Preload Reference Data";
 "cacheSettings.sync.preload.subtitle" = "Loads Customers, Projects & Activities for offline use";
 "cacheSettings.section.settings" = "Cache Settings";
 "cacheSettings.field.maxEntries" = "Maximum Entries";
 "cacheSettings.field.maxEntries.footer" = "Determines how many timesheet entries are loaded from the API and stored in the cache. More entries require more storage space but enable more comprehensive search and offline access.";
-"cacheSettings.field.retentionDays" = "Retention (Days)";
+"cacheSettings.field.retentionDays" = "Retention";
+"cacheSettings.retention.days" = "%d days";
 "cacheSettings.button.clearCache" = "Clear Cache";
+"cacheSettings.section.failedOperations" = "Failed operations";
+"cacheSettings.failedOperations.retry" = "Retry";
+"cacheSettings.failedOperations.discard" = "Discard";
+"cacheSettings.section.dangerZone" = "Danger Zone";
 "cacheSettings.alert.clear.title" = "Clear cache?";
 "cacheSettings.alert.clear.message" = "This will delete all cached data.";
 "cacheSettings.alert.clear.confirm" = "Clear";
 "cacheSettings.alert.clear.cancel" = "Cancel";
 "cacheSettings.toast.cleared" = "Cache successfully cleared";
+"cacheSettings.preload.success" = "All data downloaded successfully";
 
 // Reports - Generic
 "reports.section.summary" = "Summary";
@@ -321,3 +411,111 @@
 "search.filters.done" = "Done";
 "search.noResults" = "No Results";
 "search.noResults.message" = "No entries found matching the search criteria.";
+
+// Expenses View
+"expenses.tabTitle" = "Expenses";
+"expenses.empty.title" = "No Expenses";
+"expenses.empty.message" = "Create your first expense by tapping the plus icon.";
+"expenses.empty.action" = "Add Expense";
+"expenses.stats.today" = "Today";
+"expenses.stats.week" = "This Week";
+"expenses.stats.month" = "This Month";
+"expenses.duplicate" = "Duplicate";
+"expenses.duplicate.confirm.title" = "Duplicate Expense?";
+"expenses.duplicate.confirm.message" = "Do you really want to duplicate this expense? A duplicate entry will be created for the same day.";
+"expenses.duplicate.confirm.duplicate" = "Duplicate";
+"expenses.duplicate.confirm.cancel" = "Cancel";
+"expenses.error.duplicateFailed" = "Expense could not be duplicated";
+
+// Expenses Detail View
+"expensesDetail.navigationTitle" = "Expense";
+"expensesDetail.section.project" = "Project";
+"expensesDetail.section.expense" = "Expense";
+"expensesDetail.section.description" = "Description";
+"expensesDetail.field.customer" = "Customer";
+"expensesDetail.field.project" = "Project";
+"expensesDetail.field.activity" = "Activity";
+"expensesDetail.field.category" = "Category";
+"expensesDetail.field.date" = "Date";
+"expensesDetail.field.quantity" = "Quantity";
+"expensesDetail.field.total" = "Total";
+"expensesDetail.field.refundable" = "Refundable";
+"expensesDetail.field.exported" = "Exported";
+"expensesDetail.refundable.yes" = "Yes";
+"expensesDetail.refundable.no" = "No";
+"expensesDetail.exported.yes" = "Yes";
+"expensesDetail.exported.no" = "No";
+"expensesDetail.button.edit" = "Edit";
+"expensesDetail.button.delete" = "Delete";
+"expensesDetail.alert.delete.title" = "Delete Expense?";
+"expensesDetail.alert.delete.message" = "Do you really want to delete this expense?";
+"expensesDetail.alert.delete.confirm" = "Delete";
+"expensesDetail.alert.delete.cancel" = "Cancel";
+
+// Expenses Edit View
+"expensesEdit.navigationTitle.create" = "New Expense";
+"expensesEdit.navigationTitle.edit" = "Edit Expense";
+"expensesEdit.section.customer" = "Customer";
+"expensesEdit.section.project" = "Project";
+"expensesEdit.section.activity" = "Activity";
+"expensesEdit.section.category" = "Category";
+"expensesEdit.section.date" = "Date";
+"expensesEdit.section.quantity" = "Quantity";
+"expensesEdit.section.description" = "Description";
+"expensesEdit.section.billableMode" = "Refundable";
+"expensesEdit.section.advancedSettings" = "Advanced Settings";
+"expensesEdit.section.metaFields" = "Custom Fields";
+"expensesEdit.picker.customer" = "Customer";
+"expensesEdit.picker.project" = "Project";
+"expensesEdit.picker.activity" = "Activity";
+"expensesEdit.picker.category" = "Category";
+"expensesEdit.picker.placeholder" = "Please select";
+"expensesEdit.field.date" = "Date";
+"expensesEdit.field.quantity" = "Quantity";
+"expensesEdit.field.exported" = "Exported";
+"expensesEdit.field.billableMode" = "Refundable";
+"expensesEdit.billableMode.auto" = "Auto";
+"expensesEdit.billableMode.yes" = "Yes";
+"expensesEdit.billableMode.no" = "No";
+"expensesEdit.button.save" = "Save";
+"expensesEdit.button.cancel" = "Cancel";
+"expensesEdit.duplicate" = "Duplicate";
+"expensesEdit.loading.customers" = "Loading customers...";
+"expensesEdit.loading.projects" = "Loading projects...";
+"expensesEdit.loading.activities" = "Loading activities...";
+"expensesEdit.loading.categories" = "Loading categories...";
+"expensesEdit.warning.noData.title" = "No Data Available";
+"expensesEdit.warning.noData.message" = "Please make sure you are online and have the required permissions.";
+"expensesEdit.error.loadingCustomers" = "Error loading customers";
+"expensesEdit.error.loadingProjects" = "Error loading projects";
+"expensesEdit.error.loadingActivities" = "Error loading activities";
+"expensesEdit.error.loadingCategories" = "Error loading categories";
+"expensesEdit.error.saving" = "Error saving";
+"expensesEdit.error.duplicate" = "Error duplicating";
+"expensesEdit.error.invalidMultiplier" = "Quantity must be greater than or equal to 0";
+
+// Expenses Search Sheet
+"expensesSearch.title" = "Search & Filter";
+"expensesSearch.placeholder" = "Search...";
+"expensesSearch.filters.date" = "Date";
+"expensesSearch.filters.dateFrom" = "From";
+"expensesSearch.filters.dateTo" = "To";
+"expensesSearch.filters.customer" = "Customer";
+"expensesSearch.filters.project" = "Project";
+"expensesSearch.filters.category" = "Category";
+"expensesSearch.filters.reset" = "Reset";
+"expensesSearch.filters.done" = "Done";
+"expensesSearch.noResults" = "No Results";
+"expensesSearch.noResults.message" = "No expenses found matching the search criteria.";
+
+// Settings - Expenses
+"settings.section.betaFeatures" = "Beta Features";
+"settings.expenses.enable" = "Enable Expenses";
+"settings.expenses.checkingAPI" = "Checking API availability...";
+"settings.expenses.betaWarning.title" = "Beta Feature";
+"settings.expenses.betaWarning.message" = "This feature is in beta phase. In the future, this feature will be paid.";
+"settings.expenses.betaWarning.confirm" = "Understood and enable";
+"settings.expenses.betaWarning.cancel" = "Cancel";
+"settings.expenses.apiUnavailable.title" = "API Not Available";
+"settings.expenses.apiUnavailable.message" = "The Expenses API is not available. Please make sure the Expenses plugin is installed and you have the required permissions. Otherwise, please contact your server administrator.";
+"settings.expenses.apiUnavailable.ok" = "OK";

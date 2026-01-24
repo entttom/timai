@@ -79,7 +79,41 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
   - Multi-instance support
   - Apple Watch companion app
 
+## Requirements
 
+- iOS 17.0 or later
+- watchOS 10.0 or later (for Apple Watch app)
+- Xcode 15.0 or later
+- Kimai v2 server (version 0.5.0 or higher) with API access
+- Valid Kimai API token
+
+## Build from Source
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/entttom/timai.git
+   cd timai
+   ```
+
+2. **Open the project**:
+   ```bash
+   open Timai.xcodeproj
+   ```
+   
+   Xcode will automatically resolve Swift Package Manager dependencies when you open the project.
+
+3. **Build and run**:
+   - Select your target device or simulator
+   - Press `Cmd + R` to build and run
+
+> **Note**: You may need to update the team and bundle identifier in the project settings to run on your device.
+
+## Usage
+
+1. Launch the app
+2. Enter your Kimai server URL (e.g., `https://demo.kimai.org/api/`)
+3. Enter your API token (generate one in your Kimai profile settings)
+4. Start tracking your time!
 
 ## Project Structure
 
@@ -128,6 +162,17 @@ Special thanks to:
 - The Kimai team for developing an excellent open-source time tracking solution
 - All contributors and open-source maintainers whose libraries made this project possible
 
+## Contributing
+
+Contributions are welcome! If you'd like to contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+Please ensure your code follows Swift best practices and includes appropriate comments.
 
 ## Roadmap
 

@@ -1,0 +1,43 @@
+# Matchfile - Konfiguration für Certificate Management
+# Mehr Informationen: https://docs.fastlane.tools/actions/match/
+
+# Git-Repository URL für Certificates (WICHTIG: Private Repository verwenden!)
+# git_url("https://github.com/yourorg/certificates")
+
+# Git Branch (optional)
+# git_branch("main")
+
+# Storage Mode (git, google_cloud, s3, gitlab_secure_files)
+storage_mode("git")
+
+# App Identifier - Haupt-App + Widget Extension
+app_identifier([
+  "com.entner.time",
+  "com.entner.time.TimaiWidgets"
+])
+
+# Username (Apple ID)
+# username("your.email@example.com")
+
+# Team ID
+# team_id("XXXXXXXXXX")
+
+# Keychain Name (für CI)
+keychain_name("fastlane_tmp_keychain")
+
+# Nur lesend zugreifen (für CI)
+# readonly(true)
+
+# Clone branch strategy
+clone_branch_directly(false)
+
+# Verbose Output
+verbose(false)
+
+# Force overwrite existing files
+force(false)
+
+# Skip confirmation
+force_for_new_devices(false)
+
+

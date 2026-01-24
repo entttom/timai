@@ -1,0 +1,361 @@
+# Fastfile für Timai App
+# Mehr Informationen unter: https://docs.fastlane.tools
+
+default_platform(:ios)
+
+platform :ios do
+  
+  # Variablen
+  xcodeproj = "Timai.xcodeproj"
+  scheme = "Timai"
+  output_directory = "./fastlane/builds"
+  
+  # ==========================================
+  # LANE: Tests ausführen
+  # ==========================================
+  desc "Führt alle Tests aus"
+  lane :test do
+    run_tests(
+      scheme: scheme,
+      devices: ["iPhone 16 Pro"],
+      clean: true
+    )
+  end
+  
+  # ==========================================
+  # LANE: UI-Tests ausführen
+  # ==========================================
+  desc "Führt UI-Tests aus"
+  lane :ui_test do
+    run_tests(
+      scheme: "TimaiUITests",
+      devices: ["iPhone 16 Pro"],
+      clean: true
+    )
+  end
+  
+  # ==========================================
+  # LANE: Screenshots erstellen
+  # ==========================================
+  desc "Erstellt Screenshots für den App Store"
+  lane :screenshots do
+    # Screenshots für alle konfigurierten Geräte und Sprachen erstellen
+    snapshot(
+      # Alle Einstellungen kommen aus Snapfile
+      # Devices: iPhone 16 Pro Max, iPhone 16 Pro, iPad Pro 13-inch
+      # Languages: de-DE, en-US
+    )
+    
+    # Optional: Framing (Geräte-Rahmen um Screenshots)
+    # frameit(white: true, path: './fastlane/screenshots')
+    
+    UI.success("✅ Screenshots erfolgreich erstellt!")
+    UI.message("📂 Siehe: fastlane/screenshots/")
+    UI.message("🌐 Vorschau: fastlane/screenshots/screenshots.html")
+  end
+  
+  # ==========================================
+  # LANE: Debug-Build
+  # ==========================================
+  desc "Erstellt einen Debug-Build"
+  lane :debug do
+    build_app(
+      scheme: scheme,
+      configuration: "Debug",
+      output_directory: output_directory,
+      output_name: "Timai-Debug.ipa",
+      export_method: "development",
+      clean: true
+    )
+  end
+  
+  # ==========================================
+  # LANE: Ad-Hoc Build
+  # ==========================================
+  desc "Erstellt einen Ad-Hoc Build für interne Tests"
+  lane :adhoc do
+    # Certificates und Provisioning Profiles synchronisieren
+    match(type: "adhoc") if ENV["USE_MATCH"] == "true"
+    
+    # Increment Build Number (optional)
+    # increment_build_number(
+    #   xcodeproj: xcodeproj
+    # )
+    
+    build_app(
+      scheme: scheme,
+      configuration: "Release",
+      output_directory: output_directory,
+      output_name: "Timai-AdHoc.ipa",
+      export_method: "ad-hoc",
+      clean: true
+    )
+    
+    UI.success("✅ Ad-Hoc Build erfolgreich erstellt!")
+  end
+  
+  # ==========================================
+  # LANE: Beta-Deployment zu TestFlight
+  # ==========================================
+  desc "Lädt einen neuen Build zu TestFlight hoch"
+  lane :beta do |options|
+    # Ensure git status is clean
+    # ensure_git_status_clean
+    
+    # Certificates und Provisioning Profiles synchronisieren
+    match(type: "appstore") if ENV["USE_MATCH"] == "true"
+    
+    # Increment Build Number (nur wenn Apple Generic Versioning aktiviert ist)
+    # increment_build_number(
+    #   xcodeproj: xcodeproj
+    # )
+    
+    UI.important("⚠️  Build Number wird nicht automatisch erhöht.")
+    UI.important("Bitte manuell in Xcode erhöhen oder Apple Generic Versioning aktivieren.")
+    
+    # Build
+    build_app(
+      scheme: scheme,
+      configuration: "Release",
+      output_directory: output_directory,
+      export_method: "app-store",
+      clean: true
+    )
+    
+    # Changelog bestimmen
+    changelog_text = options[:changelog] || read_changelog || "Neue Version mit Verbesserungen und Bug-Fixes"
+    
+    # Upload zu TestFlight
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      skip_submission: true,
+      
+      # Changelog / What to Test (für interne Tester)
+      changelog: changelog_text,
+      
+      # Beta App Beschreibung
+      beta_app_description: "Timai - Zeiterfassung für Kimai\n\nZeiterfassung für Kimai mit Offline-Unterstützung.",
+      
+      # Beta App Feedback E-Mail (anpassen!)
+      # beta_app_feedback_email: "feedback@example.com",
+      
+      # Tester-Gruppen (optional)
+      # groups: ["Internal Testers", "Beta Testers"],
+      
+      # Nur für interne Tester
+      distribute_external: false,
+      notify_external_testers: false
+    )
+    
+    # Git commit für Build Number
+    # commit_version_bump(
+    #   message: "Bump build number for TestFlight",
+    #   xcodeproj: xcodeproj
+    # )
+    
+    # Tag erstellen
+    version = get_info_plist_value(path: "./Timai/Info.plist", key: "CFBundleShortVersionString")
+    build = get_info_plist_value(path: "./Timai/Info.plist", key: "CFBundleVersion")
+    add_git_tag(
+      tag: "testflight/#{version}/#{build}"
+    )
+    
+    # Push to remote
+    # push_to_git_remote
+    
+    UI.success("✅ Beta-Build erfolgreich zu TestFlight hochgeladen!")
+  end
+  
+  # ==========================================
+  # LANE: Release zum App Store
+  # ==========================================
+  desc "Erstellt einen Release-Build und lädt ihn zum App Store hoch"
+  lane :release do
+    # Ensure git status is clean
+    ensure_git_status_clean
+    
+    # Certificates und Provisioning Profiles synchronisieren
+    match(type: "appstore") if ENV["USE_MATCH"] == "true"
+    
+    # Bump Version Number (optional)
+    # increment_version_number(
+    #   bump_type: "patch" # major, minor, oder patch
+    # )
+    
+    # Increment Build Number (nur wenn Apple Generic Versioning aktiviert ist)
+    # increment_build_number(
+    #   xcodeproj: xcodeproj
+    # )
+    
+    # Alternativ: Build Number aus Info.plist verwenden
+    UI.important("⚠️  Build Number wird nicht automatisch erhöht.")
+    UI.important("Bitte manuell in Xcode erhöhen oder Apple Generic Versioning aktivieren.")
+    
+    # Build
+    build_app(
+      scheme: scheme,
+      configuration: "Release",
+      output_directory: output_directory,
+      export_method: "app-store",
+      clean: true
+    )
+    
+    # Upload zum App Store
+    upload_to_app_store(
+      force: true,
+      skip_metadata: false,
+      skip_screenshots: false,
+      submit_for_review: false,
+      automatic_release: false,
+      
+      # Review-Informationen (aus fastlane/metadata/review_information/)
+      app_review_information: {
+        demo_account_required: true,
+        notes: File.read("./fastlane/metadata/review_information/notes.txt")
+      }
+    )
+    
+    # Git commit (nur wenn Version geändert wurde)
+    # commit_version_bump(
+    #   message: "Version bump for App Store release",
+    #   xcodeproj: xcodeproj
+    # )
+    
+    # Tag erstellen
+    version = get_info_plist_value(path: "./Timai/Info.plist", key: "CFBundleShortVersionString")
+    add_git_tag(
+      tag: "release/#{version}"
+    )
+    
+    # Push to remote
+    # push_to_git_remote
+    
+    UI.success("✅ Release-Build erfolgreich zum App Store hochgeladen!")
+  end
+  
+  # ==========================================
+  # LANE: Provisioning Profile Setup
+  # ==========================================
+  desc "Synchronisiert Certificates und Provisioning Profiles mit match"
+  lane :sync_certificates do
+    match(
+      type: "development",
+      readonly: is_ci
+    )
+    
+    match(
+      type: "adhoc",
+      readonly: is_ci
+    )
+    
+    match(
+      type: "appstore",
+      readonly: is_ci
+    )
+    
+    UI.success("✅ Certificates erfolgreich synchronisiert!")
+  end
+  
+  # ==========================================
+  # LANE: Bump Version
+  # ==========================================
+  desc "Erhöht die Version Number (patch, minor oder major)"
+  lane :bump_version do |options|
+    UI.error("❌ Apple Generic Versioning ist nicht aktiviert!")
+    UI.message("Bitte Version manuell in Info.plist oder Xcode erhöhen:")
+    UI.message("1. Öffne Timai/Info.plist")
+    UI.message("2. Erhöhe CFBundleShortVersionString (z.B. von 1.0.0 auf 1.0.1)")
+    UI.message("")
+    UI.message("Oder aktiviere Apple Generic Versioning:")
+    UI.message("https://developer.apple.com/library/content/qa/qa1827/_index.html")
+  end
+  
+  # ==========================================
+  # LANE: Bump Build Number
+  # ==========================================
+  desc "Erhöht die Build Number"
+  lane :bump_build do
+    UI.error("❌ Apple Generic Versioning ist nicht aktiviert!")
+    UI.message("Bitte Build Number manuell in Info.plist oder Xcode erhöhen:")
+    UI.message("1. Öffne Timai/Info.plist")
+    UI.message("2. Erhöhe CFBundleVersion (z.B. von 1 auf 2)")
+    UI.message("")
+    UI.message("Oder aktiviere Apple Generic Versioning:")
+    UI.message("https://developer.apple.com/library/content/qa/qa1827/_index.html")
+  end
+  
+  # ==========================================
+  # LANE: Update Dependencies
+  # ==========================================
+  desc "Hinweis: Swift Package Manager Dependencies werden automatisch von Xcode verwaltet"
+  lane :update_dependencies do
+    UI.important("ℹ️  Dieses Projekt verwendet Swift Package Manager.")
+    UI.message("Dependencies werden automatisch von Xcode verwaltet.")
+    UI.message("")
+    UI.message("Um Dependencies manuell zu aktualisieren:")
+    UI.message("1. Öffne das Projekt in Xcode")
+    UI.message("2. Gehe zu File > Packages > Update to Latest Package Versions")
+    UI.message("")
+    UI.message("Oder verwende den Xcode-Befehl:")
+    UI.message("xcodebuild -resolvePackageDependencies")
+    
+    UI.success("✅ Swift Package Manager wird verwendet - keine manuelle Aktualisierung nötig!")
+  end
+  
+  # ==========================================
+  # LANE: Linting
+  # ==========================================
+  desc "Führt SwiftLint aus (falls installiert)"
+  lane :lint do
+    swiftlint(
+      mode: :lint,
+      executable: "swiftlint",
+      raise_if_swiftlint_error: true,
+      ignore_exit_status: false
+    )
+  end
+  
+  # ==========================================
+  # Helper Methods
+  # ==========================================
+  
+  # Changelog aus CHANGELOG.md lesen
+  def read_changelog
+    changelog_path = "../CHANGELOG.md"
+    return nil unless File.exist?(changelog_path)
+    
+    changelog = File.read(changelog_path)
+    
+    # Extrahiere [Unreleased] Section
+    if changelog =~ /## \[Unreleased\](.*?)(?=##|\z)/m
+      unreleased = $1.strip
+      
+      # Konvertiere zu einfacher Liste
+      lines = unreleased.split("\n")
+        .select { |line| line.start_with?("- ") }
+        .join("\n")
+      
+      return lines unless lines.empty?
+    end
+    
+    nil
+  rescue => e
+    UI.error("Fehler beim Lesen des Changelogs: #{e.message}")
+    nil
+  end
+  
+  # ==========================================
+  # Error Handling
+  # ==========================================
+  error do |lane, exception|
+    UI.error("❌ Fehler in Lane '#{lane}': #{exception.message}")
+    
+    # Optional: Slack-Benachrichtigung bei Fehler
+    # slack(
+    #   message: "Build fehlgeschlagen in Lane '#{lane}'",
+    #   success: false
+    # )
+  end
+  
+end
+

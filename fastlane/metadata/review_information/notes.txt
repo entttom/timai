@@ -1,0 +1,16 @@
+Demo-Account für Review:
+
+URL: https://demo.kimai.org/api/
+Token: token_admin
+
+Hinweise:
+- Dies ist ein öffentlicher Demo-Server von Kimai
+- Die App benötigt eine Kimai-Installation zum Funktionieren
+- Zeiterfassung und Berichte können sofort getestet werden
+
+Testschritte:
+1. URL und Token im Login-Screen eingeben
+2. Auf "Anmelden" klicken
+3. Zeiterfassung testen
+4. Reports ansehen
+5. Einstellungen prüfen

@@ -58,6 +58,14 @@
 // Errors
 "watch.error.title" = "Fehler";
 "watch.error.ok" = "OK";
+"watch.error.sessionUnavailable" = "Session nicht verfügbar";
+"watch.error.sessionNotActivated" = "Session noch nicht aktiviert - bitte warten";
+"watch.error.sendFailed" = "Fehler beim Senden: %@";
+"watch.error.createFailed" = "Fehler beim Erstellen: %@";
+"watch.error.connectionFailed" = "Verbindung zum iPhone konnte nicht hergestellt werden";
+"watch.error.switchFailed" = "Fehler beim Wechseln der Instanz: %@";
+"watch.error.invalidResponse" = "Ungültige Antwort vom iPhone";
+"watch.error.requestFailed" = "Fehler beim Anfordern der Daten: %@";
 
 // Instances
 "watch.instances.title" = "Instanzen";
@@ -83,4 +91,3 @@
 "watch.complication.name" = "Timer";
 "watch.complication.description" = "Zeigt den aktuellen Timer-Status";
 "watch.complication.noTimer" = "Kein Timer";
-

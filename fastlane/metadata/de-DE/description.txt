@@ -1,0 +1,18 @@
+Timai ist die mobile Zeiterfassung für Kimai.
+
+FEATURES:
+• Einfache Zeiterfassung mit Kimai-Integration
+• Offline-Modus: Arbeiten ohne Internetverbindung
+• Automatische Synchronisierung beim Wiederherstellen der Verbindung
+• Detaillierte Reports und Berichte
+• Cache-Verwaltung für optimale Performance
+• Mehrsprachig: Deutsch und Englisch
+
+VORAUSSETZUNGEN:
+• Kimai-Installation (ab Version 0.5.0)
+• API-Token von Ihrem Kimai-Server
+
+KIMAI:
+Kimai ist ein kostenloses Open-Source-Zeiterfassungstool für Teams und Freelancer.
+
+Support: Besuchen Sie unsere Website für Hilfe und Dokumentation.

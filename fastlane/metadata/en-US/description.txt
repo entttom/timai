@@ -1,0 +1,18 @@
+Timai is the mobile time tracking app for Kimai.
+
+FEATURES:
+• Easy time tracking with Kimai integration
+• Offline mode: Work without internet connection
+• Automatic synchronization when connection is restored
+• Detailed reports and analytics
+• Cache management for optimal performance
+• Multi-language: German and English
+
+REQUIREMENTS:
+• Kimai installation (version 0.5.0 or higher)
+• API token from your Kimai server
+
+KIMAI:
+Kimai is a free open-source time tracking tool for teams and freelancers.
+
+Support: Visit our website for help and documentation.

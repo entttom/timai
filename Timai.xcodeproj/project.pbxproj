@@ -11,6 +11,15 @@
 		0798E753E1C54458A75104D5 /* TimesheetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C10F0E4E884E63ACE6FF3F /* TimesheetUser.swift */; };
 		5E68D7CDAD99403DB8C42535 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74829760C01C4CB7B99E35E4 /* Project.swift */; };
 		9F972C4094E645ECA13A334E /* Timesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21783BD3CFE445097141633 /* Timesheet.swift */; };
+		AA256FEB2F0EB3BB00119498 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FE82F0EB3BB00119498 /* ExpenseCategory.swift */; };
+		AA256FEC2F0EB3BB00119498 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FE72F0EB3BB00119498 /* Expense.swift */; };
+		AA256FED2F0EB3BB00119498 /* ExpenseEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FE92F0EB3BB00119498 /* ExpenseEditForm.swift */; };
+		AA256FEE2F0EB3BB00119498 /* ExpenseSearchFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FEA2F0EB3BB00119498 /* ExpenseSearchFilters.swift */; };
+		AA256FF02F0EB3C900119498 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FEF2F0EB3C900119498 /* ExpenseViewModel.swift */; };
+		AA256FF62F0EB3DD00119498 /* ExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FF12F0EB3DD00119498 /* ExpenseDetailView.swift */; };
+		AA256FF72F0EB3DD00119498 /* ExpenseSearchSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FF32F0EB3DD00119498 /* ExpenseSearchSheet.swift */; };
+		AA256FF82F0EB3DD00119498 /* ExpenseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FF22F0EB3DD00119498 /* ExpenseEditView.swift */; };
+		AA256FF92F0EB3DD00119498 /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FF42F0EB3DD00119498 /* ExpenseView.swift */; };
 		AA34B1362EBA0D250027C2F5 /* TimaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1352EBA0D250027C2F5 /* TimaiApp.swift */; };
 		AA34B13C2EBA0D370027C2F5 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */; };
 		AA34B13D2EBA0D370027C2F5 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */; };
@@ -52,7 +61,6 @@
 		AA41F2272ECB6498008F4B4A /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB0BF571F814CBB005AAA0F /* Activity.swift */; };
 		AA41F22C2ECB64DE008F4B4A /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA41F22A2ECB64DC008F4B4A /* WatchConnectivity.framework */; platformFilter = ios; };
 		AA41F3632ECB7B2A008F4B4A /* TimaiWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AA5DBD222EBF9FF600002C68 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3E3E751F82E62200B5D291 /* Localizable.strings */; };
 		AA68BDF02EBB288900D64E58 /* OfflineSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEE2EBB288900D64E58 /* OfflineSyncManager.swift */; };
 		AA68BDF12EBB288900D64E58 /* PendingOperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEF2EBB288900D64E58 /* PendingOperationsManager.swift */; };
 		AA68BDF22EBB288900D64E58 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDEC2EBB288900D64E58 /* CacheManager.swift */; };
@@ -64,6 +72,7 @@
 		AA68BDFD2EBB28AC00D64E58 /* SyncStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */; };
 		AA68BDFF2EBB28B800D64E58 /* CacheSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */; };
 		AA9C3B8B2F0A1B2C0033D4E5 /* LastSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C3B8A2F0A1B2C0033D4E5 /* LastSelectionStore.swift */; };
+		AA9CB2D52F113AD500492298 /* ExpenseEnrichmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9CB2D42F113AD500492298 /* ExpenseEnrichmentService.swift */; };
 		AAD67AE32EBCC813005E592B /* BiometricAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */; };
 		AAD67AE52EBCC81C005E592B /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE42EBCC81C005E592B /* AppLockView.swift */; };
 		AAD67AE72EBE5278005E592B /* KimaiInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE62EBE5278005E592B /* KimaiInstance.swift */; };
@@ -176,6 +185,15 @@
 		73C10F0E4E884E63ACE6FF3F /* TimesheetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetUser.swift; sourceTree = "<group>"; };
 		74829760C01C4CB7B99E35E4 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBackgroundView.swift; sourceTree = "<group>"; };
+		AA256FE72F0EB3BB00119498 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		AA256FE82F0EB3BB00119498 /* ExpenseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategory.swift; sourceTree = "<group>"; };
+		AA256FE92F0EB3BB00119498 /* ExpenseEditForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEditForm.swift; sourceTree = "<group>"; };
+		AA256FEA2F0EB3BB00119498 /* ExpenseSearchFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseSearchFilters.swift; sourceTree = "<group>"; };
+		AA256FEF2F0EB3C900119498 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
+		AA256FF12F0EB3DD00119498 /* ExpenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailView.swift; sourceTree = "<group>"; };
+		AA256FF22F0EB3DD00119498 /* ExpenseEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEditView.swift; sourceTree = "<group>"; };
+		AA256FF32F0EB3DD00119498 /* ExpenseSearchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseSearchSheet.swift; sourceTree = "<group>"; };
+		AA256FF42F0EB3DD00119498 /* ExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseView.swift; sourceTree = "<group>"; };
 		AA34B1352EBA0D250027C2F5 /* TimaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimaiApp.swift; sourceTree = "<group>"; };
 		AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
@@ -220,6 +238,7 @@
 		AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatusIndicator.swift; sourceTree = "<group>"; };
 		AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheSettingsView.swift; sourceTree = "<group>"; };
 		AA9C3B8A2F0A1B2C0033D4E5 /* LastSelectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSelectionStore.swift; sourceTree = "<group>"; };
+		AA9CB2D42F113AD500492298 /* ExpenseEnrichmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEnrichmentService.swift; sourceTree = "<group>"; };
 		AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthService.swift; sourceTree = "<group>"; };
 		AAD67AE42EBCC81C005E592B /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
 		AAD67AE62EBE5278005E592B /* KimaiInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimaiInstance.swift; sourceTree = "<group>"; };
@@ -315,9 +334,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA256FF52F0EB3DD00119498 /* Expenses */ = {
+			isa = PBXGroup;
+			children = (
+				AA256FF12F0EB3DD00119498 /* ExpenseDetailView.swift */,
+				AA256FF22F0EB3DD00119498 /* ExpenseEditView.swift */,
+				AA256FF32F0EB3DD00119498 /* ExpenseSearchSheet.swift */,
+				AA256FF42F0EB3DD00119498 /* ExpenseView.swift */,
+			);
+			path = Expenses;
+			sourceTree = "<group>";
+		};
 		AA34B13B2EBA0D370027C2F5 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AA256FEF2F0EB3C900119498 /* ExpenseViewModel.swift */,
 				AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */,
 				AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */,
 				AA34B1392EBA0D370027C2F5 /* SettingsViewModel.swift */,
@@ -342,6 +373,7 @@
 		AA34B1462EBA0D4D0027C2F5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AA9CB2D42F113AD500492298 /* ExpenseEnrichmentService.swift */,
 				AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */,
 				AAD67B1E2EBF8B6D005E592B /* TimerManager.swift */,
 				AAD67B1F2EBF8B6D005E592B /* WatchConnectivityService.swift */,
@@ -392,6 +424,7 @@
 		AA34B1542EBA0D4D0027C2F5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AA256FF52F0EB3DD00119498 /* Expenses */,
 				AAD67AED2EBE52BC005E592B /* Components */,
 				AAD67AE42EBCC81C005E592B /* AppLockView.swift */,
 				AA34B1492EBA0D4D0027C2F5 /* Reports */,
@@ -475,6 +508,10 @@
 		FDB0BF561F814CA9005AAA0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AA256FE72F0EB3BB00119498 /* Expense.swift */,
+				AA256FE82F0EB3BB00119498 /* ExpenseCategory.swift */,
+				AA256FE92F0EB3BB00119498 /* ExpenseEditForm.swift */,
+				AA256FEA2F0EB3BB00119498 /* ExpenseSearchFilters.swift */,
 				AA41F1AC2ECB2307008F4B4A /* SearchFilters.swift */,
 				AA41F1AA2ECA66AA008F4B4A /* TimesheetEditForm.swift */,
 				AA41F1A82ECA620A008F4B4A /* Tag.swift */,
@@ -737,7 +774,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA5DBD222EBF9FF600002C68 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,9 +860,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA256FF62F0EB3DD00119498 /* ExpenseDetailView.swift in Sources */,
+				AA256FF72F0EB3DD00119498 /* ExpenseSearchSheet.swift in Sources */,
+				AA256FF82F0EB3DD00119498 /* ExpenseEditView.swift in Sources */,
+				AA256FF92F0EB3DD00119498 /* ExpenseView.swift in Sources */,
 				AA3AC11B2EB8B239007CB3AA /* ReportType.swift in Sources */,
 				AAD67AE52EBCC81C005E592B /* AppLockView.swift in Sources */,
 				AA68BDFC2EBB28AC00D64E58 /* OfflineBanner.swift in Sources */,
+				AA9CB2D52F113AD500492298 /* ExpenseEnrichmentService.swift in Sources */,
 				AA68BDFD2EBB28AC00D64E58 /* SyncStatusIndicator.swift in Sources */,
 				AA34B13C2EBA0D370027C2F5 /* AuthViewModel.swift in Sources */,
 				AA34B13D2EBA0D370027C2F5 /* ReportsViewModel.swift in Sources */,
@@ -861,6 +902,7 @@
 				AA34B15C2EBA0D4D0027C2F5 /* SettingsView.swift in Sources */,
 				AA34B15D2EBA0D4D0027C2F5 /* LoginView.swift in Sources */,
 				AA34B15E2EBA0D4D0027C2F5 /* TimesheetEditView.swift in Sources */,
+				AA256FF02F0EB3C900119498 /* ExpenseViewModel.swift in Sources */,
 				AA41F1AF2ECB2327008F4B4A /* SearchSheet.swift in Sources */,
 				AA34B15F2EBA0D4D0027C2F5 /* NetworkService.swift in Sources */,
 				AAD67AE72EBE5278005E592B /* KimaiInstance.swift in Sources */,
@@ -878,6 +920,10 @@
 				AAD67AEB2EBE5294005E592B /* AddInstanceView.swift in Sources */,
 				AAD67B3A2EBF8CEE005E592B /* ActiveTimer.swift in Sources */,
 				5E68D7CDAD99403DB8C42535 /* Project.swift in Sources */,
+				AA256FEB2F0EB3BB00119498 /* ExpenseCategory.swift in Sources */,
+				AA256FEC2F0EB3BB00119498 /* Expense.swift in Sources */,
+				AA256FED2F0EB3BB00119498 /* ExpenseEditForm.swift in Sources */,
+				AA256FEE2F0EB3BB00119498 /* ExpenseSearchFilters.swift in Sources */,
 				AAD67B1C2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */,
 				0699EE5D657847C39AB7ABA5 /* ActivityDetails.swift in Sources */,
 				0798E753E1C54458A75104D5 /* TimesheetUser.swift in Sources */,
@@ -1284,7 +1330,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1297,7 +1343,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.4;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -1315,7 +1361,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1328,7 +1374,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.4;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;

@@ -1,0 +1,4 @@
+- Added offline mode
+- Implemented cache management
+- Sync pending changes
+- Bug fixes and performance improvements

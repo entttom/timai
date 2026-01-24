@@ -1,0 +1,46 @@
+# Snapfile - Konfiguration für automatische Screenshots
+# Mehr Informationen: https://docs.fastlane.tools/actions/snapshot/
+
+# Liste der Geräte, für die Screenshots erstellt werden sollen
+# Diese entsprechen den App Store Screenshot-Anforderungen
+devices([
+  "iPhone 16 Pro Max",
+  "iPhone 16 Pro"
+])
+
+# Unterstützte Sprachen
+languages([
+  "de-DE",
+  "en-US"
+])
+
+# Scheme für UI-Tests
+scheme("TimaiUITests")
+
+# Output-Verzeichnis für Screenshots
+output_directory("./fastlane/screenshots")
+
+# Screenshots nach Sprachen organisieren
+override_status_bar(true)
+
+# Statusleiste-Einstellungen
+override_status_bar_arguments("--time 9:41 --dataNetwork wifi --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100")
+
+# Klar vorheriger Screenshots
+clear_previous_screenshots(true)
+
+# App neu installieren vor jedem Lauf
+reinstall_app(true)
+
+# Maximale Anzahl gleichzeitiger Simulatoren
+concurrent_simulators(true)
+
+# Stop bei erstem Fehler
+stop_after_first_error(false)
+
+# Ausführliche Ausgabe
+output_simulator_logs(false)
+
+# Anzahl der Wiederholungen bei Fehlern
+number_of_retries(3)
+
