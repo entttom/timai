@@ -234,6 +234,7 @@
 "login.instanceName.default" = "Kimai Instanz";
 "login.error.invalidUrl" = "Bitte gültige URL eingeben";
 "login.error.missingCredentials" = "Bitte URL und API Token eingeben";
+"login.button.noAccount" = "Noch kein Konto?";
 
 // Auth
 "auth.error.unexpected" = "Ein unerwarteter Fehler ist aufgetreten";
