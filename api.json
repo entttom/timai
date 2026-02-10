@@ -790,13 +790,13 @@
       }
     },
     "/api/work-contract/lock/{user}/{month}": {
-      "post": {
+      "delete": {
         "tags": [
           "Work Contract"
         ],
         "summary": "Lock months",
-        "description": "This locks all open months from the specified month back of the start of the given year.\nDo not use DELETE method, support will be removed soon.",
-        "operationId": "post_work_times_contract_lock_month",
+        "description": "This locks all open months from the specified month back o the start of the given year.",
+        "operationId": "delete_work_times_contract_lock_month",
         "parameters": [
           {
             "name": "user",
@@ -822,98 +822,6 @@
         "responses": {
           "204": {
             "description": "Success"
-          }
-        },
-        "security": [
-          {
-            "bearer": [
-              "API",
-              "approve_times_contract"
-            ]
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Work Contract"
-        ],
-        "summary": "Lock months",
-        "description": "This locks all open months from the specified month back of the start of the given year.\nDo not use DELETE method, support will be removed soon.",
-        "operationId": "delete_work_times_contract_lock_month",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "pattern": "\\d+"
-            }
-          },
-          {
-            "name": "month",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "pattern": "[0-9]{4}-(?:0[1-9]|1[012])-(?:0[1-9]|[12][0-9]|(?<!02-)3[01])"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "bearer": [
-              "API",
-              "approve_times_contract"
-            ]
-          }
-        ]
-      }
-    },
-    "/api/work-contract/locked/{user}/{date}": {
-      "get": {
-        "tags": [
-          "Work Contract"
-        ],
-        "summary": "Test if date is locked",
-        "description": "Do not call this method for each and every day, but restrict it to the last day of the month.",
-        "operationId": "get_work_times_contract_locked_date",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "path",
-            "description": "The User ID whose entries will be locked",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "pattern": "\\d+"
-            }
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "description": "The date to query (format: Y-m-d)",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "pattern": "[0-9]{4}-(?:0[1-9]|1[012])-(?:0[1-9]|[12][0-9]|(?<!02-)3[01])"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the lock information",
-            "content": {
-              "application/json": {
-                "schema": [],
-                "example": "{'day': '2026-01-01', 'locked': false}"
-              }
-            }
           }
         },
         "security": [
@@ -6201,7 +6109,7 @@
           "end": {
             "type": "string",
             "format": "date-time",
-            "example": "2026-02-10T21:05:05"
+            "example": "2026-01-06T07:58:55"
           },
           "estimation": {
             "description": "Estimation in seconds",
@@ -6225,15 +6133,11 @@
           "user": {
             "description": "User ID",
             "type": "integer",
-            "example": 4
+            "example": 35
           },
           "team": {
-            "description": "Array of Team IDs",
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "description": "Team IDs"
-            }
+            "description": "Team ID",
+            "type": "integer"
           }
         },
         "type": "object"
@@ -6332,12 +6236,12 @@
           "begin": {
             "type": "string",
             "format": "date-time",
-            "example": "2026-02-10T21:05:05"
+            "example": "2026-01-06T07:58:55"
           },
           "end": {
             "type": "string",
             "format": "date-time",
-            "example": "2026-02-10T21:05:05"
+            "example": "2026-01-06T07:58:55"
           }
         },
         "type": "object"
@@ -6416,12 +6320,12 @@
           "begin": {
             "type": "string",
             "format": "date-time",
-            "example": "2026-02-10T21:05:05"
+            "example": "2026-01-06T07:58:55"
           },
           "user": {
             "description": "User ID",
             "type": "integer",
-            "example": 4
+            "example": 35
           },
           "project": {
             "description": "Project ID",
@@ -6543,8 +6447,8 @@
       },
       "ExpenseCategory": {
         "properties": {
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -6558,10 +6462,6 @@
             "maxLength": 100,
             "minLength": 2,
             "nullable": true
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -6584,7 +6484,7 @@
           "user": {
             "description": "User ID",
             "type": "integer",
-            "example": 4
+            "example": 35
           },
           "comment": {
             "description": "Comment for the absence. Will be visible in the in the absence list.",
@@ -6759,12 +6659,8 @@
             "type": "string"
           },
           "teams": {
-            "description": "Array of Team IDs",
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "description": "Team IDs"
-            }
+            "description": "Team ID",
+            "type": "integer"
           },
           "color": {
             "description": "The hexadecimal color code (default: auto-calculated by name)",
@@ -6820,8 +6716,8 @@
           "timezone"
         ],
         "properties": {
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -6953,10 +6849,6 @@
           "budgetType": {
             "title": "The type of budget:\n - null = default / full time\n - month = monthly budget",
             "type": "string"
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -6968,8 +6860,8 @@
           "timezone"
         ],
         "properties": {
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -7035,10 +6927,6 @@
             "items": {
               "$ref": "#/components/schemas/CustomerMeta"
             }
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -7076,7 +6964,7 @@
           "user": {
             "description": "User ID",
             "type": "integer",
-            "example": 4
+            "example": 35
           },
           "rate": {
             "description": "The rate (eg. 10.5)",
@@ -7099,8 +6987,8 @@
           "timezone"
         ],
         "properties": {
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -7173,10 +7061,6 @@
             "items": {
               "$ref": "#/components/schemas/Team"
             }
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -7219,12 +7103,8 @@
             "type": "integer"
           },
           "teams": {
-            "description": "Array of Team IDs",
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "description": "Team IDs"
-            }
+            "description": "Team ID",
+            "type": "integer"
           },
           "color": {
             "description": "The hexadecimal color code (default: auto-calculated by name)",
@@ -7287,8 +7167,8 @@
           "customer": {
             "type": "integer"
           },
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -7375,10 +7255,6 @@
           "budgetType": {
             "title": "The type of budget:\n - null = default / full time\n - month = monthly budget",
             "type": "string"
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -7391,8 +7267,8 @@
           "customer": {
             "type": "integer"
           },
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -7455,10 +7331,6 @@
           "number": {
             "type": "string",
             "maxLength": 10
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -7469,8 +7341,8 @@
           "name"
         ],
         "properties": {
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -7536,10 +7408,6 @@
           "number": {
             "type": "string",
             "maxLength": 10
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -7577,7 +7445,7 @@
           "user": {
             "description": "User ID",
             "type": "integer",
-            "example": 4
+            "example": 35
           },
           "rate": {
             "description": "The rate (eg. 10.5)",
@@ -7604,8 +7472,8 @@
           "customer": {
             "type": "integer"
           },
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -7675,10 +7543,6 @@
           "number": {
             "type": "string",
             "maxLength": 10
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -7705,12 +7569,8 @@
             "type": "integer"
           },
           "teams": {
-            "description": "Array of Team IDs",
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "description": "Team IDs"
-            }
+            "description": "Team ID",
+            "type": "integer"
           },
           "color": {
             "description": "The hexadecimal color code (default: auto-calculated by name)",
@@ -7770,8 +7630,8 @@
           "project": {
             "type": "integer"
           },
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -7831,10 +7691,6 @@
           "budgetType": {
             "title": "The type of budget:\n - null = default / full time\n - month = monthly budget",
             "type": "string"
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -7847,8 +7703,8 @@
           "project": {
             "type": "integer"
           },
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -7884,10 +7740,6 @@
           "number": {
             "type": "string",
             "maxLength": 10
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -7897,8 +7749,8 @@
           "name"
         ],
         "properties": {
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -7937,10 +7789,6 @@
           "number": {
             "type": "string",
             "maxLength": 10
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -7978,7 +7826,7 @@
           "user": {
             "description": "User ID",
             "type": "integer",
-            "example": 4
+            "example": 35
           },
           "rate": {
             "description": "The rate (eg. 10.5)",
@@ -8005,8 +7853,8 @@
           "project": {
             "type": "integer"
           },
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -8049,10 +7897,6 @@
           "number": {
             "type": "string",
             "maxLength": 10
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -8081,8 +7925,8 @@
           "name"
         ],
         "properties": {
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -8099,10 +7943,6 @@
           "visible": {
             "type": "boolean",
             "default": true
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -8145,7 +7985,7 @@
           "user": {
             "description": "User ID",
             "type": "integer",
-            "example": 4
+            "example": 35
           },
           "tags": {
             "description": "Comma separated list of tags",
@@ -8880,7 +8720,7 @@
           "supervisor": {
             "description": "User ID",
             "type": "integer",
-            "example": 4
+            "example": 35
           },
           "roles": {
             "type": "array",
@@ -9283,7 +9123,7 @@
           "supervisor": {
             "description": "User ID",
             "type": "integer",
-            "example": 4
+            "example": 35
           },
           "roles": {
             "type": "array",
@@ -9331,8 +9171,8 @@
           "initials": {
             "type": "string"
           },
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -9376,10 +9216,6 @@
           "systemAccount": {
             "type": "boolean",
             "default": false
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -9441,8 +9277,8 @@
           "initials": {
             "type": "string"
           },
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -9504,10 +9340,6 @@
           },
           "supervisor": {
             "$ref": "#/components/schemas/User"
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -9535,8 +9367,8 @@
           "initials": {
             "type": "string"
           },
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -9580,10 +9412,6 @@
           "systemAccount": {
             "type": "boolean",
             "default": false
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -9627,8 +9455,8 @@
           "name"
         ],
         "properties": {
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -9668,10 +9496,6 @@
             "items": {
               "$ref": "#/components/schemas/Activity"
             }
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"
@@ -9681,8 +9505,8 @@
           "name"
         ],
         "properties": {
-          "color-safe": {
-            "title": "Color will never be empty and is generated from the entity tag name if not set explicit.",
+          "color": {
+            "title": "Internal value: this color will never be empty and is generated by the tag name if not set explicit.",
             "type": "string"
           },
           "id": {
@@ -9693,10 +9517,6 @@
             "type": "string",
             "maxLength": 100,
             "minLength": 2
-          },
-          "color": {
-            "title": "The assigned color in HTML hex format, e.g. #dd1d00",
-            "type": "string"
           }
         },
         "type": "object"

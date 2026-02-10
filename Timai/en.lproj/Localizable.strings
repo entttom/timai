@@ -181,6 +181,8 @@
 "common.loading" = "Loading...";
 "common.done" = "Done";
 "common.cancel" = "Cancel";
+"common.ok" = "OK";
+"common.error" = "Error";
 "common.unknown" = "Unknown";
 
 // Sync Status
@@ -520,3 +522,106 @@
 "settings.expenses.apiUnavailable.title" = "API Not Available";
 "settings.expenses.apiUnavailable.message" = "The Expenses API is not available. Please make sure the Expenses plugin is installed and you have the required permissions. Otherwise, please contact your server administrator.";
 "settings.expenses.apiUnavailable.ok" = "OK";
+
+// Absences
+"absences.tabTitle" = "Absences";
+"absences.navigationTitle" = "Absences";
+"absences.filter.label" = "Status";
+"absences.filter.all" = "All";
+"absences.filter.approved" = "Approved";
+"absences.filter.open" = "Open";
+"absences.filter.rejected" = "Rejected";
+"absences.scope.label" = "Audience";
+"absences.scope.mine" = "Mine";
+"absences.scope.others" = "Others";
+"absences.scope.all" = "All";
+"absences.empty.title" = "No absences";
+"absences.empty.message" = "There are no absences for the selected filter.";
+"absences.empty.filtered.title" = "No absences for selected user";
+"absences.empty.filtered.message" = "No absences found for this user and filter.";
+"absences.empty.action" = "Add absence";
+"absences.halfDay" = "Half day";
+"absences.dayCount.singular" = "%d day";
+"absences.dayCount.plural" = "%d days";
+
+// Absences - Types
+"absences.type.holiday" = "Holiday";
+"absences.type.other" = "Other";
+"absences.type.parental" = "Parental leave";
+"absences.type.parental_leave" = "Parental leave";
+"absences.type.sickness" = "Sickness";
+"absences.type.sickness_child" = "Sickness of relative";
+"absences.type.sickness_of_relative" = "Sickness of relative";
+"absences.type.time_off" = "Time off";
+"absences.type.unpaid_vacation" = "Unpaid holiday";
+
+// Absences - Status
+"absences.status.new" = "New";
+"absences.status.open" = "Open";
+"absences.status.requested" = "Open";
+"absences.status.approved" = "Approved";
+"absences.status.rejected" = "Rejected";
+
+// Absences - Create
+"absences.create.navigationTitle" = "New absence";
+"absences.create.section.type" = "Type";
+"absences.create.section.date" = "Date";
+"absences.create.section.comment" = "Comment";
+"absences.create.field.type" = "Absence type";
+"absences.create.field.startDate" = "Start date";
+"absences.create.field.hasEndDate" = "Request multiple days";
+"absences.create.field.endDate" = "End date";
+"absences.create.field.halfDay" = "Half day";
+"absences.create.field.duration" = "Duration (HH:MM)";
+"absences.create.field.comment" = "Optional comment";
+"absences.create.save" = "Save";
+"absences.create.cancel" = "Cancel";
+"absences.create.beta.note" = "Beta feature. This functionality may become paid in the future.";
+
+// Absences - Actions
+"absences.actions.title" = "Absence actions";
+"absences.actions.message" = "Select an action for %d day(s).";
+"absences.action.requestApproval" = "Request approval";
+"absences.action.confirm" = "Approve";
+"absences.action.reject" = "Reject";
+"absences.approve.scope.title" = "Approve multiple days";
+"absences.approve.scope.message" = "This request has %d day(s).";
+"absences.approve.scope.allDays" = "Approve all days";
+"absences.approve.scope.selectDays" = "Choose specific days";
+"absences.approve.partial.title" = "Select days";
+"absences.approve.partial.daysSection" = "Days";
+"absences.approve.partial.selectAll" = "Select all";
+"absences.approve.partial.deselectAll" = "Deselect all";
+"absences.approve.partial.confirm" = "Approve selected";
+
+// Absences - User Filter
+"absences.userFilter.label" = "Filter by user";
+"absences.userFilter.title" = "Select user";
+"absences.userFilter.all" = "All users";
+"absences.userFilter.usersSection" = "Users";
+"absences.userFilter.loading" = "Loading users...";
+"absences.userFilter.empty" = "No users available";
+"absences.userFilter.search.placeholder" = "Search users";
+"absences.userFilter.search.noResults" = "No matching users";
+
+// Absences - Loading
+"absences.loading.multiUser.title" = "Loading absences";
+"absences.loading.multiUser.progress" = "Processed %d of %d users";
+
+// Absences - Errors
+"absences.error.loading" = "Absences could not be loaded";
+"absences.error.save" = "Could not save absence";
+"absences.error.actionFailed" = "Action could not be completed";
+"absences.error.missingUser" = "Missing user context. Please log in again.";
+"absences.error.notEnoughHolidays" = "Not enough holiday days left.";
+"absences.error.duplicateTypePeriod" = "An absence of this type already exists for the selected day.";
+"absences.error.missingApprovePermission" = "You don't have permission to approve absences.";
+"absences.error.missingOtherProfilePermission" = "You don't have permission to view absences of other users.";
+"absences.error.missingUserDirectoryPermission" = "Users could not be loaded. You need permission to view users or team members.";
+
+// Settings - Absences
+"settings.absences.enable" = "Enable Absences";
+"settings.absences.betaWarning.title" = "Beta Feature";
+"settings.absences.betaWarning.message" = "This feature is in beta phase. In the future, this feature will be paid.";
+"settings.absences.betaWarning.confirm" = "Understood and enable";
+"settings.absences.betaWarning.cancel" = "Cancel";

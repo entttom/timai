@@ -20,6 +20,9 @@
 		AA256FF72F0EB3DD00119498 /* ExpenseSearchSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FF32F0EB3DD00119498 /* ExpenseSearchSheet.swift */; };
 		AA256FF82F0EB3DD00119498 /* ExpenseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FF22F0EB3DD00119498 /* ExpenseEditView.swift */; };
 		AA256FF92F0EB3DD00119498 /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FF42F0EB3DD00119498 /* ExpenseView.swift */; };
+		AAB0AB0102FEB00100A11001 /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1102FEB00100A11001 /* Absence.swift */; };
+		AAB0AB0202FEB00100A11001 /* AbsenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1202FEB00100A11001 /* AbsenceViewModel.swift */; };
+		AAB0AB0302FEB00100A11001 /* AbsenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1302FEB00100A11001 /* AbsenceView.swift */; };
 		AA34B1362EBA0D250027C2F5 /* TimaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1352EBA0D250027C2F5 /* TimaiApp.swift */; };
 		AA34B13C2EBA0D370027C2F5 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */; };
 		AA34B13D2EBA0D370027C2F5 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */; };
@@ -194,6 +197,9 @@
 		AA256FF22F0EB3DD00119498 /* ExpenseEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEditView.swift; sourceTree = "<group>"; };
 		AA256FF32F0EB3DD00119498 /* ExpenseSearchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseSearchSheet.swift; sourceTree = "<group>"; };
 		AA256FF42F0EB3DD00119498 /* ExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseView.swift; sourceTree = "<group>"; };
+		AAB0AB1102FEB00100A11001 /* Absence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absence.swift; sourceTree = "<group>"; };
+		AAB0AB1202FEB00100A11001 /* AbsenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceViewModel.swift; sourceTree = "<group>"; };
+		AAB0AB1302FEB00100A11001 /* AbsenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceView.swift; sourceTree = "<group>"; };
 		AA34B1352EBA0D250027C2F5 /* TimaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimaiApp.swift; sourceTree = "<group>"; };
 		AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
@@ -345,9 +351,18 @@
 			path = Expenses;
 			sourceTree = "<group>";
 		};
+		AAB0AB2102FEB00100A11001 /* Absences */ = {
+			isa = PBXGroup;
+			children = (
+				AAB0AB1302FEB00100A11001 /* AbsenceView.swift */,
+			);
+			path = Absences;
+			sourceTree = "<group>";
+		};
 		AA34B13B2EBA0D370027C2F5 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AAB0AB1202FEB00100A11001 /* AbsenceViewModel.swift */,
 				AA256FEF2F0EB3C900119498 /* ExpenseViewModel.swift */,
 				AA34B1372EBA0D370027C2F5 /* AuthViewModel.swift */,
 				AA34B1382EBA0D370027C2F5 /* ReportsViewModel.swift */,
@@ -424,6 +439,7 @@
 		AA34B1542EBA0D4D0027C2F5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AAB0AB2102FEB00100A11001 /* Absences */,
 				AA256FF52F0EB3DD00119498 /* Expenses */,
 				AAD67AED2EBE52BC005E592B /* Components */,
 				AAD67AE42EBCC81C005E592B /* AppLockView.swift */,
@@ -508,6 +524,7 @@
 		FDB0BF561F814CA9005AAA0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AAB0AB1102FEB00100A11001 /* Absence.swift */,
 				AA256FE72F0EB3BB00119498 /* Expense.swift */,
 				AA256FE82F0EB3BB00119498 /* ExpenseCategory.swift */,
 				AA256FE92F0EB3BB00119498 /* ExpenseEditForm.swift */,
@@ -860,6 +877,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAB0AB0302FEB00100A11001 /* AbsenceView.swift in Sources */,
 				AA256FF62F0EB3DD00119498 /* ExpenseDetailView.swift in Sources */,
 				AA256FF72F0EB3DD00119498 /* ExpenseSearchSheet.swift in Sources */,
 				AA256FF82F0EB3DD00119498 /* ExpenseEditView.swift in Sources */,
@@ -902,6 +920,7 @@
 				AA34B15C2EBA0D4D0027C2F5 /* SettingsView.swift in Sources */,
 				AA34B15D2EBA0D4D0027C2F5 /* LoginView.swift in Sources */,
 				AA34B15E2EBA0D4D0027C2F5 /* TimesheetEditView.swift in Sources */,
+				AAB0AB0202FEB00100A11001 /* AbsenceViewModel.swift in Sources */,
 				AA256FF02F0EB3C900119498 /* ExpenseViewModel.swift in Sources */,
 				AA41F1AF2ECB2327008F4B4A /* SearchSheet.swift in Sources */,
 				AA34B15F2EBA0D4D0027C2F5 /* NetworkService.swift in Sources */,
@@ -924,6 +943,7 @@
 				AA256FEC2F0EB3BB00119498 /* Expense.swift in Sources */,
 				AA256FED2F0EB3BB00119498 /* ExpenseEditForm.swift in Sources */,
 				AA256FEE2F0EB3BB00119498 /* ExpenseSearchFilters.swift in Sources */,
+				AAB0AB0102FEB00100A11001 /* Absence.swift in Sources */,
 				AAD67B1C2EBF8AAD005E592B /* TimerActivityAttributes.swift in Sources */,
 				0699EE5D657847C39AB7ABA5 /* ActivityDetails.swift in Sources */,
 				0798E753E1C54458A75104D5 /* TimesheetUser.swift in Sources */,

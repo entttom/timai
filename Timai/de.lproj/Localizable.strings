@@ -181,6 +181,8 @@
 "common.loading" = "Lädt...";
 "common.done" = "Fertig";
 "common.cancel" = "Abbrechen";
+"common.ok" = "OK";
+"common.error" = "Fehler";
 "common.unknown" = "Unbekannt";
 
 // Sync Status
@@ -520,3 +522,106 @@
 "settings.expenses.apiUnavailable.title" = "API nicht verfügbar";
 "settings.expenses.apiUnavailable.message" = "Die Expenses-API ist nicht verfügbar. Bitte stellen Sie sicher, dass das Expenses-Plugin installiert ist und Sie die erforderlichen Berechtigungen haben. Andernfalls wenden Sie sich bitte an Ihren Server-Administrator.";
 "settings.expenses.apiUnavailable.ok" = "OK";
+
+// Abwesenheiten
+"absences.tabTitle" = "Abwesenheiten";
+"absences.navigationTitle" = "Abwesenheiten";
+"absences.filter.label" = "Status";
+"absences.filter.all" = "Alle";
+"absences.filter.approved" = "Genehmigt";
+"absences.filter.open" = "Offen";
+"absences.filter.rejected" = "Abgelehnt";
+"absences.scope.label" = "Bereich";
+"absences.scope.mine" = "Meine";
+"absences.scope.others" = "Andere";
+"absences.scope.all" = "Alle";
+"absences.empty.title" = "Keine Abwesenheiten";
+"absences.empty.message" = "Für den gewählten Filter sind keine Abwesenheiten vorhanden.";
+"absences.empty.filtered.title" = "Keine Abwesenheiten für den gewählten Benutzer";
+"absences.empty.filtered.message" = "Für diesen Benutzer und Filter wurden keine Abwesenheiten gefunden.";
+"absences.empty.action" = "Abwesenheit hinzufügen";
+"absences.halfDay" = "Halbtags";
+"absences.dayCount.singular" = "%d Tag";
+"absences.dayCount.plural" = "%d Tage";
+
+// Abwesenheiten - Typen
+"absences.type.holiday" = "Urlaub";
+"absences.type.other" = "Sonstiges";
+"absences.type.parental" = "Elternzeit";
+"absences.type.parental_leave" = "Elternzeit";
+"absences.type.sickness" = "Krankheit";
+"absences.type.sickness_child" = "Krankheit von Angehörigen";
+"absences.type.sickness_of_relative" = "Krankheit von Angehörigen";
+"absences.type.time_off" = "Freizeitausgleich";
+"absences.type.unpaid_vacation" = "Unbezahlter Urlaub";
+
+// Abwesenheiten - Status
+"absences.status.new" = "Neu";
+"absences.status.open" = "Offen";
+"absences.status.requested" = "Offen";
+"absences.status.approved" = "Genehmigt";
+"absences.status.rejected" = "Abgelehnt";
+
+// Abwesenheiten - Erstellen
+"absences.create.navigationTitle" = "Neue Abwesenheit";
+"absences.create.section.type" = "Typ";
+"absences.create.section.date" = "Datum";
+"absences.create.section.comment" = "Kommentar";
+"absences.create.field.type" = "Abwesenheitstyp";
+"absences.create.field.startDate" = "Startdatum";
+"absences.create.field.hasEndDate" = "Mehrere Tage anfragen";
+"absences.create.field.endDate" = "Enddatum";
+"absences.create.field.halfDay" = "Halber Tag";
+"absences.create.field.duration" = "Dauer (HH:MM)";
+"absences.create.field.comment" = "Optionaler Kommentar";
+"absences.create.save" = "Speichern";
+"absences.create.cancel" = "Abbrechen";
+"absences.create.beta.note" = "Beta-Funktion. Diese Funktion kann in Zukunft kostenpflichtig werden.";
+
+// Abwesenheiten - Aktionen
+"absences.actions.title" = "Abwesenheitsaktionen";
+"absences.actions.message" = "Aktion für %d Tag(e) auswählen.";
+"absences.action.requestApproval" = "Genehmigung anfragen";
+"absences.action.confirm" = "Genehmigen";
+"absences.action.reject" = "Ablehnen";
+"absences.approve.scope.title" = "Mehrere Tage genehmigen";
+"absences.approve.scope.message" = "Diese Anfrage umfasst %d Tag(e).";
+"absences.approve.scope.allDays" = "Alle Tage genehmigen";
+"absences.approve.scope.selectDays" = "Bestimmte Tage auswählen";
+"absences.approve.partial.title" = "Tage auswählen";
+"absences.approve.partial.daysSection" = "Tage";
+"absences.approve.partial.selectAll" = "Alle auswählen";
+"absences.approve.partial.deselectAll" = "Alle abwählen";
+"absences.approve.partial.confirm" = "Auswahl genehmigen";
+
+// Abwesenheiten - Benutzerfilter
+"absences.userFilter.label" = "Nach Benutzer filtern";
+"absences.userFilter.title" = "Benutzer auswählen";
+"absences.userFilter.all" = "Alle Benutzer";
+"absences.userFilter.usersSection" = "Benutzer";
+"absences.userFilter.loading" = "Benutzer werden geladen...";
+"absences.userFilter.empty" = "Keine Benutzer verfügbar";
+"absences.userFilter.search.placeholder" = "Benutzer suchen";
+"absences.userFilter.search.noResults" = "Keine passenden Benutzer";
+
+// Abwesenheiten - Laden
+"absences.loading.multiUser.title" = "Abwesenheiten werden geladen";
+"absences.loading.multiUser.progress" = "%d von %d Benutzern verarbeitet";
+
+// Abwesenheiten - Fehler
+"absences.error.loading" = "Abwesenheiten konnten nicht geladen werden";
+"absences.error.save" = "Abwesenheit konnte nicht gespeichert werden";
+"absences.error.actionFailed" = "Aktion konnte nicht abgeschlossen werden";
+"absences.error.missingUser" = "Benutzerkontext fehlt. Bitte erneut anmelden.";
+"absences.error.notEnoughHolidays" = "Nicht genügend Urlaubstage verfügbar.";
+"absences.error.duplicateTypePeriod" = "Eine Abwesenheit dieses Typs existiert bereits für den gewählten Tag.";
+"absences.error.missingApprovePermission" = "Sie haben keine Berechtigung, Abwesenheiten zu genehmigen.";
+"absences.error.missingOtherProfilePermission" = "Sie haben keine Berechtigung, Abwesenheiten anderer Benutzer anzuzeigen.";
+"absences.error.missingUserDirectoryPermission" = "Benutzer konnten nicht geladen werden. Sie benötigen Berechtigungen für Benutzer- oder Teamansicht.";
+
+// Einstellungen - Abwesenheiten
+"settings.absences.enable" = "Abwesenheiten aktivieren";
+"settings.absences.betaWarning.title" = "Beta-Funktion";
+"settings.absences.betaWarning.message" = "Diese Funktion befindet sich in der Beta-Phase. In Zukunft wird diese Funktion kostenpflichtig sein.";
+"settings.absences.betaWarning.confirm" = "Verstanden und aktivieren";
+"settings.absences.betaWarning.cancel" = "Abbrechen";
