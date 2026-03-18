@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="vi" datatype="plaintext" original="teams.en.xlf">
+    <body>
+      <trans-unit id="A_4Fc7c" resname="teams.project_access">
+        <source>teams.project_access</source>
+        <target>Cấp quyền truy cập vào các dự án</target>
+      </trans-unit>
+      <trans-unit id="QchGnbx" resname="teams.customer_access">
+        <source>teams.customer_access</source>
+        <target state="translated">Cấp quyền truy cập cho khách hàng</target>
+      </trans-unit>
+      <trans-unit id=".yIcFDx" resname="team.visibility_global">
+        <source>team.visibility_global</source>
+        <target>Hiển thị cho mọi người, vì chưa có nhóm nào được chỉ định.</target>
+      </trans-unit>
+      <trans-unit id="hlIIRjb" resname="team.visibility_restricted">
+        <source>team.visibility_restricted</source>
+        <target>Chỉ hiển thị cho các nhóm sau và tất cả quản trị viên.</target>
+      </trans-unit>
+      <trans-unit id="sx7AVYH" resname="team.project_visibility_inherited">
+        <source>team.project_visibility_inherited</source>
+        <target>Dự án có quyền truy cập hạn chế, vì quyền của nhóm được đặt cho khách hàng.</target>
+      </trans-unit>
+      <trans-unit id="cZEIdcu" resname="team.create_default">
+        <source>team.create_default</source>
+        <target>Tạo một nhóm mới để giới hạn quyền truy cập</target>
+      </trans-unit>
+      <trans-unit id="FC4DW27" resname="team.activity_visibility_inherited">
+        <source>team.activity_visibility_inherited</source>
+        <target state="translated">Hoạt động có quyền truy cập bị giới hạn, vì quyền của nhóm được đặt cho dự án và/hoặc khách hàng.</target>
+      </trans-unit>
+      <trans-unit id="6g81kYY" approved="no" resname="team.member" xml:space="preserve">
+        <source>team.member</source>
+        <target state="translated">Thành viên</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

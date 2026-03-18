@@ -1,0 +1,2027 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ro" datatype="plaintext" original="messages.en.xlf">
+    <body>
+      <trans-unit id="N7mikjJ" resname="time_tracking" xml:space="preserve">
+        <source>Time Tracking</source>
+        <target state="translated">Contorizarea timpului</target>
+      </trans-unit>
+      <trans-unit id="inmIkP6" resname="yes">
+        <source>yes</source>
+        <target>Da</target>
+      </trans-unit>
+      <trans-unit id="k5Apjz_" resname="no">
+        <source>no</source>
+        <target>Nu</target>
+      </trans-unit>
+      <trans-unit id=".3dyBTq" resname="both">
+        <source>both</source>
+        <target>Ambele</target>
+      </trans-unit>
+      <trans-unit id="KLIuHvt" resname="This is a mandatory field">
+        <source>This is a mandatory field</source>
+        <target>Acest câmp este obligatoriu</target>
+      </trans-unit>
+      <trans-unit id="_ohHsMM" resname="create">
+        <source>create</source>
+        <target>Creează</target>
+      </trans-unit>
+      <trans-unit id="DYHuW58" resname="confirm.delete">
+        <source>confirm.delete</source>
+        <target>Ești sigur că vrei să îl ștergi?</target>
+      </trans-unit>
+      <trans-unit id="vDd3alC" resname="admin_entity.delete_confirm">
+        <source>admin_entity.delete_confirm</source>
+        <target>Aceste date vor fi, de asemenea, șterse! Sau poti selecta o intrare către care vor fi transferate toate datele:</target>
+      </trans-unit>
+      <trans-unit id="COyxNde" resname="delete.not_in_use">
+        <source>delete.not_in_use</source>
+        <target>Acest element poate fi șters fără probleme.</target>
+      </trans-unit>
+      <trans-unit id="I3TZF5S" resname="cancel">
+        <source>cancel</source>
+        <target>Anulare</target>
+      </trans-unit>
+      <trans-unit id="PyZ8KrQ" resname="confirm">
+        <source>confirm</source>
+        <target>Confirmați</target>
+      </trans-unit>
+      <trans-unit id=".0CFrRV" resname="upload">
+        <source>upload</source>
+        <target>Încarcă</target>
+      </trans-unit>
+      <trans-unit id="JBkykGe" resname="search">
+        <source>search</source>
+        <target>Caută</target>
+      </trans-unit>
+      <trans-unit id="J258iS6" resname="update_multiple">
+        <source>update_multiple</source>
+        <target>%action% %count% intrări</target>
+      </trans-unit>
+      <trans-unit id="OTDmccn" resname="attachments">
+        <source>attachments</source>
+        <target>Fișiere</target>
+      </trans-unit>
+      <trans-unit id="0M_Gylq" resname="rates.empty">
+        <source>rates.empty</source>
+        <target>Nu au fost încă configurate tarife orare.</target>
+      </trans-unit>
+      <trans-unit id="mflwMcX" resname="rates.title">
+        <source>rates.title</source>
+        <target>Tarife</target>
+      </trans-unit>
+      <trans-unit id="XohImNo" resname="password">
+        <source>Password</source>
+        <target state="translated">Parola</target>
+      </trans-unit>
+      <trans-unit id="hLEZkoC" resname="password_repeat">
+        <source>password_repeat</source>
+        <target>Repetă parola</target>
+      </trans-unit>
+      <trans-unit id="ACcM9j_" resname="logout">
+        <source>logout</source>
+        <target>Deconectare</target>
+      </trans-unit>
+      <trans-unit id="_x2He8M" resname="user_profile">
+        <source>user_profile</source>
+        <target>Profilul meu</target>
+      </trans-unit>
+      <trans-unit id="T4nAM7X" resname="api_token">
+        <source>api_token</source>
+        <target>Parola API</target>
+      </trans-unit>
+      <trans-unit id="aq59Sk8" resname="api_token_repeat">
+        <source>api_token_repeat</source>
+        <target>Reintrodu parola API</target>
+      </trans-unit>
+      <trans-unit id=".372.o7" resname="login_required">
+        <source>login_required</source>
+        <target>Permisiuni insuficiente. Să te redirecționez la pagina de login?</target>
+      </trans-unit>
+      <trans-unit id="UoOv6mx" resname="menu.homepage">
+        <source>menu.homepage</source>
+        <target>Panou de control</target>
+      </trans-unit>
+      <trans-unit id="wvvYSw_" resname="menu.admin">
+        <source>menu.admin</source>
+        <target>Administrare</target>
+      </trans-unit>
+      <trans-unit id="6OKwCUB" resname="menu.system">
+        <source>menu.system</source>
+        <target>Sistem</target>
+      </trans-unit>
+      <trans-unit id="wBTFKFR" resname="menu.logout">
+        <source>menu.logout</source>
+        <target>Deconectare</target>
+      </trans-unit>
+      <trans-unit id="ebTjBb9" resname="my_times">
+        <source>my_times</source>
+        <target>Pontajul meu</target>
+      </trans-unit>
+      <trans-unit id="yxQop43" resname="all_times">
+        <source>all_times</source>
+        <target>Pontaje</target>
+      </trans-unit>
+      <trans-unit id="IeshU90" resname="customers">
+        <source>customers</source>
+        <target>Clienți</target>
+      </trans-unit>
+      <trans-unit id="JXfA9Ve" resname="projects">
+        <source>projects</source>
+        <target>Proiecte</target>
+      </trans-unit>
+      <trans-unit id="YkyVVAY" resname="activities">
+        <source>activities</source>
+        <target>Activități</target>
+      </trans-unit>
+      <trans-unit id="fftM9nd" resname="users">
+        <source>users</source>
+        <target>Utilizatori</target>
+      </trans-unit>
+      <trans-unit id="_t.2z4V" resname="teams">
+        <source>teams</source>
+        <target>Echipe</target>
+      </trans-unit>
+      <trans-unit id="hOZxcaK" resname="menu.plugin">
+        <source>menu.plugin</source>
+        <target>Plugin-uri</target>
+      </trans-unit>
+      <trans-unit id="IXtkHRw" resname="menu.system_configuration">
+        <source>menu.system_configuration</source>
+        <target>Setări</target>
+      </trans-unit>
+      <trans-unit id="l4wviUE" resname="tags">
+        <source>tags</source>
+        <target>Etichete</target>
+      </trans-unit>
+      <trans-unit id="JGaf9IK" resname="Doctor">
+        <source>Doctor</source>
+        <target>Doctor</target>
+      </trans-unit>
+      <trans-unit id="Vz3Igj3" resname="error.no_entries_found">
+        <source>error.no_entries_found</source>
+        <target>Nu am găsit intrări care să corespundă cu filtrele selectate.</target>
+      </trans-unit>
+      <trans-unit id="hlu4iX5" resname="error.no_comments_found">
+        <source>error.no_comments_found</source>
+        <target>Încă nu au fost publicate comentarii.</target>
+      </trans-unit>
+      <trans-unit id="DodjLNR" resname="date" xml:space="preserve">
+        <source>date</source>
+        <target state="translated">Data</target>
+      </trans-unit>
+      <trans-unit id="BHk4pZ3" resname="starttime">
+        <source>starttime</source>
+        <target>Începe</target>
+      </trans-unit>
+      <trans-unit id="eI_tMbq" resname="endtime">
+        <source>endtime</source>
+        <target>Sfârșit</target>
+      </trans-unit>
+      <trans-unit id="yqea9Nt" resname="duration">
+        <source>duration</source>
+        <target>Durata</target>
+      </trans-unit>
+      <trans-unit id="BPiZbad" resname="user" xml:space="preserve">
+        <source>User</source>
+        <target state="translated">Utilizator</target>
+      </trans-unit>
+      <trans-unit id="FveKfWM" resname="username">
+        <source>username</source>
+        <target>Utilizator</target>
+      </trans-unit>
+      <trans-unit id="yQRveje" resname="description">
+        <source>Description</source>
+        <target state="translated">Descriere</target>
+      </trans-unit>
+      <trans-unit id="gqNTf.D" resname="name">
+        <source>name</source>
+        <target>Nume</target>
+      </trans-unit>
+      <trans-unit id="xEuy.VF" resname="comment">
+        <source>comment</source>
+        <target>Comentariu</target>
+      </trans-unit>
+      <trans-unit id="pWFFJwz" resname="id">
+        <source>id</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="1C7xSXk" resname="visible">
+        <source>visible</source>
+        <target>Vizibil</target>
+      </trans-unit>
+      <trans-unit id="CvlqjtY" resname="budget">
+        <source>budget</source>
+        <target>Buget</target>
+      </trans-unit>
+      <trans-unit id="qbD0dHa" resname="timeBudget" xml:space="preserve">
+        <source>timeBudget</source>
+        <target state="needs-translation">Buget de timp</target>
+      </trans-unit>
+      <trans-unit id="BlGGO.X" resname="activity">
+        <source>activity</source>
+        <target>Activitate</target>
+      </trans-unit>
+      <trans-unit id="JEIQ5IQ" resname="project" xml:space="preserve">
+        <source>Project</source>
+        <target state="translated">Proiect</target>
+      </trans-unit>
+      <trans-unit id="KhBzpuZ" resname="tag">
+        <source>tag</source>
+        <target>Etichete</target>
+      </trans-unit>
+      <trans-unit id="E_bHhGR" resname="hourlyRate">
+        <source>hourlyRate</source>
+        <target>Tarif orar</target>
+      </trans-unit>
+      <trans-unit id="HcWuW2g" resname="layout">
+        <source>layout</source>
+        <target>Afișare: aranjare</target>
+      </trans-unit>
+      <trans-unit id="QEMUsfS" resname="hours">
+        <source>hours</source>
+        <target>Ore</target>
+      </trans-unit>
+      <trans-unit id="xUl3nXn" resname="rate">
+        <source>rate</source>
+        <target>Tarif</target>
+      </trans-unit>
+      <trans-unit id="pO8wS6Q" resname="language">
+        <source>language</source>
+        <target>Limba</target>
+      </trans-unit>
+      <trans-unit id="tsRYY4d" resname="customer">
+        <source>customer</source>
+        <target>Client</target>
+      </trans-unit>
+      <trans-unit id="giREF.l" resname="email">
+        <source>email</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="yosi0Nu" resname="team">
+        <source>team</source>
+        <target>Echipa</target>
+      </trans-unit>
+      <trans-unit id="evFI7nW" resname="teamlead">
+        <source>teamlead</source>
+        <target>Șef de echipă</target>
+      </trans-unit>
+      <trans-unit id="Kw3N1AA" resname="actions">
+        <source>actions</source>
+        <target>Acțiuni</target>
+      </trans-unit>
+      <trans-unit id="ovKkXwU" resname="action.edit">
+        <source>action.edit</source>
+        <target>Editează</target>
+      </trans-unit>
+      <trans-unit id="YZdZVQP" resname="delete">
+        <source>action.delete</source>
+        <target>Șterge</target>
+      </trans-unit>
+      <trans-unit id="HLtdhYw" resname="action.save">
+        <source>action.save</source>
+        <target>Salvează</target>
+      </trans-unit>
+      <trans-unit id="tKZKI2Z" resname="action.reset">
+        <source>action.reset</source>
+        <target>Reset</target>
+      </trans-unit>
+      <trans-unit id="wCazS.X" resname="action.close">
+        <source>action.close</source>
+        <target>Închide</target>
+      </trans-unit>
+      <trans-unit id="3bqLM8Q" resname="dashboard.title">
+        <source>dashboard.title</source>
+        <target>Panou de control</target>
+      </trans-unit>
+      <trans-unit id="muzkQpM" resname="toggle_dropdown">
+        <source>toggle_dropdown</source>
+        <target>Arată meniul</target>
+      </trans-unit>
+      <trans-unit id="L05Qw2x" resname="my_teams">
+        <source>my_teams</source>
+        <target>Echipele mele</target>
+      </trans-unit>
+      <trans-unit id="Ia0kvPi" resname="my_team_projects">
+        <source>my_team_projects</source>
+        <target>Proiectele mele</target>
+      </trans-unit>
+      <trans-unit id="tfkKlua" resname="progress">
+        <source>progress</source>
+        <target>Progres</target>
+      </trans-unit>
+      <trans-unit id="VXj0Y3h" resname="timesheet.title">
+        <source>timesheet.title</source>
+        <target>Pontajele mele</target>
+      </trans-unit>
+      <trans-unit id="dwEVXUR" resname="timesheet.edit">
+        <source>timesheet.edit</source>
+        <target>Modifică înregistrarea</target>
+      </trans-unit>
+      <trans-unit id="5vB9Q7X" resname="begin">
+        <source>begin</source>
+        <target>De la</target>
+      </trans-unit>
+      <trans-unit id="Nh5I0DC" resname="end">
+        <source>end</source>
+        <target>Până la</target>
+      </trans-unit>
+      <trans-unit id="iNOVZRh" resname="daterange">
+        <source>daterange</source>
+        <target>Interval de timp</target>
+      </trans-unit>
+      <trans-unit id="UbnqJLn" resname="modal.columns.title">
+        <source>modal.columns.title</source>
+        <target>Modifică vizibilitatea coloanelor</target>
+      </trans-unit>
+      <trans-unit id="_0tuMNE" resname="fixedRate">
+        <source>fixedRate</source>
+        <target>Tarif fix</target>
+      </trans-unit>
+      <trans-unit id="dChNncv" resname="color">
+        <source>color</source>
+        <target>Culoare</target>
+      </trans-unit>
+      <trans-unit id="1_wnK76" resname="profile.title">
+        <source>profile.title</source>
+        <target>Profilul utilizatorului</target>
+      </trans-unit>
+      <trans-unit id="HWKJZ0T" resname="profile.about_me">
+        <source>profile.about_me</source>
+        <target>Despre mine</target>
+      </trans-unit>
+      <trans-unit id="Fm.kwVn" resname="profile.first_entry" xml:space="preserve">
+        <source>profile.first_entry</source>
+        <target state="needs-translation">Lucrez de la</target>
+      </trans-unit>
+      <trans-unit id="xEYQXPy" resname="profile.settings">
+        <source>profile.settings</source>
+        <target>Profil</target>
+      </trans-unit>
+      <trans-unit id="A6TLLQa" resname="profile.password">
+        <source>profile.password</source>
+        <target>Parola</target>
+      </trans-unit>
+      <trans-unit id="Z34ZpjK" resname="profile.api-token">
+        <source>profile.api-token</source>
+        <target>API</target>
+      </trans-unit>
+      <trans-unit id="ygtTz8." resname="profile.roles">
+        <source>profile.roles</source>
+        <target>Roluri</target>
+      </trans-unit>
+      <trans-unit id="MQKiG33" resname="profile.preferences">
+        <source>profile.preferences</source>
+        <target>Preferințe</target>
+      </trans-unit>
+      <trans-unit id="j4Kd9N1" resname="calendar_initial_view">
+        <source>calendar_initial_view</source>
+        <target>Vizualizare inițială a calendarului</target>
+      </trans-unit>
+      <trans-unit id="H.IqJTQ" resname="login_initial_view">
+        <source>login_initial_view</source>
+        <target>Vizualizare inițială după autentificare</target>
+      </trans-unit>
+      <trans-unit id="pcfRcZ4" resname="month">
+        <source>month</source>
+        <target>Luna</target>
+      </trans-unit>
+      <trans-unit id="Irm6dfx" resname="agendaWeek">
+        <source>agendaWeek</source>
+        <target>Săptămâna</target>
+      </trans-unit>
+      <trans-unit id="Q0Zip02" resname="agendaDay">
+        <source>agendaDay</source>
+        <target>Zi</target>
+      </trans-unit>
+      <trans-unit id="r49TNAg" resname="daily_stats">
+        <source>daily_stats</source>
+        <target>Afișează statisticile zilnice referitoare la pontaj</target>
+      </trans-unit>
+      <trans-unit id="dherSTU" resname="export_decimal">
+        <source>export_decimal</source>
+        <target>Utilizați durata zecimală la export</target>
+      </trans-unit>
+      <trans-unit id="UVJ5Die" resname="calendar">
+        <source>calendar</source>
+        <target>Calendarul</target>
+      </trans-unit>
+      <trans-unit id="Xyjr.V." resname="project_start">
+        <source>project_start</source>
+        <target>Pornire proiect</target>
+      </trans-unit>
+      <trans-unit id="TBWoUYf" resname="project_end">
+        <source>project_end</source>
+        <target>Terminare proiect</target>
+      </trans-unit>
+      <trans-unit id="EohvnQA" resname="number">
+        <source>number</source>
+        <target>Cont</target>
+      </trans-unit>
+      <trans-unit id="8WjM3ZF" resname="company">
+        <source>company</source>
+        <target>Numele firmei</target>
+      </trans-unit>
+      <trans-unit id="fFErSLq" resname="vat">
+        <source>vat</source>
+        <target>Taxa</target>
+      </trans-unit>
+      <trans-unit id="EJDS9HY" resname="vat_id">
+        <source>vat_id</source>
+        <target>ID TVA</target>
+      </trans-unit>
+      <trans-unit id="2Ayb_RD" resname="address">
+        <source>address</source>
+        <target>Addresa</target>
+      </trans-unit>
+      <trans-unit id="r.ZOT9U" resname="country">
+        <source>country</source>
+        <target>Țara</target>
+      </trans-unit>
+      <trans-unit id="RVadpX9" resname="phone">
+        <source>phone</source>
+        <target>Telefon</target>
+      </trans-unit>
+      <trans-unit id="SvTiF8B" resname="fax">
+        <source>fax</source>
+        <target>Fax</target>
+      </trans-unit>
+      <trans-unit id="1STBoIE" resname="mobile">
+        <source>mobile</source>
+        <target>Nr. telefon mobil</target>
+      </trans-unit>
+      <trans-unit id="pcWhXux" resname="homepage">
+        <source>homepage</source>
+        <target>Pagina de pornire</target>
+      </trans-unit>
+      <trans-unit id="OWLt7pw" resname="timezone">
+        <source>timezone</source>
+        <target>Zona de timp</target>
+      </trans-unit>
+      <trans-unit id="Rm5bnNV" resname="currency">
+        <source>currency</source>
+        <target>Moneda</target>
+      </trans-unit>
+      <trans-unit id="GgpqNso" resname="alias">
+        <source>alias</source>
+        <target>Nume</target>
+      </trans-unit>
+      <trans-unit id="qvIyBkY" resname="title">
+        <source>title</source>
+        <target>Titlu</target>
+      </trans-unit>
+      <trans-unit id="h7voece" resname="avatar">
+        <source>avatar</source>
+        <target>Imagine de profil (URL)</target>
+      </trans-unit>
+      <trans-unit id="loeWEWU" resname="active">
+        <source>active</source>
+        <target>Activ</target>
+      </trans-unit>
+      <trans-unit id="Zs9VE7N" resname="roles">
+        <source>roles</source>
+        <target>Rol</target>
+      </trans-unit>
+      <trans-unit id="ZlZ20pG" resname="user_permissions.title">
+        <source>user_permissions.title</source>
+        <target>Permisiuni utilizator</target>
+      </trans-unit>
+      <trans-unit id="G.GEdlk" resname="user_role.title">
+        <source>user_role.title</source>
+        <target>Rol utilizator</target>
+      </trans-unit>
+      <trans-unit id="E7G60OF" resname="Allowed character: A-Z and _">
+        <source>Allowed character: A-Z and _</source>
+        <target>Caractere permise: A-Z and _</target>
+      </trans-unit>
+      <trans-unit id="XKTzhQz" resname="version">
+        <source>version</source>
+        <target>Versiune</target>
+      </trans-unit>
+      <trans-unit id="WRuKTcz" resname="ROLE_SUPER_ADMIN">
+        <source>ROLE_SUPER_ADMIN</source>
+        <target>System-Admin</target>
+      </trans-unit>
+      <trans-unit id="718iPw6" resname="ROLE_ADMIN">
+        <source>ROLE_ADMIN</source>
+        <target>Administrator</target>
+      </trans-unit>
+      <trans-unit id="yttGLAB" resname="ROLE_TEAMLEAD">
+        <source>ROLE_TEAMLEAD</source>
+        <target>Șef de echipă</target>
+      </trans-unit>
+      <trans-unit id="rvO5ZXf" resname="ROLE_USER">
+        <source>ROLE_USER</source>
+        <target>Utilizator</target>
+      </trans-unit>
+      <trans-unit id="TdBJBAl" resname="stats.durationToday" xml:space="preserve">
+        <source>stats.durationToday</source>
+        <target state="needs-translation">Ore lucrate azi</target>
+      </trans-unit>
+      <trans-unit id="XhKalZH" resname="stats.durationWeek" xml:space="preserve">
+        <source>stats.durationWeek</source>
+        <target state="needs-translation">Ore lucrate săptămâna aceasta</target>
+      </trans-unit>
+      <trans-unit id="uaOwf_P" resname="stats.durationMonth" xml:space="preserve">
+        <source>stats.durationMonth</source>
+        <target state="needs-translation">Ore lucrate luna aceasta</target>
+      </trans-unit>
+      <trans-unit id="WqF84KR" resname="stats.durationYear" xml:space="preserve">
+        <source>stats.durationYear</source>
+        <target state="needs-translation">Ore lucrate anul aceasta</target>
+      </trans-unit>
+      <trans-unit id="YtvPnl1" resname="stats.durationTotal" xml:space="preserve">
+        <source>stats.durationTotal</source>
+        <target state="needs-translation">Număr total de ore lucrate</target>
+      </trans-unit>
+      <trans-unit id="IFOLMgp" resname="stats.yourWorkingHours">
+        <source>stats.yourWorkingHours</source>
+        <target>Numărul meu de ore lucrate</target>
+      </trans-unit>
+      <trans-unit id="023M9Ta" resname="stats.amountToday">
+        <source>stats.amountToday</source>
+        <target>Încasări pe ziua de azi</target>
+      </trans-unit>
+      <trans-unit id="xnJvYAE" resname="stats.amountWeek">
+        <source>stats.amountWeek</source>
+        <target>Încasări în această săptămână</target>
+      </trans-unit>
+      <trans-unit id="ulr3reE" resname="stats.amountMonth">
+        <source>stats.amountMonth</source>
+        <target>Încasări în aceasta lună</target>
+      </trans-unit>
+      <trans-unit id="bQZyZaO" resname="stats.amountYear">
+        <source>stats.amountYear</source>
+        <target>Încasări în acest an</target>
+      </trans-unit>
+      <trans-unit id="Z0fz23v" resname="stats.amountTotal">
+        <source>stats.amountTotal</source>
+        <target>Total încasări</target>
+      </trans-unit>
+      <trans-unit id="HzICegM" resname="stats.activeUsersToday">
+        <source>stats.activeUsersToday</source>
+        <target>Utilizatori activi azi</target>
+      </trans-unit>
+      <trans-unit id="7oP64Kh" resname="stats.activeUsersWeek">
+        <source>stats.activeUsersWeek</source>
+        <target>Utilizatori activi săptămâna aceasta</target>
+      </trans-unit>
+      <trans-unit id="40xQ.Qt" resname="stats.activeUsersMonth">
+        <source>stats.activeUsersMonth</source>
+        <target>Utilizatori activi luna aceasta</target>
+      </trans-unit>
+      <trans-unit id="lGuZo7g" resname="stats.activeUsersYear">
+        <source>stats.activeUsersYear</source>
+        <target>Utilizatori activi anul acesta</target>
+      </trans-unit>
+      <trans-unit id="8FFVmiv" resname="stats.activeUsersTotal">
+        <source>stats.activeUsersTotal</source>
+        <target>Total utilizatori activi</target>
+      </trans-unit>
+      <trans-unit id="lEW82ex" resname="stats.activeRecordings">
+        <source>stats.activeRecordings</source>
+        <target>Înregistrari active</target>
+      </trans-unit>
+      <trans-unit id="t5eIWp8" resname="stats.userTotal">
+        <source>stats.userTotal</source>
+        <target>Utilizatrori</target>
+      </trans-unit>
+      <trans-unit id="Bor.76M" resname="stats.activityTotal">
+        <source>stats.activityTotal</source>
+        <target>Activități</target>
+      </trans-unit>
+      <trans-unit id="67uSaR3" resname="stats.projectTotal">
+        <source>stats.projectTotal</source>
+        <target>Proiecte</target>
+      </trans-unit>
+      <trans-unit id="tnD6aPj" resname="stats.customerTotal">
+        <source>stats.customerTotal</source>
+        <target>Clienți</target>
+      </trans-unit>
+      <trans-unit id="unC5MXv" resname="stats.percentUsed">
+        <source>stats.percentUsed</source>
+        <target>%percent%% utilizat</target>
+      </trans-unit>
+      <trans-unit id="HkjvwLc" resname="stats.percentUsedLeft">
+        <source>stats.percentUsedLeft</source>
+        <target>%percent%% utilizat (%left% sunt încă deschise)</target>
+      </trans-unit>
+      <trans-unit id="Oq.KtC6" resname="admin_invoice_template.title">
+        <source>admin_invoice_template.title</source>
+        <target>Macheta factură</target>
+      </trans-unit>
+      <trans-unit id="SR2r1Cs" resname="invoices">
+        <source>invoices</source>
+        <target>Facturi</target>
+      </trans-unit>
+      <trans-unit id="ov4OQOh" resname="invoice.filter">
+        <source>invoice.filter</source>
+        <target>Filtrează datele de facturare</target>
+      </trans-unit>
+      <trans-unit id="WXXPG7p" resname="preview">
+        <source>preview</source>
+        <target>Previzualizare</target>
+      </trans-unit>
+      <trans-unit id="zpU6DrC" resname="print">
+        <source>print</source>
+        <target>Tipărește</target>
+      </trans-unit>
+      <trans-unit id="U7ubCzi" resname="csv">
+        <source>csv</source>
+        <target>CSV</target>
+      </trans-unit>
+      <trans-unit id="HJgLIry" resname="xlsx">
+        <source>xlsx</source>
+        <target>Excel</target>
+      </trans-unit>
+      <trans-unit id="w1sh1so" resname="pdf">
+        <source>pdf</source>
+        <target>PDF</target>
+      </trans-unit>
+      <trans-unit id="lmUO63g" resname="ods">
+        <source>ods</source>
+        <target>ODS</target>
+      </trans-unit>
+      <trans-unit id="zPcx3O_" resname="invoice_print">
+        <source>invoice_print</source>
+        <target>Factura</target>
+      </trans-unit>
+      <trans-unit id="dicW36D" resname="mark_as_exported">
+        <source>mark_as_exported</source>
+        <target>Marcheză ca exportat</target>
+      </trans-unit>
+      <trans-unit id="XN4PEpj" resname="template">
+        <source>template</source>
+        <target>Macheta</target>
+      </trans-unit>
+      <trans-unit id="ohNu8DK" resname="due_days">
+        <source>due_days</source>
+        <target>Termen de plată în zile</target>
+      </trans-unit>
+      <trans-unit id="rAJrxSK" resname="invoice.due_days">
+        <source>invoice.due_days</source>
+        <target>Termen de plată</target>
+      </trans-unit>
+      <trans-unit id="4XKFnWh" resname="invoice.from">
+        <source>invoice.from</source>
+        <target>De la</target>
+      </trans-unit>
+      <trans-unit id="hx7vsMA" resname="invoice.to">
+        <source>invoice.to</source>
+        <target>Pentru</target>
+      </trans-unit>
+      <trans-unit id="x_W5sV4" resname="invoice.number">
+        <source>invoice.number</source>
+        <target>Număr factură</target>
+      </trans-unit>
+      <trans-unit id="86KyrKO" resname="invoice.subtotal">
+        <source>invoice.subtotal</source>
+        <target>Subtotalul</target>
+      </trans-unit>
+      <trans-unit id="EO57yXg" resname="invoice.tax">
+        <source>invoice.tax</source>
+        <target>Taxa</target>
+      </trans-unit>
+      <trans-unit id="N68vyvo" resname="invoice.total">
+        <source>invoice.total</source>
+        <target>Total</target>
+      </trans-unit>
+      <trans-unit id="TPzFWUs" resname="invoice.service_date">
+        <source>invoice.service_date</source>
+        <target>Data service</target>
+      </trans-unit>
+      <trans-unit id="zzjZXJx" resname="amount">
+        <source>amount</source>
+        <target>Cantitate</target>
+      </trans-unit>
+      <trans-unit id="BAkWQqr" resname="total_rate">
+        <source>total_rate</source>
+        <target>Preț total</target>
+      </trans-unit>
+      <trans-unit id="IoKfYkz" resname="unit_price">
+        <source>unit_price</source>
+        <target>Preț unitar</target>
+      </trans-unit>
+      <trans-unit id="033t0aO" resname="payment_terms">
+        <source>payment_terms</source>
+        <target>Termeni de plată</target>
+      </trans-unit>
+      <trans-unit id="9p2KQag" resname="invoice.signature_user">
+        <source>invoice.signature_user</source>
+        <target>Confirmare: Data / Numele consultantului / Semnătura</target>
+      </trans-unit>
+      <trans-unit id="Q9ykNhO" resname="invoice.signature_customer">
+        <source>invoice.signature_customer</source>
+        <target>Confirmare: Data / Numele clientului / Semnătura</target>
+      </trans-unit>
+      <trans-unit id="c3d6p33" resname="invoice.total_working_time">
+        <source>invoice.total_working_time</source>
+        <target>Durata totală</target>
+      </trans-unit>
+      <trans-unit id="3tegKgk" resname="orderNumber">
+        <source>orderNumber</source>
+        <target>Număr comandă</target>
+      </trans-unit>
+      <trans-unit id="tCNBGKG" resname="orderDate">
+        <source>orderDate</source>
+        <target>Data comenzii</target>
+      </trans-unit>
+      <trans-unit id="WMJwy8r" resname="invoice_tax_number">
+        <source>invoice_tax_number</source>
+        <target>Nr. TVA:</target>
+      </trans-unit>
+      <trans-unit id="lswYe8s" resname="invoice_bank_account">
+        <source>invoice_bank_account</source>
+        <target>Cont bancar</target>
+      </trans-unit>
+      <trans-unit id="1GruCMx" resname="export">
+        <source>export</source>
+        <target>Export</target>
+      </trans-unit>
+      <trans-unit id="iwWaUoa" resname="export.filter">
+        <source>export.filter</source>
+        <target>Filtrează datele pentru export</target>
+      </trans-unit>
+      <trans-unit id="vjmoQGo" resname="export.period">
+        <source>export.period</source>
+        <target>Perioada</target>
+      </trans-unit>
+      <trans-unit id="3CQ7A2m" resname="export.document_title">
+        <source>export.document_title</source>
+        <target>Lista cheltuielilor</target>
+      </trans-unit>
+      <trans-unit id="d5wyWRD" resname="export.full_list">
+        <source>export.full_list</source>
+        <target>Lista completă</target>
+      </trans-unit>
+      <trans-unit id="N778uJ6" resname="export.summary">
+        <source>export.summary</source>
+        <target>Sumar</target>
+      </trans-unit>
+      <trans-unit id="ElDyzrx" resname="export.page_of">
+        <source>export.page_of</source>
+        <target>Pagina %page% din %pages%</target>
+      </trans-unit>
+      <trans-unit id="vKY0tof" resname="export.date_copyright">
+        <source>export.date_copyright</source>
+        <target>Creat în %date% cu %kimai%</target>
+      </trans-unit>
+      <trans-unit id="OxdYMR3" resname="active.entries">
+        <source>active.entries</source>
+        <target>Înregistrările tale active</target>
+      </trans-unit>
+      <trans-unit id="WVU_S.A" resname="recent.activities">
+        <source>recent.activities</source>
+        <target>Repornește una din activitățile recente</target>
+      </trans-unit>
+      <trans-unit id="dTHY7Mw" resname="timesheet.start" xml:space="preserve">
+        <source>timesheet.start</source>
+        <target state="translated">Începeți urmărirea timpului</target>
+      </trans-unit>
+      <trans-unit id="igCkqAP" resname="pageSize">
+        <source>pageSize</source>
+        <target>Dimensiune pagină</target>
+      </trans-unit>
+      <trans-unit id="cjgNYUB" resname="entryState">
+        <source>entryState</source>
+        <target>Înregistrări</target>
+      </trans-unit>
+      <trans-unit id="Qn2ouiL" resname="exported">
+        <source>exported</source>
+        <target>Exportat</target>
+      </trans-unit>
+      <trans-unit id="_DDecAV" resname="entryState.exported">
+        <source>entryState.exported</source>
+        <target>Eliminat</target>
+      </trans-unit>
+      <trans-unit id="ccCiXyR" resname="entryState.not_exported">
+        <source>entryState.not_exported</source>
+        <target>Deschis</target>
+      </trans-unit>
+      <trans-unit id="XvXvA2S" resname="all">
+        <source>all</source>
+        <target>Toate</target>
+      </trans-unit>
+      <trans-unit id="xm7mqoK" resname="entryState.running">
+        <source>entryState.running</source>
+        <target>Active</target>
+      </trans-unit>
+      <trans-unit id="spHpd_I" resname="entryState.stopped">
+        <source>entryState.stopped</source>
+        <target>Oprit</target>
+      </trans-unit>
+      <trans-unit id="BhsaLxX" resname="export.clear_all">
+        <source>export.clear_all</source>
+        <target>Marcați toate înregistrările afișate ca fiind deschise?</target>
+      </trans-unit>
+      <trans-unit id="qtjPKUT" resname="export.mark_all">
+        <source>export.mark_all</source>
+        <target>Marcați toate înregistrările afișate ca fiind șterse?</target>
+      </trans-unit>
+      <trans-unit id="NNsA8i2" resname="globalsOnly">
+        <source>globalsOnly</source>
+        <target>Doar global</target>
+      </trans-unit>
+      <trans-unit id="9Wt8Pp_" resname="help.batch_meta_fields">
+        <source>help.batch_meta_fields</source>
+        <target>Câmpurile care trebuiesc actualizate trebuie să fie activate mai întâi prin verificarea casetei aferente.</target>
+      </trans-unit>
+      <trans-unit id="8BPmHPa" resname="batch_meta_fields">
+        <source>batch_meta_fields</source>
+        <target>Câmpuri adiționale</target>
+      </trans-unit>
+      <trans-unit id="PHJwR4w" resname="status.paid">
+        <source>status.paid</source>
+        <target>Plătită</target>
+      </trans-unit>
+      <trans-unit id="Uvo1CbP" resname="status.pending">
+        <source>status.pending</source>
+        <target>În așteptare</target>
+      </trans-unit>
+      <trans-unit id="X_NRsed" resname="status.new">
+        <source>status.new</source>
+        <target>Nou</target>
+      </trans-unit>
+      <trans-unit id="BzwWNMS" resname="status">
+        <source>status</source>
+        <target>Stare</target>
+      </trans-unit>
+      <trans-unit id="JnUFsNi" resname="stats.workingTimeYear">
+        <source>stats.workingTimeYear</source>
+        <target>An întreg %year%</target>
+      </trans-unit>
+      <trans-unit id="JIKNAYP" resname="stats.workingTimeMonth">
+        <source>stats.workingTimeMonth</source>
+        <target>%month% %year%</target>
+      </trans-unit>
+      <trans-unit id="XdYs3I8" resname="stats.workingTimeWeek">
+        <source>stats.workingTimeWeek</source>
+        <target>Calendar pe săptămână %week%</target>
+      </trans-unit>
+      <trans-unit id="lfSTZGe" resname="stats.workingTimeToday">
+        <source>stats.workingTimeToday</source>
+        <target>Astăzi, %day%</target>
+      </trans-unit>
+      <trans-unit id="gRIArHS" resname="lastLogin">
+        <source>lastLogin</source>
+        <target>Ultima autentificare</target>
+      </trans-unit>
+      <trans-unit id="1c0EQaz" resname="profile.registration_date">
+        <source>profile.registration_date</source>
+        <target>Înregistrat la</target>
+      </trans-unit>
+      <trans-unit id="b43sCwO" resname="help.fixedRate">
+        <source>help.fixedRate</source>
+        <target>Fiecare înregistrare primește aceeași valoare, neținând cont de durata acesteia</target>
+      </trans-unit>
+      <trans-unit id="aVwNQcX" resname="billable">
+        <source>billable</source>
+        <target>Facturabil</target>
+      </trans-unit>
+      <trans-unit id="LIOnolg" resname="placeholder.type_message">
+        <source>placeholder.type_message</source>
+        <target>Scrie mesajul tău…</target>
+      </trans-unit>
+      <trans-unit id="Qc5nsFn" resname="recalculate_rates">
+        <source>recalculate_rates</source>
+        <target>Recalculează valorile</target>
+      </trans-unit>
+      <trans-unit id="Cxv_0wG" resname="help.internalRate">
+        <source>help.internalRate</source>
+        <target>Preț intern (dacă nu e specificat se folosește prețul normal)</target>
+      </trans-unit>
+      <trans-unit id="5ofAsOs" resname="internalRate">
+        <source>internalRate</source>
+        <target>Preț intern</target>
+      </trans-unit>
+      <trans-unit id="djL6LMC" resname="help.rate">
+        <source>help.rate</source>
+        <target>Rată orară pentru a fi taxat</target>
+      </trans-unit>
+      <trans-unit id="ypVQO7o" resname="menu.reporting">
+        <source>menu.reporting</source>
+        <target>Raportare</target>
+      </trans-unit>
+      <trans-unit id="o0yOFHL" resname="not_invoiced">
+        <source>not_invoiced</source>
+        <target>Nefacturat</target>
+      </trans-unit>
+      <trans-unit id="2dm.ZWM" resname="not_exported">
+        <source>not_exported</source>
+        <target>Neexportate</target>
+      </trans-unit>
+      <trans-unit id="L0hRlcf" resname="includeNoBudget">
+        <source>includeNoBudget</source>
+        <target>Afișați intrările fără buget</target>
+      </trans-unit>
+      <trans-unit id="L27KvC9" resname="includeNoWork">
+        <source>includeNoWork</source>
+        <target>Afișați intrările fără rezervări</target>
+      </trans-unit>
+      <trans-unit id="crrlEUA" resname="preview.skipped_rows">
+        <source>preview.skipped_rows</source>
+        <target>A sărit previzualizarea peste %rows% rânduri …</target>
+      </trans-unit>
+      <trans-unit id="Xij3oQl" resname="invoice.payment_date">
+        <source>invoice.payment_date</source>
+        <target>Data plății</target>
+      </trans-unit>
+      <trans-unit id="qX_CKtU" resname="tax_rate">
+        <source>tax_rate</source>
+        <target>Rata de impozitare</target>
+      </trans-unit>
+      <trans-unit id="7zptTeh" resname="update_browser_title">
+        <source>update_browser_title</source>
+        <target>Actualizarea titlului browserului</target>
+      </trans-unit>
+      <trans-unit id="XP5zkiN" resname="modal.dirty">
+        <source>modal.dirty</source>
+        <target>Formularul s-a modificat. Faceți clic pe „Salvați” pentru a salva modificările sau pe „Închidere” pentru a anula.</target>
+      </trans-unit>
+      <trans-unit id="zFfl7jw" resname="sum.total">
+        <source>sum.total</source>
+        <target>Total</target>
+      </trans-unit>
+      <trans-unit id="O5w1jzb" resname="file">
+        <source>file</source>
+        <target>Fișier</target>
+      </trans-unit>
+      <trans-unit id="VSo_gmO" resname="orderBy">
+        <source>orderBy</source>
+        <target>Ordonează după</target>
+      </trans-unit>
+      <trans-unit id="l4ZOh4." resname="desc">
+        <source>desc</source>
+        <target>Descrescător</target>
+      </trans-unit>
+      <trans-unit id="1o0.9vf" resname="asc">
+        <source>asc</source>
+        <target>Crescător</target>
+      </trans-unit>
+      <trans-unit id="CiA4s9E" resname="set_as_default">
+        <source>set_as_default</source>
+        <target>Salvați ca setare implicită</target>
+      </trans-unit>
+      <trans-unit id="8W_TZI0" resname="searchTerm">
+        <source>searchTerm</source>
+        <target>Termen de căutare</target>
+      </trans-unit>
+      <trans-unit id="tp.gIrE" resname="team.add_user.help">
+        <source>team.add_user.help</source>
+        <target>Adăugați un nou utilizator în echipă, selectându-l din listă. Ulterior, puteți decide dacă utilizatorul trebuie să devină lider de echipă.</target>
+      </trans-unit>
+      <trans-unit id="Zif614Q" resname="add_user.label">
+        <source>add_user.label</source>
+        <target>Adăugați un utilizator</target>
+      </trans-unit>
+      <trans-unit id="tvV0NhL" resname="delete_warning.short_stats">
+        <source>delete_warning.short_stats</source>
+        <target>În prezent, există %records% înregistrări de timp, care însumează o durată totală de %duration%.</target>
+      </trans-unit>
+      <trans-unit id="wYqyL6A" resname="budgetType_month">
+        <source>budgetType_month</source>
+        <target>Lunar</target>
+      </trans-unit>
+      <trans-unit id="4Ndj7Xo" resname="budgetType">
+        <source>budgetType</source>
+        <target>Tip bugetar</target>
+      </trans-unit>
+      <trans-unit id="KH2hgil" resname="account_number">
+        <source>account_number</source>
+        <target>Numărul de personal</target>
+      </trans-unit>
+      <trans-unit id="_YiKaOT" resname="last_record">
+        <source>last_record</source>
+        <target>Ultima intrare</target>
+      </trans-unit>
+      <trans-unit id="vpqPF8v" resname="last_record_before">
+        <source>last_record_before</source>
+        <target>Nici o rezervare de timp, deoarece</target>
+      </trans-unit>
+      <trans-unit id="vWJPpYU" resname="stats.percentUsedLeft_month">
+        <source>stats.percentUsedLeft_month</source>
+        <target>%percent%%% utilizate (%left% sunt încă deschise în această lună)</target>
+      </trans-unit>
+      <trans-unit id="xN7MfSA" resname="stats.percentUsed_month">
+        <source>stats.percentUsed_month</source>
+        <target>%percent%%% folosit în această lună</target>
+      </trans-unit>
+      <trans-unit id="_Pym9RO" resname="stats.activeUsersFinancialYear">
+        <source>stats.activeUsersFinancialYear</source>
+        <target>Utilizatori activi în acest exercițiu financiar</target>
+      </trans-unit>
+      <trans-unit id="wuUWovn" resname="stats.amountFinancialYear">
+        <source>stats.amountFinancialYear</source>
+        <target>Venituri în acest exercițiu financiar</target>
+      </trans-unit>
+      <trans-unit id="xkugSAA" resname="stats.durationFinancialYear" xml:space="preserve">
+        <source>stats.durationFinancialYear</source>
+        <target state="needs-translation">Ore de lucru în acest exercițiu financiar</target>
+      </trans-unit>
+      <trans-unit id="Nx9_QiO" resname="revenue">
+        <source>revenue</source>
+        <target>Venituri</target>
+      </trans-unit>
+      <trans-unit id="BXBFJP8" resname="stats.workingTime" xml:space="preserve">
+        <source>Working hours</source>
+        <target state="translated">Ore de lucru</target>
+      </trans-unit>
+      <trans-unit id="HWB4OGJ" resname="stats.workingTimeFinancialYear">
+        <source>stats.workingTimeFinancialYear</source>
+        <target>Exercițiul financiar</target>
+      </trans-unit>
+      <trans-unit id="XQ2.pq2" resname="error.too_many_entries">
+        <source>error.too_many_entries</source>
+        <target>Cererea nu a putut fi procesată. Au fost găsite prea multe rezultate.</target>
+      </trans-unit>
+      <trans-unit id="_cY.wHP" resname="resetting.check_email" xml:space="preserve">
+        <source>An email has been sent with a link to reset your password. Note: You can only request a new password once every %tokenLifetime% hours. If you don't receive the email, please check your spam folder or try again.</source>
+        <target state="translated">Un email a fost trimis cu un link pentru resetarea parolei tale. Notă: Poți solicita o nouă parolă doar o dată la fiecare %tokenLifetime% ore. Dacă nu primești email-ul, te rugăm să verifici folderul de spam sau să încerci din nou.</target>
+      </trans-unit>
+      <trans-unit id=".ndupSK" resname="registration.check_email">
+        <source>registration.check_email</source>
+        <target>A fost trimis un e-mail la %email%. Acesta conține un link de activare pe care trebuie să faceți clic pentru a vă activa contul.</target>
+      </trans-unit>
+      <trans-unit id="DUDrvjk" resname="remove_default">
+        <source>remove_default</source>
+        <target>Ștergeți favoritele de căutare</target>
+      </trans-unit>
+      <trans-unit id="W92QGbY" resname="export.warn_result_amount">
+        <source>export.warn_result_amount</source>
+        <target>Căutarea dvs. duce la %count% rezultate. Dacă exportul eșuează, trebuie să restrângeți căutarea mai mult.</target>
+      </trans-unit>
+      <trans-unit id="EwPAaws" resname="type">
+        <source>type</source>
+        <target>Tip</target>
+      </trans-unit>
+      <trans-unit id="yNWIi5U" resname="default_value_new">
+        <source>default_value_new</source>
+        <target>Valori implicite pentru noile intrări</target>
+      </trans-unit>
+      <trans-unit id="jdbtx6z" resname="action.add">
+        <source>action.add</source>
+        <target>Adăugați</target>
+      </trans-unit>
+      <trans-unit id="f8oNzSP" resname="quick_entry.title">
+        <source>quick_entry.title</source>
+        <target>Ore de lucru săptămânale</target>
+      </trans-unit>
+      <trans-unit id="KukrzcT" resname="includeBudgetType_full">
+        <source>includeBudgetType_full</source>
+        <target>Afișați intrările cu mențiunea "ciclu de viață" buget</target>
+      </trans-unit>
+      <trans-unit id="dnQEYoJ" resname="budgetType_full">
+        <source>budgetType_full</source>
+        <target>Ciclul de viață</target>
+      </trans-unit>
+      <trans-unit id="ViUuILv" resname="includeBudgetType_month">
+        <source>includeBudgetType_month</source>
+        <target>Afișați intrările cu buget "lunar"</target>
+      </trans-unit>
+      <trans-unit id="HPhRbtc" resname="stats.workingTimeWeekShort">
+        <source>stats.workingTimeWeekShort</source>
+        <target>Săptămâna %week%</target>
+      </trans-unit>
+      <trans-unit id="C2TGff0" resname="error.directory_protected">
+        <source>error.directory_protected</source>
+        <target>Directorul „%dir%” este protejat la scriere.</target>
+      </trans-unit>
+      <trans-unit id="gT9W2pZ" resname="status.canceled">
+        <source>status.canceled</source>
+        <target>Anulat</target>
+      </trans-unit>
+      <trans-unit id="IPHM4iP" resname="updated_at">
+        <source>Updated at</source>
+        <target>Actualizat la</target>
+      </trans-unit>
+      <trans-unit id="nlwMf5w" resname="invoice_document.max_reached">
+        <source>invoice_document.max_reached</source>
+        <target>A fost atinsă cantitatea maximă de documente de facturare %max%. Puteți adăuga mai multe după ce ați eliminat unul.</target>
+      </trans-unit>
+      <trans-unit id="GzWKgBk" resname="error.directory_missing">
+        <source>The directory “%dir%” does not exist and could not be created.</source>
+        <target>Directorul „%dir%” nu există și nu a putut fi creat.</target>
+      </trans-unit>
+      <trans-unit id="fVA3M2x" resname="choice_pattern">
+        <source>Display of entries in selection lists</source>
+        <target state="translated">Afișarea intrărilor în listele de selecție</target>
+      </trans-unit>
+      <trans-unit id="U_D.NIy" resname="automatic">
+        <source>automatic</source>
+        <target state="translated">Automat</target>
+      </trans-unit>
+      <trans-unit id="OJ.wI1U" resname="invoiceText">
+        <source>invoiceText</source>
+        <target state="translated">Textul facturii</target>
+      </trans-unit>
+      <trans-unit id="HNFpvnH" resname="globalActivities">
+        <source>globalActivities</source>
+        <target state="translated">Permiteți activități globale</target>
+      </trans-unit>
+      <trans-unit id="3Clo55j" resname="about.title">
+        <source>about.title</source>
+        <target>Despre Kimai</target>
+      </trans-unit>
+      <trans-unit id="1MfS6X5" resname="remove_filter">
+        <source>remove_filter</source>
+        <target state="translated">Resetați filtrul de căutare</target>
+      </trans-unit>
+      <trans-unit id="fQ3Prt4" resname="security.unlock.title">
+        <source>security.unlock.title</source>
+        <target state="translated">Deblocați contul</target>
+      </trans-unit>
+      <trans-unit id="853W5Iu" resname="security.unlock.button">
+        <source>security.unlock.button</source>
+        <target state="translated">Deblocare</target>
+      </trans-unit>
+      <trans-unit id="Eq2E_Rd" resname="menu.apps">
+        <source>Apps</source>
+        <target state="translated">Aplicații</target>
+      </trans-unit>
+      <trans-unit id="3rJ5QDP" resname="help.teams">
+        <source>help.teams</source>
+        <target state="translated">Limitează vizibilitatea la echipele selectate.</target>
+      </trans-unit>
+      <trans-unit id="AeMGtJO" resname="help.visible">
+        <source>help.visible</source>
+        <target state="translated">În cazul în care setarea este dezactivată, obiectul nu este afișat în căsuțele derulante și în vizualizările de listă.</target>
+      </trans-unit>
+      <trans-unit id="KgBw0BS" resname="skin">
+        <source>skin</source>
+        <target state="translated">Design</target>
+      </trans-unit>
+      <trans-unit id="wv3n.FT" resname="dashboard.edit_mode">
+        <source>dashboard.edit_mode</source>
+        <target state="translated">Puteți rearanja widgeturile utilizând funcția de glisare și fixare. Adăugarea widgeturilor salvează modificările în așteptare.</target>
+      </trans-unit>
+      <trans-unit id="WOAx9yz" resname="modal.columns.profile">
+        <source>modal.columns.profile</source>
+        <target state="translated">Profil</target>
+      </trans-unit>
+      <trans-unit id="aGk9Aqt" resname="desktop">
+        <source>desktop</source>
+        <target state="translated">Desktop</target>
+      </trans-unit>
+      <trans-unit id="FeFBn_3" resname="profile.2fa">
+        <source>profile.2fa</source>
+        <target state="translated">Doi factori (2FA)</target>
+      </trans-unit>
+      <trans-unit id="IRzPWmL" resname="login.2fa_intro">
+        <source>login.2fa_intro</source>
+        <target state="translated">Vă rugăm să introduceți codul de confirmare pentru a finaliza procesul de conectare.</target>
+      </trans-unit>
+      <trans-unit id="FgKTw5v" resname="login.2fa_label">
+        <source>login.2fa_label</source>
+        <target state="translated">Cod de confirmare</target>
+      </trans-unit>
+      <trans-unit id="SdLZTel" resname="favorite_routes">
+        <source>favorite_routes</source>
+        <target state="translated">Favorite</target>
+      </trans-unit>
+      <trans-unit id="i7aSJ1i" resname="notifications">
+        <source>notifications</source>
+        <target state="translated">Notificări</target>
+      </trans-unit>
+      <trans-unit id="BrOQ92O" resname="notifications.denied">
+        <source>You have rejected notifications. Please refer to your web-browser documentation to find out how to turn them on.</source>
+        <target state="translated">Ați respins notificările. Vă rugăm să consultați documentația browserului dumneavoastră web pentru a afla cum să le activați.</target>
+      </trans-unit>
+      <trans-unit id="PLLl1E0" resname="system_account">
+        <source>system_account</source>
+        <target state="translated">Sistem-Cont</target>
+      </trans-unit>
+      <trans-unit id="0Hhg4zQ" resname="system_account.help">
+        <source>system_account.help</source>
+        <target state="translated">Va fi ascunsă în rapoarte și dropdown-uri</target>
+      </trans-unit>
+      <trans-unit id="On18MKP" resname="plugin.installed">
+        <source>plugin.installed</source>
+        <target state="translated">Plugin-uri instalate</target>
+      </trans-unit>
+      <trans-unit id="DXcvOMM" resname="stats.userDurationWeek">
+        <source>stats.userDurationWeek</source>
+        <target state="translated">Orele mele de lucru din această săptămână</target>
+      </trans-unit>
+      <trans-unit id="BjyLITj" resname="stats.userDurationYear">
+        <source>stats.userDurationYear</source>
+        <target state="translated">Orele mele de lucru din acest an</target>
+      </trans-unit>
+      <trans-unit id="EedlgkM" resname="stats.userDurationTotal">
+        <source>stats.userDurationTotal</source>
+        <target state="translated">Totalul orelor mele de lucru</target>
+      </trans-unit>
+      <trans-unit id="mQMcndl" resname="stats.userAmountToday">
+        <source>stats.userAmountToday</source>
+        <target state="translated">Veniturile mele de astăzi</target>
+      </trans-unit>
+      <trans-unit id="LDS9o5X" resname="stats.userAmountWeek">
+        <source>stats.userAmountWeek</source>
+        <target state="translated">Veniturile mele din această săptămână</target>
+      </trans-unit>
+      <trans-unit id="E3Kj9lt" resname="stats.userAmountMonth">
+        <source>stats.userAmountMonth</source>
+        <target state="translated">Veniturile mele în această lună</target>
+      </trans-unit>
+      <trans-unit id="nqEYrfk" resname="security.unlock.intro">
+        <source>security.unlock.intro</source>
+        <target state="translated">Vă rugăm să introduceți parola pentru acces complet</target>
+      </trans-unit>
+      <trans-unit id="aOJITgv" resname="help.invoiceText">
+        <source>help.invoiceText</source>
+        <target state="translated">Acest text este utilizat în documentele de facturare și poate fi folosit, de exemplu, pentru a nota alte condiții de livrare.</target>
+      </trans-unit>
+      <trans-unit id="jLzX0Ae" resname="help.invoiceLabel">
+        <source>help.invoiceLabel</source>
+        <target state="translated">Acest text înlocuiește numele obiectului, permițând etichete mai detaliate pentru articolele din factură.</target>
+      </trans-unit>
+      <trans-unit id="IDDfzoR" resname="invoiceLabel">
+        <source>invoiceLabel</source>
+        <target state="translated">Textul facturii</target>
+      </trans-unit>
+      <trans-unit id="LDsHBXd" resname="modal.columns.label">
+        <source>modal.columns.label</source>
+        <target state="translated">Coloane de tabel</target>
+      </trans-unit>
+      <trans-unit id="oq1jcSQ" resname="help.billable">
+        <source>help.billable</source>
+        <target state="translated">Dacă setarea este dezactivată, toate înregistrările de timp înregistrate în viitor vor fi marcate ca fiind "nefacturabile".</target>
+      </trans-unit>
+      <trans-unit id="Y0PRG9Z" resname="profile.2fa_confirmation">
+        <source>profile.2fa_confirmation</source>
+        <target state="translated">Vă rugăm să confirmați codul, care va activa autentificarea cu doi factori pentru acest cont.</target>
+      </trans-unit>
+      <trans-unit id="hPY2VcD" resname="profile.2fa_intro">
+        <source>profile.2fa_intro</source>
+        <target state="translated">Puteți activa un nou dispozitiv prin scanarea imaginii din aplicație.</target>
+      </trans-unit>
+      <trans-unit id="0ZWvn12" resname="notifications.welcome">
+        <source>notifications.welcome</source>
+        <target state="translated">Vă mulțumim că sunteți de acord cu notificările!</target>
+      </trans-unit>
+      <trans-unit id="52lzpZE" resname="active.help">
+        <source>active.help</source>
+        <target state="translated">Ați respins notificările. Vă rugăm să consultați documentația browserului dumneavoastră web pentru a afla cum să le activați</target>
+      </trans-unit>
+      <trans-unit id="0WpgaGa" resname="stats.userDurationMonth">
+        <source>stats.userDurationMonth</source>
+        <target state="translated">Orele mele de lucru din această lună</target>
+      </trans-unit>
+      <trans-unit id="EI5gPkp" resname="stats.userDurationToday">
+        <source>stats.userDurationToday</source>
+        <target state="translated">Orele mele de lucru astăzi</target>
+      </trans-unit>
+      <trans-unit id="EGpYQvx" resname="help">
+        <source>help</source>
+        <target>Documentație</target>
+      </trans-unit>
+      <trans-unit id="oYYDCG5" resname="support">
+        <source>support</source>
+        <target>Suport</target>
+      </trans-unit>
+      <trans-unit id="mz4ieCN" resname="donate">
+        <source>donate</source>
+        <target>Donează</target>
+      </trans-unit>
+      <trans-unit id="cR5DD88" resname="invoice_number_generator.date">
+        <source>invoice_number_generator.date</source>
+        <target state="translated">Dată</target>
+      </trans-unit>
+      <trans-unit id="Qh1X4Vu" resname="invoice_number_generator.default">
+        <source>invoice_number_generator.default</source>
+        <target state="translated">Formatul configurat</target>
+      </trans-unit>
+      <trans-unit id="UI6nPeP" resname="invoice_number_generator">
+        <source>invoice_number_generator</source>
+        <target>Generator de numere de factură</target>
+      </trans-unit>
+      <trans-unit id="wYcx0So" resname="search.no_results" xml:space="preserve">
+        <source>search.no_results</source>
+        <target state="translated">Nu s-au găsit rezultate pentru „%input%”</target>
+      </trans-unit>
+      <trans-unit id="YTzKpcP" resname="Absence calendar" xml:space="preserve">
+        <source>Absence calendar</source>
+        <target state="translated">Calendarul absențelor</target>
+      </trans-unit>
+      <trans-unit id="2SmKENG" resname="other" xml:space="preserve">
+        <source>other</source>
+        <target state="translated">Altceva</target>
+      </trans-unit>
+      <trans-unit id="yJg6P3m" resname="holiday.intro" xml:space="preserve">
+        <source>You have submitted %used% of your available %days% vacation days so far.</source>
+        <target state="needs-translation">Până acum ați luat %used% din %days% zile de vacanță disponibile.</target>
+      </trans-unit>
+      <trans-unit id="YDrWFFP" resname="sickness.intro" xml:space="preserve">
+        <source>Incapacity for work, medically necessary appointments, care leave, etc.</source>
+        <target state="needs-translation">Boală, vizita la medic, îngrijirea rudelor apropiate etc.</target>
+      </trans-unit>
+      <trans-unit id=".wmq_rT" resname="force_password_change" xml:space="preserve">
+        <source>force_password_change</source>
+        <target state="translated">Solicitați o nouă parolă</target>
+      </trans-unit>
+      <trans-unit id="0bKwA0k" resname="force_password_change_help" xml:space="preserve">
+        <source>force_password_change_help</source>
+        <target state="translated">Data viitoare când utilizatorul se conectează, acesta trebuie să introducă o nouă parolă.</target>
+      </trans-unit>
+      <trans-unit id="0xFBb6O" resname="Expenses" xml:space="preserve">
+        <source>Expenses</source>
+        <target state="translated">Cheltuieli</target>
+      </trans-unit>
+      <trans-unit id="b712axp" resname="Translation" xml:space="preserve">
+        <source>Translation</source>
+        <target state="translated">Traducere</target>
+      </trans-unit>
+      <trans-unit id="s9NPI3v" resname="work_times_should.none_configured" xml:space="preserve">
+        <source>work_times_should.none_configured</source>
+        <target state="translated">Nu au fost configurate ore țintă pentru acest utilizator în setările contractului de muncă.</target>
+      </trans-unit>
+      <trans-unit id="wZRRqg0" resname="manual_bookings" xml:space="preserve">
+        <source>manual_bookings</source>
+        <target state="translated">Rezervări manuale</target>
+      </trans-unit>
+      <trans-unit id="op76XPd" resname="search_filter" xml:space="preserve">
+        <source>Search filter</source>
+        <target state="translated">Filtrul de căutare</target>
+      </trans-unit>
+      <trans-unit id="EYXzfTO" resname="deleted" xml:space="preserve">
+        <source>deleted</source>
+        <target state="translated">Șters</target>
+      </trans-unit>
+      <trans-unit id="EX27Gdt" resname="created_by" xml:space="preserve">
+        <source>created_by</source>
+        <target state="translated">Creat de</target>
+      </trans-unit>
+      <trans-unit id="6Hip2aF" resname="created_at" xml:space="preserve">
+        <source>created_at</source>
+        <target state="translated">Creat la</target>
+      </trans-unit>
+      <trans-unit id="t1r372x" resname="invisible" xml:space="preserve">
+        <source>invisible</source>
+        <target state="translated">Invizibil</target>
+      </trans-unit>
+      <trans-unit id="erN3h3b" resname="replace" xml:space="preserve">
+        <source>replace</source>
+        <target state="translated">Înlocuire</target>
+      </trans-unit>
+      <trans-unit id="rlJLVNm" resname="append" xml:space="preserve">
+        <source>append</source>
+        <target state="translated">Adăuga</target>
+      </trans-unit>
+      <trans-unit id="eCEGRzN" resname="work_contract" xml:space="preserve">
+        <source>work_contract</source>
+        <target state="translated">Contract de muncă</target>
+      </trans-unit>
+      <trans-unit id="7_d7IB3" resname="evaluation" xml:space="preserve">
+        <source>evaluation</source>
+        <target state="translated">Evaluare</target>
+      </trans-unit>
+      <trans-unit id="4lrfIsZ" resname="complete_month" xml:space="preserve">
+        <source>Complete month</source>
+        <target state="translated">Blocați luna</target>
+      </trans-unit>
+      <trans-unit id="W8XQTkJ" resname="complete_month.help" xml:space="preserve">
+        <source>complete_month.help</source>
+        <target state="translated">Aceasta va bloca toate zilele anului înainte de data aleasă. Utilizatorul nu va mai putea crea sau edita ore pentru perioada blocată.</target>
+      </trans-unit>
+      <trans-unit id="eWmotjb" resname="completed_month_pdf" xml:space="preserve">
+        <source>completed_month_pdf</source>
+        <target state="translated">PDF luna finalizată</target>
+      </trans-unit>
+      <trans-unit id="mS4SSmt" resname="work_times" xml:space="preserve">
+        <source>Working times</source>
+        <target state="translated">Timp de lucru</target>
+      </trans-unit>
+      <trans-unit id="iaJj4va" resname="work_times_account" xml:space="preserve">
+        <source>Account working times</source>
+        <target state="translated">Timpul de lucru al contului</target>
+      </trans-unit>
+      <trans-unit id="1btzNDa" resname="work_times_should" xml:space="preserve">
+        <source>Expected number of hours</source>
+        <target state="needs-translation">Numărul de ore estimat</target>
+      </trans-unit>
+      <trans-unit id="31dFXhR" resname="work_times_is" xml:space="preserve">
+        <source>work_times_is</source>
+        <target state="needs-translation">Timpul de lucru este</target>
+      </trans-unit>
+      <trans-unit id="8yqaKzX" resname="confirmed_by_at" xml:space="preserve">
+        <source>confirmed_by_at</source>
+        <target state="translated">Confirmat de %user% la %date%</target>
+      </trans-unit>
+      <trans-unit id="znIJiOw" resname="manual_bookings.duration_help" xml:space="preserve">
+        <source>manual_bookings.duration_help</source>
+        <target state="translated">Durata poate fi atât pozitivă (creșterea is-time), cât și negativă (reducerea is-time).</target>
+      </trans-unit>
+      <trans-unit id="M.zFjwe" resname="pto_year_holiday" approved="no" xml:space="preserve">
+        <source>Holidays per year</source>
+        <target state="translated">Vacanțe pe an</target>
+      </trans-unit>
+      <trans-unit id="gcFtM3o" resname="holiday" xml:space="preserve">
+        <source>holiday</source>
+        <target state="translated">Vacanţă</target>
+      </trans-unit>
+      <trans-unit id="XE01Ar1" resname="parental" xml:space="preserve">
+        <source>parental</source>
+        <target state="translated">Concediul parental</target>
+      </trans-unit>
+      <trans-unit id="F7xeAn4" resname="invoice_date" xml:space="preserve">
+        <source>invoice_date</source>
+        <target state="translated">Data facturii</target>
+      </trans-unit>
+      <trans-unit id="NOEx3FF" resname="invoice_date.help" xml:space="preserve">
+        <source>invoice_date.help</source>
+        <target state="translated">Puteți modifica data facturii aici</target>
+      </trans-unit>
+      <trans-unit id="FxwWVFI" resname="help.globalActivity" xml:space="preserve">
+        <source>help.globalActivity</source>
+        <target state="translated">Dacă nu selectați un proiect, această activitate devine globală și poate fi combinată cu orice proiect. Dacă selectați un proiect, activitatea poate fi utilizată numai cu acel proiect. Setarea nu poate fi schimbată ulterior.</target>
+      </trans-unit>
+      <trans-unit id="5kFod8o" resname="team.configure_teamlead.help" xml:space="preserve">
+        <source>team.configure_teamlead.help</source>
+        <target state="translated">Utilizatorii selectați/evidențiați sunt lideri de echipă.</target>
+      </trans-unit>
+      <trans-unit id="wwrREDg" resname="pagination" xml:space="preserve">
+        <source>pagination</source>
+        <target state="translated">Afișați intrările %start% până la %end% din %total%.</target>
+      </trans-unit>
+      <trans-unit id="mjKOAgQ" resname="skin.light" xml:space="preserve">
+        <source>skin.light</source>
+        <target state="translated">Luminos</target>
+      </trans-unit>
+      <trans-unit id="Uu8YvYV" resname="deactivated" xml:space="preserve">
+        <source>Deactivated</source>
+        <target state="translated">Dezactivat</target>
+      </trans-unit>
+      <trans-unit id="dru_Thv" resname="please_choose" xml:space="preserve">
+        <source>please_choose</source>
+        <target state="translated">Vă rugăm să alegeți</target>
+      </trans-unit>
+      <trans-unit id="WbT2QLP" resname="extended_settings" xml:space="preserve">
+        <source>extended_settings</source>
+        <target state="translated">Setări extinse</target>
+      </trans-unit>
+      <trans-unit id="ZZaqTEr" resname="no_activity" xml:space="preserve">
+        <source>no_activity</source>
+        <target state="translated">Fără activitate</target>
+      </trans-unit>
+      <trans-unit id="JmkKf48" resname="user.language.help" xml:space="preserve">
+        <source>user.language.help</source>
+        <target state="translated">Această setare este responsabilă pentru traducerea software-ului</target>
+      </trans-unit>
+      <trans-unit id="ulgdXdi" resname="hour_24" xml:space="preserve">
+        <source>hour_24</source>
+        <target state="translated">24 de ore</target>
+      </trans-unit>
+      <trans-unit id="TTnaBm4" resname="day_full" xml:space="preserve">
+        <source>day_full</source>
+        <target state="translated">Zi plină</target>
+      </trans-unit>
+      <trans-unit id="DA1.Ln_" resname="time_off.intro" xml:space="preserve">
+        <source>time_off.intro</source>
+        <target state="translated">Contul dvs. de timp de lucru are un sold de %hours% ore.</target>
+      </trans-unit>
+      <trans-unit id="YPO294a" resname="absence_other.intro" xml:space="preserve">
+        <source>absence_other.intro</source>
+        <target state="translated">Evenimente de familie, mutare, haos meteorologic etc.</target>
+      </trans-unit>
+      <trans-unit id="q1EATp1" resname="days" xml:space="preserve">
+        <source>days</source>
+        <target state="translated">Zile</target>
+      </trans-unit>
+      <trans-unit id="tfOjLNp" resname="project_number" xml:space="preserve">
+        <source>Project number</source>
+        <target state="translated">Numărul proiectului</target>
+      </trans-unit>
+      <trans-unit id="8JEDuyx" resname="activity_number" xml:space="preserve">
+        <source>Activity number</source>
+        <target state="translated">Numărul activității</target>
+      </trans-unit>
+      <trans-unit id="m8V2yFG" resname="status.progress" xml:space="preserve">
+        <source>status.progress</source>
+        <target state="translated">În curs</target>
+      </trans-unit>
+      <trans-unit id="JSBReoa" resname="api_password.intro" xml:space="preserve">
+        <source>api_password.intro</source>
+        <target state="translated">Aici vă puteți gestiona jetoanele API, care sunt folosite pentru a vă autentifica aplicația la Kimai.</target>
+      </trans-unit>
+      <trans-unit id="u4lbYD5" resname="public_holiday.group" xml:space="preserve">
+        <source>public_holiday.group</source>
+        <target state="translated">Grup de vacanță</target>
+      </trans-unit>
+      <trans-unit id="M2B0gF." resname="time" xml:space="preserve">
+        <source>time</source>
+        <target state="translated">Timp</target>
+      </trans-unit>
+      <trans-unit id="biHjm0h" resname="select.add_new" xml:space="preserve">
+        <source>select.add_new</source>
+        <target state="translated">Creați un nou cu numele „%input%”</target>
+      </trans-unit>
+      <trans-unit id="d9m85KE" resname="locale" xml:space="preserve">
+        <source>Time, date and currency format</source>
+        <target state="translated">Ora, data și formatul monedei</target>
+      </trans-unit>
+      <trans-unit id="opDmYAa" resname="status.approved" xml:space="preserve">
+        <source>status.approved</source>
+        <target state="translated">Aprobat</target>
+      </trans-unit>
+      <trans-unit id="xvdsZsS" resname="stats.userAmountYear" xml:space="preserve">
+        <source>stats.userAmountYear</source>
+        <target state="translated">Venitul meu anul acesta</target>
+      </trans-unit>
+      <trans-unit id="t.jgy7A" resname="all_invoices" xml:space="preserve">
+        <source>all_invoices</source>
+        <target state="translated">Istoricul facturilor</target>
+      </trans-unit>
+      <trans-unit id="2lL9ACs" resname="help.invoiceTemplate" xml:space="preserve">
+        <source>help.invoiceTemplate</source>
+        <target state="translated">Factura este generată cu acest șablon.</target>
+      </trans-unit>
+      <trans-unit id="HF70hZq" resname="status.closed" xml:space="preserve">
+        <source>status.closed</source>
+        <target state="translated">Completat</target>
+      </trans-unit>
+      <trans-unit id="Na24cyT" resname="status.requested" xml:space="preserve">
+        <source>status.requested</source>
+        <target state="translated">Solicitat</target>
+      </trans-unit>
+      <trans-unit id="3WHV.yf" resname="activated" xml:space="preserve">
+        <source>Activated</source>
+        <target state="translated">Activat</target>
+      </trans-unit>
+      <trans-unit id="95DUED0" resname="send_to" xml:space="preserve">
+        <source>send_to</source>
+        <target state="translated">Trimite către %name%</target>
+      </trans-unit>
+      <trans-unit id="fWuGTog" resname="public_holiday" xml:space="preserve">
+        <source>public_holiday</source>
+        <target state="translated">Sărbătoare legală</target>
+      </trans-unit>
+      <trans-unit id="5buBUCm" resname="receive_from" xml:space="preserve">
+        <source>receive_from</source>
+        <target state="translated">Primește de la %name%</target>
+      </trans-unit>
+      <trans-unit id="zlmddHB" resname="public_holidays" xml:space="preserve">
+        <source>public_holidays</source>
+        <target state="translated">Sărbători legale</target>
+      </trans-unit>
+      <trans-unit id="GIgQHa4" resname="absence" xml:space="preserve">
+        <source>absence</source>
+        <target state="translated">Absența</target>
+      </trans-unit>
+      <trans-unit id="4PMHpIp" resname="time_off" xml:space="preserve">
+        <source>time_off</source>
+        <target state="translated">Timp liber</target>
+      </trans-unit>
+      <trans-unit id="_WlU8Fp" resname="sickness" xml:space="preserve">
+        <source>sickness</source>
+        <target state="translated">Boală</target>
+      </trans-unit>
+      <trans-unit id="Nw2x5hI" resname="sickness_child" xml:space="preserve">
+        <source>Sickness of a relative</source>
+        <target state="needs-translation">Boala unui copil</target>
+      </trans-unit>
+      <trans-unit id="Od3xvQK" resname="button.report" xml:space="preserve">
+        <source>button.report</source>
+        <target state="translated">Raport</target>
+      </trans-unit>
+      <trans-unit id="J6EJUj9" resname="Meta fields" xml:space="preserve">
+        <source>Meta fields</source>
+        <target state="translated">Câmpuri customizate</target>
+      </trans-unit>
+      <trans-unit id="JmpBuQ1" resname="Translations" xml:space="preserve">
+        <source>Translations</source>
+        <target state="translated">Traduceri</target>
+      </trans-unit>
+      <trans-unit id="Vp7xjKh" resname="Audit logs" xml:space="preserve">
+        <source>Audit logs</source>
+        <target state="translated">Jurnalele de audit</target>
+      </trans-unit>
+      <trans-unit id="AXr_aHI" resname="completed_month_pdf_note" xml:space="preserve">
+        <source>completed_month_pdf_note</source>
+        <target state="translated">Acest document servește drept dovadă a orelor lucrate.</target>
+      </trans-unit>
+      <trans-unit id="yXrOTI." resname="review" xml:space="preserve">
+        <source>Review</source>
+        <target state="translated">Revizuire</target>
+      </trans-unit>
+      <trans-unit id="IalLD5Q" resname="manual_bookings.work_contract_intro" xml:space="preserve">
+        <source>manual_bookings.work_contract_intro</source>
+        <target state="translated">Rezervările manuale nu pot fi nici modificate, nici șterse ulterior!</target>
+      </trans-unit>
+      <trans-unit id="9jlbhkf" resname="stats.userAmountTotal" xml:space="preserve">
+        <source>stats.userAmountTotal</source>
+        <target state="translated">Venitul meu total</target>
+      </trans-unit>
+      <trans-unit id="ojfv7Jl" resname="invoice_form.title" xml:space="preserve">
+        <source>invoice_form.title</source>
+        <target state="translated">Creați factura</target>
+      </trans-unit>
+      <trans-unit id="o0hsx2H" resname="mark_as_open" xml:space="preserve">
+        <source>mark_as_open</source>
+        <target state="translated">Marcați ca deschis</target>
+      </trans-unit>
+      <trans-unit id="mR_Y5Mv" resname="timesheet.stop" xml:space="preserve">
+        <source>timesheet.stop</source>
+        <target state="translated">Opriți urmărirea timpului</target>
+      </trans-unit>
+      <trans-unit id="Fkrev.q" resname="help.globalActivities" xml:space="preserve">
+        <source>help.globalActivities</source>
+        <target state="translated">Dacă setarea este dezactivată, timpul poate fi înregistrat numai cu activități specifice proiectului.</target>
+      </trans-unit>
+      <trans-unit id="f1Cgptu" resname="batch_table_checkbox" xml:space="preserve">
+        <source>batch_table_checkbox</source>
+        <target state="translated">Adăugați o intrare la lista de actualizare a lotului</target>
+      </trans-unit>
+      <trans-unit id="ekN4GLW" resname="batch_table_checkbox_all" xml:space="preserve">
+        <source>batch_table_checkbox_all</source>
+        <target state="translated">Selectați toate intrările pentru lista de actualizare lot</target>
+      </trans-unit>
+      <trans-unit id="5NugIxO" resname="includeWithBudget" xml:space="preserve">
+        <source>includeWithBudget</source>
+        <target state="translated">Afișați intrările cu buget</target>
+      </trans-unit>
+      <trans-unit id="CDTC1gc" resname="supervisor" xml:space="preserve">
+        <source>supervisor</source>
+        <target state="translated">Supraveghetor</target>
+      </trans-unit>
+      <trans-unit id="vURcRit" resname="overview" xml:space="preserve">
+        <source>Overview</source>
+        <target state="translated">Prezentare generală</target>
+      </trans-unit>
+      <trans-unit id="KSwG8AR" resname="Category" xml:space="preserve">
+        <source>Category</source>
+        <target state="translated">Categorie</target>
+      </trans-unit>
+      <trans-unit id="YRRgZCe" resname="Custom content" xml:space="preserve">
+        <source>Custom content</source>
+        <target state="translated">Conținut personalizat</target>
+      </trans-unit>
+      <trans-unit id="uqv2Lrv" resname="user_identifier.help" xml:space="preserve">
+        <source>user_identifier.help</source>
+        <target state="translated">Identificatorul unic de utilizator este utilizat pentru autentificare și în exporturi</target>
+      </trans-unit>
+      <trans-unit id="O5KpOtm" resname="absence_comment_mandatory" xml:space="preserve">
+        <source>absence_comment_mandatory</source>
+        <target state="translated">Absență: Comentariul este un câmp obligatoriu</target>
+      </trans-unit>
+      <trans-unit id="Z9IIn_b" resname="api_token_hidden" xml:space="preserve">
+        <source>api_token_hidden</source>
+        <target state="translated">Aceasta este singura dată când această cheie va fi afișată vreodată! Așa că păstrați-l în siguranță și asigurați-vă că ați copiat-o înainte de a închide această fereastră.</target>
+      </trans-unit>
+      <trans-unit id="TCr2ArH" resname="api_password_deprecated" xml:space="preserve">
+        <source>api_password_deprecated</source>
+        <target state="translated">Parolele API sunt învechite: vă rugăm să utilizați în schimb jetoane API.</target>
+      </trans-unit>
+      <trans-unit id="Zngu6M9" resname="status.planned" xml:space="preserve">
+        <source>status.planned</source>
+        <target state="translated">Planificat</target>
+      </trans-unit>
+      <trans-unit id="7Sycs4M" resname="Importer" xml:space="preserve">
+        <source>Importer</source>
+        <target state="translated">Importator</target>
+      </trans-unit>
+      <trans-unit id="Ga4bvUX" resname="unpaid_vacation" xml:space="preserve">
+        <source>unpaid_vacation</source>
+        <target state="translated">Vacanțe fără plată</target>
+      </trans-unit>
+      <trans-unit id="q59lI2y" resname="user_identifier" xml:space="preserve">
+        <source>user_identifier</source>
+        <target state="translated">ID-ul de utilizator</target>
+      </trans-unit>
+      <trans-unit id="N6juwc4" resname="default" xml:space="preserve">
+        <source>default</source>
+        <target state="translated">Implicit</target>
+      </trans-unit>
+      <trans-unit id="Eml59KV" resname="day_half" xml:space="preserve">
+        <source>day_half</source>
+        <target state="translated">Jumătate de zi</target>
+      </trans-unit>
+      <trans-unit id="uLHYlMa" resname="Categories" xml:space="preserve">
+        <source>Categories</source>
+        <target state="translated">Categorii</target>
+      </trans-unit>
+      <trans-unit id="CT59X9u" resname="contact" approved="no" xml:space="preserve">
+        <source>Contact</source>
+        <target state="translated">Contact</target>
+      </trans-unit>
+      <trans-unit id="QT8.BCN" resname="api_password.missing_title" xml:space="preserve">
+        <source>api_password.missing_title</source>
+        <target state="translated">API-ul nu poate fi folosit</target>
+      </trans-unit>
+      <trans-unit id="WwesQPU" resname="deactivate" xml:space="preserve">
+        <source>Deactivate</source>
+        <target state="translated">Dezactivați</target>
+      </trans-unit>
+      <trans-unit id="IAx_YiA" resname="activate" xml:space="preserve">
+        <source>Activate</source>
+        <target state="translated">Activați</target>
+      </trans-unit>
+      <trans-unit id="i_XOmN4" resname="help_locales" xml:space="preserve">
+        <source>help_locales</source>
+        <target state="translated">Iată exemple de reguli de formatare pentru limbile acceptate</target>
+      </trans-unit>
+      <trans-unit id="q4ooRfF" resname="expires" xml:space="preserve">
+        <source>Expiry date</source>
+        <target state="translated">Data de expirare</target>
+      </trans-unit>
+      <trans-unit id="WOFPb2i" resname="skin.dark" xml:space="preserve">
+        <source>skin.dark</source>
+        <target state="translated">Întunecat</target>
+      </trans-unit>
+      <trans-unit id="GxuKjNb" resname="help.invoiceTemplate_customer" xml:space="preserve">
+        <source>help.invoiceTemplate_customer</source>
+        <target state="translated">Facturile pentru acest client sunt generate implicit cu acest șablon. Poate fi schimbat în timpul generării facturii dacă este necesar.</target>
+      </trans-unit>
+      <trans-unit id="rkCw7Ml" resname="last_usage" xml:space="preserve">
+        <source>Last usage</source>
+        <target state="translated">Ultima utilizare</target>
+      </trans-unit>
+      <trans-unit id="bEXLcqN" resname="stop">
+        <source>stop</source>
+        <target>Stop</target>
+      </trans-unit>
+      <trans-unit id="PEgjRvN" resname="back">
+        <source>back</source>
+        <target>Înapoi</target>
+      </trans-unit>
+      <trans-unit id="JiEhxTc" resname="edit">
+        <source>edit</source>
+        <target>Editează</target>
+      </trans-unit>
+      <trans-unit id="4G2jBDS" resname="trash">
+        <source>trash</source>
+        <target>Șterge</target>
+      </trans-unit>
+      <trans-unit id="hF6RgxM" resname="report">
+        <source>report</source>
+        <target>Raport</target>
+      </trans-unit>
+      <trans-unit id="JeK2sQZ" resname="repeat">
+        <source>repeat</source>
+        <target>Repetă</target>
+      </trans-unit>
+      <trans-unit id="J0sRBY_" resname="profile-stats">
+        <source>profile-stats</source>
+        <target>Profil</target>
+      </trans-unit>
+      <trans-unit id="zeD7Dew" resname="settings" xml:space="preserve">
+        <source>Settings</source>
+        <target state="needs-translation">Preferințe</target>
+      </trans-unit>
+      <trans-unit id="anCjtwe" resname="timesheet.filter" xml:space="preserve">
+        <source>Filter timesheets</source>
+        <target state="needs-translation">Fișe de pontaj</target>
+      </trans-unit>
+      <trans-unit id="b1pgNOd" resname="copy">
+        <source>copy</source>
+        <target>Copiază</target>
+      </trans-unit>
+      <trans-unit id="TqFAWIF" resname="home">
+        <source>home</source>
+        <target>Pagina de pornire</target>
+      </trans-unit>
+      <trans-unit id="PBlIO2x" resname="create-project">
+        <source>create-project</source>
+        <target>Creează un proiect</target>
+      </trans-unit>
+      <trans-unit id="UbouFOs" resname="create-activity">
+        <source>create-activity</source>
+        <target>Creează o activitate</target>
+      </trans-unit>
+      <trans-unit id="QR1nvcR" resname="create-timesheet">
+        <source>create-timesheet</source>
+        <target>Creează un pontaj</target>
+      </trans-unit>
+      <trans-unit id="T_PN1AT" resname="permissions">
+        <source>permissions</source>
+        <target>Permisiunile echipei</target>
+      </trans-unit>
+      <trans-unit id="Qf.Yt2r" resname="details">
+        <source>details</source>
+        <target>Detalii</target>
+      </trans-unit>
+      <trans-unit id="9M4b2ZN" resname="invoice.paid">
+        <source>invoice.paid</source>
+        <target>Factură achitată</target>
+      </trans-unit>
+      <trans-unit id="hHIeqOW" resname="invoice.pending">
+        <source>invoice.pending</source>
+        <target>Se așteaptă plata</target>
+      </trans-unit>
+      <trans-unit id="aP9j_4L" resname="download">
+        <source>download</source>
+        <target state="translated">Descarcă</target>
+      </trans-unit>
+      <trans-unit id="Qh5mV5Q" resname="create-timesheet-multiuser">
+        <source>create-timesheet-multiuser</source>
+        <target>Pentru mai mulți utilizatori</target>
+      </trans-unit>
+      <trans-unit id="38M3a4J" resname="filter">
+        <source>filter</source>
+        <target>Filtrează datele</target>
+      </trans-unit>
+      <trans-unit id="SEyZupT" resname="invoice.cancel">
+        <source>invoice.cancel</source>
+        <target>Anulare factură</target>
+      </trans-unit>
+      <trans-unit id="pJzNT.n" resname="vcard">
+        <source>vcard</source>
+        <target state="translated">Carte de vizită</target>
+      </trans-unit>
+      <trans-unit id="2cMESs." resname="widget_add">
+        <source>Add widget</source>
+        <target state="translated">Adăugați widget</target>
+      </trans-unit>
+      <trans-unit id="YCc5UoO" resname="widget_remove">
+        <source>Remove widget</source>
+        <target state="translated">Eliminați widget-ul</target>
+      </trans-unit>
+      <trans-unit id="QCf1FUG" resname="reload">
+        <source>reload</source>
+        <target state="translated">activat</target>
+      </trans-unit>
+      <trans-unit id="QG7.sen" resname="created" xml:space="preserve">
+        <source>Created</source>
+        <target state="translated">Creat</target>
+      </trans-unit>
+      <trans-unit id="4WlKIfD" resname="unlock_month" xml:space="preserve" approved="no">
+        <source>Unlock month</source>
+        <target state="translated">Deblocheaza luna</target>
+      </trans-unit>
+      <trans-unit id="mhOe3Iy" resname="unlock_month.help" xml:space="preserve">
+        <source>unlock_month.help</source>
+        <target state="translated">Acesta deblocheaza toate zilele din an dupa data selectata.</target>
+      </trans-unit>
+      <trans-unit id="dOIWgOr" resname="approve" xml:space="preserve">
+        <source>approve</source>
+        <target state="translated">Aproba</target>
+      </trans-unit>
+      <trans-unit id="H1i5FFs" resname="request" xml:space="preserve">
+        <source>request</source>
+        <target state="translated">Cerere</target>
+      </trans-unit>
+      <trans-unit id="YzOSTim" resname="status.rejected" xml:space="preserve" approved="no">
+        <source>Rejected</source>
+        <target state="translated">Respins</target>
+      </trans-unit>
+      <trans-unit id="CE6ZCkm" resname="reject" xml:space="preserve">
+        <source>reject</source>
+        <target state="translated">Respins</target>
+      </trans-unit>
+      <trans-unit id="J_teUVB" resname="updated" xml:space="preserve">
+        <source>Updated</source>
+        <target state="translated">Actualizat</target>
+      </trans-unit>
+      <trans-unit id="2qbRs28" resname="hours_per_day" xml:space="preserve">
+        <source>hours_per_day</source>
+        <target state="translated">Ore pe zi</target>
+      </trans-unit>
+      <trans-unit id="y7KtuSS" resname="hours_per_week" xml:space="preserve">
+        <source>hours_per_week</source>
+        <target state="translated">Ore pe saptamana</target>
+      </trans-unit>
+      <trans-unit id="07e8ywS" resname="hours_per_month" xml:space="preserve">
+        <source>hours_per_month</source>
+        <target state="translated">Ore pe luna</target>
+      </trans-unit>
+      <trans-unit id="7p_pFHl" resname="work_days" xml:space="preserve">
+        <source>work_days</source>
+        <target state="translated">Zile lucratoare</target>
+      </trans-unit>
+      <trans-unit id="2pbkbn_" resname="work_hours_mode" xml:space="preserve">
+        <source>work_hours_mode</source>
+        <target state="translated">Calculare timp de lucru</target>
+      </trans-unit>
+      <trans-unit id="IFT9pou" resname="last_working_day" xml:space="preserve">
+        <source>last_working_day</source>
+        <target state="translated">Ultima zi de lucru</target>
+      </trans-unit>
+      <trans-unit id="0jvo0RQ" resname="profit" xml:space="preserve">
+        <source>profit</source>
+        <target state="translated">Profit</target>
+      </trans-unit>
+      <trans-unit id="vN5pKOU" resname="costs" xml:space="preserve">
+        <source>costs</source>
+        <target state="translated">Costuri</target>
+      </trans-unit>
+      <trans-unit id="FOvlalA" resname="break" xml:space="preserve">
+        <source>break</source>
+        <target state="translated">Pauza</target>
+      </trans-unit>
+      <trans-unit id="5vJvarK" resname="syncronisation" xml:space="preserve">
+        <source>Synchronization</source>
+        <target state="translated">Sincronizare</target>
+      </trans-unit>
+      <trans-unit id="2UL2SIZ" resname="import" xml:space="preserve">
+        <source>import</source>
+        <target state="translated">Import</target>
+      </trans-unit>
+      <trans-unit id="EiWubBr" resname="sessions" xml:space="preserve">
+        <source>Sessions</source>
+        <target state="translated">Sesiuni</target>
+      </trans-unit>
+      <trans-unit id="f0kKHXR" resname="sessions_logout" xml:space="preserve">
+        <source>Log out of all devices</source>
+        <target state="translated">Delogare de pe toate dispozitivele</target>
+      </trans-unit>
+      <trans-unit id="9qIU96X" resname="result" xml:space="preserve">
+        <source>result</source>
+        <target state="translated">Rezultat</target>
+      </trans-unit>
+      <trans-unit id="wvt4jH3" resname="training" xml:space="preserve">
+        <source>training</source>
+        <target state="translated">Antrenare</target>
+      </trans-unit>
+      <trans-unit id="rD4oQRR" resname="postcode" xml:space="preserve">
+        <source>Postcode</source>
+        <target state="translated">Cod postal</target>
+      </trans-unit>
+      <trans-unit id="EaYsI0E" resname="city" xml:space="preserve">
+        <source>City</source>
+        <target state="translated">Oras</target>
+      </trans-unit>
+      <trans-unit id="Uzll0ps" resname="Customer portal" xml:space="preserve">
+        <source>Customer portal</source>
+        <target state="translated">Portal consumatori</target>
+      </trans-unit>
+      <trans-unit id="NA9GMDP" resname="Code" xml:space="preserve">
+        <source>Code</source>
+        <target state="translated">Cod</target>
+      </trans-unit>
+      <trans-unit id="xZzzKxM" resname="orientation" xml:space="preserve">
+        <source>Orientation</source>
+        <target state="translated">Orientare</target>
+      </trans-unit>
+      <trans-unit id="UcWoKWo" resname="portrait" xml:space="preserve">
+        <source>Portrait</source>
+        <target state="translated">Portret</target>
+      </trans-unit>
+      <trans-unit id="rLlV34K" resname="landscape" xml:space="preserve">
+        <source>Landscape</source>
+        <target state="translated">Diagonala</target>
+      </trans-unit>
+      <trans-unit id="UZUFKZg" resname="remaining_budget" xml:space="preserve">
+        <source>remaining_budget</source>
+        <target state="translated">Buget ramas</target>
+      </trans-unit>
+      <trans-unit id="eV6j76Q" resname="font" xml:space="preserve">
+        <source>font</source>
+        <target state="translated">Font</target>
+      </trans-unit>
+      <trans-unit id="PciSBv9" resname="address_row" xml:space="preserve">
+        <source>address_row</source>
+        <target state="translated">Linie %row%</target>
+      </trans-unit>
+      <trans-unit id="_Ep8Ogx" resname="buyerReference" xml:space="preserve">
+        <source>buyerReference</source>
+        <target state="translated">Referinta cumparatorului</target>
+      </trans-unit>
+      <trans-unit id="nPJWKwW" resname="payment_type" xml:space="preserve">
+        <source>payment_type</source>
+        <target state="translated">Tipul platii</target>
+      </trans-unit>
+      <trans-unit id="uXB48Vj" resname="SEPA Credit Transfer" xml:space="preserve">
+        <source>SEPA Credit Transfer</source>
+        <target state="translated">Transfer bancar SEPA</target>
+      </trans-unit>
+      <trans-unit id="s42A2gm" resname="SEPA Direct Debit" xml:space="preserve">
+        <source>SEPA Direct Debit</source>
+        <target state="translated">Card de debit</target>
+      </trans-unit>
+      <trans-unit id="4toQj2M" resname="Cash" xml:space="preserve">
+        <source>Cash</source>
+        <target state="translated">Ramburs</target>
+      </trans-unit>
+      <trans-unit id="jMvh7bn" resname="Credit Transfer" xml:space="preserve">
+        <source>Credit Transfer</source>
+        <target state="translated">Transfer bancar</target>
+      </trans-unit>
+      <trans-unit id="TJQbc0a" resname="Payment To Bank Account" xml:space="preserve">
+        <source>Payment To Bank Account</source>
+        <target state="translated">Plata in contul bancar</target>
+      </trans-unit>
+      <trans-unit id=".UIt099" resname="Card Payment" xml:space="preserve">
+        <source>Card Payment</source>
+        <target state="translated">Plata cu cardul</target>
+      </trans-unit>
+      <trans-unit id="Wnb_qF0" resname="Direct Debit" xml:space="preserve">
+        <source>Direct Debit</source>
+        <target state="translated">Debit direct</target>
+      </trans-unit>
+      <trans-unit id="rIdfGxM" resname="payment_account_name" xml:space="preserve">
+        <source>payment_account_name</source>
+        <target state="translated">Cont sau detinatorul cardului</target>
+      </trans-unit>
+      <trans-unit id="jcT9Og6" resname="payment_account_number" xml:space="preserve">
+        <source>payment_account_name</source>
+        <target state="translated">IBAN sau numar card</target>
+      </trans-unit>
+      <trans-unit id="N_ZNih_" resname="electronic_invoice" xml:space="preserve" approved="no">
+        <source>electronic_invoice</source>
+        <target state="translated">E-Factura</target>
+      </trans-unit>
+      <trans-unit id="lt2Y2LO" resname="timesheet">
+        <source>Timesheet</source>
+        <target>Fișă de pontaj</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

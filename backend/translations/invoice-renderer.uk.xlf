@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="uk" datatype="plaintext" original="invoice-renderer.en.xlf">
+    <body>
+      <trans-unit id="hOcTt2G" resname="invoice_renderer">
+        <source>invoice_renderer</source>
+        <target state="translated">Шаблон рахунку</target>
+      </trans-unit>
+      <trans-unit id="7mEUv6C" resname="help.upload">
+        <source>help.upload</source>
+        <target state="translated">Увага: існуючі файли будуть перезаписані. Дозволені типи файлів: %extensions%.</target>
+      </trans-unit>
+      <trans-unit id="E5BwZHT" resname="programmatic">
+        <source>programmatic</source>
+        <target state="translated">Для подальшої обробки</target>
+      </trans-unit>
+      <trans-unit id="Utbj3k_" resname="invoice">
+        <source>invoice</source>
+        <target state="translated">Рахунок</target>
+      </trans-unit>
+      <trans-unit id="N6juwc4" resname="default">
+        <source>default</source>
+        <target state="translated">Рахунок-фактура</target>
+      </trans-unit>
+      <trans-unit id="mC2ePrm" resname="text">
+        <source>text</source>
+        <target state="translated">Текст</target>
+      </trans-unit>
+      <trans-unit id="lt2Y2LO" resname="timesheet">
+        <source>timesheet</source>
+        <target state="translated">Табель робочого часу</target>
+      </trans-unit>
+      <trans-unit id="m1UyfD9" resname="service-date" approved="no">
+        <source>Single service date</source>
+        <target state="translated">Єдина сервісна дата</target>
+      </trans-unit>
+      <trans-unit id="22pt8Gs" resname="download_invoice_renderer">
+        <source>download_invoice_renderer</source>
+        <target state="translated">Ви можете отримати додаткові шаблони тут</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ja" datatype="plaintext" original="system-configuration.en.xlf">
+    <body>
+      <trans-unit id="PLggHn." resname="theme">
+        <source>theme</source>
+        <target>テーマ</target>
+      </trans-unit>
+      <trans-unit id="mPRUBFX" resname="theme.markdown_content">
+        <source>theme.markdown_content</source>
+        <target>Markdown 形式で説明とコメントを書けるようにする</target>
+      </trans-unit>
+      <trans-unit id="FaGqoTT" resname="timesheet.mode">
+        <source>timesheet.mode</source>
+        <target>タイムトラッキング モード</target>
+      </trans-unit>
+      <trans-unit id="A11vhSN" resname="timesheet.mode_default">
+        <source>timesheet.mode_default</source>
+        <target>[デフォルト] 開始日時と終了日時を入力する</target>
+      </trans-unit>
+      <trans-unit id="CJZhtYx" resname="timesheet.mode_duration_fixed_begin">
+        <source>timesheet.mode_duration_fixed_begin</source>
+        <target>[経過時間] 開始日時（固定）を事前に設定して、ユーザーは経過時間のみを入力可能とする</target>
+      </trans-unit>
+      <trans-unit id="3tlkqJC" resname="timesheet.mode_punch">
+        <source>timesheet.mode_punch</source>
+        <target>[タイムレコーダー] ユーザーは開始日時と終了日時を打刻できるが、それぞれの日時や経過時間を編集することはできない</target>
+      </trans-unit>
+      <trans-unit id="k4pl27g" resname="timesheet.rules.allow_future_times">
+        <source>timesheet.rules.allow_future_times</source>
+        <target>未来時間の入力を許容する</target>
+      </trans-unit>
+      <trans-unit id="Fe18zp4" resname="timesheet.active_entries.hard_limit">
+        <source>timesheet.active_entries.hard_limit</source>
+        <target>同じ期間内に同時進行のものとして記録可能とする明細の上限数</target>
+      </trans-unit>
+      <trans-unit id="t38HFZd" resname="calendar.week_numbers">
+        <source>calendar.week_numbers</source>
+        <target>週番号を表示する</target>
+      </trans-unit>
+      <trans-unit id="qaoBvYU" resname="calendar.weekends">
+        <source>calendar.weekends</source>
+        <target>週末を表示する</target>
+      </trans-unit>
+      <trans-unit id="yUeuM2_" resname="calendar.businessHours.begin">
+        <source>calendar.businessHours.begin</source>
+        <target>業務時間の開始時刻（ハイライト表示）</target>
+      </trans-unit>
+      <trans-unit id="Aa_Ushz" resname="calendar.businessHours.end">
+        <source>calendar.businessHours.end</source>
+        <target>業務時間の終了時刻（ハイライト表示）</target>
+      </trans-unit>
+      <trans-unit id="1bHgx7p" resname="calendar.visibleHours.begin">
+        <source>calendar.visibleHours.begin</source>
+        <target>表示可能な時間帯の開始時刻</target>
+      </trans-unit>
+      <trans-unit id="6nayLDB" resname="calendar.visibleHours.end">
+        <source>calendar.visibleHours.end</source>
+        <target>表示可能な時間帯の終了時刻</target>
+      </trans-unit>
+      <trans-unit id="SnkW0Pk" resname="theme.avatar_url" xml:space="preserve">
+        <source>theme.avatar_url</source>
+        <target state="translated">アバター画像にURLが使用できるようにする</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

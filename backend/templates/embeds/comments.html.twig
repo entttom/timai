@@ -1,0 +1,58 @@
+{% embed '@theme/embeds/card.html.twig' with {'form': form, 'comments': comments, 'route_pin': route_pin|default(null), 'route_delete': route_delete|default(null), 'delete_by_user': delete_by_user|default(false)} %}
+    {% import "macros/widgets.html.twig" as widgets %}
+    {% block box_title %}{{ 'comment'|trans }}{% endblock %}
+    {% block box_attributes %}id="comments_box"{% endblock %}
+    {% block box_body_class %}box-body-scrollable{% if comments|length > 0%} p-0{% endif %}{% endblock %}
+    {% block box_body %}
+        {% set replacer = {} %}
+        {% for pref in app.user.preferences %}
+            {% set replacer = replacer|merge({('{{user.' ~ pref.name ~ '}}'): pref.value}) %}
+        {% endfor %}
+        {% if comments|length == 0 %}
+            {{ 'error.no_comments_found'|trans }}
+        {% else %}
+            <div class="divide-y">
+                {% for comment in comments %}
+                <div class="p-3">
+                    <div class="row">
+                        <div class="col-auto">
+                            {{ widgets.user_avatar(comment.createdBy, false) }}
+                        </div>
+                        <div class="col">
+                            <div class="text-truncate">
+                                <strong>{{ widgets.username(comment.createdBy) }}</strong>
+                            </div>
+                            <div class="text-body-secondary">{{ comment.createdAt|date_time }}</div>
+                        </div>
+                        <div class="col-auto align-self-center">
+                            {% if route_pin is not null %}
+                                <a href="{{ path(route_pin, {'id': comment.id, 'token': csrf_token('comment.pin')}) }}" class="btn{% if not comment.pinned %} btn-ghost-secondary{% else %} btn-ghost-info{% endif%} btn-icon {% if comment.pinned %}active{% endif %} pin-comment-link">{{ icon('pin') }}</a>
+                            {% elseif comment.pinned %}
+                                {{ icon('pin') }}
+                            {% endif %}
+                            {% if route_delete is not null and ((not delete_by_user) or (delete_by_user and comment.createdBy.id == app.user.id)) %}
+                                <a href="{{ path(route_delete, {'id': comment.id, 'token': csrf_token('comment.delete')}) }}" class="confirmation-link btn btn-ghost-secondary btn-icon delete-comment-link" data-question="confirm.delete">{{ icon('delete') }}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row pt-2 direct-chat-text">
+                        {{ comment.message|replace(replacer)|comment2html }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endblock %}
+    {% block box_footer %}
+        {%- if form is not null -%}
+            {{ form_start(form) }}
+            {{ form_widget(form.message, {'attr': {'rows': '3', 'placeholder': 'placeholder.type_message'|trans, 'style': 'margin-bottom: 5px'}}) }}
+            <button type="submit" class="btn btn-primary">
+                {{ icon('comment', true) }}
+                {{ 'comment'|trans }}
+            </button>
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        {%- endif -%}
+    {% endblock %}
+{% endembed %}

@@ -1,0 +1,21 @@
+{% extends kimai_context.modalRequest ? 'form.html.twig' : 'base.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block main %}
+
+    {% set inUse = (stats.recordsTotal > 0) %}
+
+    {% set params = {
+        '%records%': stats.recordsTotal,
+        '%duration%': stats.durationTotal|duration
+    } %}
+
+    {{ include(kimai_context.modalRequest ? 'default/_form_delete_modal.html.twig' : 'default/_form_delete.html.twig', {
+        'message': ("delete_warning.short_stats"|trans(params) ~ "admin_entity.delete_confirm"|trans),
+        'form': form,
+        'delete_item_name': user.displayName,
+        'used': inUse,
+        'back': path('admin_user')
+    }) }}
+
+{% endblock %}

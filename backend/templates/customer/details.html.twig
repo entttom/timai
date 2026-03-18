@@ -1,0 +1,184 @@
+{% extends 'base.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block main %}
+    {% set can_edit = is_granted('edit', customer) %}
+
+    {% embed '@theme/embeds/card.html.twig' with {fullsize: true}  %}
+        {% import "macros/widgets.html.twig" as widgets %}
+        {% block box_attributes %}id="customer_details_box"{% endblock %}
+        {% block box_title %}
+            {{ widgets.label_dot(customer.name, customer.color) }}
+            {% if customer.company is not empty %} &ndash; {{ customer.company }}{% endif %}
+        {% endblock %}
+        {% block box_tools %}
+            {% if can_edit %}
+                {{ widgets.card_tool_button('edit', {'class': 'modal-ajax-form open-edit', 'title': 'edit', 'url': path('admin_customer_edit', {'id': customer.id})}) }}
+            {% endif %}
+        {% endblock %}
+        {% block box_body %}
+            {% if customer.comment is not empty %}
+                <div class="comment p-3">
+                    {{ customer.comment|comment2html(true) }}
+                </div>
+            {% endif %}
+            <table class="table table-hover dataTable">
+                {% if not customer.visible %}
+                    <tr class="{{ widgets.class_customer_row(customer, now) }}">
+                        <th>{{ 'visible'|trans }}</th>
+                        <td>{{ widgets.label_boolean(customer.visible) }}</td>
+                    </tr>
+                {% endif %}
+                {% if not customer.billable %}
+                    <tr>
+                        <th>{{ 'billable'|trans }}</th>
+                        <td colspan="3">
+                            {{ widgets.label_boolean(customer.billable) }}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if customer.addressLine1 is not empty %}
+                    <tr>
+                        <th>{{ 'address'|trans }}</th>
+                        <td>
+                            {{ customer.addressLine1 }}<br>
+                            {% if customer.addressLine2 is not empty %}
+                                {{ customer.addressLine2 }}<br>
+                            {% endif %}
+                            {% if customer.addressLine3 is not empty %}
+                                {{ customer.addressLine3 }}<br>
+                            {% endif %}
+                            {{ customer.postCode }} {{ customer.city }}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if customer.address is not empty %}
+                    <tr>
+                        <th>{{ 'address'|trans }}</th>
+                        <td>
+                            {{ widgets.alert('info', 'address_deprecated'|trans) }}
+                            <br>
+                            <i>
+                            {{ customer.address|nl2br }}
+                            </i>
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if customer.country is not empty %}
+                    <tr>
+                        <th>{{ 'country'|trans }}</th>
+                        <td>{{ customer.country|country_name }}</td>
+                    </tr>
+                {% endif %}
+                {% if customer.contact is not empty %}
+                    <tr>
+                        <th>{{ 'contact'|trans }}</th>
+                        <td>{{ customer.contact }}</td>
+                    </tr>
+                {% endif %}
+                {% if customer.phone is not empty %}
+                    <tr>
+                        <th>{{ 'phone'|trans }}</th>
+                        <td><a href="tel:{{ customer.phone }}">{{ customer.phone }}</a></td>
+                    </tr>
+                {% endif %}
+                {% if customer.mobile is not empty %}
+                    <tr>
+                        <th>{{ 'mobile'|trans }}</th>
+                        <td><a href="tel:{{ customer.mobile }}">{{ customer.mobile }}</a></td>
+                    </tr>
+                {% endif %}
+                {% if customer.email is not empty %}
+                    <tr>
+                        <th>{{ 'email'|trans }}</th>
+                        <td><a href="mailto:{{ customer.email }}">{{ customer.email }}</a></td>
+                    </tr>
+                {% endif %}
+                {% if customer.homepage is not empty %}
+                    <tr>
+                        <th>{{ 'homepage'|trans }}</th>
+                        <td><a href="{{ customer.homepage }}" target="_blank">{{ customer.homepage|replace({'https://': '', 'http://': ''}) }}</a></td>
+                    </tr>
+                {% endif %}
+                {% if customer.fax is not empty %}
+                    <tr>
+                        <th>{{ 'fax'|trans }}</th>
+                        <td>{{ customer.fax }}</td>
+                    </tr>
+                {% endif %}
+                {% if customer.timezone is not empty %}
+                    <tr>
+                        <th>{{ 'timezone'|trans }}</th>
+                        <td>{{ customer_now|date_time }} ({{ customer.timezone }})</td>
+                    </tr>
+                {% endif %}
+                {% if customer.currency is not empty %}
+                    <tr>
+                        <th>{{ 'currency'|trans }}</th>
+                        <td>{{ customer.currency }}</td>
+                    </tr>
+                {% endif %}
+                {% if is_granted('details', customer) %}
+                    {% if customer.number is not empty %}
+                        <tr>
+                            <th>{{ 'number'|trans }}</th>
+                            <td>{{ customer.number }}</td>
+                        </tr>
+                    {% endif %}
+                    {% if customer.vatId is not empty %}
+                        <tr>
+                            <th>{{ 'vat_id'|trans }}</th>
+                            <td>{{ customer.vatId }}</td>
+                        </tr>
+                    {% endif %}
+                {% endif %}
+                {% for metaField in customer.visibleMetaFields|filter(field => field.defined)|sort((a, b) => a.order <=> b.order) %}
+                    <tr>
+                        <th>{{ metaField.label|trans }}</th>
+                        <td>{{ widgets.form_type_value(metaField.type, metaField.value, customer) }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endblock %}
+    {% endembed %}
+
+    {{ render(controller('App\\Controller\\CustomerController::projectsAction', {'customer': customer.id, 'page': 1})) }}
+
+    {% if can_edit %}
+        {{ include('embeds/rates-table.html.twig', {'id': 'customer_rates_box', 'entity': customer, 'create_url': path('admin_customer_rate_add', {'id': customer.id}), 'delete_route': 'delete_customer_rate', 'currency': customer.currency, 'edit_route': 'admin_customer_rate_edit'}) }}
+    {% endif %}
+
+    {% if stats is not null %}
+        {{ include('embeds/budgets.html.twig', {'entity': customer, 'stats': stats, 'currency': customer.currency}) }}
+    {% endif %}
+
+    {% for controller in boxes %}
+        {{ render(controller(controller, {'customer': customer, 'page': 1})) }}
+    {% endfor %}
+
+    {% if teams is not null %}
+        {% set options = {'teams': teams, 'team': team} %}
+        {% if is_granted('permissions', customer) %}
+            {% set options = options|merge({'route_create': path('customer_team_create', {'id': customer.id}), 'route_edit': path('admin_customer_permissions', {'id': customer.id})}) %}
+        {% endif %}
+        {{ include('embeds/teams.html.twig', options) }}
+    {% endif %}
+
+    {% if comments is not null %}
+        {% set options = {'form': commentForm, 'comments': comments} %}
+        {% if can_edit %}
+            {% set options = options|merge({'route_pin': 'customer_comment_pin', 'route_delete': 'customer_comment_delete'}) %}
+        {% endif %}
+        {{ include('embeds/comments.html.twig', options) }}
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        document.addEventListener('kimai.initialized', function() {
+            KimaiReloadPageWidget.create('kimai.customerTeamUpdate kimai.customerUpdate kimai.teamUpdate kimai.projectTeamUpdate kimai.rateUpdate');
+        });
+    </script>
+{% endblock %}

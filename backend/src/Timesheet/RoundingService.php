@@ -1,0 +1,160 @@
+<?php
+
+/*
+ * This file is part of the Kimai time-tracking app.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace App\Timesheet;
+
+use App\Configuration\SystemConfiguration;
+use App\Entity\Timesheet;
+use App\Timesheet\Rounding\RoundingInterface;
+use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
+
+final class RoundingService
+{
+    /**
+     * @var null|non-empty-array<array-key, array{'days': array<string>, 'begin': int, 'end': int, 'duration': int, 'mode': string}>
+     */
+    private ?array $rulesCache = null;
+
+    /**
+     * @param RoundingInterface[] $roundingModes
+     * @param array<string, array{'days': string, 'begin': int, 'end': int, 'duration': int, 'mode': string}> $rules
+     */
+    public function __construct(
+        private readonly SystemConfiguration $configuration,
+        #[TaggedIterator(RoundingInterface::class)]
+        private readonly iterable $roundingModes,
+        private readonly array $rules
+    )
+    {
+    }
+
+    /**
+     * @return non-empty-array<array-key, array{'days': array<string>, 'begin': int, 'end': int, 'duration': int, 'mode': string}>
+     */
+    private function getRoundingRules(): array
+    {
+        if ($this->rulesCache === null) {
+            $rules = $this->rules;
+            $rules['default']['days'] = $this->parseDays($this->configuration->getTimesheetDefaultRoundingDays());
+            $rules['default']['begin'] = $this->configuration->getTimesheetDefaultRoundingBegin();
+            $rules['default']['end'] = $this->configuration->getTimesheetDefaultRoundingEnd();
+            $rules['default']['duration'] = $this->configuration->getTimesheetDefaultRoundingDuration();
+            $rules['default']['mode'] = $this->configuration->getTimesheetDefaultRoundingMode();
+
+            // see AppExtension, conversion from string to array due to system configuration not allowing to store arrays
+            foreach ($rules as $key => $settings) {
+                if (\is_string($settings['days'])) {
+                    if ($settings['days'] === '') {
+                        $rules[$key]['days'] = [];
+                        continue;
+                    }
+                    $rules[$key]['days'] = array_map('strtolower', array_map('trim', explode(',', $settings['days'])));
+                }
+            }
+            $this->rulesCache = $rules; // @phpstan-ignore-line
+        }
+
+        return $this->rulesCache; // @phpstan-ignore-line
+    }
+
+    /**
+     * @return array<string>
+     */
+    private function parseDays(string $days): array
+    {
+        return array_map('strtolower', array_map('trim', explode(',', $days)));
+    }
+
+    public function roundBegin(Timesheet $record): void
+    {
+        if ($record->getBegin() === null) {
+            return;
+        }
+        $weekday = $record->getBegin()->format('l');
+
+        foreach ($this->getRoundingRules() as $rounding) {
+            if (\in_array(strtolower($weekday), $rounding['days'], true)) {
+                $rounder = $this->getRoundingMode($rounding['mode']);
+                $rounder->roundBegin($record, $rounding['begin']);
+            }
+        }
+    }
+
+    public function roundEnd(Timesheet $record): void
+    {
+        if ($record->getEnd() === null) {
+            return;
+        }
+        $weekday = $record->getEnd()->format('l');
+
+        foreach ($this->getRoundingRules() as $rounding) {
+            if (\in_array(strtolower($weekday), $rounding['days'], true)) {
+                $rounder = $this->getRoundingMode($rounding['mode']);
+                $rounder->roundEnd($record, $rounding['end']);
+            }
+        }
+    }
+
+    public function roundDuration(Timesheet $record): void
+    {
+        if ($record->getEnd() === null) {
+            return;
+        }
+        $weekday = $record->getEnd()->format('l');
+
+        foreach ($this->getRoundingRules() as $rounding) {
+            if (\in_array(strtolower($weekday), $rounding['days'], true)) {
+                $rounder = $this->getRoundingMode($rounding['mode']);
+                $rounder->roundDuration($record, $rounding['duration']);
+            }
+        }
+    }
+
+    public function applyRoundings(Timesheet $record): void
+    {
+        if ($record->getEnd() === null) {
+            return;
+        }
+        $weekday = $record->getEnd()->format('l');
+
+        foreach ($this->getRoundingRules() as $rounding) {
+            if (\in_array(strtolower($weekday), $rounding['days'], true)) {
+                $rounder = $this->getRoundingMode($rounding['mode']);
+                $rounder->roundBegin($record, $rounding['begin']);
+                $rounder->roundEnd($record, $rounding['end']);
+
+                if ($record->getBegin() !== null) {
+                    $duration = $record->getCalculatedDuration();
+                    $record->setDuration($duration);
+
+                    $rounder->roundDuration($record, $rounding['duration']);
+                }
+            }
+        }
+    }
+
+    /**
+     * @return RoundingInterface[]
+     */
+    public function getRoundingModes(): iterable
+    {
+        return $this->roundingModes;
+    }
+
+    public function getRoundingMode(string $id): RoundingInterface
+    {
+        foreach ($this->roundingModes as $mode) {
+            if ($mode->getId() === $id) {
+                return $mode;
+            }
+        }
+
+        throw new \InvalidArgumentException('Unknown rounding mode: ' . $id);
+    }
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fo" datatype="plaintext" original="daterangepicker.en.xlf">
+    <body>
+      <trans-unit id="s9Hdo7E" resname="daterangepicker.today">
+        <source>daterangepicker.today</source>
+        <target state="translated">Í dag</target>
+      </trans-unit>
+      <trans-unit id="gkQA1YG" resname="daterangepicker.yesterday">
+        <source>daterangepicker.yesterday</source>
+        <target state="translated">Í gjár</target>
+      </trans-unit>
+      <trans-unit id="CAvVEbc" resname="daterangepicker.lastWeek">
+        <source>daterangepicker.lastWeek</source>
+        <target state="translated">Síðstu viku</target>
+      </trans-unit>
+      <trans-unit id="HfcD1_y" resname="daterangepicker.thisWeek">
+        <source>daterangepicker.thisWeek</source>
+        <target state="translated">Hesa vikuna</target>
+      </trans-unit>
+      <trans-unit id="_9rEFED" resname="daterangepicker.lastYear">
+        <source>daterangepicker.lastYear</source>
+        <target state="translated">Síðsta ár</target>
+      </trans-unit>
+      <trans-unit id="XgIrZS3" resname="daterangepicker.thisYear">
+        <source>daterangepicker.thisYear</source>
+        <target state="translated">Hetta árið</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

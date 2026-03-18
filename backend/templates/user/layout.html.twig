@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+{% import "user/actions.html.twig" as actions %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block page_title %}{{ 'users'|trans }}{% endblock %}
+{% block page_actions %}{{ actions.user(user, tab) }}{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-xs-12">
+            {% block profile_intro %}
+                <div class="card mb-3">
+                    <div class="card-body box-user-profile">
+                        <div class="row row-sm-2 align-items-center">
+                            <div class="col-auto" data-toggle="tooltip" title="{{ 'id'|trans }}: {{ user.id }}">
+                                {{ widgets.user_avatar(user, false, 'avatar-lg') }}
+                            </div>
+                            <div class="col" style="min-width: 100px"{% block user_title_box_attributes %}{% endblock %}>
+                                <h4 class="card-title m-0">{{ widgets.username(user) }}</h4>
+                                {% if user.title is not empty %}
+                                <div class="text-body-secondary">
+                                    {{ user.title }}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-auto text-end mt-2 mt-sm-1" id="profile-buttons">
+                                {% from '@theme/components/buttons.html.twig' import link_button %}
+                                {% if app.user == user %}
+                                {{ link_button('notifications'|trans, 'javascript:notificationStatus()', 'fas fa-bell', 'default') }}
+                                {% endif %}
+                                {{ link_button('email'|trans, ('mailto:' ~ user.email), 'mail', 'default') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+            {% block profile_content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if app.user == user %}
+    <script>
+        function notificationStatus()
+        {
+            const notification = window.kimai.getPlugin('notification');
+            if (!notification.isSupported()) {
+                notification.request((result) => {
+                    if (result === false) {
+                        window.kimai.getPlugin('alert').info('{{ 'notifications.denied'|trans|e('js') }}');
+                    } else if (result === true) {
+                        notification.notify(null, '{{ 'notifications.welcome'|trans|e('js') }}');
+                    }
+                    buttonStatusCheck(window.kimai);
+                });
+            } else {
+                notification.notify(null, '{{ 'notifications.welcome'|trans|e('js') }}');
+            }
+        }
+
+        function buttonStatusCheck(kimai)
+        {
+            const button = document.querySelector('div#profile-buttons a');
+            const icon = button.querySelector('i');
+            const notification = kimai.getPlugin('notification');
+
+            if (notification.isSupported()) {
+                icon.classList.remove('fa-bell-slash');
+                icon.classList.add('fa-bell');
+                icon.classList.remove('text-danger');
+                icon.classList.add('text-success');
+            } else {
+                icon.classList.remove('fa-bell');
+                icon.classList.add('fa-bell-slash');
+                icon.classList.remove('text-success');
+                icon.classList.add('text-danger');
+            }
+        }
+
+        document.addEventListener('kimai.initialized', function(event) {
+            buttonStatusCheck(event.detail.kimai);
+        });
+    </script>
+    {% endif %}
+{% endblock %}

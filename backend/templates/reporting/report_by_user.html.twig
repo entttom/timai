@@ -1,0 +1,24 @@
+{% extends 'reporting/report_by_user_layout.html.twig' %}
+
+{% block report_content %}
+    {% embed 'reporting/report_by_user_data.html.twig' with {with_links: true} %}
+        {% block period_name %}
+            <th class="text-center text-nowrap{% if column is weekend %} weekend{% endif %}{% if column is today %} today{% endif %}">
+                {{ column|date_weekday }}
+            </th>
+        {% endblock %}
+        {% block upper_left %}&nbsp;{% endblock %}
+        {% block column_classes_project -%}
+            {% if column.date is weekend %} weekend{% endif %}{% if column.date is today %} today{% endif %}
+        {%- endblock %}
+        {% block column_classes_activity -%}
+            {% if column.date is weekend %} weekend{% endif %}{% if column.date is today %} today{% endif %}
+        {%- endblock %}
+        {% block column_classes_total -%}
+            {% if column is weekend %} weekend{% endif %}
+        {%- endblock %}
+        {% block column_classes_customer_total -%}
+            {% if column is weekend %} weekend{% endif %}
+        {%- endblock %}
+    {% endembed %}
+{% endblock %}

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="pl" datatype="plaintext" original="validators.en.xlf">
+    <body>
+      <trans-unit id="IkNxbBI" resname="This value is not a valid role.">
+        <source>This value is not a valid role.</source>
+        <target>Ta wartość nie jest poprawną rolą.</target>
+      </trans-unit>
+      <trans-unit id="CLHaByy" resname="End date must not be earlier then start date." xml:space="preserve">
+        <source>The end date must not be earlier than the start date.</source>
+        <target state="translated">Data końcowa nie może być wcześniejsza od daty początkowej.</target>
+      </trans-unit>
+      <trans-unit id="ePrqiLM" resname="The begin date cannot be in the future.">
+        <source>The begin date cannot be in the future.</source>
+        <target>Data poczatkowa nie może być w przyszłości.</target>
+      </trans-unit>
+      <trans-unit id="yDlKSRw" resname="This invoice document cannot be used, please rename the file and upload it again.">
+        <source>This invoice document cannot be used, please rename the file and upload it again.</source>
+        <target>Nie można użyć tego dokumentu faktury. Zmień nazwę pliku i prześlij go ponownie.</target>
+      </trans-unit>
+      <trans-unit id="1V6BsD_" resname="You must select at least one user or team.">
+        <source>You must select at least one user or team.</source>
+        <target>Musisz wybrać co najmniej jednego użytkownika lub zespół.</target>
+      </trans-unit>
+      <trans-unit id="VJSZSD0" resname="The given value is not a valid time.">
+        <source>The given value is not a valid time.</source>
+        <target>Podana wartość nie jest prawidłowym czasem.</target>
+      </trans-unit>
+      <trans-unit id="u2wjm2i" resname="You already have an entry for this time.">
+        <source>You already have an entry for this time.</source>
+        <target>Masz już wpis w tym czasie.</target>
+      </trans-unit>
+      <trans-unit id="0o.pH3X" resname="This period is locked, please choose a later date.">
+        <source>This period is locked, please choose a later date.</source>
+        <target>Ten okres jest zablokowany, wybierz późniejszą datę.</target>
+      </trans-unit>
+      <trans-unit id="1oKCOa5" resname="The budget is completely used.">
+        <source>The budget is completely used.</source>
+        <target>Budżet się wyczerpał. Z dostępnych %budget%, %used% zostało zarezerwowane do tej pory, %free% może być nadal używany.</target>
+      </trans-unit>
+      <trans-unit id="6rO8GZ1" resname="Maximum duration of {{ value }} hours exceeded.">
+        <source>Maximum duration of {{ value }} hours exceeded.</source>
+        <target state="translated">Maksymalna ilość godzin dozwolona to {{ value }}.</target>
+      </trans-unit>
+      <trans-unit id="S14XECA" resname="The username is already used.">
+        <source>The username is already used.</source>
+        <target>Nazwa użytkownika jest już zajęta.</target>
+      </trans-unit>
+      <trans-unit id="6u6oCwB" resname="The email is already used.">
+        <source>The email is already used.</source>
+        <target state="translated">Adres e-mail jest już używany.</target>
+      </trans-unit>
+      <trans-unit id="6WAG.Xj" resname="The entered passwords don't match.">
+        <source>The entered passwords don't match.</source>
+        <target state="translated">Wprowadzone hasła nie są takie same.</target>
+      </trans-unit>
+      <trans-unit id="rmH78_V" resname="At least one team leader must be assigned to the team.">
+        <source>At least one team leader must be assigned to the team.</source>
+        <target state="translated">Przynajmniej jeden przywódca musi zostać przypisany do zespołu.</target>
+      </trans-unit>
+      <trans-unit id="ekO5eXI" resname="An equal username is already used.">
+        <source>An equal username is already used.</source>
+        <target state="translated">Taka sama nazwa użytkownika jest już używana.</target>
+      </trans-unit>
+      <trans-unit id="INlaCgW" resname="An equal email is already used.">
+        <source>An equal email is already used.</source>
+        <target state="translated">Taki adres e-mail jest już używany.</target>
+      </trans-unit>
+      <trans-unit id="mjlH0la" resname="This timesheet is already exported.">
+        <source>This timesheet is already exported.</source>
+        <target state="translated">Ta ewidencja czynności została już wyeksportowana.</target>
+      </trans-unit>
+      <trans-unit id="Jz1y3yB" resname="Duration cannot be zero.">
+        <source>Duration cannot be zero.</source>
+        <target state="translated">Pusty czas trwania nie jest dozwolony.</target>
+      </trans-unit>
+      <trans-unit id="to1Q85W" resname="An activity needs to be selected.">
+        <source>An activity needs to be selected.</source>
+        <target state="translated">Należy wybrać czynność.</target>
+      </trans-unit>
+      <trans-unit id="dcPei9G" resname="Sorry, the budget is used up.">
+        <source>Sorry, the budget is used up.</source>
+        <target state="translated">Przepraszamy, budżet się wyczerpał.</target>
+      </trans-unit>
+      <trans-unit id="rHd9_aA" resname="A project needs to be selected.">
+        <source>A project needs to be selected.</source>
+        <target state="translated">Należy wybrać projekt.</target>
+      </trans-unit>
+      <trans-unit id="gSAwscA" resname="Validation Failed">
+        <source>Validation Failed</source>
+        <target state="translated">Wystąpił problem z zapisem.</target>
+      </trans-unit>
+      <trans-unit id="xp0lmgm" resname="The given code is not the correct TOTP token.">
+        <source>The given code is not the correct TOTP token.</source>
+        <target state="translated">Podany kod nie jest prawidłowym tokenem TOTP.</target>
+      </trans-unit>
+      <trans-unit id="7mqg3TC" resname="This value is not a valid role name.">
+        <source>This value is not a valid role name.</source>
+        <target state="translated">To nie jest prawidłowa nazwa dla roli użytkownika.</target>
+      </trans-unit>
+      <trans-unit resname="Cannot stop running timesheet" id="7HYTefs">
+        <source>Cannot stop running timesheet</source>
+        <target state="translated">Masz aktywny zapis czasu, który nie może być zatrzymany automatycznie.</target>
+      </trans-unit>
+      <trans-unit id="ZObikpA" resname="This absence type is not known." xml:space="preserve">
+        <source>This absence type is not known.</source>
+        <target state="translated">Ten typ nieobecności nie jest znany.</target>
+      </trans-unit>
+      <trans-unit id="0ULsHQA" resname="The chosen date is not a working day." xml:space="preserve">
+        <source>The chosen date is not a working day.</source>
+        <target state="translated">Wybrana data nie jest dniem roboczym.</target>
+      </trans-unit>
+      <trans-unit id="N21br.P" resname="The chosen date is already locked." xml:space="preserve">
+        <source>The chosen date is already locked.</source>
+        <target state="translated">Wybrana data jest już zablokowana.</target>
+      </trans-unit>
+      <trans-unit id="6H84TMs" resname="An absence must be assigned to a user." xml:space="preserve">
+        <source>An absence must be assigned to a user.</source>
+        <target state="translated">Nieobecność musi być przypisana do użytkownika.</target>
+      </trans-unit>
+      <trans-unit id="nLcihCc" resname="An absence must have a date." xml:space="preserve">
+        <source>An absence must have a date.</source>
+        <target state="translated">Nieobecność musi posiadać datę.</target>
+      </trans-unit>
+      <trans-unit id="SZO4xjC" resname="An absence cannot be booked before your first working day." xml:space="preserve">
+        <source>An absence cannot be booked before your first working day.</source>
+        <target state="translated">Nieobecność nie może być zaksięgowana przed pierwszym dniem roboczym.</target>
+      </trans-unit>
+      <trans-unit id="IN37g5N" resname="Not enough holidays left." xml:space="preserve">
+        <source>Not enough holidays left.</source>
+        <target state="translated">Zostało za mało wakacji.</target>
+      </trans-unit>
+      <trans-unit id="ByeEMxW" resname="You do not have enough overtime, remaining are {{ value }}." xml:space="preserve">
+        <source>You do not have enough overtime, remaining are {{ value }}.</source>
+        <target state="translated">Nie masz wystarczającej liczby nadgodzin, pozostała wartość to {{ wartość }}.</target>
+      </trans-unit>
+      <trans-unit id="DiaaRa1" resname="You cannot have two absences of this type at one day." xml:space="preserve">
+        <source>You cannot have two absences of this type at one day.</source>
+        <target state="translated">Nie można mieć dwóch nieobecności tego typu w jednym dniu.</target>
+      </trans-unit>
+      <trans-unit id="kSBiyaF" resname="This is a public holiday, booking not allowed." xml:space="preserve">
+        <source>This is a public holiday, booking not allowed.</source>
+        <target state="translated">To święto państwowe, rezerwacja nie jest dozwolona.</target>
+      </trans-unit>
+      <trans-unit id="c2B6.lW" resname="You can book a maximum of {{ value }} days at once." xml:space="preserve">
+        <source>You can book a maximum of {{ value }} days at once.</source>
+        <target state="translated">Jednorazowo możesz zarezerwować maksymalnie {{ value }} dni, obecnie wybrałeś {{ selected }}.</target>
+      </trans-unit>
+      <trans-unit id="BztgSSP" resname="The period of absence must not extend beyond the turn of the year." xml:space="preserve">
+        <source>The period of absence must not extend beyond the turn of the year.</source>
+        <target state="translated">Okres nieobecności nie może przekraczać przełomu roku.</target>
+      </trans-unit>
+      <trans-unit id="fvxWW3V" resname="The CSRF token is invalid. Please try to resubmit the form." xml:space="preserve">
+        <source>The CSRF token is invalid. Please try to resubmit the form.</source>
+        <target state="translated">Proszę ponownie przesłać formularz. Jeśli problem nadal występuje, odśwież stronę.</target>
+      </trans-unit>
+      <trans-unit id="G2wt0aW" resname="An absence cannot be booked after the last working day." xml:space="preserve">
+        <source>An absence cannot be booked after the last working day.</source>
+        <target state="translated">Nie można zarezerwować nieobecności po ostatnim dniu roboczym.</target>
+      </trans-unit>
+      <trans-unit id="mveJ4vW" resname="Selected period cannot be locked: unconfirmed absence requests are pending." xml:space="preserve">
+        <source>Selected period cannot be locked: unconfirmed absence requests are pending.</source>
+        <target state="translated">Wybrany okres nie może zostać zablokowany: niepotwierdzone wnioski o nieobecność są w toku.</target>
+      </trans-unit>
+      <trans-unit id="KVyAzBQ" resname="Duration cannot be negative." xml:space="preserve">
+        <source>Duration cannot be negative.</source>
+        <target state="translated">Czas trwania nie może posiadać wartości ujemnej.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

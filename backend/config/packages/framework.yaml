@@ -1,0 +1,58 @@
+# see https://symfony.com/doc/current/reference/configuration/framework.html
+parameters:
+    env(TRUSTED_PROXIES): ''
+    env(TRUSTED_HOSTS): ''
+
+framework:
+    secret: '%env(APP_SECRET)%'
+    csrf_protection: true
+    annotations: false
+    handle_all_throwables: true
+    disallow_search_engine_index: true
+    set_content_language_from_locale: true
+
+    serializer:
+        enable_attributes: true
+
+    trusted_proxies: '%env(string:TRUSTED_PROXIES)%'
+    trusted_hosts: '%env(string:TRUSTED_HOSTS)%'
+
+    exceptions:
+        App\Validator\ValidationFailedException:
+            log_level: debug
+
+    default_locale: en
+    http_method_override: false
+
+    # Enables session support. Note that the session will ONLY be started if you read or write from it.
+    # Remove or comment this section to explicitly disable session support.
+    session:
+        name: KIMAI_SESSION
+        handler_id: App\Security\SessionHandler
+        cookie_secure: auto
+        cookie_samesite: lax
+        cookie_httponly: true
+        storage_factory_id: session.storage.factory.native
+
+    php_errors:
+        log: true
+
+    mailer:
+        dsn: '%env(MAILER_URL)%'
+
+    validation:
+        email_validation_mode: html5
+        enable_attributes: true
+
+when@dev:
+    framework:
+        mailer:
+            dsn: 'null://null'
+
+when@test:
+    framework:
+        test: true
+        session:
+            storage_factory_id: session.storage.factory.mock_file
+        mailer:
+            dsn: 'null://null'

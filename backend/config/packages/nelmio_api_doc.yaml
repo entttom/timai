@@ -1,0 +1,71 @@
+nelmio_api_doc:
+    operation_id_generation: conditionally_prepend
+    models:
+        use_jms: true
+        names:
+            - { alias: CustomerEditForm,            type: App\Form\API\CustomerApiEditForm,         groups: [Default, Entity, Customer, Customer_Entity] }
+            - { alias: CustomerEntity,              type: App\Entity\Customer,                      groups: [Default, Entity, Customer, Customer_Entity, Not_Expanded] }
+            - { alias: Customer,                    type: App\Entity\Customer,                      groups: [Default, Not_Expanded] }
+            - { alias: CustomerRate,                type: App\Entity\CustomerRate,                  groups: [Default, Entity, Customer_Rate] }
+            - { alias: CustomerRateForm,            type: App\Form\API\CustomerRateApiForm,         groups: [Default, Entity, Customer_Rate] }
+            - { alias: CustomerCollection,          type: App\Entity\Customer,                      groups: [Default, Collection, Customer] }
+            - { alias: ProjectEditForm,             type: App\Form\API\ProjectApiEditForm,          groups: [Default, Entity, Project, Project_Entity] }
+            - { alias: ProjectEntity,               type: App\Entity\Project,                       groups: [Default, Entity, Project, Project_Entity, Not_Expanded] }
+            - { alias: Project,                     type: App\Entity\Project,                       groups: [Default, Not_Expanded] }
+            - { alias: ProjectExpanded,             type: App\Entity\Project,                       groups: [Default, Expanded] }
+            - { alias: ProjectRate,                 type: App\Entity\ProjectRate,                   groups: [Default, Entity, Project_Rate] }
+            - { alias: ProjectRateForm,             type: App\Form\API\ProjectRateApiForm,          groups: [Default, Entity, Project_Rate] }
+            - { alias: ProjectCollection,           type: App\Entity\Project,                       groups: [Default, Collection, Project] }
+            - { alias: ActivityEditForm,            type: App\Form\API\ActivityApiEditForm,         groups: [Default, Entity, Activity, Activity_Entity] }
+            - { alias: ActivityEntity,              type: App\Entity\Activity,                      groups: [Default, Entity, Activity, Activity_Entity, Not_Expanded] }
+            - { alias: Activity,                    type: App\Entity\Activity,                      groups: [Default, Not_Expanded] }
+            - { alias: ActivityExpanded,            type: App\Entity\Activity,                      groups: [Default, Expanded] }
+            - { alias: ActivityRate,                type: App\Entity\ActivityRate,                  groups: [Default, Entity, Activity_Rate] }
+            - { alias: ActivityRateForm,            type: App\Form\API\ActivityRateApiForm,         groups: [Default, Entity, Activity_Rate] }
+            - { alias: ActivityCollection,          type: App\Entity\Activity,                      groups: [Default, Collection, Activity] }
+            - { alias: TagEditForm,                 type: App\Form\API\TagApiEditForm,              groups: [Default, Entity, Tag] }
+            - { alias: TagEntity,                   type: App\Entity\Tag,                           groups: [Default, Entity, Tag] }
+            - { alias: TimesheetEditForm,           type: App\Form\API\TimesheetApiEditForm,        groups: [Default, Entity, Timesheet, Not_Expanded] }
+            - { alias: TimesheetEntity,             type: App\Entity\Timesheet,                     groups: [Default, Entity, Timesheet, Timesheet_Entity, Not_Expanded] }
+            - { alias: TimesheetExpanded,           type: App\Entity\Timesheet,                     groups: [Default, Entity, Timesheet, Timesheet_Entity, Expanded] }
+            - { alias: TimesheetCollection,         type: App\Entity\Timesheet,                     groups: [Default, Collection, Timesheet, Not_Expanded] }
+            - { alias: TimesheetCollectionExpanded, type: App\Entity\Timesheet,                     groups: [Default, Collection, Timesheet, Expanded] }
+            - { alias: UserCreateForm,              type: App\Form\API\UserApiCreateForm,           groups: [Default, Entity, User, User_Entity] }
+            - { alias: UserEditForm,                type: App\Form\API\UserApiEditForm,             groups: [Default, Entity, User, User_Entity] }
+            - { alias: User,                        type: App\Entity\User,                          groups: [Default] }
+            - { alias: UserPreference,              type: App\Entity\UserPreference,                groups: [Default, User_Entity] }
+            - { alias: UserEntity,                  type: App\Entity\User,                          groups: [Default, Entity, User, User_Entity] }
+            - { alias: UserCollection,              type: App\Entity\User,                          groups: [Default, Collection, User] }
+            - { alias: TeamEditForm,                type: App\Form\API\TeamApiEditForm,             groups: [Default, Entity, Team, Team_Entity] }
+            - { alias: Team,                        type: App\Entity\Team,                          groups: [Default, Entity, Team, Team_Entity] }
+            - { alias: TeamCollection,              type: App\Entity\Team,                          groups: [Default, Collection, Team] }
+            - { alias: TeamMember,                  type: App\Entity\TeamMember,                    groups: [Team_Entity] }
+            - { alias: TeamMembership,              type: App\Entity\TeamMember,                    groups: [User_Entity] }
+            - { alias: Invoice,                     type: App\Entity\Invoice,                       groups: [Default, Entity, Invoice, Invoice_Entity] }
+            - { alias: InvoiceCollection,           type: App\Entity\Invoice,                       groups: [Default, Collection, Invoice] }
+    areas:
+        default:
+            path_patterns:
+                - ^/api(?!/doc)
+            security:
+                bearer:
+                    type: 'http'
+                    description: 'API Token'
+                    bearerFormat: 'KIMAI'
+                    scheme: 'bearer'
+    documentation:
+        info:
+            title: Kimai - API
+            description: |
+                JSON API for the Kimai time-tracking software. Find more infos in our [API documentation](https://www.kimai.org/documentation/rest-api.html).
+            version: '1.1'
+        security:
+            - bearer: []
+    html_config:
+#        assets_mode: cdn
+        # https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/
+        swagger_ui_config: []
+        # https://redocly.com/docs/redoc/config/
+        redocly_config: []
+        # https://docs.stoplight.io/docs/elements/b074dc47b2826-elements-configuration-options
+        stoplight_config: { basePath: '/api/doc', router: 'memory', logo: '/touch-icon-192x192.png', hideInternal: true }

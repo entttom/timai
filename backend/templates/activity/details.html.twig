@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block main %}
+    {% set can_edit = is_granted('edit', activity) %}
+    {% set currency = null %}
+    {% if activity.project is not null %}
+        {% set currency = activity.project.customer.currency %}
+    {% endif %}
+
+    {% embed '@theme/embeds/card.html.twig' with {fullsize: true} %}
+        {% import "macros/widgets.html.twig" as widgets %}
+        {% import "customer/actions.html.twig" as customerActions %}
+        {% import "project/actions.html.twig" as projectActions %}
+        {% block box_attributes %}id="activity_details_box"{% endblock %}
+        {% block box_title %}
+            {{ widgets.label_dot(activity.name, activity.color) }}
+        {% endblock %}
+        {% block box_tools %}
+            {% if can_edit %}
+                {{ widgets.card_tool_button('edit', {'class': 'modal-ajax-form open-edit', 'title': 'edit', 'url': path('admin_activity_edit', {'id': activity.id})}) }}
+            {% endif %}
+        {% endblock %}
+        {% block box_body %}
+            {% if activity.comment is not empty %}
+                <div class="comment p-3">
+                    {{ activity.comment|comment2html(true) }}
+                </div>
+            {% endif %}
+            <table class="table table-hover dataTable">
+                {% if not activity.visible %}
+                    <tr class="{{ widgets.class_activity_row(activity, now) }}">
+                        <th>{{ 'visible'|trans }}</th>
+                        <td colspan="3">
+                            {{ widgets.label_boolean(activity.visible) }}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if not activity.billable %}
+                    <tr>
+                        <th>{{ 'billable'|trans }}</th>
+                        <td colspan="3">
+                            {{ widgets.label_boolean(activity.billable) }}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if not activity.global %}
+                    <tr {{ widgets.customer_row_attr(activity.project.customer, now) }}>
+                        <th>{{ 'customer'|trans }}</th>
+                        <td>
+                            {{ widgets.label_customer(activity.project.customer) }}
+                        </td>
+                        <td class="w-min">
+                            {{ widgets.badge_team_access(activity.project.customer.teams) }}
+                        </td>
+                        <td class="actions">
+                            {{ customerActions.customer(activity.project.customer, 'custom') }}
+                        </td>
+                    </tr>
+                    <tr {{ widgets.project_row_attr(activity.project, now) }}>
+                        <th>{{ 'project'|trans }}</th>
+                        <td>
+                            {{ widgets.label_project(activity.project) }}
+                        </td>
+                        <td class="w-min">
+                            {{ widgets.badge_team_access(activity.project.teams) }}
+                        </td>
+                        <td class="actions">
+                            {{ projectActions.project(activity.project, 'custom') }}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if activity.number is not empty %}
+                    <tr>
+                        <th>{{ 'activity_number'|trans }}</th>
+                        <td colspan="3">
+                            {{ activity.number }}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% for metaField in activity.visibleMetaFields|filter(field => field.defined)|sort((a, b) => a.order <=> b.order) %}
+                    <tr>
+                        <th>{{ metaField.label|trans }}</th>
+                        <td colspan="3">{{ widgets.form_type_value(metaField.type, metaField.value, activity) }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endblock %}
+    {% endembed %}
+
+    {% if can_edit %}
+        {{ include('embeds/rates-table.html.twig', {'id': 'activity_rates_box', 'entity': activity, 'create_url': path('admin_activity_rate_add', {'id': activity.id}), 'delete_route': 'delete_activity_rate', 'currency': currency, 'edit_route': 'admin_activity_rate_edit'}) }}
+    {% endif %}
+
+    {% if stats is not null %}
+        {% set currency = kimai_config.customerDefaultCurrency %}
+        {% if activity.project is not null %}
+            {% set currency = activity.project.customer.currency %}
+        {% endif %}
+        {{ include('embeds/budgets.html.twig', {'entity': activity, 'stats': stats, 'currency': currency}) }}
+    {% endif %}
+
+    {% for controller in boxes %}
+        {{ render(controller(controller, {'activity': activity, 'page': 1})) }}
+    {% endfor %}
+
+    {% if teams is not null %}
+        {% set options = {'teams': teams, 'team': team} %}
+        {% if is_granted('permissions', activity) %}
+            {% set options = options|merge({'route_create': path('activity_team_create', {'id': activity.id}), 'route_edit': path('admin_activity_permissions', {'id': activity.id})}) %}
+        {% endif %}
+        {% if activity.project is not null and (activity.project.teams|length > 0 or activity.project.customer.teams|length > 0) %}
+            {% set options = options|merge({'empty_message': 'team.activity_visibility_inherited'}) %}
+        {% endif %}
+        {{ include('embeds/teams.html.twig', options) }}
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        document.addEventListener('kimai.initialized', function() {
+            KimaiReloadPageWidget.create('kimai.activityUpdate kimai.teamUpdate kimai.activityTeamUpdate kimai.projectTeamUpdate kimai.customerTeamUpdate kimai.customerUpdate kimai.projectUpdate kimai.rateUpdate');
+        });
+    </script>
+{% endblock %}

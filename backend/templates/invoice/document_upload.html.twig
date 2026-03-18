@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block status %}
+    {% from "macros/status.html.twig" import status_count %}
+    {{ status_count(documents|length) }}
+{% endblock %}
+
+{% block main %}
+    {% if can_upload and form is not null %}
+        {% embed '@theme/embeds/card.html.twig' %}
+            {% form_theme form 'form/horizontal.html.twig' %}
+            {% block box_title %}
+                {{ 'upload'|trans }}
+            {% endblock %}
+            {% block box_before %}
+                {{ form_start(form) }}
+            {% endblock %}
+            {% block box_after %}
+                {{ form_end(form) }}
+            {% endblock %}
+            {% block box_body %}
+                {{ form_row(form.document) }}
+                <p>
+                <a href="https://github.com/kimai/invoice-templates" target="_blank">{{ 'download_invoice_renderer'|trans({}, 'invoice-renderer') }}</a>
+                </p>
+            {% endblock %}
+            {% block box_footer %}
+                <button type="submit" class="btn btn-primary">{{ 'action.save'|trans }}</button>
+                <a href="{{ path('admin_invoice_template') }}" class="btn btn-link">{{ 'back'|trans }}</a>
+            {% endblock %}
+        {% endembed %}
+    {% elseif upload_error is not null %}
+        {{ widgets.callout('warning', upload_error|trans(error_replacer)) }}
+    {% endif %}
+
+    {% if documents|length > 0 %}
+        {% embed '@theme/embeds/card.html.twig' with {'documents': documents, fullsize: true} %}
+            {% import "invoice/actions.html.twig" as actions %}
+            {% import "macros/widgets.html.twig" as widgets %}
+            {% block box_title %}{{ 'invoice_renderer'|trans({}, 'invoice-renderer') }}{% endblock %}
+            {% block box_attributes %}
+                id="invoice_document_list"
+            {% endblock %}
+            {% block box_body %}
+                <table class="table table-hover dataTable">
+                    <thead>
+                        <tr>
+                            <th>{{ 'file'|trans }}</th>
+                            <th>{{ 'updated_at'|trans }}</th>
+                            <th>{{ 'template'|trans }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for config in documents %}
+                        {% set document = config.document %}
+                        <tr>
+                            <td>{{ document.name }}</td>
+                            <td>{{ document.lastChange|date }}</td>
+                            <td>
+                                {% if config.template is not null %}
+                                    {{ config.template.name }}
+                                {% endif %}
+                            </td>
+                            <td class="actions">
+                                {{ actions.invoice_document(document, config.used, 'index') }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endblock %}
+        {% endembed %}
+    {% endif %}
+{% endblock %}

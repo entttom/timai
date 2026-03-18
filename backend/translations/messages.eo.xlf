@@ -1,0 +1,1243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="eo" datatype="plaintext" original="messages.en.xlf">
+    <body>
+      <trans-unit id="N7mikjJ" resname="time_tracking" xml:space="preserve">
+        <source>Time Tracking</source>
+        <target state="translated">Temporegistrado</target>
+      </trans-unit>
+      <trans-unit id="inmIkP6" resname="yes">
+        <source>yes</source>
+        <target>Jes</target>
+      </trans-unit>
+      <trans-unit id="k5Apjz_" resname="no">
+        <source>no</source>
+        <target>Ne</target>
+      </trans-unit>
+      <trans-unit id=".3dyBTq" resname="both">
+        <source>both</source>
+        <target>Ambaŭ</target>
+      </trans-unit>
+      <trans-unit id="KLIuHvt" resname="This is a mandatory field">
+        <source>This is a mandatory field</source>
+        <target>Deviga</target>
+      </trans-unit>
+      <trans-unit id="_ohHsMM" resname="create">
+        <source>create</source>
+        <target>Krei</target>
+      </trans-unit>
+      <trans-unit id="DYHuW58" resname="confirm.delete">
+        <source>confirm.delete</source>
+        <target>Ĉu vi vere volas forigi tion ĉi?</target>
+      </trans-unit>
+      <trans-unit id="vDd3alC" resname="admin_entity.delete_confirm">
+        <source>admin_entity.delete_confirm</source>
+        <target>Ankaŭ tiuj ĉi datumoj estos forigitaj! Alternative, vi povas elekti elementon al kiu ĉiuj datumoj estos translokigitaj:</target>
+      </trans-unit>
+      <trans-unit id="COyxNde" resname="delete.not_in_use">
+        <source>delete.not_in_use</source>
+        <target>Tiu ĉi ero povas esti sekure forigita.</target>
+      </trans-unit>
+      <trans-unit id="I3TZF5S" resname="cancel">
+        <source>cancel</source>
+        <target>Nuligi</target>
+      </trans-unit>
+      <trans-unit id="PyZ8KrQ" resname="confirm">
+        <source>confirm</source>
+        <target>Konfirmi</target>
+      </trans-unit>
+      <trans-unit id=".0CFrRV" resname="upload">
+        <source>upload</source>
+        <target>Alŝuti</target>
+      </trans-unit>
+      <trans-unit id="JBkykGe" resname="search">
+        <source>search</source>
+        <target>Serĉi</target>
+      </trans-unit>
+      <trans-unit id="J258iS6" resname="update_multiple">
+        <source>update_multiple</source>
+        <target>%action% %count% elementojn</target>
+      </trans-unit>
+      <trans-unit id="OTDmccn" resname="attachments">
+        <source>attachments</source>
+        <target>Dosieroj</target>
+      </trans-unit>
+      <trans-unit id="0M_Gylq" resname="rates.empty">
+        <source>rates.empty</source>
+        <target>Ankoraŭ neniuj kotizoj estas agorditaj.</target>
+      </trans-unit>
+      <trans-unit id="mflwMcX" resname="rates.title">
+        <source>rates.title</source>
+        <target>Kotizoj</target>
+      </trans-unit>
+      <trans-unit id="XohImNo" resname="password">
+        <source>Password</source>
+        <target state="translated">Pasvorto</target>
+      </trans-unit>
+      <trans-unit id="hLEZkoC" resname="password_repeat">
+        <source>password_repeat</source>
+        <target>Ripetu pasvorton</target>
+      </trans-unit>
+      <trans-unit id="ACcM9j_" resname="logout">
+        <source>logout</source>
+        <target>Elsaluti</target>
+      </trans-unit>
+      <trans-unit id="_x2He8M" resname="user_profile">
+        <source>user_profile</source>
+        <target>Mia profilo</target>
+      </trans-unit>
+      <trans-unit id="T4nAM7X" resname="api_token">
+        <source>api_token</source>
+        <target>API-pasvorto</target>
+      </trans-unit>
+      <trans-unit id="aq59Sk8" resname="api_token_repeat">
+        <source>api_token_repeat</source>
+        <target>Ripetu API-pasvorton</target>
+      </trans-unit>
+      <trans-unit id=".372.o7" resname="login_required">
+        <source>login_required</source>
+        <target>Mankas permeso. Redirekti al ensaluto?</target>
+      </trans-unit>
+      <trans-unit id="UoOv6mx" resname="menu.homepage">
+        <source>menu.homepage</source>
+        <target>Panelo</target>
+      </trans-unit>
+      <trans-unit id="wvvYSw_" resname="menu.admin">
+        <source>menu.admin</source>
+        <target>Administrado</target>
+      </trans-unit>
+      <trans-unit id="6OKwCUB" resname="menu.system">
+        <source>menu.system</source>
+        <target>Sistemo</target>
+      </trans-unit>
+      <trans-unit id="wBTFKFR" resname="menu.logout">
+        <source>menu.logout</source>
+        <target>Elsaluti</target>
+      </trans-unit>
+      <trans-unit id="ebTjBb9" resname="my_times">
+        <source>my_times</source>
+        <target>Miaj tempoj</target>
+      </trans-unit>
+      <trans-unit id="yxQop43" resname="all_times">
+        <source>all_times</source>
+        <target>Temposlipoj</target>
+      </trans-unit>
+      <trans-unit id="IeshU90" resname="customers">
+        <source>customers</source>
+        <target>Klientoj</target>
+      </trans-unit>
+      <trans-unit id="JXfA9Ve" resname="projects">
+        <source>projects</source>
+        <target>Projektoj</target>
+      </trans-unit>
+      <trans-unit id="YkyVVAY" resname="activities">
+        <source>activities</source>
+        <target>Aktivaĵoj</target>
+      </trans-unit>
+      <trans-unit id="fftM9nd" resname="users">
+        <source>users</source>
+        <target>Uzantoj</target>
+      </trans-unit>
+      <trans-unit id="_t.2z4V" resname="teams">
+        <source>teams</source>
+        <target>Teamoj</target>
+      </trans-unit>
+      <trans-unit id="hOZxcaK" resname="menu.plugin">
+        <source>menu.plugin</source>
+        <target>Kromprogramoj</target>
+      </trans-unit>
+      <trans-unit id="IXtkHRw" resname="menu.system_configuration">
+        <source>menu.system_configuration</source>
+        <target>Agordoj</target>
+      </trans-unit>
+      <trans-unit id="l4wviUE" resname="tags">
+        <source>tags</source>
+        <target>Etikedoj</target>
+      </trans-unit>
+      <trans-unit id="JGaf9IK" resname="Doctor">
+        <source>Doctor</source>
+        <target>Sistem-sano</target>
+      </trans-unit>
+      <trans-unit id="Vz3Igj3" resname="error.no_entries_found">
+        <source>error.no_entries_found</source>
+        <target>Neniuj elementoj estis trovitaj surbaze de elektitaj filtriloj.</target>
+      </trans-unit>
+      <trans-unit id="hlu4iX5" resname="error.no_comments_found">
+        <source>error.no_comments_found</source>
+        <target>Ankoraŭ ne estas komentoj.</target>
+      </trans-unit>
+      <trans-unit id="DodjLNR" resname="date">
+        <source>date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="BHk4pZ3" resname="starttime">
+        <source>starttime</source>
+        <target>Komenco</target>
+      </trans-unit>
+      <trans-unit id="eI_tMbq" resname="endtime">
+        <source>endtime</source>
+        <target>Fino</target>
+      </trans-unit>
+      <trans-unit id="yqea9Nt" resname="duration">
+        <source>duration</source>
+        <target>Daŭro</target>
+      </trans-unit>
+      <trans-unit id="BPiZbad" resname="user">
+        <source>user</source>
+        <target>Uzanto</target>
+      </trans-unit>
+      <trans-unit id="FveKfWM" resname="username">
+        <source>username</source>
+        <target>Uzanto</target>
+      </trans-unit>
+      <trans-unit id="yQRveje" resname="description">
+        <source>Description</source>
+        <target state="translated">Priskribo</target>
+      </trans-unit>
+      <trans-unit id="gqNTf.D" resname="name">
+        <source>name</source>
+        <target>Nomo</target>
+      </trans-unit>
+      <trans-unit id="xEuy.VF" resname="comment">
+        <source>comment</source>
+        <target>Komento</target>
+      </trans-unit>
+      <trans-unit id="pWFFJwz" resname="id">
+        <source>id</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="1C7xSXk" resname="visible">
+        <source>visible</source>
+        <target>Videbla</target>
+      </trans-unit>
+      <trans-unit id="CvlqjtY" resname="budget">
+        <source>budget</source>
+        <target>Buĝeto</target>
+      </trans-unit>
+      <trans-unit id="qbD0dHa" resname="timeBudget" xml:space="preserve">
+        <source>timeBudget</source>
+        <target state="needs-translation">Tempobuĝeto</target>
+      </trans-unit>
+      <trans-unit id="BlGGO.X" resname="activity">
+        <source>activity</source>
+        <target>Aktivaĵo</target>
+      </trans-unit>
+      <trans-unit id="JEIQ5IQ" resname="project">
+        <source>project</source>
+        <target>Projekto</target>
+      </trans-unit>
+      <trans-unit id="KhBzpuZ" resname="tag">
+        <source>tag</source>
+        <target>Etikedoj</target>
+      </trans-unit>
+      <trans-unit id="E_bHhGR" resname="hourlyRate">
+        <source>hourlyRate</source>
+        <target>Hora kotizo</target>
+      </trans-unit>
+      <trans-unit id="HcWuW2g" resname="layout">
+        <source>layout</source>
+        <target>Montri: aspektigo</target>
+      </trans-unit>
+      <trans-unit id="QEMUsfS" resname="hours">
+        <source>hours</source>
+        <target>Horoj</target>
+      </trans-unit>
+      <trans-unit id="xUl3nXn" resname="rate">
+        <source>rate</source>
+        <target>Kotizo</target>
+      </trans-unit>
+      <trans-unit id="pO8wS6Q" resname="language">
+        <source>language</source>
+        <target>Lingvo</target>
+      </trans-unit>
+      <trans-unit id="tsRYY4d" resname="customer">
+        <source>customer</source>
+        <target>Kliento</target>
+      </trans-unit>
+      <trans-unit id="giREF.l" resname="email">
+        <source>email</source>
+        <target>Retadreso</target>
+      </trans-unit>
+      <trans-unit id="yosi0Nu" resname="team">
+        <source>team</source>
+        <target>Teamo</target>
+      </trans-unit>
+      <trans-unit id="evFI7nW" resname="teamlead">
+        <source>teamlead</source>
+        <target>Teamgvidanto</target>
+      </trans-unit>
+      <trans-unit id="Kw3N1AA" resname="actions">
+        <source>actions</source>
+        <target>Aktivaĵoj</target>
+      </trans-unit>
+      <trans-unit id="ovKkXwU" resname="action.edit">
+        <source>action.edit</source>
+        <target>Redakti</target>
+      </trans-unit>
+      <trans-unit id="YZdZVQP" resname="delete">
+        <source>action.delete</source>
+        <target>Forigi</target>
+      </trans-unit>
+      <trans-unit id="HLtdhYw" resname="action.save">
+        <source>action.save</source>
+        <target>Konservi</target>
+      </trans-unit>
+      <trans-unit id="tKZKI2Z" resname="action.reset">
+        <source>action.reset</source>
+        <target>Restartigi</target>
+      </trans-unit>
+      <trans-unit id="wCazS.X" resname="action.close">
+        <source>action.close</source>
+        <target>Fermi</target>
+      </trans-unit>
+      <trans-unit id="3bqLM8Q" resname="dashboard.title">
+        <source>dashboard.title</source>
+        <target>Panelo</target>
+      </trans-unit>
+      <trans-unit id="muzkQpM" resname="toggle_dropdown">
+        <source>toggle_dropdown</source>
+        <target>Montri menuon</target>
+      </trans-unit>
+      <trans-unit id="L05Qw2x" resname="my_teams">
+        <source>my_teams</source>
+        <target>Miaj teamoj</target>
+      </trans-unit>
+      <trans-unit id="Ia0kvPi" resname="my_team_projects">
+        <source>my_team_projects</source>
+        <target>Teamaj projektoj &amp; buĝetoj</target>
+      </trans-unit>
+      <trans-unit id="tfkKlua" resname="progress">
+        <source>progress</source>
+        <target>Progreso</target>
+      </trans-unit>
+      <trans-unit id="VXj0Y3h" resname="timesheet.title">
+        <source>timesheet.title</source>
+        <target>Miaj tempoj</target>
+      </trans-unit>
+      <trans-unit id="dwEVXUR" resname="timesheet.edit">
+        <source>timesheet.edit</source>
+        <target>Redakti la registraĵon</target>
+      </trans-unit>
+      <trans-unit id="5vB9Q7X" resname="begin">
+        <source>begin</source>
+        <target>De</target>
+      </trans-unit>
+      <trans-unit id="Nh5I0DC" resname="end">
+        <source>end</source>
+        <target>Al</target>
+      </trans-unit>
+      <trans-unit id="iNOVZRh" resname="daterange">
+        <source>daterange</source>
+        <target>Tempoperiodo</target>
+      </trans-unit>
+      <trans-unit id="UbnqJLn" resname="modal.columns.title">
+        <source>modal.columns.title</source>
+        <target>Ŝanĝi videblecon de kolumnoj</target>
+      </trans-unit>
+      <trans-unit id="_0tuMNE" resname="fixedRate">
+        <source>fixedRate</source>
+        <target>Fiksita kotizo</target>
+      </trans-unit>
+      <trans-unit id="dChNncv" resname="color">
+        <source>color</source>
+        <target>Koloro</target>
+      </trans-unit>
+      <trans-unit id="erN3h3b" resname="replace">
+        <source>replace</source>
+        <target>Anstataŭigi</target>
+      </trans-unit>
+      <trans-unit id="rlJLVNm" resname="append">
+        <source>append</source>
+        <target>Postglui</target>
+      </trans-unit>
+      <trans-unit id="1_wnK76" resname="profile.title">
+        <source>profile.title</source>
+        <target>Profilo de uzanto</target>
+      </trans-unit>
+      <trans-unit id="HWKJZ0T" resname="profile.about_me">
+        <source>profile.about_me</source>
+        <target>Pri mi</target>
+      </trans-unit>
+      <trans-unit id="Fm.kwVn" resname="profile.first_entry" xml:space="preserve">
+        <source>profile.first_entry</source>
+        <target state="needs-translation">Laboras ekde</target>
+      </trans-unit>
+      <trans-unit id="xEYQXPy" resname="profile.settings">
+        <source>profile.settings</source>
+        <target>Profilo</target>
+      </trans-unit>
+      <trans-unit id="A6TLLQa" resname="profile.password">
+        <source>profile.password</source>
+        <target>Pasvorto</target>
+      </trans-unit>
+      <trans-unit id="Z34ZpjK" resname="profile.api-token">
+        <source>profile.api-token</source>
+        <target>API</target>
+      </trans-unit>
+      <trans-unit id="ygtTz8." resname="profile.roles">
+        <source>profile.roles</source>
+        <target>Roloj</target>
+      </trans-unit>
+      <trans-unit id="MQKiG33" resname="profile.preferences">
+        <source>profile.preferences</source>
+        <target>Agordoj</target>
+      </trans-unit>
+      <trans-unit id="j4Kd9N1" resname="calendar_initial_view">
+        <source>calendar_initial_view</source>
+        <target>Komenca kalendara vido</target>
+      </trans-unit>
+      <trans-unit id="H.IqJTQ" resname="login_initial_view">
+        <source>login_initial_view</source>
+        <target>Komenca vido post ensaluto</target>
+      </trans-unit>
+      <trans-unit id="gRIArHS" resname="lastLogin">
+        <source>lastLogin</source>
+        <target>Lasta ensaluto</target>
+      </trans-unit>
+      <trans-unit id="pcfRcZ4" resname="month">
+        <source>month</source>
+        <target>Monato</target>
+      </trans-unit>
+      <trans-unit id="Irm6dfx" resname="agendaWeek">
+        <source>agendaWeek</source>
+        <target>Semajno</target>
+      </trans-unit>
+      <trans-unit id="Q0Zip02" resname="agendaDay">
+        <source>agendaDay</source>
+        <target>Tago</target>
+      </trans-unit>
+      <trans-unit id="r49TNAg" resname="daily_stats">
+        <source>daily_stats</source>
+        <target>Montri tagan statistikon en la temposlipo</target>
+      </trans-unit>
+      <trans-unit id="dherSTU" resname="export_decimal">
+        <source>export_decimal</source>
+        <target>Uzi dekuman daŭron en eksporto</target>
+      </trans-unit>
+      <trans-unit id="UVJ5Die" resname="calendar">
+        <source>calendar</source>
+        <target>Kalendaro</target>
+      </trans-unit>
+      <trans-unit id="Xyjr.V." resname="project_start">
+        <source>project_start</source>
+        <target>Komenco de projekto</target>
+      </trans-unit>
+      <trans-unit id="TBWoUYf" resname="project_end">
+        <source>project_end</source>
+        <target>Fino de projekto</target>
+      </trans-unit>
+      <trans-unit id="EohvnQA" resname="number">
+        <source>number</source>
+        <target>Konto</target>
+      </trans-unit>
+      <trans-unit id="8WjM3ZF" resname="company">
+        <source>company</source>
+        <target>Nomo de kompanio</target>
+      </trans-unit>
+      <trans-unit id="fFErSLq" resname="vat">
+        <source>vat</source>
+        <target>Imposto</target>
+      </trans-unit>
+      <trans-unit id="EJDS9HY" resname="vat_id">
+        <source>vat_id</source>
+        <target>AVI-ID</target>
+      </trans-unit>
+      <trans-unit id="CT59X9u" resname="contact">
+        <source>Contact</source>
+        <target state="translated">Kontakto</target>
+      </trans-unit>
+      <trans-unit id="2Ayb_RD" resname="address">
+        <source>address</source>
+        <target>Adreso</target>
+      </trans-unit>
+      <trans-unit id="r.ZOT9U" resname="country">
+        <source>country</source>
+        <target>Lando</target>
+      </trans-unit>
+      <trans-unit id="RVadpX9" resname="phone">
+        <source>phone</source>
+        <target>Telefono</target>
+      </trans-unit>
+      <trans-unit id="SvTiF8B" resname="fax">
+        <source>fax</source>
+        <target>Fakso</target>
+      </trans-unit>
+      <trans-unit id="1STBoIE" resname="mobile">
+        <source>mobile</source>
+        <target>Poŝtelefono</target>
+      </trans-unit>
+      <trans-unit id="pcWhXux" resname="homepage">
+        <source>homepage</source>
+        <target>Hejmpaĝo</target>
+      </trans-unit>
+      <trans-unit id="OWLt7pw" resname="timezone">
+        <source>timezone</source>
+        <target>Horzono</target>
+      </trans-unit>
+      <trans-unit id="Rm5bnNV" resname="currency">
+        <source>currency</source>
+        <target>Valuto</target>
+      </trans-unit>
+      <trans-unit id="GgpqNso" resname="alias">
+        <source>alias</source>
+        <target>Nomo</target>
+      </trans-unit>
+      <trans-unit id="qvIyBkY" resname="title">
+        <source>title</source>
+        <target>Titolo</target>
+      </trans-unit>
+      <trans-unit id="h7voece" resname="avatar">
+        <source>avatar</source>
+        <target>Profilbildo</target>
+      </trans-unit>
+      <trans-unit id="loeWEWU" resname="active">
+        <source>active</source>
+        <target>Activa</target>
+      </trans-unit>
+      <trans-unit id="Zs9VE7N" resname="roles">
+        <source>roles</source>
+        <target>Rolo</target>
+      </trans-unit>
+      <trans-unit id="ZlZ20pG" resname="user_permissions.title">
+        <source>user_permissions.title</source>
+        <target>Uzantpermesoj</target>
+      </trans-unit>
+      <trans-unit id="G.GEdlk" resname="user_role.title">
+        <source>user_role.title</source>
+        <target>Uzantrolo</target>
+      </trans-unit>
+      <trans-unit id="E7G60OF" resname="Allowed character: A-Z and _">
+        <source>Allowed character: A-Z and _</source>
+        <target>Permesitaj signoj: A-Z kaj _</target>
+      </trans-unit>
+      <trans-unit id="XKTzhQz" resname="version">
+        <source>version</source>
+        <target>Versio</target>
+      </trans-unit>
+      <trans-unit id="WRuKTcz" resname="ROLE_SUPER_ADMIN">
+        <source>ROLE_SUPER_ADMIN</source>
+        <target>Sistema administranto</target>
+      </trans-unit>
+      <trans-unit id="718iPw6" resname="ROLE_ADMIN">
+        <source>ROLE_ADMIN</source>
+        <target>Administranto</target>
+      </trans-unit>
+      <trans-unit id="yttGLAB" resname="ROLE_TEAMLEAD">
+        <source>ROLE_TEAMLEAD</source>
+        <target>Teamgvidanto</target>
+      </trans-unit>
+      <trans-unit id="rvO5ZXf" resname="ROLE_USER">
+        <source>ROLE_USER</source>
+        <target>Uzanto</target>
+      </trans-unit>
+      <trans-unit id="TdBJBAl" resname="stats.durationToday" xml:space="preserve">
+        <source>stats.durationToday</source>
+        <target state="needs-translation">Laborhoroj hodiaŭ</target>
+      </trans-unit>
+      <trans-unit id="XhKalZH" resname="stats.durationWeek" xml:space="preserve">
+        <source>stats.durationWeek</source>
+        <target state="needs-translation">Laborhoroj ĉi-semajne</target>
+      </trans-unit>
+      <trans-unit id="uaOwf_P" resname="stats.durationMonth" xml:space="preserve">
+        <source>stats.durationMonth</source>
+        <target state="needs-translation">Laborhoroj ĉi-monate</target>
+      </trans-unit>
+      <trans-unit id="WqF84KR" resname="stats.durationYear" xml:space="preserve">
+        <source>stats.durationYear</source>
+        <target state="needs-translation">Laborhoroj ĉi-jare</target>
+      </trans-unit>
+      <trans-unit id="YtvPnl1" resname="stats.durationTotal" xml:space="preserve">
+        <source>stats.durationTotal</source>
+        <target state="needs-translation">Laborhoroj entute</target>
+      </trans-unit>
+      <trans-unit id="IFOLMgp" resname="stats.yourWorkingHours">
+        <source>stats.yourWorkingHours</source>
+        <target>Miaj laborhoroj</target>
+      </trans-unit>
+      <trans-unit id="023M9Ta" resname="stats.amountToday">
+        <source>stats.amountToday</source>
+        <target>Enspezoj hodiaŭ</target>
+      </trans-unit>
+      <trans-unit id="xnJvYAE" resname="stats.amountWeek">
+        <source>stats.amountWeek</source>
+        <target>Enspezoj ĉi-semajne</target>
+      </trans-unit>
+      <trans-unit id="ulr3reE" resname="stats.amountMonth">
+        <source>stats.amountMonth</source>
+        <target>Enspezoj ĉi-monate</target>
+      </trans-unit>
+      <trans-unit id="bQZyZaO" resname="stats.amountYear">
+        <source>stats.amountYear</source>
+        <target>Enspezoj ĉi-jare</target>
+      </trans-unit>
+      <trans-unit id="Z0fz23v" resname="stats.amountTotal">
+        <source>stats.amountTotal</source>
+        <target>Enspezoj entute</target>
+      </trans-unit>
+      <trans-unit id="HzICegM" resname="stats.activeUsersToday">
+        <source>stats.activeUsersToday</source>
+        <target>Aktivaj uzantoj hodiaŭ</target>
+      </trans-unit>
+      <trans-unit id="7oP64Kh" resname="stats.activeUsersWeek">
+        <source>stats.activeUsersWeek</source>
+        <target>Aktivaj uzantoj ĉi-semajne</target>
+      </trans-unit>
+      <trans-unit id="40xQ.Qt" resname="stats.activeUsersMonth">
+        <source>stats.activeUsersMonth</source>
+        <target>Aktivaj uzantoj ĉi-monate</target>
+      </trans-unit>
+      <trans-unit id="lGuZo7g" resname="stats.activeUsersYear">
+        <source>stats.activeUsersYear</source>
+        <target>Aktivaj uzantoj ĉi-jare</target>
+      </trans-unit>
+      <trans-unit id="8FFVmiv" resname="stats.activeUsersTotal">
+        <source>stats.activeUsersTotal</source>
+        <target>Aktivaj uzantoj entute</target>
+      </trans-unit>
+      <trans-unit id="lEW82ex" resname="stats.activeRecordings">
+        <source>stats.activeRecordings</source>
+        <target>Aktivaj registraĵoj</target>
+      </trans-unit>
+      <trans-unit id="t5eIWp8" resname="stats.userTotal">
+        <source>stats.userTotal</source>
+        <target>Uzantoj</target>
+      </trans-unit>
+      <trans-unit id="Bor.76M" resname="stats.activityTotal">
+        <source>stats.activityTotal</source>
+        <target>Aktivaĵoj</target>
+      </trans-unit>
+      <trans-unit id="67uSaR3" resname="stats.projectTotal">
+        <source>stats.projectTotal</source>
+        <target>Projektoj</target>
+      </trans-unit>
+      <trans-unit id="tnD6aPj" resname="stats.customerTotal">
+        <source>stats.customerTotal</source>
+        <target>Klientoj</target>
+      </trans-unit>
+      <trans-unit id="unC5MXv" resname="stats.percentUsed">
+        <source>stats.percentUsed</source>
+        <target>%percent%% uzitaj</target>
+      </trans-unit>
+      <trans-unit id="HkjvwLc" resname="stats.percentUsedLeft">
+        <source>stats.percentUsedLeft</source>
+        <target>%percent%% uzitaj (%left% estas daŭre malfermitaj)</target>
+      </trans-unit>
+      <trans-unit id="Oq.KtC6" resname="admin_invoice_template.title">
+        <source>admin_invoice_template.title</source>
+        <target>Fakturŝablono</target>
+      </trans-unit>
+      <trans-unit id="SR2r1Cs" resname="invoices">
+        <source>invoices</source>
+        <target>Fakturoj</target>
+      </trans-unit>
+      <trans-unit id="ov4OQOh" resname="invoice.filter">
+        <source>invoice.filter</source>
+        <target>Filtri fakturajn datumojn</target>
+      </trans-unit>
+      <trans-unit id="WXXPG7p" resname="preview">
+        <source>preview</source>
+        <target>Antaŭrigardo</target>
+      </trans-unit>
+      <trans-unit id="zpU6DrC" resname="print">
+        <source>print</source>
+        <target>Printi</target>
+      </trans-unit>
+      <trans-unit id="U7ubCzi" resname="csv">
+        <source>csv</source>
+        <target>CSV</target>
+      </trans-unit>
+      <trans-unit id="HJgLIry" resname="xlsx">
+        <source>xlsx</source>
+        <target>Excel</target>
+      </trans-unit>
+      <trans-unit id="w1sh1so" resname="pdf">
+        <source>pdf</source>
+        <target>PDF</target>
+      </trans-unit>
+      <trans-unit id="lmUO63g" resname="ods">
+        <source>ods</source>
+        <target>ODS</target>
+      </trans-unit>
+      <trans-unit id="zPcx3O_" resname="invoice_print">
+        <source>invoice_print</source>
+        <target>Fakturo</target>
+      </trans-unit>
+      <trans-unit id="dicW36D" resname="mark_as_exported">
+        <source>mark_as_exported</source>
+        <target>Marki eksportita</target>
+      </trans-unit>
+      <trans-unit id="XN4PEpj" resname="template">
+        <source>template</source>
+        <target>Ŝablono</target>
+      </trans-unit>
+      <trans-unit id="ohNu8DK" resname="due_days">
+        <source>due_days</source>
+        <target>Limdato en tagoj por pagi</target>
+      </trans-unit>
+      <trans-unit id="rAJrxSK" resname="invoice.due_days">
+        <source>invoice.due_days</source>
+        <target>Pagcelo</target>
+      </trans-unit>
+      <trans-unit id="4XKFnWh" resname="invoice.from">
+        <source>invoice.from</source>
+        <target>De</target>
+      </trans-unit>
+      <trans-unit id="hx7vsMA" resname="invoice.to">
+        <source>invoice.to</source>
+        <target>Al</target>
+      </trans-unit>
+      <trans-unit id="x_W5sV4" resname="invoice.number">
+        <source>invoice.number</source>
+        <target>Fakturnumero</target>
+      </trans-unit>
+      <trans-unit id="86KyrKO" resname="invoice.subtotal">
+        <source>invoice.subtotal</source>
+        <target>Subtotalo</target>
+      </trans-unit>
+      <trans-unit id="EO57yXg" resname="invoice.tax">
+        <source>invoice.tax</source>
+        <target>Imposto</target>
+      </trans-unit>
+      <trans-unit id="N68vyvo" resname="invoice.total">
+        <source>invoice.total</source>
+        <target>Entute</target>
+      </trans-unit>
+      <trans-unit id="TPzFWUs" resname="invoice.service_date">
+        <source>invoice.service_date</source>
+        <target>Servo-dato</target>
+      </trans-unit>
+      <trans-unit id="zzjZXJx" resname="amount">
+        <source>amount</source>
+        <target>Kvanto</target>
+      </trans-unit>
+      <trans-unit id="BAkWQqr" resname="total_rate">
+        <source>total_rate</source>
+        <target>Tuta prezo</target>
+      </trans-unit>
+      <trans-unit id="IoKfYkz" resname="unit_price">
+        <source>unit_price</source>
+        <target>Unuopa prezo</target>
+      </trans-unit>
+      <trans-unit id="033t0aO" resname="payment_terms">
+        <source>payment_terms</source>
+        <target>Kondiĉoj de pago</target>
+      </trans-unit>
+      <trans-unit id="9p2KQag" resname="invoice.signature_user">
+        <source>invoice.signature_user</source>
+        <target>Konfirmo: Dato / Nomo de konsilisto / Subskribo</target>
+      </trans-unit>
+      <trans-unit id="Q9ykNhO" resname="invoice.signature_customer">
+        <source>invoice.signature_customer</source>
+        <target>Konfirmo: Dato / Nomo de kliento / Subskribo</target>
+      </trans-unit>
+      <trans-unit id="c3d6p33" resname="invoice.total_working_time">
+        <source>invoice.total_working_time</source>
+        <target>Tuta daŭro</target>
+      </trans-unit>
+      <trans-unit id="3tegKgk" resname="orderNumber">
+        <source>orderNumber</source>
+        <target>Mendonumero</target>
+      </trans-unit>
+      <trans-unit id="tCNBGKG" resname="orderDate">
+        <source>orderDate</source>
+        <target>Mendodato</target>
+      </trans-unit>
+      <trans-unit id="WMJwy8r" resname="invoice_tax_number">
+        <source>invoice_tax_number</source>
+        <target>AVI-nr-o:</target>
+      </trans-unit>
+      <trans-unit id="lswYe8s" resname="invoice_bank_account">
+        <source>invoice_bank_account</source>
+        <target>Bankokonto</target>
+      </trans-unit>
+      <trans-unit id="BzwWNMS" resname="status">
+        <source>status</source>
+        <target>Stato</target>
+      </trans-unit>
+      <trans-unit id="X_NRsed" resname="status.new">
+        <source>status.new</source>
+        <target>Nova</target>
+      </trans-unit>
+      <trans-unit id="Uvo1CbP" resname="status.pending">
+        <source>status.pending</source>
+        <target>Pritraktota</target>
+      </trans-unit>
+      <trans-unit id="PHJwR4w" resname="status.paid">
+        <source>status.paid</source>
+        <target>Pagita</target>
+      </trans-unit>
+      <trans-unit id="1GruCMx" resname="export">
+        <source>export</source>
+        <target>Eksporti</target>
+      </trans-unit>
+      <trans-unit id="iwWaUoa" resname="export.filter">
+        <source>export.filter</source>
+        <target>Filtri datumojn por eksporto</target>
+      </trans-unit>
+      <trans-unit id="vjmoQGo" resname="export.period">
+        <source>export.period</source>
+        <target>Periodo</target>
+      </trans-unit>
+      <trans-unit id="3CQ7A2m" resname="export.document_title">
+        <source>export.document_title</source>
+        <target>Listo de temposlipoj</target>
+      </trans-unit>
+      <trans-unit id="d5wyWRD" resname="export.full_list">
+        <source>export.full_list</source>
+        <target>Plena listo</target>
+      </trans-unit>
+      <trans-unit id="N778uJ6" resname="export.summary">
+        <source>export.summary</source>
+        <target>Resumo</target>
+      </trans-unit>
+      <trans-unit id="ElDyzrx" resname="export.page_of">
+        <source>export.page_of</source>
+        <target>Paĝo %page% de %pages%</target>
+      </trans-unit>
+      <trans-unit id="vKY0tof" resname="export.date_copyright">
+        <source>export.date_copyright</source>
+        <target>Kreita je la %date% per %kimai%</target>
+      </trans-unit>
+      <trans-unit id="OxdYMR3" resname="active.entries">
+        <source>active.entries</source>
+        <target>Viaj aktivaj tempomezuroj</target>
+      </trans-unit>
+      <trans-unit id="WVU_S.A" resname="recent.activities">
+        <source>recent.activities</source>
+        <target>Restartigi unu de viaj lastaj aktivaĵoj</target>
+      </trans-unit>
+      <trans-unit id="dTHY7Mw" resname="timesheet.start">
+        <source>timesheet.start</source>
+        <target state="needs-translation">Krei novan temporegistraĵon</target>
+      </trans-unit>
+      <trans-unit id="igCkqAP" resname="pageSize">
+        <source>pageSize</source>
+        <target>Grandeco de la paĝo</target>
+      </trans-unit>
+      <trans-unit id="cjgNYUB" resname="entryState">
+        <source>entryState</source>
+        <target>Registraĵoj</target>
+      </trans-unit>
+      <trans-unit id="Qn2ouiL" resname="exported">
+        <source>exported</source>
+        <target>Eksportita</target>
+      </trans-unit>
+      <trans-unit id="_DDecAV" resname="entryState.exported">
+        <source>entryState.exported</source>
+        <target>Malplenigita</target>
+      </trans-unit>
+      <trans-unit id="ccCiXyR" resname="entryState.not_exported">
+        <source>entryState.not_exported</source>
+        <target>Malfermi</target>
+      </trans-unit>
+      <trans-unit id="XvXvA2S" resname="all">
+        <source>all</source>
+        <target>Ĉiuj</target>
+      </trans-unit>
+      <trans-unit id="xm7mqoK" resname="entryState.running">
+        <source>entryState.running</source>
+        <target>Aktiva</target>
+      </trans-unit>
+      <trans-unit id="spHpd_I" resname="entryState.stopped">
+        <source>entryState.stopped</source>
+        <target>Haltigita</target>
+      </trans-unit>
+      <trans-unit id="BhsaLxX" resname="export.clear_all">
+        <source>export.clear_all</source>
+        <target>Ĉu marki ĉiujn montritajn registraĵojn kiel malfermitajn?</target>
+      </trans-unit>
+      <trans-unit id="qtjPKUT" resname="export.mark_all">
+        <source>export.mark_all</source>
+        <target>Ĉu marki ĉiujn montritajn registraĵojn kiel malplenigitajn?</target>
+      </trans-unit>
+      <trans-unit id="NNsA8i2" resname="globalsOnly">
+        <source>globalsOnly</source>
+        <target>Nur mallokaj</target>
+      </trans-unit>
+      <trans-unit id="JIKNAYP" resname="stats.workingTimeMonth">
+        <source>stats.workingTimeMonth</source>
+        <target>%month% %year%</target>
+      </trans-unit>
+      <trans-unit id="XdYs3I8" resname="stats.workingTimeWeek">
+        <source>stats.workingTimeWeek</source>
+        <target>Kalendara semajno %week%</target>
+      </trans-unit>
+      <trans-unit id="lfSTZGe" resname="stats.workingTimeToday">
+        <source>stats.workingTimeToday</source>
+        <target>Hodiaŭ, %day%</target>
+      </trans-unit>
+      <trans-unit id="LIOnolg" resname="placeholder.type_message">
+        <source>placeholder.type_message</source>
+        <target>Tajpu vian mesaĝon…</target>
+      </trans-unit>
+      <trans-unit id="9Wt8Pp_" resname="help.batch_meta_fields">
+        <source>help.batch_meta_fields</source>
+        <target>Ĝisdatigotaj kampoj devas unue esti aktivigitaj per alklakoj de la rilataj elektobutonoj.</target>
+      </trans-unit>
+      <trans-unit id="djL6LMC" resname="help.rate">
+        <source>help.rate</source>
+        <target>Hora kotizo fakturota</target>
+      </trans-unit>
+      <trans-unit id="XP5zkiN" resname="modal.dirty">
+        <source>modal.dirty</source>
+        <target>La formularo estas ŝanĝita. Bonvolu alklaki "Konservi" por konservi la ŝanĝojn aŭ "Fermi" por nuligi.</target>
+      </trans-unit>
+      <trans-unit id="b43sCwO" resname="help.fixedRate">
+        <source>help.fixedRate</source>
+        <target>Ĉiu temporegistraĵo ricevos la saman valoron, sendepende de sia daŭro</target>
+      </trans-unit>
+      <trans-unit id="Cxv_0wG" resname="help.internalRate">
+        <source>help.internalRate</source>
+        <target>Internaj kostoj (se ĉi tio ne estas specifita, uziĝos la normala kotizo)</target>
+      </trans-unit>
+      <trans-unit id="Qc5nsFn" resname="recalculate_rates">
+        <source>recalculate_rates</source>
+        <target>Rekalkulki kotizojn</target>
+      </trans-unit>
+      <trans-unit id="aVwNQcX" resname="billable">
+        <source>billable</source>
+        <target>Fakturebla</target>
+      </trans-unit>
+      <trans-unit id="7zptTeh" resname="update_browser_title">
+        <source>update_browser_title</source>
+        <target>Ĝisdatigi retumilan titolon</target>
+      </trans-unit>
+      <trans-unit id="ypVQO7o" resname="menu.reporting">
+        <source>menu.reporting</source>
+        <target>Raportado</target>
+      </trans-unit>
+      <trans-unit id="5ofAsOs" resname="internalRate">
+        <source>internalRate</source>
+        <target>Interna kotizo</target>
+      </trans-unit>
+      <trans-unit id="8BPmHPa" resname="batch_meta_fields">
+        <source>batch_meta_fields</source>
+        <target>Pliaj kampoj</target>
+      </trans-unit>
+      <trans-unit id="1c0EQaz" resname="profile.registration_date">
+        <source>profile.registration_date</source>
+        <target>Registrita ĉe</target>
+      </trans-unit>
+      <trans-unit id="zFfl7jw" resname="sum.total">
+        <source>sum.total</source>
+        <target>Entute</target>
+      </trans-unit>
+      <trans-unit id="JnUFsNi" resname="stats.workingTimeYear">
+        <source>stats.workingTimeYear</source>
+        <target>Tuta jaro %year%</target>
+      </trans-unit>
+      <trans-unit id="L27KvC9" resname="includeNoWork">
+        <source>includeNoWork</source>
+        <target>Montri elementojn sen rezervoj</target>
+      </trans-unit>
+      <trans-unit id="L0hRlcf" resname="includeNoBudget">
+        <source>includeNoBudget</source>
+        <target>Montri elementojn sen buĝeto</target>
+      </trans-unit>
+      <trans-unit id="qX_CKtU" resname="tax_rate">
+        <source>tax_rate</source>
+        <target>Imposta procento</target>
+      </trans-unit>
+      <trans-unit id="O5w1jzb" resname="file">
+        <source>file</source>
+        <target>Dosiero</target>
+      </trans-unit>
+      <trans-unit id="o0yOFHL" resname="not_invoiced">
+        <source>not_invoiced</source>
+        <target>Ne fakturita</target>
+      </trans-unit>
+      <trans-unit id="2dm.ZWM" resname="not_exported">
+        <source>not_exported</source>
+        <target>Ne eksportita</target>
+      </trans-unit>
+      <trans-unit id="l4ZOh4." resname="desc">
+        <source>desc</source>
+        <target>Malkreskante</target>
+      </trans-unit>
+      <trans-unit id="1o0.9vf" resname="asc">
+        <source>asc</source>
+        <target>Kreskante</target>
+      </trans-unit>
+      <trans-unit id="CiA4s9E" resname="set_as_default">
+        <source>set_as_default</source>
+        <target>Konservi kiel serĉan favoraton</target>
+      </trans-unit>
+      <trans-unit id="8W_TZI0" resname="searchTerm">
+        <source>searchTerm</source>
+        <target>Serĉvorto</target>
+      </trans-unit>
+      <trans-unit id="VSo_gmO" resname="orderBy">
+        <source>orderBy</source>
+        <target>Ordigi laŭ</target>
+      </trans-unit>
+      <trans-unit id="crrlEUA" resname="preview.skipped_rows">
+        <source>preview.skipped_rows</source>
+        <target>Pretersaltis antaŭrigardon de %rows% pliaj vicoj…</target>
+      </trans-unit>
+      <trans-unit id="Xij3oQl" resname="invoice.payment_date">
+        <source>invoice.payment_date</source>
+        <target>Dato de pago</target>
+      </trans-unit>
+      <trans-unit id="DUDrvjk" resname="remove_default">
+        <source>remove_default</source>
+        <target>Forigi serĉan favoraton</target>
+      </trans-unit>
+      <trans-unit id="vpqPF8v" resname="last_record_before">
+        <source>last_record_before</source>
+        <target>Neniu temporezervo ekde</target>
+      </trans-unit>
+      <trans-unit id="_YiKaOT" resname="last_record">
+        <source>last_record</source>
+        <target>Lasta elemento</target>
+      </trans-unit>
+      <trans-unit id="_Pym9RO" resname="stats.activeUsersFinancialYear">
+        <source>stats.activeUsersFinancialYear</source>
+        <target>Aktivaj uzantoj ĉi-financjare</target>
+      </trans-unit>
+      <trans-unit id="xkugSAA" resname="stats.durationFinancialYear" xml:space="preserve">
+        <source>stats.durationFinancialYear</source>
+        <target state="needs-translation">Laborhoroj ĉi-financjare</target>
+      </trans-unit>
+      <trans-unit id="wuUWovn" resname="stats.amountFinancialYear">
+        <source>stats.amountFinancialYear</source>
+        <target>Enspezoj ĉi-financjare</target>
+      </trans-unit>
+      <trans-unit id="HWB4OGJ" resname="stats.workingTimeFinancialYear">
+        <source>stats.workingTimeFinancialYear</source>
+        <target>Financjaro</target>
+      </trans-unit>
+      <trans-unit id="_cY.wHP" resname="resetting.check_email" xml:space="preserve">
+        <source>An email has been sent with a link to reset your password. Note: You can only request a new password once every %tokenLifetime% hours. If you don't receive the email, please check your spam folder or try again.</source>
+        <target state="needs-translation">Retpoŝta mesaĝo estis sendita al email. Ĝi enhavas aktivigan ligon, kiun vi devas alklaki por restarigi vian pasvorton. Noto: Vi povas peti novan pasvorton nur unufoje en %tokenLifetime% horoj. Se vi ne ricevas retpoŝtan mesaĝon, kontrolu vian trudmesaĝujon aŭ reprovu.</target>
+      </trans-unit>
+      <trans-unit id=".ndupSK" resname="registration.check_email">
+        <source>registration.check_email</source>
+        <target>Retpoŝta mesaĝo estis sendita al %email%. Ĝi enhavas aktivigan ligon, kiun vi devas alklaki por aktivigi vian konton.</target>
+      </trans-unit>
+      <trans-unit id="Nx9_QiO" resname="revenue">
+        <source>revenue</source>
+        <target>Enspezoj</target>
+      </trans-unit>
+      <trans-unit id="BXBFJP8" resname="stats.workingTime" xml:space="preserve">
+        <source>Working hours</source>
+        <target>Laborhoroj</target>
+      </trans-unit>
+      <trans-unit id="XQ2.pq2" resname="error.too_many_entries">
+        <source>error.too_many_entries</source>
+        <target>La peto ne povas esti procezita. Tro multaj rezultoj estis trovitaj.</target>
+      </trans-unit>
+      <trans-unit id="xN7MfSA" resname="stats.percentUsed_month">
+        <source>stats.percentUsed_month</source>
+        <target>%percent%% uzitaj ĉi-monate</target>
+      </trans-unit>
+      <trans-unit id="vWJPpYU" resname="stats.percentUsedLeft_month">
+        <source>stats.percentUsedLeft_month</source>
+        <target>%percent%% uzitaj (%left% estas daŭre malfermitaj ĉi-monate)</target>
+      </trans-unit>
+      <trans-unit id="gT9W2pZ" resname="status.canceled">
+        <source>status.canceled</source>
+        <target>Nuligita</target>
+      </trans-unit>
+      <trans-unit id="W92QGbY" resname="export.warn_result_amount">
+        <source>export.warn_result_amount</source>
+        <target>Via serĉo kondukis al %count% rezultoj. Se eksporto fiaskos, vi devos plu malvastigi vian serĉon.</target>
+      </trans-unit>
+      <trans-unit id="KukrzcT" resname="includeBudgetType_full">
+        <source>includeBudgetType_full</source>
+        <target>montri erojn kun "viv-cikla" buĝeto</target>
+      </trans-unit>
+      <trans-unit id="KH2hgil" resname="account_number">
+        <source>account_number</source>
+        <target>Numero de laboristo</target>
+      </trans-unit>
+      <trans-unit id="tvV0NhL" resname="delete_warning.short_stats">
+        <source>delete_warning.short_stats</source>
+        <target>Nuntempe ekzistas %records% tempo-registraĵoj, kiuj sumiĝas al daŭro de %duration%.</target>
+      </trans-unit>
+      <trans-unit id="4Ndj7Xo" resname="budgetType">
+        <source>budgetType</source>
+        <target>Tipo de buĝeto</target>
+      </trans-unit>
+      <trans-unit id="wYqyL6A" resname="budgetType_month">
+        <source>budgetType_month</source>
+        <target>Monate</target>
+      </trans-unit>
+      <trans-unit id="dnQEYoJ" resname="budgetType_full">
+        <source>budgetType_full</source>
+        <target>Viv-ciklo</target>
+      </trans-unit>
+      <trans-unit id="Zif614Q" resname="add_user.label">
+        <source>add_user.label</source>
+        <target>Aldoni uzanton</target>
+      </trans-unit>
+      <trans-unit id="yNWIi5U" resname="default_value_new">
+        <source>default_value_new</source>
+        <target>Defaŭltaj valoroj por novaj eroj</target>
+      </trans-unit>
+      <trans-unit id="GzWKgBk" resname="error.directory_missing">
+        <source>error.directory_missing</source>
+        <target>La dosierujo "%dir%" ne ekzistas kaj ne povas esti kreita.</target>
+      </trans-unit>
+      <trans-unit id="C2TGff0" resname="error.directory_protected">
+        <source>error.directory_protected</source>
+        <target>La dosierujo "%dir%" estas protektita kontraŭ skribado.</target>
+      </trans-unit>
+      <trans-unit id="jdbtx6z" resname="action.add">
+        <source>action.add</source>
+        <target>Aldoni</target>
+      </trans-unit>
+      <trans-unit id="HPhRbtc" resname="stats.workingTimeWeekShort">
+        <source>stats.workingTimeWeekShort</source>
+        <target>Semajno %week%</target>
+      </trans-unit>
+      <trans-unit id="EwPAaws" resname="type">
+        <source>type</source>
+        <target>Tipo</target>
+      </trans-unit>
+      <trans-unit id="f8oNzSP" resname="quick_entry.title">
+        <source>quick_entry.title</source>
+        <target>Semajnaj laborhoroj</target>
+      </trans-unit>
+      <trans-unit id="IPHM4iP" resname="updated_at">
+        <source>Updated at</source>
+        <target>Ĝisdatigita je</target>
+      </trans-unit>
+      <trans-unit id="nlwMf5w" resname="invoice_document.max_reached">
+        <source>invoice_document.max_reached</source>
+        <target>Atingita maksimuma kvanto de %max% fakturaj dokumentoj. Vi povos aldoni plian post forigo de iu.</target>
+      </trans-unit>
+      <trans-unit id="ViUuILv" resname="includeBudgetType_month">
+        <source>includeBudgetType_month</source>
+        <target>Montri erojn kun "monata" buĝeto</target>
+      </trans-unit>
+      <trans-unit id="tp.gIrE" resname="team.add_user.help">
+        <source>team.add_user.help</source>
+        <target>Aldonu novan uzanton al la teamo elektante de la listo. Poste vi povos decidi ĉu la uzanto estu teamgvidanto.</target>
+      </trans-unit>
+      <trans-unit id="U_D.NIy" resname="automatic">
+        <source>automatic</source>
+        <target state="translated">Aŭtomate</target>
+      </trans-unit>
+      <trans-unit id="OJ.wI1U" resname="invoiceText">
+        <source>invoiceText</source>
+        <target state="translated">Teksto de fakturo</target>
+      </trans-unit>
+      <trans-unit id="3Clo55j" resname="about.title">
+        <source>about.title</source>
+        <target>Pri Kimai</target>
+      </trans-unit>
+      <trans-unit id="EGpYQvx" resname="help">
+        <source>help</source>
+        <target>Dokumentado</target>
+      </trans-unit>
+      <trans-unit id="oYYDCG5" resname="support">
+        <source>support</source>
+        <target>Subteno</target>
+      </trans-unit>
+      <trans-unit id="mz4ieCN" resname="donate">
+        <source>donate</source>
+        <target>Donacu</target>
+      </trans-unit>
+      <trans-unit id="cR5DD88" resname="invoice_number_generator.date">
+        <source>invoice_number_generator.date</source>
+        <target>Dato</target>
+      </trans-unit>
+      <trans-unit id="Qh1X4Vu" resname="invoice_number_generator.default">
+        <source>invoice_number_generator.default</source>
+        <target>Konfigurita formo</target>
+      </trans-unit>
+      <trans-unit id="UI6nPeP" resname="invoice_number_generator">
+        <source>invoice_number_generator</source>
+        <target>Generilo de fakturnumero</target>
+      </trans-unit>
+      <trans-unit id="bEXLcqN" resname="stop">
+        <source>stop</source>
+        <target>Haltigi</target>
+      </trans-unit>
+      <trans-unit id="PEgjRvN" resname="back">
+        <source>back</source>
+        <target>Reen</target>
+      </trans-unit>
+      <trans-unit id="JiEhxTc" resname="edit">
+        <source>edit</source>
+        <target>Redakti</target>
+      </trans-unit>
+      <trans-unit id="4G2jBDS" resname="trash">
+        <source>trash</source>
+        <target>Forigi</target>
+      </trans-unit>
+      <trans-unit id="hF6RgxM" resname="report">
+        <source>report</source>
+        <target>Raporti</target>
+      </trans-unit>
+      <trans-unit id="JeK2sQZ" resname="repeat">
+        <source>repeat</source>
+        <target>Rekomenci</target>
+      </trans-unit>
+      <trans-unit id="J0sRBY_" resname="profile-stats">
+        <source>profile-stats</source>
+        <target>Profilo</target>
+      </trans-unit>
+      <trans-unit id="zeD7Dew" resname="settings" xml:space="preserve">
+        <source>Settings</source>
+        <target state="needs-translation">Agordoj</target>
+      </trans-unit>
+      <trans-unit id="anCjtwe" resname="timesheet.filter" xml:space="preserve">
+        <source>Filter timesheets</source>
+        <target state="needs-translation">Temposlipoj</target>
+      </trans-unit>
+      <trans-unit id="b1pgNOd" resname="copy">
+        <source>copy</source>
+        <target>Krei kopion</target>
+      </trans-unit>
+      <trans-unit id="TqFAWIF" resname="home">
+        <source>home</source>
+        <target>Hejmpaĝo</target>
+      </trans-unit>
+      <trans-unit id="PBlIO2x" resname="create-project">
+        <source>create-project</source>
+        <target>Krei projekton</target>
+      </trans-unit>
+      <trans-unit id="UbouFOs" resname="create-activity">
+        <source>create-activity</source>
+        <target>Krei aktivaĵon</target>
+      </trans-unit>
+      <trans-unit id="QR1nvcR" resname="create-timesheet">
+        <source>create-timesheet</source>
+        <target>Krei temposlipon</target>
+      </trans-unit>
+      <trans-unit id="T_PN1AT" resname="permissions">
+        <source>permissions</source>
+        <target>Teamaj permesoj</target>
+      </trans-unit>
+      <trans-unit id="Qf.Yt2r" resname="details">
+        <source>details</source>
+        <target>Montri</target>
+      </trans-unit>
+      <trans-unit id="aP9j_4L" resname="download">
+        <source>download</source>
+        <target state="translated">Elŝuti</target>
+      </trans-unit>
+      <trans-unit id="hHIeqOW" resname="invoice.pending">
+        <source>invoice.pending</source>
+        <target>Atendado por pago</target>
+      </trans-unit>
+      <trans-unit id="9M4b2ZN" resname="invoice.paid">
+        <source>invoice.paid</source>
+        <target>Fakturo estas pagita</target>
+      </trans-unit>
+      <trans-unit id="Qh5mV5Q" resname="create-timesheet-multiuser">
+        <source>create-timesheet-multiuser</source>
+        <target>Por pluraj uzantoj</target>
+      </trans-unit>
+      <trans-unit id="38M3a4J" resname="filter">
+        <source>filter</source>
+        <target>Filtri datumojn</target>
+      </trans-unit>
+      <trans-unit id="SEyZupT" resname="invoice.cancel">
+        <source>invoice.cancel</source>
+        <target>Nuligita fakturo</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

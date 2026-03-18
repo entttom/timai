@@ -1,0 +1,149 @@
+{% set type = options.type|default('bar') %}
+{% set chart_id = options.id %}
+{% set backgroundColor = config('theme.chart.background_color') %}
+{% set gridColor = config('theme.chart.grid_color') %}
+{% set activities = data.activities %}
+{% set data = data.data %}
+
+<div class="chart">
+    <canvas id="{{ chart_id }}" style="height: {{ config('theme.chart.height') }}px; width: 100%;"></canvas>
+</div>
+
+<script type="text/javascript">
+    var myChart = null;
+
+    var paintChart = function() {
+        myChart = new Chart(
+            document.getElementById('{{ chart_id }}').getContext('2d'), {
+                type: '{{ type }}',
+                data: {
+                    labels: [
+                        {% for day in data -%}
+                        '{{ day.day|date_format('d.') }} {{ day.day|month_name(true) }}'
+                        {% if not loop.last %},{% endif -%}
+                        {%- endfor %}
+                    ],
+                    datasets: [
+                        {% for activityId, activity in activities -%}
+                        {% set activityColor = activity.activity|color|default(activity.project|color|default(backgroundColor)) %}
+                        {% set activityName = activity.activity.name %}
+                        {
+                            label: '{{ activityName }}',
+                            backgroundColor: '{{ activityColor }}',
+                            borderColor: '#fff',
+                            borderWidth: 1,
+                            data: [
+                                {%- for day in data -%}
+                                    {% set realDayData = null %}
+                                    {%- for entry in day.details -%}
+                                        {% set loopId = (entry.project.id ~ '_' ~ entry.activity.id) %}
+                                        {%- if loopId == activityId -%}
+                                            {% set realDayData = entry.duration|chart_duration %}
+                                        {%- endif -%}
+                                    {%- endfor -%}
+                                    {%- if realDayData is not null -%}
+                                        '{{ realDayData }}'
+                                    {%- else -%}
+                                        0
+                                    {%- endif -%}
+                                    {%- if not loop.last %},{% endif -%}
+                                {%- endfor -%}
+                            ],
+                            realData: [
+                                {%- for day in data -%}
+                                    {% set realDayData = null %}
+                                    {%- for entry in day.details -%}
+                                        {% set loopId = (entry.project.id ~ '_' ~ entry.activity.id) %}
+                                        {%- if loopId == activityId -%}
+                                            {% set realDayData = {duration: entry.duration|duration, billable: day.totalDurationBillable|duration, project: entry.project.name, customer: entry.project.customer.name, activity: entry.activity.name, total: day.totalDuration|duration} %}
+                                        {%- endif -%}
+                                    {%- endfor -%}
+                                    {%- if realDayData is not null -%}
+                                        {{ realDayData|json_encode|raw }}
+                                    {%- else -%}
+                                        0
+                                    {%- endif -%}
+                                    {%- if not loop.last %},{% endif -%}
+                                {%- endfor -%}
+                            ]
+                        },
+                        {%- endfor %}
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: true,
+                    responsive: false,
+                    barPercentage: 0.5,
+                    categoryPercentage: 1.0,
+                    scales: {
+                        x: {
+                            stacked: true,
+                            gridLines: {
+                                display: false
+                            },
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                beginAtZero: true
+                            },
+                            gridLines: {
+                                display: true,
+                                color: '{{ gridColor }}',
+                                lineWidth: 1
+                            }
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    const tooltipData = tooltipItem.dataset.realData[tooltipItem.dataIndex];
+                                    return ' ' + tooltipData.duration + ': ' + tooltipData.activity;
+                                },
+                                beforeTitle: function(tooltipItems) {
+                                    const tooltipItem = tooltipItems[0];
+                                    const tooltipData = tooltipItem.dataset.realData[tooltipItem.dataIndex];
+                                    return tooltipData.customer;
+                                },
+                                title: function(tooltipItems) {
+                                    const tooltipItem = tooltipItems[0];
+                                    const tooltipData = tooltipItem.dataset.realData[tooltipItem.dataIndex];
+                                    return tooltipData.project;
+                                },
+                                afterTitle: function(tooltipItems) {
+                                    return ' ';
+                                },
+                                footer: function(tooltipItems) {
+                                    const tooltipItem = tooltipItems[0];
+                                    const tooltipData = tooltipItem.dataset.realData[tooltipItem.dataIndex];
+                                    return '{{ 'stats.durationTotal'|trans }}: ' + tooltipData.total + '\n{{ 'billable'|trans }}: ' + tooltipData.billable;
+                                },
+                                beforeFooter: function(tooltipItems) {
+                                    return ' ';
+                                },
+                            },
+                        }
+                    },
+                }
+            }
+        );
+    };
+    
+    var destroyChart = function () {
+        myChart.destroy();
+    };
+
+    {% if kimai_context.javascriptRequest %}
+        paintChart();
+    {% else %}
+        if (document.getElementById('dashboard-grid-container') !== null) {
+            document.addEventListener('dashboard.initialized', paintChart);
+        } else {
+            document.addEventListener('kimai.initialized', paintChart);
+        }
+    {% endif %}
+</script>

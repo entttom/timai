@@ -1,0 +1,111 @@
+{% extends 'user/layout.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+{% import "macros/charts.html.twig" as charts %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('chart') }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('chart') }}
+{% endblock %}
+
+{% block profile_content %}
+    {% set datagrid = {
+        'username' : user.userIdentifier,
+    } %}
+    {% if user.accountNumber is not empty %}
+        {% set datagrid = datagrid|merge({
+        'account_number' : (user.accountNumber ?? '–'),
+        }) %}
+    {% endif %}
+    {% set datagrid = datagrid|merge({
+        'profile.first_entry' : (workingSince is not null ? workingSince|date_short : '–'),
+        'profile.registration_date' : user.registeredAt|date_short,
+    }) %}
+    {% set seeOwnRate = false %}
+    {% if stats is not null %}
+        {% set seeOwnRate = is_granted('view_rate_own_timesheet') %}
+        {% set datagrid = datagrid|merge({
+            'stats.durationTotal' : stats.durationTotal|duration,
+            'stats.durationMonth' : stats.durationThisMonth|duration
+        }) %}
+    {% endif %}
+    {% if not seeOwnRate and is_granted('hourly-rate', user) and user.preferenceValue('hourly_rate') is not null %}
+        {% set datagrid = datagrid|merge({
+            'hourlyRate' : user.preferenceValue('hourly_rate'),
+            'internalRate' : user.preferenceValue('internal_rate')
+        }) %}
+    {% endif %}
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="datagrid">
+                {% for name, value in datagrid %}
+                    <div class="datagrid-item">
+                        <div class="datagrid-title">{{ name|trans }}</div>
+                        <div class="datagrid-content">{{ value }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% set monthRoute = null %}
+    {% set canSeeOwnReport = app.user.id == user.id and is_granted('report:user') %}
+    {% set canSeeOtherReport = app.user.id != user.id and is_granted('report:other') %}
+    {% set canSeeReport = user.enabled and (canSeeOwnReport or canSeeOtherReport) %}
+
+    {%- if canSeeReport -%}
+        {% set monthRoute = path('report_user_month', {'user': user.id, 'date': '__MONTH__'}) %}
+    {% endif %}
+
+    {{ charts.bar_javascript({'legend': {'display': false}, 'footer': 'footer', 'label': 'tooltip', 'onclick': {'url': monthRoute, 'replacer': {'__MONTH__': 'month'}}}) }}
+
+    {% for year in workMonths.years|reverse %}
+        {% set totalDuration = 0 %}
+        {% for month in workMonths.year(year) %}
+            {% set totalDuration = totalDuration + month.duration %}
+        {% endfor %}
+        {% embed '@theme/embeds/card.html.twig' %}
+            {% import "macros/charts.html.twig" as charts %}
+            {% import "macros/widgets.html.twig" as macros %}
+            {% from "macros/status.html.twig" import status_duration %}
+            {% block box_title -%}
+                {{ year }}
+                {{ status_duration(totalDuration|duration) }}
+            {%- endblock %}
+            {% block box_tools %}
+                {%- if canSeeReport -%}
+                    {{ macros.card_tool_button('reporting', {'url': path('report_user_year', {'user': user.id, 'date': year ~ '-01-01'})}) }}
+                {% endif %}
+            {% endblock %}
+            {% block box_body %}
+                {% set dataset = [] %}
+                {% for month in workMonths.year(year) %}
+                    {% set monthDate = create_date(year ~ '-' ~ month.date.format('m') ~ '-01') %}
+                    {% set dataset = dataset|merge([{'value': month.duration|chart_duration, 'tooltip': month.duration|duration, 'footer': ('billable'|trans ~ ': ' ~ month.billableDuration|duration), 'month': monthDate|report_date}]) %}
+                {% endfor %}
+                {{ charts.bar_chart('userProfileChart'~year, month_names(), [dataset]) }}
+            {% endblock %}
+        {% endembed %}
+    {% endfor %}
+
+    {% if user.teams is not empty and (is_granted('teams', user) or is_granted('view_team_member', user)) %}
+        {% embed '@theme/embeds/card.html.twig' with {fullsize: true} %}
+            {% import "macros/widgets.html.twig" as widgets %}
+            {% block box_title %}{{ 'my_teams'|trans }}{% endblock %}
+            {% block box_body %}
+                {{ widgets.team_list(user.teams, {collapse: 22}) }}
+            {% endblock %}
+        {% endembed %}
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ widgets.page_reloader('kimai.teamUpdate', true) }}
+{% endblock %}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="pl" datatype="plaintext" original="flashmessages.en.xlf">
+    <body>
+      <trans-unit id="S9k1S7Z" resname="warning">
+        <source>warning</source>
+        <target state="translated">Ostrzeżenie</target>
+      </trans-unit>
+      <trans-unit id="WmrEP_5" resname="timesheet.stop.success">
+        <source>timesheet.stop.success</source>
+        <target state="translated">Rejestrowanie czasu zostało zatrzymane</target>
+      </trans-unit>
+      <trans-unit id="NPBnpK_" resname="timesheet.stop.error">
+        <source>timesheet.stop.error</source>
+        <target state="translated">Rejestrowanie czasu nie może zostać zatrzymane</target>
+      </trans-unit>
+      <trans-unit id="CCUoZga" resname="timesheet.start.success">
+        <source>timesheet.start.success</source>
+        <target>Rejestrowanie czasu uruchomione</target>
+      </trans-unit>
+      <trans-unit id="3w9tuox" resname="timesheet.start.error">
+        <source>timesheet.start.error</source>
+        <target state="translated">Rejestrowanie czasu nie mogło zostać uruchomione</target>
+      </trans-unit>
+      <trans-unit id="kPINWEK" resname="timesheet.locked.warning">
+        <source>timesheet.locked.warning</source>
+        <target state="translated">Edytujesz wpis, który został już wyeksportowany</target>
+      </trans-unit>
+      <trans-unit id="72Ih8zO" resname="action.update.success">
+        <source>action.update.success</source>
+        <target>Zapisano zmiany</target>
+      </trans-unit>
+      <trans-unit id="xeu1LSy" resname="action.update.error">
+        <source>action.update.error</source>
+        <target>Nie mozna zapisać zmian: %reason%</target>
+      </trans-unit>
+      <trans-unit id="YV50HDB" resname="action.delete.success">
+        <source>action.delete.success</source>
+        <target>Wpis został usunięty</target>
+      </trans-unit>
+      <trans-unit id="mW91Tmb" resname="action.delete.error">
+        <source>action.delete.error</source>
+        <target>Nie mozna usunąć wpisu: %reason%</target>
+      </trans-unit>
+      <trans-unit id="B_cz49z" resname="invoice.first_template">
+        <source>invoice.first_template</source>
+        <target>Należy utworzyć pierwszy wzorzec faktury aby kontynuować</target>
+      </trans-unit>
+      <trans-unit id="wejAEcR" resname="action.upload.error">
+        <source>action.upload.error</source>
+        <target>Nie można przesłać lub zapisać pliku: %reason%</target>
+      </trans-unit>
+      <trans-unit resname="action.csrf.error" id="bOE_q5R">
+        <source>action.csrf.error</source>
+        <target state="translated">Ta akcja nie może zostać wykonana: błędny token bezpieczeństwa.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

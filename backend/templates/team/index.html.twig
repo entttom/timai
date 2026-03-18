@@ -1,0 +1,24 @@
+{% extends 'datatable.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+{% import "macros/datatables.html.twig" as tables %}
+
+{% block datatable_row_attr %}
+    {%- if is_granted('edit', entry) %} class="open-edit alternative-link" data-href="{{ path('admin_team_edit', {'id': entry.id}) }}"{% endif %}
+{% endblock %}
+
+{% block datatable_column_value %}
+    {% if column == 'name' %}
+        {{ widgets.label_name(entry.name, entry.color|colorize(entry.name)) }}
+    {% elseif column == 'avatar' %}
+        {% for member in entry.members|sort((a, b) => b.teamlead <=> a.teamlead) %}
+            {% set user = member.user %}
+            {% set tooltip = member.teamlead ? ('teamlead'|trans ~ ': ' ~ user.displayName) : null %}
+            {{ widgets.user_avatar(user, tooltip, 'avatar-rounded', (member.teamlead ? 'info' : null)) }}
+        {% endfor %}
+    {% elseif column == 'amount' %}
+        {{ widgets.badge_counted(entry.members|length) }}
+    {% elseif column == 'actions' %}
+        {% set event = actions(app.user, 'team', 'index', {'team': entry}) %}
+        {{ widgets.table_actions(event.actions) }}
+    {% endif %}
+{% endblock %}

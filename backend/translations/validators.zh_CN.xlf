@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="zh-CN" datatype="plaintext" original="validators.en.xlf">
+    <body>
+      <trans-unit id="IkNxbBI" resname="This value is not a valid role.">
+        <source>This value is not a valid role.</source>
+        <target>此值不是有效角色。</target>
+      </trans-unit>
+      <trans-unit id="CLHaByy" resname="End date must not be earlier then start date." xml:space="preserve">
+        <source>The end date must not be earlier than the start date.</source>
+        <target state="needs-translation">结束日期不得早于开始日期。</target>
+      </trans-unit>
+      <trans-unit id="ePrqiLM" resname="The begin date cannot be in the future.">
+        <source>The begin date cannot be in the future.</source>
+        <target>开始日期不能是未来的某一日期。</target>
+      </trans-unit>
+      <trans-unit id="6rO8GZ1" resname="Maximum duration of {{ value }} hours exceeded.">
+        <source>Maximum duration of {{ value }} hours exceeded.</source>
+        <target state="translated">最多允许 {{ value }} 个小时。</target>
+      </trans-unit>
+      <trans-unit id="1oKCOa5" resname="The budget is completely used.">
+        <source>The budget is completely used.</source>
+        <target state="translated">预算用完了。在可用的 %budget% 中， %used%目前已被预订，%free%仍然可以使用。</target>
+      </trans-unit>
+      <trans-unit id="VJSZSD0" resname="The given value is not a valid time.">
+        <source>The given value is not a valid time.</source>
+        <target>给定值不是有效时间。</target>
+      </trans-unit>
+      <trans-unit id="u2wjm2i" resname="You already have an entry for this time.">
+        <source>You already have an entry for this time.</source>
+        <target>这次你已经有一个条目了。</target>
+      </trans-unit>
+      <trans-unit id="0o.pH3X" resname="This period is locked, please choose a later date.">
+        <source>This period is locked, please choose a later date.</source>
+        <target>此时间段已锁定，请选择一个更晚的日期。</target>
+      </trans-unit>
+      <trans-unit id="yDlKSRw" resname="This invoice document cannot be used, please rename the file and upload it again.">
+        <source>This invoice document cannot be used, please rename the file and upload it again.</source>
+        <target>此发票单据无法使用，请重命名文件并重新上传。</target>
+      </trans-unit>
+      <trans-unit id="1V6BsD_" resname="You must select at least one user or team.">
+        <source>You must select at least one user or team.</source>
+        <target>您必须至少选择一个用户或团队。</target>
+      </trans-unit>
+      <trans-unit id="S14XECA" resname="The username is already used.">
+        <source>The username is already used.</source>
+        <target>用户名已被使用。</target>
+      </trans-unit>
+      <trans-unit id="6u6oCwB" resname="The email is already used.">
+        <source>The email is already used.</source>
+        <target>该电子邮件已被使用。</target>
+      </trans-unit>
+      <trans-unit id="6WAG.Xj" resname="The entered passwords don't match.">
+        <source>The entered passwords don't match.</source>
+        <target>输入的密码不匹配。</target>
+      </trans-unit>
+      <trans-unit id="mjlH0la" resname="This timesheet is already exported.">
+        <source>This timesheet is already exported.</source>
+        <target>此工时表已导出。</target>
+      </trans-unit>
+      <trans-unit id="ekO5eXI" resname="An equal username is already used.">
+        <source>An equal username is already used.</source>
+        <target>已有人使用相同的用户名。</target>
+      </trans-unit>
+      <trans-unit id="rmH78_V" resname="At least one team leader must be assigned to the team.">
+        <source>At least one team leader must be assigned to the team.</source>
+        <target>团队中必须至少有一名领队。</target>
+      </trans-unit>
+      <trans-unit id="INlaCgW" resname="An equal email is already used.">
+        <source>An equal email is already used.</source>
+        <target>已有人使用了相同的电子邮箱。</target>
+      </trans-unit>
+      <trans-unit id="to1Q85W" resname="An activity needs to be selected.">
+        <source>An activity needs to be selected.</source>
+        <target>需要选中一个活动。</target>
+      </trans-unit>
+      <trans-unit id="rHd9_aA" resname="A project needs to be selected.">
+        <source>A project needs to be selected.</source>
+        <target>需要选中一个项目。</target>
+      </trans-unit>
+      <trans-unit id="Jz1y3yB" resname="Duration cannot be zero.">
+        <source>Duration cannot be zero.</source>
+        <target state="translated">不允许使用空持续时间。</target>
+      </trans-unit>
+      <trans-unit id="dcPei9G" resname="Sorry, the budget is used up.">
+        <source>Sorry, the budget is used up.</source>
+        <target state="translated">抱歉，预算用完了。</target>
+      </trans-unit>
+      <trans-unit id="gSAwscA" resname="Validation Failed">
+        <source>Validation Failed</source>
+        <target state="translated">保存时出现问题。</target>
+      </trans-unit>
+      <trans-unit id="xp0lmgm" resname="The given code is not the correct TOTP token.">
+        <source>The given code is not the correct TOTP token.</source>
+        <target state="translated">给定的代码不是正确的 TOTP 令牌。</target>
+      </trans-unit>
+      <trans-unit resname="Cannot stop running timesheet" id="7HYTefs">
+        <source>Cannot stop running timesheet</source>
+        <target state="translated">你有一个活跃的时间记录不能自动停止。</target>
+      </trans-unit>
+      <trans-unit id="7mqg3TC" resname="This value is not a valid role name.">
+        <source>This value is not a valid role name.</source>
+        <target state="translated">这不是一个有效的用户角色名称。</target>
+      </trans-unit>
+      <trans-unit id="kSBiyaF" resname="This is a public holiday, booking not allowed.">
+        <source>This is a public holiday, booking not allowed.</source>
+        <target state="translated">今天是公众假期，不允许预订。</target>
+      </trans-unit>
+      <trans-unit id="ByeEMxW" resname="You do not have enough overtime, remaining are {{ value }}.">
+        <source>You do not have enough overtime, remaining are {{ value }}.</source>
+        <target state="translated">您的加班时间不足，剩余时间为 {{ value }}。</target>
+      </trans-unit>
+      <trans-unit id="SZO4xjC" resname="An absence cannot be booked before your first working day." xml:space="preserve">
+        <source>An absence cannot be booked before your first working day.</source>
+        <target state="translated">在第一个工作日之前不能预约缺席。</target>
+      </trans-unit>
+      <trans-unit id="IN37g5N" resname="Not enough holidays left.">
+        <source>Not enough holidays left.</source>
+        <target state="translated">假期不够了。</target>
+      </trans-unit>
+      <trans-unit id="nLcihCc" resname="An absence must have a date.">
+        <source>An absence must have a date.</source>
+        <target state="translated">缺席必须有日期。</target>
+      </trans-unit>
+      <trans-unit id="c2B6.lW" resname="You can book a maximum of {{ value }} days at once.">
+        <source>You can book a maximum of {{ value }} days at once.</source>
+        <target state="translated">您最多可同时预订 {{ value }} 天，您当前选择了 {{ selected }}。</target>
+      </trans-unit>
+      <trans-unit id="ZObikpA" resname="This absence type is not known.">
+        <source>This absence type is not known.</source>
+        <target state="translated">这种缺席类型尚不清楚。</target>
+      </trans-unit>
+      <trans-unit id="6H84TMs" resname="An absence must be assigned to a user.">
+        <source>An absence must be assigned to a user.</source>
+        <target state="translated">缺席必须分配给用户。</target>
+      </trans-unit>
+      <trans-unit id="DiaaRa1" resname="You cannot have two absences of this type at one day.">
+        <source>You cannot have two absences of this type at one day.</source>
+        <target state="translated">一天内不能有两次此类缺席。</target>
+      </trans-unit>
+      <trans-unit id="0ULsHQA" resname="The chosen date is not a working day.">
+        <source>The chosen date is not a working day.</source>
+        <target state="translated">所选日期不是工作日。</target>
+      </trans-unit>
+      <trans-unit id="N21br.P" resname="The chosen date is already locked.">
+        <source>The chosen date is already locked.</source>
+        <target state="translated">所选日期已锁定。</target>
+      </trans-unit>
+      <trans-unit id="BztgSSP" resname="The period of absence must not extend beyond the turn of the year.">
+        <source>The period of absence must not extend beyond the turn of the year.</source>
+        <target state="translated">缺席时间不得超过年终。</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

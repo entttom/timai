@@ -1,0 +1,20 @@
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta name="robots" content="noindex,nofollow">
+<link id="favicon" rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+<link rel="icon" type="image/png" href="{{ asset('favicon-16x16.png') }}" sizes="16x16">
+<link rel="icon" type="image/png" href="{{ asset('favicon-32x32.png') }}" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+<link rel="apple-touch-icon-precomposed" href="{{ asset('apple-touch-icon-precomposed.png') }}">
+<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('apple-touch-icon.png') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('touch-icon-180x180.png') }}">
+<link rel="manifest" href="{{ asset('manifest.json') }}">
+<meta name="apple-mobile-web-app-title" content="{{ constant('App\\Constants::SOFTWARE') }}">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="{{ constant('App\\Constants::SOFTWARE') }}">
+<meta name="msapplication-config" content="{{ asset('browserconfig.xml') }}">
+<meta name="theme-color" content="#262626">
+{% if tabler_bundle.isThemeAuto() %}
+    <script>if (window.matchMedia) { document.documentElement.setAttribute('data-bs-theme', (window.matchMedia("(prefers-color-scheme: dark)").matches) ? 'dark': 'light'); }</script>
+{% endif %}

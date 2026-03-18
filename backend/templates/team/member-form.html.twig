@@ -1,0 +1,22 @@
+{% set formEditTemplate = kimai_context.modalRequest ? 'default/_form_modal.html.twig' : 'default/_form.html.twig' %}
+{% set formOptions = {
+    'title': team.name|default('create'|trans),
+    'form': form,
+    'back': path('admin_team'),
+    'reset': false
+} %}
+{% embed formEditTemplate with formOptions %}
+    {% block form_body %}
+        <div class="row">
+            <div class="col-md-9">
+                {{ form_row(form.name) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(form.color) }}
+            </div>
+        </div>
+        {{ form_row(form.users) }}
+        {{ form_row(form.members) }}
+        {{ form_rest(form) }}
+    {% endblock %}
+{% endembed %}

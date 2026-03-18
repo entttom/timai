@@ -1,0 +1,283 @@
+
+{% macro configuration(dataTable) %}
+    {{ _self.data_table_column_modal(dataTable.getTableName(), dataTable.getColumns()) }}
+{% endmacro %}
+
+{% macro header(dataTable) %}
+    {{ _self.datatable_header(dataTable.getTableName(), dataTable.getColumns(), dataTable.getQuery(), dataTable.getOptions()) }}
+{% endmacro %}
+
+{% macro footer(dataTable) %}
+    {{ _self.data_table_footer(dataTable.getPagination(), dataTable.getPaginationRoute(), dataTable.getBatchForm()) }}
+{% endmacro %}
+
+{% macro class(dataTable, column) %}
+    {{- datatable_column_class(dataTable.getTableName(), column) -}}
+{% endmacro %}
+
+{# compare templates/page_setup.html.twig block table_actions #}
+{% macro actions(dataTable) %}
+    <div class="btn-list">
+    {% if dataTable.hasConfiguration() %}
+        <a class="btn btn-icon" href="#" data-bs-toggle="modal" data-bs-target="#modal_{{ dataTable.getTableName() }}" title="{{ 'modal.columns.title'|trans }}">
+            {{ icon('columns', true) }}
+        </a>
+    {% endif %}
+    {% set form = dataTable.getSearchForm() %}
+    {% if form is not null %}
+        {% form_theme form 'form/search.html.twig' %}
+        {% form_theme form.order 'form/vertical.html.twig' %}
+        {{ form_start(form, {'attr': {'class': 'searchform'}}) }}
+        {% set searchTerm = form_widget(form.searchTerm) %}
+        {% set orderHasError = form.orderBy.vars.errors|length > 0 or form.order.vars.errors|length > 0 %}
+        {% set orderBy = form_widget(form.orderBy) %}
+        {% set order = form_widget(form.order) %}
+        {% set filterCount = dataTable.getQuery().countFilter() %}
+        <div class="input-group inline-search position-static">
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-haspopup="true" aria-expanded="false" id="search-dropdown-btn" title="{{ 'search_filter'|trans }}">
+                {{ icon('filter', true) }}
+                {% if filterCount > 0 %}<span class="badge badge-notification bg-primary text-primary-fg ms-1 d-none d-sm-inline">{{ filterCount }}</span>{% endif %}
+            </button>
+            <div class="dropdown-menu p-3 search-dropdown" data-popper-placement="bottom-start" aria-labelledby="search-dropdown-btn">
+                {{ form_rest(form) }}
+                <div class="mb-2 row {% if orderHasError %} is-invalid{% endif %} ">
+                    {{ form_label(form.orderBy) }}
+                    <div class="col-sm-4 col-xs-6">
+                        {{ orderBy|raw }}
+                        {{ form_errors(form.orderBy) }}
+                    </div>
+                    <div class="col-sm-4 col-xs-6">
+                        {{ order|raw }}
+                        {{ form_errors(form.order) }}
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-primary">{{ 'search'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+            {{ searchTerm|raw }}
+            <span class="input-group-text">
+                {% set bookmarkToken = csrf_token('search') %}
+                {% set searchBtnClass = 'btn btn-icon btn-sm btn-ghost-secondary p-1' %}
+                <input type="hidden" name="_token" value="{{ bookmarkToken }}">
+                <button type="submit" class="{{ searchBtnClass }}" data-toggle="tooltip" title="{{ 'search'|trans }}">
+                    {{ icon('search') }}
+                </button>
+
+                {% if form.vars.data.bookmark %}
+                <a class="{{ searchBtnClass }} text-yellow" href="?_token={{ bookmarkToken }}&removeDefaultQuery={{ form.vars.data.bookmark.name }}" data-toggle="tooltip" title="{{ 'remove_default'|trans }}" id="removeDefaultQuery">
+                    {{ icon('bookmarked') }}
+                </a>
+                {% elseif filterCount > 0 %}
+                <button class="{{ searchBtnClass }}" type="submit" id="setDefaultQuery" name="setDefaultQuery" data-toggle="tooltip" title="{{ 'set_as_default'|trans }}">
+                    {{ icon('bookmark') }}
+                </button>
+                {% endif %}
+
+                {% if filterCount > 0 and not form.vars.data.isBookmarkSearch() %}
+                    <a class="{{ searchBtnClass }} text-orange" href="{{ path(app.request.attributes.get('_route')) }}" data-toggle="tooltip" title="{{ 'remove_filter'|trans }}">
+                        {{ icon('cancel') }}
+                    </a>
+                {% endif %}
+            </span>
+        </div>
+        <input type="hidden" name="performSearch" value="performSearch" />
+        {{ form_end(form) }}
+    {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro data_table_column_modal(name, columns) %}
+{% set visibility = initialize_datatable(app.user, app.session, name, columns) %}
+<div class="modal" data-bs-backdrop="static" id="modal_{{ name }}" data-column-visibility="{{ name }}" tabindex="-1" role="dialog" aria-labelledby="data_table_modal_label">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="data_table_modal_label">{{ 'modal.columns.title'|trans }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'action.close'|trans }}"></button>
+            </div>
+            <div class="modal-body">
+                <form name="{{ name }}_visibility" method="post" action="{{ path('bookmark_save_datatable') }}" class="mb-3">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label class="form-label">{{ 'modal.columns.label'|trans }}</label>
+                            <div class="form-selectgroup form-selectgroup-pills">
+                                {%- for title, headerOptions in columns -%}
+                                    {% set translationDomain = headerOptions.translation_domain ?? 'messages' %}
+                                    {% if not headerOptions is iterable %}
+                                        {% set headerOptions = {'class': headerOptions} %}
+                                    {% endif %}
+                                    {% if headerOptions.title is defined and headerOptions.title is not empty %}
+                                        {% set headerTitle = headerOptions.title|trans({}, translationDomain) %}
+                                    {% else %}
+                                        {% set headerTitle = title|trans({}, translationDomain) %}
+                                    {% endif %}
+                                    {% if 'alwaysVisible' not in headerOptions.class %}
+                                        <label class="form-selectgroup-item">
+                                            <input class="form-selectgroup-input" type="checkbox" id="column_{{ title }}" name="{{ title }}">
+                                            <span class="form-selectgroup-label">{{ headerTitle }}</span>
+                                        </label>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="form-label">{{ 'modal.columns.profile'|trans }}</label>
+                            <div class="form-selectgroup">
+                                <label class="form-selectgroup-item">
+                                    <input type="radio" name="datatable_profile" value="{{ constant('\\App\\Utils\\ProfileManager::PROFILE_DESKTOP') }}" class="form-selectgroup-input" data-href="{{ path('bookmark_profile') }}"{% if app.session.get(constant('\\App\\Utils\\ProfileManager::SESSION_PROFILE'), '') == '' %} checked="checked"{% endif %}>
+                                    <span class="form-selectgroup-label">
+                                        {{ 'desktop'|trans }}
+                                    </span>
+                                </label>
+                                <label class="form-selectgroup-item">
+                                    <input type="radio" name="datatable_profile" value="{{ constant('\\App\\Utils\\ProfileManager::PROFILE_MOBILE') }}" class="form-selectgroup-input" data-href="{{ path('bookmark_profile') }}"{% if app.session.get(constant('\\App\\Utils\\ProfileManager::SESSION_PROFILE'), '') == 'mobile' %} checked="checked"{% endif %}>
+                                    <span class="form-selectgroup-label">
+                                        {{ 'mobile'|trans }}
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="datatable_name" value="{{ name }}" />
+                    <input type="hidden" name="datatable_token" value="{{ csrf_token(constant('\\App\\Controller\\BookmarkController::DATATABLE_TOKEN')) }}" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" formaction="{{ path('bookmark_delete') }}" class="btn btn-outline-danger me-auto" data-type="reset">{{ 'action.reset'|trans }}</button>
+                <button type="submit" class="btn btn-primary" data-type="save">{{ 'action.save'|trans }}</button>
+                <button type="button" class="btn" data-bs-dismiss="modal">{{ 'action.close'|trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro datatable_header(tableName, columns, query, options) %}
+    {% set visibility = initialize_datatable(app.user, app.session, tableName, columns) %}
+    {% if query is not null %}
+        {% set orderBy = options.orderBy|default(query.orderBy) %}
+        {% set order = query.order|lower %}
+    {% else %}
+        {% set orderBy = false %}
+        {% set order = false %}
+    {% endif %}
+    {% set reloadEvent = options.reload|default('') %}
+    {% set boxClass = options.boxClass ?? 'card data_table' %}
+    {% set columnModal = options.columnConfig ?? true %}
+    {% set responsive = options.responsive ?? false %}
+    {% set sticky = options.sticky ?? true %}
+    {% set contextMenuId = options.contextMenuId is defined ? options.contextMenuId : 'datatable_' ~ tableName ~ '_contextmenu' %}
+
+    <div class="{{ boxClass }} datatable_{{ tableName }}">
+        <div class="card-body p-0{% if responsive %} table-responsive{% endif %}">
+            <div class="dataTables_wrapper form-inline">
+                <div id="{{ contextMenuId }}" class="dropdown-menu d-none"></div>
+                <table class="table table-hover dataTable" role="grid" data-reload-event="kimai.reset_column_visibility {{ reloadEvent }}" data-context-menu="{{ contextMenuId }}">
+                    <thead{% if sticky %} class="sticky-top"{% endif %}>
+                        <tr>
+                        {%- for title, headerOptions in columns -%}
+                            {% set isActions = title is not empty and title == 'actions' %}
+                            {% if not headerOptions is iterable %}
+                                {% set headerOptions = {'class': headerOptions} %}
+                            {% endif %}
+                            {% if not headerOptions.orderBy is defined %}
+                                {% if orderBy is same as(false) %}
+                                    {% set headerOptions = headerOptions|merge({'orderBy': false}) %}
+                                {% else %}
+                                    {% set headerOptions = headerOptions|merge({'orderBy': title}) %}
+                                {% endif %}
+                            {% endif %}
+                            {% set headerClass = _self.data_table_column_class(tableName, columns, title) %}
+                            {% if title != 'actions' and not headerOptions.orderBy is same as(false) %}
+                                {% if orderBy == headerOptions.orderBy %}
+                                    {% set headerClass = headerClass ~ ' sortable sorting_' ~ (order) %}
+                                    {% if order == 'asc' %}
+                                        {% set ariaSort = 'ascending' %}
+                                    {% else %}
+                                        {% set ariaSort = 'descending' %}
+                                    {% endif %}
+                                {% else %}
+                                    {% set headerClass = headerClass ~ ' sortable sorting' %}
+                                {% endif %}
+                            {% endif %}
+                            {% set headerTitle = '' %}
+                            {% set translationDomain = headerOptions.translation_domain ?? 'messages' %}
+                            {% if headerOptions.title is defined %}
+                                {% set headerTitle = headerOptions.title|trans({}, translationDomain) %}
+                            {% elseif title is not empty and not isActions %}
+                                {% set headerTitle = title|trans({}, translationDomain) %}
+                            {% endif %}
+                            {% if isActions %}
+                                {% set headerClass = headerClass ~ ' text-center' %}
+                            {% endif %}
+                            <th data-field="{{ title }}" {% if not headerOptions.orderBy is same as(false) %}data-order="{{ headerOptions.orderBy }}" {% endif %}class="{{ headerClass }}"{% if ariaSort is defined %} aria-sort="{{ ariaSort }}"{% endif %}>
+                            {% if title is not empty and title == 'actions' and columnModal is not same as (false) %}
+
+                                <a class="link-secondary" href="#" data-bs-toggle="modal" data-bs-target="#modal_{{ tableName }}">
+                                    {{ icon('columns', true) }}
+                                </a>
+
+                            {% else %}
+                                {% if headerOptions.batchUpdate is defined %}
+                                    <input type="checkbox" id="multi_update_all_{{ tableName }}" class="multi_update_all multiupdater form-check-input m-0 align-middle" title="{{ 'batch_table_checkbox_all'|trans }}">
+                                {% endif %}
+                                {{ headerTitle }}
+                                {% if headerOptions.html_after is defined %}
+                                    {{ headerOptions.html_after|raw }}
+                                {% endif %}
+                            {% endif %}
+                            </th>
+                        {%- endfor -%}
+                        </tr>
+                    </thead>
+                    <tbody>
+{% endmacro %}
+
+{% macro data_table_column_class(name, columns, column) %}
+{{- datatable_column_class(name, column) -}}
+{% endmacro %}
+
+{% macro data_table_footer(entries, route, multi_update_form) %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% if (route is not empty and entries is not null) or multi_update_form is not null %}
+    <div class="card-footer d-flex align-items-center">
+        {% if multi_update_form is not null %}
+            {{ form_start(multi_update_form, {'attr': {'class': 'multi_update_form', 'style': 'display:none', 'data-question': '%action%'}}) }}
+                {% for formChild in multi_update_form.children %}
+                    {{ form_widget(formChild) }}
+                {% endfor %}
+            {{ form_end(multi_update_form) }}
+        {% endif %}
+        {% if route is not empty and entries is not null %}
+            <p class="d-none d-sm-block m-0 text-body-secondary multi_update_form_hide">
+                {{ 'pagination'|trans({'%start%': entries.getCurrentPageOffsetStart(), '%end%': entries.getCurrentPageOffsetEnd(), '%total%': entries.getNbResults()}) }}
+            </p>
+            {% set options = { 'css_container_class': 'pagination m-0 ms-auto d-print-none' } %}
+            {% if route is iterable %}
+                {% set options = options|merge(route) %}
+            {% else %}
+                {% set options = options|merge({routeName: route}) %}
+            {% endif %}
+            {{ pagination(entries, options) }}
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro datatable_meta_column(entry, field) %}
+    {% from "macros/widgets.html.twig" import meta_field_value %}
+    {{ meta_field_value(entry, field) }}
+{% endmacro %}
+
+{% macro datatable_multiupdate_row(id) %}
+    <input type="checkbox" name="id" value="{{ id }}" class="multi_update_single multiupdater form-check-input m-0 align-middle" title="{{ 'batch_table_checkbox'|trans }}">
+{% endmacro %}

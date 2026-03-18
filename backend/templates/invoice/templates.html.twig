@@ -1,0 +1,23 @@
+{% extends 'datatable.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+{% import "macros/datatables.html.twig" as tables %}
+{% import "invoice/actions.html.twig" as actions %}
+
+{% block datatable_row %}
+    <tr class="modal-ajax-form open-edit" data-href="{{ path('admin_invoice_template_edit', {'id' : entry.id}) }}">
+        <td class="{{ tables.class(dataTable, 'name') }}">{{ entry.name }}</td>
+        <td class="{{ tables.class(dataTable, 'title') }}">{{ entry.title }}</td>
+        <td class="{{ tables.class(dataTable, 'company') }}">{{ entry.company }}</td>
+        <td class="{{ tables.class(dataTable, 'vat_id') }}">{{ entry.vatId }}</td>
+        <td class="{{ tables.class(dataTable, 'tax_rate') }}">{{ entry.vat }}</td>
+        <td class="{{ tables.class(dataTable, 'due_days') }}">{{ entry.dueDays }}</td>
+        <td class="{{ tables.class(dataTable, 'address') }}">{{ entry.address|nl2br }}</td>
+        <td class="{{ tables.class(dataTable, 'contact') }}">{{ entry.contact|nl2br }}</td>
+        <td class="{{ tables.class(dataTable, 'calculator') }}">{{ entry.calculator|trans({}, 'invoice-calculator') }}</td>
+        <td class="{{ tables.class(dataTable, 'renderer') }}">{{ entry.renderer|trans({}, 'invoice-renderer') }}</td>
+        <td class="{{ tables.class(dataTable, 'language') }}">{% if entry.language is not empty %}{{ entry.language|locale_name }}{% endif %}</td>
+        <td class="{{ tables.class(dataTable, 'actions') }}">
+            {{- actions.invoice_template(entry, 'index') -}}
+        </td>
+    </tr>
+{% endblock %}

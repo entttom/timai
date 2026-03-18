@@ -1,0 +1,22 @@
+{% extends '@!NelmioApiDoc/SwaggerUi/index.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        body { margin-top: 0; }
+        header { display:none; }
+        #swagger-ui.api-platform .information-container.wrapper {
+            margin-bottoM: 5px;
+        }
+        .swagger-ui .servers .computed-url {
+            margin: 0;
+        }
+        .swagger-ui .servers h4 {
+            margin: 10px 0;
+        }
+        .swagger-ui .servers table td {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    </style>
+{% endblock %}

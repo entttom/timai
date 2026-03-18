@@ -1,0 +1,142 @@
+{%- set with_avatar = avatar is defined ? avatar : true -%}
+{%- set show_empty_rows = true -%}
+{%- set absoluteDuration = 0 -%}
+{%- set absoluteInternalRate = 0 -%}
+{%- set absoluteRate = 0 -%}
+{%- set totalsDuration = {} -%}
+{%- set totalsInternalRate = {} -%}
+{%- set totalsRate = {} -%}
+{%- set showAccountNumber = showAccountNumber is defined ? showAccountNumber : false -%}
+{% if dataType == 'rate' %}
+    {% set dataTypeTitle = 'stats.amountTotal' %}
+{% elseif dataType == 'internalRate' %}
+    {% set dataTypeTitle = 'internalRate' %}
+{% else %}
+    {% set dataTypeTitle = 'stats.durationTotal' %}
+{% endif %}
+<table class="table table-hover dataTable">
+    <thead>
+        <tr>
+            {% if with_avatar %}
+            <th class="w-avatar"></th>
+            {% endif %}
+            <th>&nbsp;</th>
+            {% if showAccountNumber %}
+            <th>{{ 'account_number'|trans }}</th>
+            {% endif %}
+            <th class="text-center reportDataTypeTitle">{{ dataTypeTitle|trans }}</th>
+            {% for column in stats.0.getDateTimes() %}
+                {% block period_name %}{% endblock %}
+                {% set columnKey = column|report_date %}
+                {% set totalsDuration = totalsDuration|merge({(columnKey): 0}) %}
+                {% set totalsInternalRate = totalsInternalRate|merge({(columnKey): 0}) %}
+                {% set totalsRate = totalsRate|merge({(columnKey): 0}) %}
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for userPeriod in stats|filter(row => row.user is not null)|sort((a,b) => a.user.displayName|lower <=> b.user.displayName|lower) %}
+        {% set usersTotalDuration = 0 %}
+        {% set usersTotalInternalRate = 0 %}
+        {% set usersTotalRate = 0 %}
+        {% for period in userPeriod.data %}
+            {% set usersTotalDuration = usersTotalDuration + period.totalDuration %}
+            {% set absoluteDuration = absoluteDuration + period.totalDuration %}
+            {% set usersTotalInternalRate = usersTotalInternalRate + period.totalInternalRate %}
+            {% set absoluteInternalRate = absoluteInternalRate + period.totalInternalRate %}
+            {% set usersTotalRate = usersTotalRate + period.totalRate %}
+            {% set absoluteRate = absoluteRate + period.totalRate %}
+            {% set reportDateKey = period.date|report_date %}
+            {% set totalsDuration = totalsDuration|merge({(reportDateKey): (totalsDuration[reportDateKey] + period.totalDuration)}) %}
+            {% set totalsInternalRate = totalsInternalRate|merge({(reportDateKey): (totalsInternalRate[reportDateKey] + period.totalInternalRate)}) %}
+            {% set totalsRate = totalsRate|merge({(reportDateKey): (totalsRate[reportDateKey] + period.totalRate)}) %}
+        {% endfor %}
+        {% if (show_empty_rows and userPeriod.user.enabled) or usersTotalDuration != 0 %}
+        <tr class="user">
+            {% if with_avatar %}
+                <td class="w-avatar">
+                    {% from "macros/widgets.html.twig" import user_avatar %}
+                    {{ user_avatar(userPeriod.user) }}
+                </td>
+            {% endif %}
+            <td class="text-nowrap"{% block user_column_cell_attribute %}{% endblock %}>
+                {{ userPeriod.user.displayName|sanitize_dde }}
+            </td>
+            {% if showAccountNumber %}
+                <td>{{ userPeriod.user.accountNumber }}</td>
+            {% endif %}
+            <td class="text-nowrap text-center total{% block user_total_cell_class %}{% endblock %}"{% block user_total_cell_attribute %}{% endblock %}>
+                {% if dataType == 'rate' %}
+                    {% block total_rate_user %}{% endblock %}
+                {% elseif dataType == 'internalRate' %}
+                    {% block total_internal_rate_user %}{% endblock %}
+                {% else %}
+                    {% block total_duration_user %}{% endblock %}
+                {% endif %}
+            </td>
+            {% for period in userPeriod.data %}
+                <td class="text-nowrap text-center day-total{% block period_cell_class %}{% endblock %}"{% block period_cell_attribute %}{% endblock %}>
+                    {% if period.totalDuration != 0 or period.totalRate != 0 or period.totalInternalRate != 0 %}
+                        {% if dataType == 'rate' %}
+                            {% block rate %}{% endblock %}
+                        {% elseif dataType == 'internalRate' %}
+                            {% block internal_rate %}{% endblock %}
+                        {% else %}
+                            {% block duration %}{% endblock %}
+                        {% endif %}
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr class="summary">
+            <td{% if with_avatar %} colspan="2"{% endif %}>{{ dataTypeTitle|trans }}</td>
+            {% if showAccountNumber %}
+                <td></td>
+            {% endif %}
+            <td class="text-center text-nowrap{% block total_period_cell_class %}{% endblock %}"{% block total_period_cell_attribute %}{% endblock %}>
+                {% if dataType == 'rate' %}
+                    {% block total_rate %}
+                        {{ absoluteRate|money }}
+                    {% endblock %}
+                {% elseif dataType == 'internalRate' %}
+                    {% block total_internal_rate %}
+                        {{ absoluteInternalRate|money }}
+                    {% endblock %}
+                {% else %}
+                    {% block total_duration %}
+                        {{ absoluteDuration|duration(decimal) }}
+                    {% endblock %}
+                {% endif %}
+            </td>
+            {% if dataType == 'rate' %}
+                {% for id, total in totalsRate %}
+                    <td class="text-center text-nowrap{% block total_rate_period_cell_class %}{% endblock %}"{% block total_rate_period_cell_attribute %}{% endblock %}>
+                        {% block total_rate_period %}
+                            {{ total|money }}
+                        {% endblock %}
+                    </td>
+                {% endfor %}
+            {% elseif dataType == 'internalRate' %}
+                {% for id, total in totalsInternalRate %}
+                    <td class="text-center text-nowrap{% block total_internal_rate_period_cell_class %}{% endblock %}"{% block total_internal_rate_period_cell_attribute %}{% endblock %}>
+                        {% block total_internal_rate_period %}
+                            {{ total|money }}
+                        {% endblock %}
+                    </td>
+                {% endfor %}
+            {% else %}
+                {% for id, total in totalsDuration %}
+                    <td class="text-center text-nowrap{% block total_duration_period_cell_class %}{% endblock %}"{% block total_duration_period_cell_attribute %}{% endblock %}>
+                        {% block total_duration_period %}
+                            {{ total|duration(decimal) }}
+                        {% endblock %}
+                    </td>
+                {% endfor %}
+            {% endif %}
+        </tr>
+    </tfoot>
+</table>

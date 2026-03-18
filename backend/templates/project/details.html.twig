@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block main %}
+    {% set can_edit = is_granted('edit', project) %}
+
+    {% embed '@theme/embeds/card.html.twig' with {fullsize: true}  %}
+        {% import "macros/widgets.html.twig" as widgets %}
+        {% import "customer/actions.html.twig" as customerActions %}
+        {% block box_attributes %}id="project_details_box"{% endblock %}
+        {% block box_tools %}
+            {% if can_edit %}
+                {{ widgets.card_tool_button('edit', {'class': 'modal-ajax-form open-edit', 'title': 'edit', 'url': path('admin_project_edit', {'id': project.id})}) }}
+            {% endif %}
+        {% endblock %}
+        {% block box_title %}
+            {{ widgets.label_dot(project.name, project.color) }}
+        {% endblock %}
+        {% block box_body %}
+            {% if project.comment is not empty %}
+                <div class="comment p-3">
+                    {{ project.comment|comment2html(true) }}
+                </div>
+            {% endif %}
+            <table class="table table-hover dataTable">
+                {% if not project.visible %}
+                    <tr class="{{ widgets.class_project_row(project, now) }}">
+                        <th>{{ 'visible'|trans }}</th>
+                        <td colspan="3">
+                            {{ widgets.label_boolean(project.visible) }}
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr {{ widgets.customer_row_attr(project.customer, now) }}>
+                    <th>{{ 'customer'|trans }}</th>
+                    <td>
+                        {{ widgets.label_customer(project.customer) }}
+                    </td>
+                    <td class="w-min">
+                        {{ widgets.badge_team_access(project.customer.teams) }}
+                    </td>
+                    <td class="actions">
+                        {{ customerActions.customer(project.customer, 'custom') }}
+                    </td>
+                </tr>
+                {% if is_granted('details', project) %}
+                    {% if not project.billable %}
+                        <tr>
+                            <th>{{ 'billable'|trans }}</th>
+                            <td colspan="3">
+                                {{ widgets.label_boolean(project.billable) }}
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% if project.orderNumber is not empty %}
+                    <tr>
+                        <th>{{ 'orderNumber'|trans }}</th>
+                        <td colspan="3">
+                            {{ project.orderNumber }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if project.orderDate is not empty %}
+                    <tr>
+                        <th>{{ 'orderDate'|trans }}</th>
+                        <td colspan="3">
+                            {{ project.orderDate|date_short }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if project.start is not empty %}
+                    <tr>
+                        <th>{{ 'project_start'|trans }}</th>
+                        <td colspan="3">
+                            {{ project.start|date_short }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if project.end is not empty %}
+                    <tr>
+                        <th>{{ 'project_end'|trans }}</th>
+                        <td colspan="3">
+                            {{ project.end|date_short }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if project.number is not empty %}
+                    <tr>
+                        <th>{{ 'project_number'|trans }}</th>
+                        <td colspan="3">
+                            {{ project.number }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endif %}
+                {% if project.hasBudget() and is_granted('budget', project) %}
+                    <tr>
+                        <th>
+                            {{ 'budget'|trans }}
+                            {% if project.isMonthlyBudget() %}
+                                ({{ 'budgetType_month'|trans }})
+                            {% endif %}
+                        </th>
+                        <td colspan="3">
+                            {{ project.getBudget()|money(project.customer.currency) }}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if project.hasTimeBudget() and is_granted('time', project) %}
+                    <tr>
+                        <th>
+                            {{ 'timeBudget'|trans }}
+                            {% if project.isMonthlyBudget() %}
+                                ({{ 'budgetType_month'|trans }})
+                            {% endif %}
+                        </th>
+                        <td colspan="3">
+                            {{ project.getTimeBudget()|duration }}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if not project.globalActivities %}
+                    <tr>
+                        <th>{{ 'globalActivities'|trans }}</th>
+                        <td colspan="3">
+                            {{ widgets.label_boolean(project.globalActivities) }}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% for metaField in project.visibleMetaFields|filter(field => field.defined)|sort((a, b) => a.order <=> b.order) %}
+                    <tr>
+                        <th>{{ metaField.label|trans }}</th>
+                        <td colspan="3">{{ widgets.form_type_value(metaField.type, metaField.value, project) }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endblock %}
+    {% endembed %}
+
+    {{ render(controller('App\\Controller\\ProjectController::activitiesAction', {'project': project.id, 'page': 1})) }}
+
+    {% if can_edit %}
+        {{ include('embeds/rates-table.html.twig', {'id': 'project_rates_box', 'entity': project, 'create_url': path('admin_project_rate_add', {'id': project.id}), 'delete_route': 'delete_project_rate', 'currency': project.customer.currency, 'edit_route': 'admin_project_rate_edit'}) }}
+    {% endif %}
+
+    {% if stats is not null %}
+        {{ include('embeds/budgets.html.twig', {'entity': project, 'stats': stats, 'currency': project.customer.currency}) }}
+    {% endif %}
+
+    {% for controller in boxes %}
+        {{ render(controller(controller, {'project': project, 'page': 1})) }}
+    {% endfor %}
+
+    {% if teams is not null%}
+        {% set options = {'teams': teams, 'team': team} %}
+        {% if is_granted('permissions', project) %}
+            {% set options = options|merge({'route_create': path('project_team_create', {'id': project.id}), 'route_edit': path('admin_project_permissions', {'id': project.id})}) %}
+        {% endif %}
+        {% if project.customer.teams|length > 0 %}
+            {% set options = options|merge({'empty_message': 'team.project_visibility_inherited'}) %}
+        {% endif %}
+        {{ include('embeds/teams.html.twig', options) }}
+    {% endif %}
+
+    {% if comments is not null %}
+        {% set options = {'form': commentForm, 'comments': comments} %}
+        {% if can_edit %}
+            {% set options = options|merge({'route_pin': 'project_comment_pin', 'route_delete': 'project_comment_delete'}) %}
+        {% endif %}
+        {{ include('embeds/comments.html.twig', options) }}
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        document.addEventListener('kimai.initialized', function() {
+            KimaiReloadPageWidget.create('kimai.customerTeamUpdate kimai.projectTeamUpdate kimai.activityTeamUpdate kimai.projectUpdate kimai.teamUpdate kimai.customerUpdate kimai.rateUpdate');
+        });
+    </script>
+{% endblock %}

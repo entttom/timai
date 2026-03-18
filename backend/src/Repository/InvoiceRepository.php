@@ -1,0 +1,307 @@
+<?php
+
+/*
+ * This file is part of the Kimai time-tracking app.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace App\Repository;
+
+use App\Entity\Customer;
+use App\Entity\Invoice;
+use App\Entity\InvoiceMeta;
+use App\Entity\Team;
+use App\Entity\User;
+use App\Repository\Paginator\PaginatorInterface;
+use App\Repository\Paginator\QueryPaginator;
+use App\Repository\Query\InvoiceArchiveQuery;
+use App\Repository\Search\SearchConfiguration;
+use App\Repository\Search\SearchHelper;
+use App\Utils\Pagination;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
+
+/**
+ * @extends EntityRepository<Invoice>
+ */
+class InvoiceRepository extends EntityRepository
+{
+    public function saveInvoice(Invoice $invoice): void
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($invoice);
+        $entityManager->flush();
+    }
+
+    public function deleteInvoice(Invoice $invoice): void
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->remove($invoice);
+        $entityManager->flush();
+    }
+
+    public function hasInvoice(string $invoiceNumber): bool
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('count(i.id) as counter')
+            ->from(Invoice::class, 'i')
+            ->andWhere($qb->expr()->eq('i.invoiceNumber', ':number'))
+            ->setParameter('number', $invoiceNumber)
+        ;
+
+        $counter = (int) $qb->getQuery()->getSingleScalarResult();
+
+        return $counter > 0;
+    }
+
+    private function getCounterFor(\DateTime $start, \DateTime $end, ?Customer $customer = null, ?User $user = null): int
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('count(i.createdAt) as counter')
+            ->from(Invoice::class, 'i')
+            ->andWhere($qb->expr()->gte('i.createdAt', ':start'))
+            ->andWhere($qb->expr()->lte('i.createdAt', ':end'))
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+        ;
+
+        if (null !== $customer) {
+            $qb
+                ->andWhere($qb->expr()->eq('i.customer', ':customer'))
+                ->setParameter('customer', $customer->getId())
+            ;
+        }
+
+        if (null !== $user) {
+            $qb
+                ->andWhere($qb->expr()->eq('i.user', ':user'))
+                ->setParameter('user', $user->getId())
+            ;
+        }
+
+        /** @var array{'counter': int|numeric-string}|null $result */
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        if ($result === null) {
+            return 0;
+        }
+
+        return (int) $result['counter'];
+    }
+
+    public function getCounterForDay(\DateTimeInterface $date, ?Customer $customer = null, ?User $user = null): int
+    {
+        $date = \DateTime::createFromInterface($date);
+        $start = (clone $date)->setTime(0, 0, 0);
+        $end = (clone $date)->setTime(23, 59, 59);
+
+        return $this->getCounterFor($start, $end, $customer, $user);
+    }
+
+    public function getCounterForMonth(\DateTimeInterface $date, ?Customer $customer = null, ?User $user = null): int
+    {
+        $date = \DateTime::createFromInterface($date);
+        $start = (clone $date)->setDate((int) $date->format('Y'), (int) $date->format('n'), 1)->setTime(0, 0, 0);
+        $end = (clone $date)->setDate((int) $date->format('Y'), (int) $date->format('n'), (int) $date->format('t'))->setTime(23, 59, 59);
+
+        return $this->getCounterFor($start, $end, $customer, $user);
+    }
+
+    public function getCounterForYear(\DateTimeInterface $date, ?Customer $customer = null, ?User $user = null): int
+    {
+        $date = \DateTime::createFromInterface($date);
+        $start = (clone $date)->setDate((int) $date->format('Y'), 1, 1)->setTime(0, 0, 0);
+        $end = (clone $date)->setDate((int) $date->format('Y'), 12, 31)->setTime(23, 59, 59);
+
+        return $this->getCounterFor($start, $end, $customer, $user);
+    }
+
+    public function getCounterForCustomerAllTime(?Customer $customer = null): int
+    {
+        if (null !== $customer) {
+            return $this->count(['customer' => $customer->getId()]);
+        }
+
+        return $this->count([]);
+    }
+
+    public function getCounterForUserAllTime(?User $user = null): int
+    {
+        if (null !== $user) {
+            return $this->count(['user' => $user->getId()]);
+        }
+
+        return $this->count([]);
+    }
+
+    /**
+     * @param array<Team> $teams
+     */
+    private function addPermissionCriteria(QueryBuilder $qb, ?User $user = null, array $teams = []): void
+    {
+        // make sure that all queries without a user see all projects
+        if (null === $user && empty($teams)) {
+            return;
+        }
+
+        // make sure that admins see all projects
+        if (null !== $user && $user->canSeeAllData()) {
+            return;
+        }
+
+        if (null !== $user) {
+            $teams = array_merge($teams, $user->getTeams());
+        }
+
+        $qb->leftJoin('i.customer', 'c');
+
+        if (empty($teams)) {
+            $qb->andWhere('SIZE(c.teams) = 0');
+
+            return;
+        }
+
+        $orCustomer = $qb->expr()->orX(
+            'SIZE(c.teams) = 0',
+            $qb->expr()->isMemberOf(':teams', 'c.teams')
+        );
+        $qb->andWhere($orCustomer);
+
+        $ids = array_values(array_unique(array_map(function (Team $team) {
+            return $team->getId();
+        }, $teams)));
+
+        $qb->setParameter('teams', $ids);
+    }
+
+    private function getQueryBuilderForQuery(InvoiceArchiveQuery $query): QueryBuilder
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb
+            ->select('i')
+            ->from(Invoice::class, 'i')
+        ;
+
+        if ($query->getBegin() !== null) {
+            $qb->andWhere($qb->expr()->gte('i.createdAt', ':begin'));
+            $qb->setParameter('begin', $query->getBegin());
+        }
+
+        if ($query->getEnd() !== null) {
+            $qb->andWhere($qb->expr()->lte('i.createdAt', ':end'));
+            $qb->setParameter('end', $query->getEnd());
+        }
+
+        if ($query->hasCustomers()) {
+            $qb->andWhere($qb->expr()->in('i.customer', ':customer'));
+            $qb->setParameter('customer', $query->getCustomers());
+        }
+
+        if ($query->hasStatus()) {
+            $qb->andWhere($qb->expr()->in('i.status', ':status'));
+            $qb->setParameter('status', $query->getStatus());
+        }
+
+        $orderBy = $query->getOrderBy();
+        switch ($orderBy) {
+            case 'date':
+                $orderBy = 'i.createdAt';
+                break;
+            case 'invoice.number':
+                $orderBy = 'i.invoiceNumber';
+                break;
+            case 'payed':
+                $orderBy = 'i.paymentDate';
+                break;
+            case 'total_rate':
+                $orderBy = 'i.total';
+                break;
+            case 'status':
+                $orderBy = 'i.status';
+                break;
+            case 'tax':
+                $orderBy = 'i.tax';
+                break;
+        }
+
+        $qb->addOrderBy($orderBy, $query->getOrder());
+
+        $this->addPermissionCriteria($qb, $query->getCurrentUser());
+
+        if ($query->hasSearchTerm()) {
+            $qb->leftJoin('i.customer', 'customer');
+
+            $configuration = new SearchConfiguration(
+                ['i.comment', 'customer.name', 'customer.company'],
+                InvoiceMeta::class,
+                'invoice'
+            );
+            $helper = new SearchHelper($configuration);
+            $helper->addSearchTerm($qb, $query);
+        }
+
+        return $qb;
+    }
+
+    /**
+     * @return int<0, max>
+     */
+    private function countInvoicesForQuery(InvoiceArchiveQuery $query): int
+    {
+        $qb = $this->getQueryBuilderForQuery($query);
+        $qb
+            ->resetDQLPart('select')
+            ->resetDQLPart('orderBy')
+            ->resetDQLPart('groupBy')
+            ->select($qb->expr()->countDistinct('i.id'))
+        ;
+
+        return (int) $qb->getQuery()->getSingleScalarResult(); // @phpstan-ignore-line
+    }
+
+    /**
+     * @param InvoiceArchiveQuery $query
+     * @return Invoice[]
+     */
+    public function getInvoicesForQuery(InvoiceArchiveQuery $query): iterable
+    {
+        return $this->createInvoiceQuery($query)->execute(); // @phpstan-ignore-line
+    }
+
+    /**
+     * @return PaginatorInterface<Invoice>
+     */
+    private function getPaginatorForQuery(InvoiceArchiveQuery $query): PaginatorInterface
+    {
+        $counter = $this->countInvoicesForQuery($query);
+        $query = $this->createInvoiceQuery($query);
+
+        return new QueryPaginator($query, $counter);
+    }
+
+    public function getPagerfantaForQuery(InvoiceArchiveQuery $query): Pagination
+    {
+        return new Pagination($this->getPaginatorForQuery($query), $query);
+    }
+
+    /**
+     * @return Query<Invoice>
+     */
+    private function createInvoiceQuery(InvoiceArchiveQuery $invoiceArchiveQuery): Query
+    {
+        $query = $this->getQueryBuilderForQuery($invoiceArchiveQuery)->getQuery();
+
+        $this->getEntityManager()->getConfiguration()->setEagerFetchBatchSize(300);
+
+        $query->setFetchMode(Invoice::class, 'meta', ClassMetadata::FETCH_EAGER);
+        $query->setFetchMode(Invoice::class, 'user', ClassMetadata::FETCH_EAGER);
+        $query->setFetchMode(Invoice::class, 'customer', ClassMetadata::FETCH_EAGER);
+
+        return $query;
+    }
+}

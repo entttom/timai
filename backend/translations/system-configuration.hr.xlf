@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="hr" datatype="plaintext" original="system-configuration.en.xlf">
+    <body>
+      <trans-unit id="PLggHn." resname="theme">
+        <source>theme</source>
+        <target>Tema</target>
+      </trans-unit>
+      <trans-unit id="mPRUBFX" resname="theme.markdown_content">
+        <source>theme.markdown_content</source>
+        <target>Dozvoli markdown formatiranje u opisima i komentarima</target>
+      </trans-unit>
+      <trans-unit id="SnkW0Pk" resname="theme.avatar_url">
+        <source>theme.avatar_url</source>
+        <target>Dozvoli korištenje URL-ova za slike avatara</target>
+      </trans-unit>
+      <trans-unit id="FaGqoTT" resname="timesheet.mode">
+        <source>timesheet.mode</source>
+        <target>Modus evidentiranja vremena</target>
+      </trans-unit>
+      <trans-unit id="A11vhSN" resname="timesheet.mode_default">
+        <source>timesheet.mode_default</source>
+        <target>[Standardno] vrijeme početka i kraja mogu se promijeniti</target>
+      </trans-unit>
+      <trans-unit id="CJZhtYx" resname="timesheet.mode_duration_fixed_begin">
+        <source>timesheet.mode_duration_fixed_begin</source>
+        <target>[Trajanje] podesivo fiksno vrijeme početka, promijeniti se može samo trajanje</target>
+      </trans-unit>
+      <trans-unit id="3tlkqJC" resname="timesheet.mode_punch" xml:space="preserve">
+        <source>timesheet.mode_punch</source>
+        <target state="translated">Korisnik [kontrolnog sata] može pokrenuti i prekinuti snimanja, ali ne može mijenjati vremena ili trajanje</target>
+      </trans-unit>
+      <trans-unit id="k4pl27g" resname="timesheet.rules.allow_future_times">
+        <source>timesheet.rules.allow_future_times</source>
+        <target>Dozvoli unose vremena u budućnosti</target>
+      </trans-unit>
+      <trans-unit id="2KUm56c" resname="timesheet.rules.allow_overbooking_budget">
+        <source>timesheet.rules.allow_overbooking_budget</source>
+        <target>Dozvoli prekoraćenje rezerviranja spremljenih budžeta</target>
+      </trans-unit>
+      <trans-unit id="ZCg9UVM" resname="timesheet.rules.allow_overlapping_records" xml:space="preserve">
+        <source>timesheet.rules.allow_overlapping_records</source>
+        <target state="translated">Dozvoli unose vremena koja se preklapaju</target>
+      </trans-unit>
+      <trans-unit id="tuPXa0S" resname="lockdown_period" xml:space="preserve">
+        <source>lockdown_period</source>
+        <target state="translated">Razdoblje zaključenja</target>
+      </trans-unit>
+      <trans-unit id="wrnXs_a" resname="timesheet.rules.lockdown_period_timezone">
+        <source>timesheet.rules.lockdown_period_timezone</source>
+        <target>Vremenska zona (ako je polje prazno, koristi se vremenska zona dotičnog korisnika)</target>
+      </trans-unit>
+      <trans-unit id="_PvFlQ9" resname="timesheet.rules.lockdown_period_start" xml:space="preserve">
+        <source>timesheet.rules.lockdown_period_start</source>
+        <target state="translated">Početak razdoblja zaključenja (relativni PHP datum u odnosu na sada)</target>
+      </trans-unit>
+      <trans-unit id="M1iVHeQ" resname="timesheet.rules.lockdown_period_end" xml:space="preserve">
+        <source>timesheet.rules.lockdown_period_end</source>
+        <target state="translated">Kraj razdoblja zaključenja (relativni PHP datum u odnosu na sada)</target>
+      </trans-unit>
+      <trans-unit id="RLgv62J" resname="timesheet.rules.lockdown_grace_period" xml:space="preserve">
+        <source>timesheet.rules.lockdown_grace_period</source>
+        <target state="translated">Kraj dodatnog razdoblja zaključenja (relativni PHP datum u odnosu na kraj zaključanog razdoblja)</target>
+      </trans-unit>
+      <trans-unit id="Fe18zp4" resname="timesheet.active_entries.hard_limit">
+        <source>timesheet.active_entries.hard_limit</source>
+        <target>Dozvoljeni broj istovremenih aktivnih unosa vremena</target>
+      </trans-unit>
+      <trans-unit id="t38HFZd" resname="calendar.week_numbers">
+        <source>calendar.week_numbers</source>
+        <target>Prikaži brojeve tjedana</target>
+      </trans-unit>
+      <trans-unit id="qaoBvYU" resname="calendar.weekends">
+        <source>calendar.weekends</source>
+        <target>Prikaži vikende</target>
+      </trans-unit>
+      <trans-unit id="yUeuM2_" resname="calendar.businessHours.begin">
+        <source>calendar.businessHours.begin</source>
+        <target>Početak uobičajenog radnog vremena (bit će istaknuto)</target>
+      </trans-unit>
+      <trans-unit id="Aa_Ushz" resname="calendar.businessHours.end">
+        <source>calendar.businessHours.end</source>
+        <target>Kraj uobičajenog radnog vremena (bit će istaknuto)</target>
+      </trans-unit>
+      <trans-unit id="1bHgx7p" resname="calendar.visibleHours.begin">
+        <source>calendar.visibleHours.begin</source>
+        <target>Početak vidljivog vremenskog raspona</target>
+      </trans-unit>
+      <trans-unit id="6nayLDB" resname="calendar.visibleHours.end">
+        <source>calendar.visibleHours.end</source>
+        <target>Kraj vidljivog vremenskog raspona</target>
+      </trans-unit>
+      <trans-unit id="BYy.c1V" resname="calendar.slot_duration">
+        <source>calendar.slot_duration</source>
+        <target state="translated">Trajanje vremenskog razdoblja za prikaz tjedna i dana</target>
+      </trans-unit>
+      <trans-unit id="nwuLBP4" resname="branding">
+        <source>branding</source>
+        <target>Moje poduzeće</target>
+      </trans-unit>
+      <trans-unit id="o9mON14" resname="theme.branding.logo">
+        <source>theme.branding.logo</source>
+        <target>URL logotipa (zamjenjuje ime poduzeća na ekranu prijave)</target>
+      </trans-unit>
+      <trans-unit id="en0.Ahu" resname="theme.branding.company">
+        <source>theme.branding.company</source>
+        <target>Ime poduzeća</target>
+      </trans-unit>
+      <trans-unit id="AzOiQES" resname="company.financial_year">
+        <source>company.financial_year</source>
+        <target>Fiskalna godina</target>
+      </trans-unit>
+      <trans-unit id="Gdb5M4w" resname="rounding">
+        <source>rounding</source>
+        <target>Zaokruživanje vremena</target>
+      </trans-unit>
+      <trans-unit id="ZMvZTTx" resname="timesheet.rounding.default.begin">
+        <source>timesheet.rounding.default.begin</source>
+        <target>Zaokruživanje vremena početka u minutama (0 = deaktivirano)</target>
+      </trans-unit>
+      <trans-unit id="AUc43eR" resname="timesheet.rounding.default.end">
+        <source>timesheet.rounding.default.end</source>
+        <target>Zaokruživanje vremena kraja u minutama (0 = deaktivirano)</target>
+      </trans-unit>
+      <trans-unit id="t.YW9eU" resname="timesheet.rounding.default.duration">
+        <source>timesheet.rounding.default.duration</source>
+        <target>Zaokruživanje trajanja u minutama (0 = deaktivirano)</target>
+      </trans-unit>
+      <trans-unit id="O8E4Hj5" resname="timesheet.rounding.default.mode">
+        <source>timesheet.rounding.default.mode</source>
+        <target>Modus zaokruživanja</target>
+      </trans-unit>
+      <trans-unit id="oL_eD_9" resname="timesheet.rounding.default.days">
+        <source>timesheet.rounding.default.days</source>
+        <target>Dani u tjednu kad će se primijeniti zaokruživanje</target>
+      </trans-unit>
+      <trans-unit id="agDfwdy" resname="Monday">
+        <source>Monday</source>
+        <target>Ponedjeljak</target>
+      </trans-unit>
+      <trans-unit id="fYrx3hJ" resname="Tuesday">
+        <source>Tuesday</source>
+        <target>Utorak</target>
+      </trans-unit>
+      <trans-unit id="wKbMgpz" resname="Wednesday">
+        <source>Wednesday</source>
+        <target>Srijeda</target>
+      </trans-unit>
+      <trans-unit id=".CZiBi." resname="Thursday">
+        <source>Thursday</source>
+        <target>Četvrtak</target>
+      </trans-unit>
+      <trans-unit id="4h8.Nyp" resname="Friday">
+        <source>Friday</source>
+        <target>Petak</target>
+      </trans-unit>
+      <trans-unit id="2_Ncc2P" resname="Saturday">
+        <source>Saturday</source>
+        <target>Subota</target>
+      </trans-unit>
+      <trans-unit id="hz.vdg5" resname="Sunday">
+        <source>Sunday</source>
+        <target>Nedjelja</target>
+      </trans-unit>
+      <trans-unit id="jmsE4EY" resname="Ceil" xml:space="preserve">
+        <source>Ceil</source>
+        <target state="translated">Početak, kraj i trajanje će se zaokružiti prema gore</target>
+      </trans-unit>
+      <trans-unit id="Y_qmsDz" resname="Closest" xml:space="preserve">
+        <source>Closest</source>
+        <target state="translated">Matematičko zaokruživanje na najbližu vrijednost</target>
+      </trans-unit>
+      <trans-unit id="IbERy.5" resname="Default" xml:space="preserve">
+        <source>Default</source>
+        <target state="translated">Početak će se zaokružiti prema dolje, kraj i trajanje prema gore</target>
+      </trans-unit>
+      <trans-unit id="0mjJxEk" resname="Floor" xml:space="preserve">
+        <source>Floor</source>
+        <target state="translated">Početak, kraj i trajanje će se zaokružiti prema dolje</target>
+      </trans-unit>
+      <trans-unit id="_0OBfZf" resname="timesheet.default_begin">
+        <source>timesheet.default_begin</source>
+        <target>Standardno vrijeme početka (ne koristi se u svim modusima evidentiranja vremena)</target>
+      </trans-unit>
+      <trans-unit id="UTurPF1" resname="invoice.number_format">
+        <source>invoice.number_format</source>
+        <target>Format broja računa</target>
+      </trans-unit>
+      <trans-unit id="6CSB6iM" resname="first_weekday">
+        <source>first_weekday</source>
+        <target>Prvi dan u tjednu</target>
+      </trans-unit>
+      <trans-unit id="nqWKu27" resname="timesheet.duration_increment">
+        <source>timesheet.duration_increment</source>
+        <target state="translated">Biranje minuta za trajanje</target>
+      </trans-unit>
+      <trans-unit id="OIvZ_wc" resname="timesheet.time_increment">
+        <source>timesheet.time_increment</source>
+        <target state="translated">Biranje minuta za vremena „od” i „do”</target>
+      </trans-unit>
+      <trans-unit id="tNxm3eg" resname="off">
+        <source>off</source>
+        <target>Isključeno</target>
+      </trans-unit>
+      <trans-unit id="EFY6GmX" resname="theme.color_choices">
+        <source>theme.color_choices</source>
+        <target>Dozvoljene boje</target>
+      </trans-unit>
+      <trans-unit id="aUc3uU1" resname="help.theme.color_choices">
+        <source>help.theme.color_choices</source>
+        <target>Popis HTML kodova boja odvojenih zarezima. Boje se mogu odrediti postavljanjem imena boje i okomite crte ispred koda boje, npr.: White|#ffffff, Black|#000000.</target>
+      </trans-unit>
+      <trans-unit id="udkGKEU" resname="authentication">
+        <source>authentication</source>
+        <target>Autentifikacija</target>
+      </trans-unit>
+      <trans-unit id="BGHQ8YO" resname="user_auth_login">
+        <source>user_auth_login</source>
+        <target>Obrazac za prijavu</target>
+      </trans-unit>
+      <trans-unit id="C26_mL7" resname="user_auth_registration">
+        <source>user_auth_registration</source>
+        <target>Registracija korisnika</target>
+      </trans-unit>
+      <trans-unit id="5RSshEN" resname="user_auth_password_reset">
+        <source>user_auth_password_reset</source>
+        <target>Zaboravljena lozinka</target>
+      </trans-unit>
+      <trans-unit id="E9URNEx" resname="user_auth_password_reset_retry_ttl">
+        <source>user_auth_password_reset_retry_ttl</source>
+        <target>Zaboravljena lozinka – sekunde prije nego što korisnik može zatražiti sljedeći e-mail</target>
+      </trans-unit>
+      <trans-unit id="55s60b4" resname="user_auth_password_reset_token_ttl">
+        <source>user_auth_password_reset_token_ttl</source>
+        <target>Zaboravljena lozinka – sekunde prije nego što poveznica za obnavljanje istekne</target>
+      </trans-unit>
+      <trans-unit id="ihORk9W" resname="ldap_activate">
+        <source>ldap_activate</source>
+        <target>LDAP prijava</target>
+      </trans-unit>
+      <trans-unit id="0noFWbL" resname="saml_activate">
+        <source>saml_activate</source>
+        <target>SAML prijava</target>
+      </trans-unit>
+      <trans-unit id="Rf_fb9x" resname="timesheet.rules.break_warning_duration">
+        <source>timesheet.rules.break_warning_duration</source>
+        <target>Maksimalno trajanje zapisa vremenske tablice u minutama prije prikazivanja „upozorenje za pauzu” (0 = deaktivirano)</target>
+      </trans-unit>
+      <trans-unit id="vg5G_9i" resname="timesheet.rules.long_running_duration">
+        <source>timesheet.rules.long_running_duration</source>
+        <target>Maksimalno trajanje zapisa vremenske tablice u minutama prije nego što se spremanje odbije (0 = deaktivirano)</target>
+      </trans-unit>
+      <trans-unit id="xlNjElF" resname="calendar.dragdrop_amount">
+        <source>calendar.dragdrop_amount</source>
+        <target>Količina unosa za povlačenje i ispuštanje (0 = deaktivirano)</target>
+      </trans-unit>
+      <trans-unit id="xa6f6fq" resname="quick_entry.recent_activities">
+        <source>quick_entry.recent_activities</source>
+        <target>Broj unosa preuzetih iz prethodnih tjedana</target>
+      </trans-unit>
+      <trans-unit id="winWMI1" resname="calendar.title_pattern">
+        <source>calendar.title_pattern</source>
+        <target>Prikaz naslova kalendarskih zapisa</target>
+      </trans-unit>
+      <trans-unit id="yBBvkfb" resname="timesheet.rules.allow_zero_duration">
+        <source>timesheet.rules.allow_zero_duration</source>
+        <target state="translated">Dozvoli unose vremena s praznim poljem trajanja</target>
+      </trans-unit>
+      <trans-unit id="Vp1e9qb" resname="quick_entry.recent_activity_weeks">
+        <source>quick_entry.recent_activity_weeks</source>
+        <target state="translated">Preuzmi unose zadnjih X tjedana (prazno ili 0 za svo vrijeme)</target>
+      </trans-unit>
+      <trans-unit id="KbAqHBa" resname="quick_entry.minimum_rows">
+        <source>quick_entry.minimum_rows</source>
+        <target>Minimum broja redaka</target>
+      </trans-unit>
+      <trans-unit id="9efN4Oc" resname="calendar.dragdrop_data">
+        <source>Copies data when adding via drag and drop</source>
+        <target state="translated">Kopira podatke prilikom dodavanja povlačenjem i ispuštanjem</target>
+      </trans-unit>
+      <trans-unit id="pBxkAF_" resname="copy_teams_on_create" approved="no">
+        <source>copy_teams_on_create</source>
+        <target state="translated">Preuzmi timove od prijavljenog korisnika prilikom stvaranja novih unosa</target>
+      </trans-unit>
+      <trans-unit id="1cAQPNS" resname="customer.allow_duplicate_number">
+        <source>customer.allow_duplicate_number</source>
+        <target state="translated">Dozvoli dupli broj računa</target>
+      </trans-unit>
+      <trans-unit id="12sQGSo" resname="activity.allow_inline_create">
+        <source>activity.allow_inline_create</source>
+        <target state="translated">Dozvoli stvaranje aktivnosti u obrascu za evidentiranje vremena</target>
+      </trans-unit>
+      <trans-unit id="LmOfuE5" resname="customer.number_format" xml:space="preserve">
+        <source>customer.number_format</source>
+        <target state="translated">Format broja kupca</target>
+      </trans-unit>
+      <trans-unit id="IZY5kqL" resname="allowed_replacer">
+        <source>allowed_replacer</source>
+        <target state="translated">Dozvoljena zamjena: %replacer%</target>
+      </trans-unit>
+      <trans-unit id="3xUU9V." resname="project.number_format" xml:space="preserve">
+        <source>project.number_format</source>
+        <target state="translated">Format broja projekta</target>
+      </trans-unit>
+      <trans-unit id="ifgrIHh" resname="activity.number_format" xml:space="preserve">
+        <source>activity.number_format</source>
+        <target state="translated">Format broja aktivnosti</target>
+      </trans-unit>
+      <trans-unit id="jj1NmKW" resname="allow_duplicate_number" xml:space="preserve">
+        <source>allow_duplicate_number</source>
+        <target state="translated">Dozvoli višestruko korištenje istog broja</target>
+      </trans-unit>
+      <trans-unit id="6AaVxB2" resname="invoice.rounding_mode" approved="no" xml:space="preserve">
+        <source>invoice.rounding_mode</source>
+        <target state="translated">Modus zaokruživanja</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

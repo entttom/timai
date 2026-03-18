@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ko" datatype="plaintext" original="invoice-renderer.en.xlf">
+    <body>
+      <trans-unit id="hOcTt2G" resname="invoice_renderer">
+        <source>invoice_renderer</source>
+        <target state="translated">청구서 문서</target>
+      </trans-unit>
+      <trans-unit id="Utbj3k_" resname="invoice">
+        <source>invoice</source>
+        <target state="translated">청구서 (템플릿)</target>
+      </trans-unit>
+      <trans-unit id="lt2Y2LO" resname="timesheet">
+        <source>timesheet</source>
+        <target state="translated">타임시트</target>
+      </trans-unit>
+      <trans-unit id="m1UyfD9" resname="service-date">
+        <source>service-date</source>
+        <target state="translated">프리랜서</target>
+      </trans-unit>
+      <trans-unit id="7mEUv6C" resname="help.upload">
+        <source>help.upload</source>
+        <target>주의: 기존 파일을 덮어씁니다. 허용되는 파일 형식은 %extensions%입니다.</target>
+      </trans-unit>
+      <trans-unit id="mC2ePrm" resname="text">
+        <source>text</source>
+        <target>텍스트</target>
+      </trans-unit>
+      <trans-unit id="E5BwZHT" resname="programmatic">
+        <source>programmatic</source>
+        <target>더 많은 처리를 위해</target>
+      </trans-unit>
+      <trans-unit id="N6juwc4" resname="default">
+        <source>default</source>
+        <target>청구서</target>
+      </trans-unit>
+      <trans-unit id="22pt8Gs" resname="download_invoice_renderer" xml:space="preserve">
+        <source>download_invoice_renderer</source>
+        <target state="translated">추가 탬플릿을 이곳에서 다운로드 가능합니다</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

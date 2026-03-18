@@ -1,0 +1,96 @@
+{% extends kimai_context.modalRequest ? 'form.html.twig' : 'base.html.twig' %}
+
+{% block main %}
+    {% set formEditTemplate = kimai_context.modalRequest ? 'default/_form_modal.html.twig' : 'default/_form.html.twig' %}
+    {% set formOptions = {
+        'title': (project.id is null ? 'create-project'|trans : 'edit'|trans),
+        'form': form,
+        'back': path('admin_project')
+    } %}
+    {% embed formEditTemplate with formOptions %}
+        {% import "macros/form_helper.html.twig" as form_helper %}
+        {% block form_body %}
+            <div class="row">
+                <div class="col-md-9">
+                    {{ form_row(form.name) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.color) }}
+                </div>
+            </div>
+            {{ form_row(form.comment) }}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.customer) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.number) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.start) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.end) }}
+                </div>
+            </div>
+            {% if form.budgetType is defined %}
+            <div class="row">
+                {% if form.budget is defined %}
+                <div class="col-md-4">
+                    {{ form_row(form.budget) }}
+                </div>
+                {% endif %}
+                {% if form.timeBudget is defined %}
+                <div class="col-md-4">
+                    {{ form_row(form.timeBudget) }}
+                </div>
+                {% endif %}
+                <div class="col-md-4">
+                    {{ form_row(form.budgetType) }}
+                </div>
+            </div>
+            {% endif %}
+            {% if form.teams is defined %}
+                <div class="row">
+                    <div class="col-12">
+                        {{ form_row(form.teams) }}
+                    </div>
+                </div>
+            {% endif %}
+            {{ form_helper.metafields(form, null) }}
+            {% embed '@theme/embeds/collapsible.html.twig' with {id: 'project_invoice_settings'} %}
+                {% import "macros/widgets.html.twig" as widgets %}
+                {% import "macros/form_helper.html.twig" as form_helper %}
+                {% block title %}{{ 'invoices'|trans }}{% endblock %}
+                {% block body %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form_row(form.orderNumber) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.orderDate) }}
+                        </div>
+                    </div>
+                    {% if form.invoiceText is defined %}
+                        {{ form_row(form.invoiceText) }}
+                    {% endif %}
+                    {{ form_helper.metafields(form, 'invoice') }}
+                {% endblock %}
+            {% endembed %}
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_row(form.visible) }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(form.billable) }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(form.globalActivities) }}
+                </div>
+            </div>
+            {{ form_rest(form) }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

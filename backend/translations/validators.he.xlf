@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="he" datatype="plaintext" original="validators.en.xlf">
+    <body>
+      <trans-unit id="IkNxbBI" resname="This value is not a valid role.">
+        <source>This value is not a valid role.</source>
+        <target>הערך הזה אינו תפקיד תקין.</target>
+      </trans-unit>
+      <trans-unit id="CLHaByy" resname="End date must not be earlier then start date." xml:space="preserve" approved="yes">
+        <source>The end date must not be earlier than the start date.</source>
+        <target state="final">תאריך סיום אינו יכול להיות לפני תאריךה התחלה.</target>
+      </trans-unit>
+      <trans-unit id="ePrqiLM" resname="The begin date cannot be in the future.">
+        <source>The begin date cannot be in the future.</source>
+        <target>תאריך ההתחלה לא יכול להיות בעתיד.</target>
+      </trans-unit>
+      <trans-unit id="VJSZSD0" resname="The given value is not a valid time.">
+        <source>The given value is not a valid time.</source>
+        <target>הערך שסופק אינו מועד תקין.</target>
+      </trans-unit>
+      <trans-unit id="u2wjm2i" resname="You already have an entry for this time.">
+        <source>You already have an entry for this time.</source>
+        <target>כבר יש לך רשומה למועד הזה.</target>
+      </trans-unit>
+      <trans-unit id="0o.pH3X" resname="This period is locked, please choose a later date.">
+        <source>This period is locked, please choose a later date.</source>
+        <target>תקופה זו נעולה, נא להשתמש במועד מאוחר יותר.</target>
+      </trans-unit>
+      <trans-unit id="yDlKSRw" resname="This invoice document cannot be used, please rename the file and upload it again.">
+        <source>This invoice document cannot be used, please rename the file and upload it again.</source>
+        <target>לא ניתן להשתמש במסמך החשבונית הזה, נא לשנות את שם הקובץ ולהעלות אותו שוב.</target>
+      </trans-unit>
+      <trans-unit id="1V6BsD_" resname="You must select at least one user or team.">
+        <source>You must select at least one user or team.</source>
+        <target>עליך לבחור בצוות או משתמש אחד לפחות.</target>
+      </trans-unit>
+      <trans-unit id="1oKCOa5" resname="The budget is completely used.">
+        <source>The budget is completely used.</source>
+        <target>התקציב נוצל במלואו. מתוך %budget% הזמינים, %used% נוצלו עד כה, עדיין ניתן להשתמש ב־%free%.</target>
+      </trans-unit>
+      <trans-unit id="6rO8GZ1" resname="Maximum duration of {{ value }} hours exceeded.">
+        <source>Maximum duration of {{ value }} hours exceeded.</source>
+        <target>מותר {{ value }} שעות לכל היותר.</target>
+      </trans-unit>
+      <trans-unit id="6u6oCwB" resname="The email is already used.">
+        <source>The email is already used.</source>
+        <target>כתובת הדוא״ל כבר תפוסה.</target>
+      </trans-unit>
+      <trans-unit id="S14XECA" resname="The username is already used.">
+        <source>The username is already used.</source>
+        <target>שם המשתמש כבר תפוס.</target>
+      </trans-unit>
+      <trans-unit id="6WAG.Xj" resname="The entered passwords don't match.">
+        <source>The entered passwords don't match.</source>
+        <target>הסיסמאות שהוקלדו אינן תואמות.</target>
+      </trans-unit>
+      <trans-unit id="rmH78_V" resname="At least one team leader must be assigned to the team.">
+        <source>At least one team leader must be assigned to the team.</source>
+        <target>יש להקצות לצוות מוביל אחד לפחות.</target>
+      </trans-unit>
+      <trans-unit id="INlaCgW" resname="An equal email is already used.">
+        <source>An equal email is already used.</source>
+        <target>כבר קיימת כתובת דוא״ל זהה.</target>
+      </trans-unit>
+      <trans-unit id="ekO5eXI" resname="An equal username is already used.">
+        <source>An equal username is already used.</source>
+        <target>כבר קיים שם משתמש זהה.</target>
+      </trans-unit>
+      <trans-unit id="to1Q85W" resname="An activity needs to be selected.">
+        <source>An activity needs to be selected.</source>
+        <target>יש לבחור בפעילות.</target>
+      </trans-unit>
+      <trans-unit id="rHd9_aA" resname="A project needs to be selected.">
+        <source>A project needs to be selected.</source>
+        <target>יש לבחור במיזם.</target>
+      </trans-unit>
+      <trans-unit id="mjlH0la" resname="This timesheet is already exported.">
+        <source>This timesheet is already exported.</source>
+        <target>גיליון השעות כבר עבר ייצוא.</target>
+      </trans-unit>
+      <trans-unit id="Jz1y3yB" resname="Duration cannot be zero.">
+        <source>Duration cannot be zero.</source>
+        <target>אסור משך זמן ריק.</target>
+      </trans-unit>
+      <trans-unit id="dcPei9G" resname="Sorry, the budget is used up.">
+        <source>Sorry, the budget is used up.</source>
+        <target state="translated">התקציב מנוצל, סליחה.</target>
+      </trans-unit>
+      <trans-unit id="gSAwscA" resname="Validation Failed">
+        <source>Validation Failed</source>
+        <target state="translated">אירעה תקלה בשמירה.</target>
+      </trans-unit>
+      <trans-unit resname="Cannot stop running timesheet" id="7HYTefs">
+        <source>Cannot stop running timesheet</source>
+        <target state="translated">יש לך רשומת תיעוד שעות פעילה שלא ניתן לעצור אוטומטית.</target>
+      </trans-unit>
+      <trans-unit id="xp0lmgm" resname="The given code is not the correct TOTP token.">
+        <source>The given code is not the correct TOTP token.</source>
+        <target state="translated">הקוד שסופק אינו בתצורת קוד חד־פעמי (TOTP) נכונה.</target>
+      </trans-unit>
+      <trans-unit id="7mqg3TC" resname="This value is not a valid role name.">
+        <source>This value is not a valid role name.</source>
+        <target state="translated">זה אינו שם תקף לתפקיד משתמש.</target>
+      </trans-unit>
+      <trans-unit id="ZObikpA" resname="This absence type is not known." xml:space="preserve" approved="yes">
+        <source>This absence type is not known.</source>
+        <target state="final">סוג ההיעדרות הזה לא ידוע.</target>
+      </trans-unit>
+      <trans-unit id="N21br.P" resname="The chosen date is already locked.">
+        <source>The chosen date is already locked.</source>
+        <target state="translated">התאריך הנבחר כבר נעול.</target>
+      </trans-unit>
+      <trans-unit id="6H84TMs" resname="An absence must be assigned to a user." xml:space="preserve" approved="yes">
+        <source>An absence must be assigned to a user.</source>
+        <target state="final">יש להקצות היעדרות למשתמש.</target>
+      </trans-unit>
+      <trans-unit id="nLcihCc" resname="An absence must have a date." xml:space="preserve" approved="yes">
+        <source>An absence must have a date.</source>
+        <target state="final">להיעדרות חייב להיות תאריך.</target>
+      </trans-unit>
+      <trans-unit id="SZO4xjC" resname="An absence cannot be booked before your first working day." xml:space="preserve" approved="yes">
+        <source>An absence cannot be booked before your first working day.</source>
+        <target state="final">אי אפשר להזמין היעדרות לפני יום העבודה הראשון.</target>
+      </trans-unit>
+      <trans-unit id="IN37g5N" resname="Not enough holidays left.">
+        <source>Not enough holidays left.</source>
+        <target state="translated">לא נותרו מספיק ימי חופש.</target>
+      </trans-unit>
+      <trans-unit id="ByeEMxW" resname="You do not have enough overtime, remaining are {{ value }}.">
+        <source>You do not have enough overtime, remaining are {{ value }}.</source>
+        <target state="translated">אין לך מספיק שעות נוספות, אלו שנותרו הן {{ value }}.</target>
+      </trans-unit>
+      <trans-unit id="DiaaRa1" resname="You cannot have two absences of this type at one day.">
+        <source>You cannot have two absences of this type at one day.</source>
+        <target state="translated">לא יכולות להיות שתי העדרויות מהסוג הזה באותו היום.</target>
+      </trans-unit>
+      <trans-unit id="kSBiyaF" resname="This is a public holiday, booking not allowed.">
+        <source>This is a public holiday, booking not allowed.</source>
+        <target state="translated">זה חג ציבורי, הזמנות אסורות.</target>
+      </trans-unit>
+      <trans-unit id="c2B6.lW" resname="You can book a maximum of {{ value }} days at once.">
+        <source>You can book a maximum of {{ value }} days at once.</source>
+        <target state="translated">אפשר להזמין עד {{ value }} ימים לכל היותר בבת אחת, בחרת {{ selected }}.</target>
+      </trans-unit>
+      <trans-unit id="0ULsHQA" resname="The chosen date is not a working day.">
+        <source>The chosen date is not a working day.</source>
+        <target state="translated">התאריך הנבחר אינו יום עבודה.</target>
+      </trans-unit>
+      <trans-unit id="BztgSSP" resname="The period of absence must not extend beyond the turn of the year." xml:space="preserve" approved="yes">
+        <source>The period of absence must not extend beyond the turn of the year.</source>
+        <target state="final">פרק זמן ההיעדרות לא יכול להתארך מעבר לסוף השנה האזרחית.</target>
+      </trans-unit>
+      <trans-unit id="fvxWW3V" resname="The CSRF token is invalid. Please try to resubmit the form." xml:space="preserve">
+        <source>The CSRF token is invalid. Please try to resubmit the form.</source>
+        <target state="translated">נא לנסות להגיש את הקובץ שוב. אם הבעיה חוזרת על עצמה, מוטב לרענן את הדפדפן.</target>
+      </trans-unit>
+      <trans-unit id="G2wt0aW" resname="An absence cannot be booked after the last working day." xml:space="preserve" approved="yes">
+        <source>An absence cannot be booked after the last working day.</source>
+        <target state="final">אי אפשר לתעד העדרות אחרי יום העבודה האחרון.</target>
+      </trans-unit>
+      <trans-unit id="mveJ4vW" resname="Selected period cannot be locked: unconfirmed absence requests are pending." xml:space="preserve" approved="yes">
+        <source>Selected period cannot be locked: unconfirmed absence requests are pending.</source>
+        <target state="final">לא ניתן לנעול את התקופה הנבחרת: יש בקשות העדרות ממתינות.</target>
+      </trans-unit>
+      <trans-unit id="KVyAzBQ" resname="Duration cannot be negative." xml:space="preserve" approved="yes">
+        <source>Duration cannot be negative.</source>
+        <target state="final">משך הזמן לא יכול להיות שלילי.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,111 @@
+security:
+    password_hashers:
+        App\Entity\User: auto
+
+    providers:
+        chain_provider:
+            chain:
+                providers: [kimai_internal,kimai_ldap]
+        kimai_internal:
+            entity:
+                class: App\Entity\User
+        kimai_ldap:
+            id: App\Ldap\LdapUserProvider
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        api:
+            access_token:
+                token_handler: App\API\Authentication\AccessTokenHandler
+                success_handler: App\API\Authentication\AccessTokenSuccessHandler
+                remember_me: false
+            request_matcher: App\API\Authentication\ApiRequestMatcher
+            user_checker: App\Security\UserChecker
+            stateless: true
+            remember_me: false
+            provider: chain_provider
+            custom_authenticators:
+                - App\API\Authentication\TokenAuthenticator
+
+        secured_area:
+            kimai_ldap: ~
+            pattern: ^/
+            user_checker: App\Security\UserChecker
+            stateless: false
+
+            entry_point: form_login
+
+            custom_authenticators:
+                - App\Saml\SamlAuthenticator
+
+            remember_me:
+                name: KIMAI_REMEMBER
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                always_remember_me: true
+
+            # activate all configured user provider
+            provider: chain_provider
+
+            form_login:
+                check_path: security_check
+                login_path: login
+                enable_csrf: true
+
+            two_factor:
+                auth_form_path: 2fa_login
+                check_path: 2fa_login_check
+                remember_me_sets_trusted: true
+
+            logout:
+                path: logout
+                target: homepage
+                enable_csrf: false
+
+            login_throttling:
+                max_attempts: 5
+                interval: '5 minutes'
+
+            login_link:
+                check_route: link_login_check
+                signature_properties: ['id']
+                lifetime: 900
+                max_uses: 3
+
+    access_decision_manager:
+        # only grants access if there is no voter denying access
+        strategy: unanimous
+        allow_if_all_abstain: false
+
+    role_hierarchy:
+        ROLE_USER: ~
+        ROLE_TEAMLEAD: ROLE_USER
+        ROLE_ADMIN: ROLE_TEAMLEAD
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    access_control:
+        - {path: '^/auth/2fa', role: IS_AUTHENTICATED_2FA_IN_PROGRESS}
+        - {path: '^/auth', roles: PUBLIC_ACCESS}
+        - {path: '^/{_locale}$', role: PUBLIC_ACCESS}
+        - {path: '^/{_locale}/auth', role: PUBLIC_ACCESS}
+        - {path: '^/{_locale}/login', role: PUBLIC_ACCESS}
+        - {path: '^/{_locale}/register', role: PUBLIC_ACCESS}
+        - {path: '^/{_locale}/resetting', role: PUBLIC_ACCESS}
+        - {path: '^/{_locale}/', roles: ROLE_USER}
+        - {path: '^/api', roles: IS_AUTHENTICATED}
+
+when@test:
+    # this configuration simplifies testing URLs protected by the security mechanism
+    # See https://symfony.com/doc/current/cookbook/testing/http_authentication.html
+    security:
+        password_hashers:
+            App\Entity\User:
+                algorithm: auto
+                # see https://github.com/symfony/recipes/pull/1026
+                cost: 4  # Lowest possible value for bcrypt
+                time_cost: 3  # Lowest possible value for argon
+                memory_cost: 10  # Lowest possible value for argon

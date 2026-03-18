@@ -1,0 +1,9 @@
+{% macro team(team, view) %}
+    {% import "macros/widgets.html.twig" as widgets %}
+    {% set event = actions(app.user, 'team', view, {'team': team}) %}
+    {% if view == 'index' %}
+        {{ widgets.table_actions(event.actions) }}
+    {% else %}
+        {{ widgets.page_actions(event.actions) }}
+    {% endif %}
+{% endmacro %}

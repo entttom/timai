@@ -1,0 +1,39 @@
+{% set favorites = favorite_timesheets(app.user, 10) %}
+{% if favorites|length > 0 %}
+    {% from 'macros/widgets.html.twig' import label_customer, label_project, label_activity %}
+    <div class="list-group list-group-flush list-group-hoverable menu">
+        {% set counter = 0 %}
+        {% for favorite in favorites %}
+            {% set entry = favorite.getTimesheet() %}
+            {% if is_granted('start', entry) and counter < 7 %}
+                {% set counter = counter + 1 %}
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col text-truncate" >
+                            <a class="api-link text-decoration-none text-body d-block" href="{{ path('restart_timesheet', {'id': entry.id}) }}"
+                               data-event="kimai.timesheetStart kimai.timesheetUpdate" data-method="PATCH" data-msg-error="timesheet.start.error"
+                               data-msg-success="timesheet.start.success" data-bs-dismiss="modal">
+                                {{ label_activity(entry.activity) }}
+                                <div class="d-block text-truncate">
+                                    {{ label_project(entry.project) }}
+                                    {{ label_customer(entry.project.customer) }}
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            {% if favorite.isFavorite() %}
+                            <a href="{{ path('favorites_timesheets_remove', {'id': favorite.timesheet.id}) }}" data-modal-class="p-0" class="list-group-item-actions show remote-modal-reload">
+                                <i class="text-yellow {{ 'bookmarked'|icon }}"></i>
+                            </a>
+                            {% else %}
+                            <a href="{{ path('favorites_timesheets_add', {'id': favorite.timesheet.id}) }}" data-modal-class="p-0" class="list-group-item-actions remote-modal-reload">
+                                {{ icon('bookmark') }}
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

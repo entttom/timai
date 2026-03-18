@@ -1,0 +1,33 @@
+{% embed '@theme/embeds/card.html.twig' with {'boxtype': 'danger'} %}
+    {% block box_before %}
+        {{ form_start(form) }}
+    {% endblock %}
+    {% block box_title %}
+        {{ title|default('confirm.delete'|trans) }}
+    {% endblock %}
+    {% block box_body %}
+        {% block form_body %}
+            {% if delete_item_name is defined %}
+                <p><strong>{{ delete_item_name }}</strong></p>
+            {% endif %}
+            {% if used is same as (false) %}
+                {{ 'delete.not_in_use'|trans }}
+                <div class="d-none">
+                    {{ form_widget(form) }}
+                </div>
+            {% else %}
+                <p>{{ message }}</p>
+                {{ form_widget(form) }}
+            {% endif %}            
+        {% endblock %}
+    {% endblock %}
+    {% block box_footer %}
+        <input type="submit" value="{{ 'delete'|trans }}" class="btn btn-danger" />
+        {% if back %}
+            <a href="{{ back }}" class="btn btn-link">{{ 'back'|trans }}</a>
+        {% endif %}
+    {% endblock %}
+    {% block box_after %}
+        {{ form_end(form) }}
+    {% endblock %}
+{% endembed %}

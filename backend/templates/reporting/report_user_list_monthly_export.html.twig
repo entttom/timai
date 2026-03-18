@@ -1,0 +1,46 @@
+{% embed 'reporting/user_list_period_data.html.twig' with {'avatar': false, 'showAccountNumber': true, 'stats': stats, 'dataType': dataType, 'period_attribute': period_attribute} only %}
+    {% block user_column %}
+        {{ userPeriod.user.displayName|sanitize_dde }}
+    {% endblock %}
+    {% block duration -%}
+        {{ period.totalDuration|duration(true) }}
+    {%- endblock %}
+    {% block total_duration -%}
+        {{ absoluteDuration|duration(true) }}
+    {%- endblock %}
+    {% block total_duration_user -%}
+        {{ usersTotalDuration|duration(true) }}
+    {%- endblock %}
+    {% block total_duration_period -%}
+        {{ total|duration(true) }}
+    {%- endblock %}
+    {% block rate %}
+        {{ period.totalRate }}
+    {% endblock %}
+    {% block total_rate %}
+        {{ absoluteRate }}
+    {% endblock %}
+    {% block total_rate_user %}
+        {{ usersTotalRate }}
+    {% endblock %}
+    {% block total_rate_period %}
+        {{ total }}
+    {% endblock %}
+    {% block internal_rate %}
+        {{ period.totalInternalRate }}
+    {% endblock %}
+    {% block total_internal_rate %}
+        {{ absoluteInternalRate }}
+    {% endblock %}
+    {% block total_internal_rate_user %}
+        {{ usersTotalInternalRate }}
+    {% endblock %}
+    {% block total_internal_rate_period %}
+        {{ total }}
+    {% endblock %}
+    {% block period_name %}
+        <th class="text-center text-nowrap">
+            {{ column|month_name }} {{ column|date_format('Y') }}
+        </th>
+    {% endblock %}
+{% endembed %}

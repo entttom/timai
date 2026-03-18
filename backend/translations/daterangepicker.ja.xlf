@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ja" datatype="plaintext" original="daterangepicker.en.xlf">
+    <body>
+      <trans-unit id="s9Hdo7E" resname="daterangepicker.today">
+        <source>daterangepicker.today</source>
+        <target>今日</target>
+      </trans-unit>
+      <trans-unit id="gkQA1YG" resname="daterangepicker.yesterday">
+        <source>daterangepicker.yesterday</source>
+        <target>昨日</target>
+      </trans-unit>
+      <trans-unit id="CAvVEbc" resname="daterangepicker.lastWeek">
+        <source>daterangepicker.lastWeek</source>
+        <target>先週</target>
+      </trans-unit>
+      <trans-unit id="HfcD1_y" resname="daterangepicker.thisWeek">
+        <source>daterangepicker.thisWeek</source>
+        <target>今週</target>
+      </trans-unit>
+      <trans-unit id="_9rEFED" resname="daterangepicker.lastYear">
+        <source>daterangepicker.lastYear</source>
+        <target>去年</target>
+      </trans-unit>
+      <trans-unit id="XgIrZS3" resname="daterangepicker.thisYear">
+        <source>daterangepicker.thisYear</source>
+        <target>今年</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

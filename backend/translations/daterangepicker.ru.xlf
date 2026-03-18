@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ru" datatype="plaintext" original="daterangepicker.en.xlf">
+    <body>
+      <trans-unit id="s9Hdo7E" resname="daterangepicker.today">
+        <source>daterangepicker.today</source>
+        <target>Сегодня</target>
+      </trans-unit>
+      <trans-unit id="gkQA1YG" resname="daterangepicker.yesterday">
+        <source>daterangepicker.yesterday</source>
+        <target>Вчера</target>
+      </trans-unit>
+      <trans-unit id="CAvVEbc" resname="daterangepicker.lastWeek">
+        <source>daterangepicker.lastWeek</source>
+        <target>Прошлая неделя</target>
+      </trans-unit>
+      <trans-unit id="HfcD1_y" resname="daterangepicker.thisWeek">
+        <source>daterangepicker.thisWeek</source>
+        <target>Эта неделя</target>
+      </trans-unit>
+      <trans-unit id="_9rEFED" resname="daterangepicker.lastYear">
+        <source>daterangepicker.lastYear</source>
+        <target>Прошлый год</target>
+      </trans-unit>
+      <trans-unit id="XgIrZS3" resname="daterangepicker.thisYear">
+        <source>daterangepicker.thisYear</source>
+        <target>Этот год</target>
+      </trans-unit>
+      <trans-unit id="AY_E9UR" resname="daterangepicker.thisYearUntilNow">
+        <source>This year — until today</source>
+        <target state="translated">Этот год до сегодня</target>
+      </trans-unit>
+      <trans-unit id="m0lJOke" resname="daterangepicker.allTime">
+        <source>daterangepicker.allTime</source>
+        <target state="translated">Общий период</target>
+      </trans-unit>
+      <trans-unit id="8f61k.L" resname="daterangepicker.thisMonth" xml:space="preserve">
+        <source>daterangepicker.thisMonth</source>
+        <target state="needs-translation">Этот  месяц</target>
+      </trans-unit>
+      <trans-unit id="AdEC6w4" resname="daterangepicker.lastMonth" xml:space="preserve">
+        <source>daterangepicker.lastMonth</source>
+        <target state="translated">Последний месяц</target>
+      </trans-unit>
+      <trans-unit id="mgJ2Z7M" resname="daterangepicker.thisFinancialYear" xml:space="preserve">
+        <source>daterangepicker.thisFinancialYear</source>
+        <target state="translated">Этот финансовый год</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

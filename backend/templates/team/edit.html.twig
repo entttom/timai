@@ -1,0 +1,107 @@
+{% extends kimai_context.modalRequest ? 'form.html.twig' : 'base.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block main %}
+<div class="row">
+    <div class="col-md-6">
+        {% include 'team/member-form.html.twig' %}
+    </div>
+    <div class="col-md-6">
+        {% if customerForm is defined and customerForm is not null %}
+            {% embed '@theme/embeds/card.html.twig' with {collapsible: true, collapsed: (team.customers|length == 0)} %}
+                {% from "macros/status.html.twig" import status_count %}
+                {% block box_title %}
+                    {{ 'teams.customer_access'|trans({}, 'teams') }}
+                    {{ status_count(team.customers|length) }}
+                {% endblock %}
+                {% block box_body %}
+                    {{ form(customerForm) }}
+                {% endblock %}
+            {% endembed %}
+        {% endif %}
+
+        {% if projectForm is defined and projectForm is not null %}
+            {% embed '@theme/embeds/card.html.twig' with {collapsible: true, collapsed: (team.projects|length == 0)} %}
+                {% from "macros/status.html.twig" import status_count %}
+                {% block box_title %}
+                    {{ 'teams.project_access'|trans({}, 'teams') }}
+                    {{ status_count(team.projects|length) }}
+                {% endblock %}
+                {% block box_body %}
+                    {{ form(projectForm) }}
+                {% endblock %}
+            {% endembed %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        document.addEventListener('kimai.initialized', (event) => {
+            /** @type {KimaiAPI} API */
+            const API = event.detail.kimai.getPlugin('api');
+
+            const successHandle = (json) => {
+                document.dispatchEvent(new CustomEvent('kimai.reloadedContent'));
+            };
+            const errorHandle = (error) => {
+                document.dispatchEvent(new CustomEvent('kimai.reloadedContent'));
+                API.handleError('action.update.error', error);
+            };
+
+            {% if customerForm is defined and customerForm is not null %}
+                document.getElementById('team_customer_form').addEventListener('change',
+                    (event) => {
+                        if (event.target.matches('input[type=checkbox]')) {
+                            document.dispatchEvent(new CustomEvent('kimai.reloadContent'));
+                            const checkbox = event.target;
+                            const customerId = checkbox.value;
+                            if (checkbox.checked) {
+                                API.post(
+                                    '{{ path('post_team_customer', {'id': team.id, 'customerId': '000'}) }}'.replace(/000/, customerId),
+                                    {},
+                                    successHandle,
+                                    errorHandle,
+                                );
+                            } else {
+                                API.delete(
+                                    '{{ path('delete_team_customer', {'id': team.id, 'customerId': '000'}) }}'.replace(/000/, customerId),
+                                    successHandle,
+                                    errorHandle,
+                                );
+                            }
+                        }
+                    }
+                );
+            {% endif %}
+
+            {% if projectForm is defined and customerForm is not null %}
+                document.getElementById('team_project_form').addEventListener('change',
+                    (event) => {
+                        if (event.target.matches('input[type=checkbox]')) {
+                            document.dispatchEvent(new CustomEvent('kimai.reloadContent'));
+                            const checkbox = event.target;
+                            const projectId = checkbox.value;
+                            if (checkbox.checked) {
+                                API.post(
+                                    '{{ path('post_team_project', {'id': team.id, 'projectId': '000'}) }}'.replace(/000/, projectId),
+                                    {},
+                                    successHandle,
+                                    errorHandle,
+                                );
+                            } else {
+                                API.delete(
+                                    '{{ path('delete_team_project', {'id': team.id, 'projectId': '000'}) }}'.replace(/000/, projectId),
+                                    successHandle,
+                                    errorHandle,
+                                );
+                            }
+                        }
+                    }
+                );
+            {% endif %}
+        });
+    </script>
+{% endblock %}

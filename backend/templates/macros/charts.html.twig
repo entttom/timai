@@ -1,0 +1,235 @@
+
+{# ------------------------------------------------------------------------------ #}
+{# DOUNGHNUT CHART - @see https://www.chartjs.org/docs/2.9.4/charts/doughnut.html #}
+{# ------------------------------------------------------------------------------ #}
+
+{#
+    options = {'label': 'label', 'title': string|null, 'footer': string|null, 'legend': {'display': false}}
+#}
+{% macro doughnut_javascript(options) %}
+    <script type="text/javascript">
+        function doughnutChartOptions() {
+            return {
+                maintainAspectRatio: false,
+                responsive: true,
+                cutoutPercentage: 40,
+                animation: {
+                    animateRotate: true
+                },
+                plugins: {
+                    {% if options.legend is defined and options.legend is iterable %}
+                    legend: {{ options.legend|json_encode|raw }},
+                    {% endif %}
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                const tooltipData = tooltipItem.dataset.realData[tooltipItem.dataIndex];
+                                return ' ' + tooltipData['{{ options.label|default('label') }}'];
+                            },
+                            afterTitle: function(tooltipItems) {
+                                return ' ';
+                            },
+                            {% if options.title is defined and options.title is not empty %}
+                            title: function(tooltipItems) {
+                                const tooltipItem = tooltipItems[0];
+                                const tooltipData = tooltipItem.dataset.realData[tooltipItem.dataIndex];
+                                return ' ' + tooltipData['{{ options.title }}'];
+                            },
+                            {% endif %}
+                            {% if options.footer is defined and options.footer is not empty %}
+                            beforeFooter: function(tooltipItems) {
+                                return ' ';
+                            },
+                            footer: function(tooltipItems) {
+                                const tooltipItem = tooltipItems[0];
+                                const tooltipData = tooltipItem.dataset.realData[tooltipItem.dataIndex];
+                                return tooltipData['{{ options.footer }}'];
+                            },
+                            {% endif %}
+                        }
+                    }
+                },
+            };
+        }
+    </script>
+{% endmacro %}
+
+{#
+    id          = 'name'
+    labels      = ['Foo', 'Bar']
+    dataset     = [{name: '', color: '', duration: 0, rate: 0}]
+    options     = {'height: '100px', 'renderEvent': 'kimai.initialized'}
+#}
+{% macro doughnut_chart(id, labels, dataset, options) %}
+    {% set height = options.height|default(config('theme.chart.height') ~ 'px') %}
+    {% set bgColor = config('theme.chart.background_color') %}
+    <div class="{{ config('chart-class') }}" style="position: relative;">
+        <canvas id="{{ id }}" style="height: {{ height }}; width: 100%;"></canvas>
+    </div>
+    <script type="text/javascript">
+        document.addEventListener('{{ options.renderEvent|default('kimai.initialized') }}', function() {
+            new Chart(
+                document.getElementById("{{ id }}").getContext("2d"), {
+                    type: 'doughnut',
+                    data: {
+                        {% if labels is not empty %}
+                        labels: {{ labels|json_encode|raw }},
+                        {% endif %}
+                        datasets: [
+                            {
+                                backgroundColor: [
+                                    {% for entry in dataset %}
+                                    '{{ entry.color|default(bgColor) }}',
+                                    {% endfor %}
+                                ],
+                                data: [
+                                    {% for entry in dataset %}
+                                    {{ entry.value }}
+                                    {% if not loop.last %},{% endif %}
+                                    {% endfor %}
+                                ],
+                                realData: {{ dataset|json_encode|raw }},
+                            }
+                        ]
+                    },
+                    options: Object.assign(doughnutChartOptions(),{{ options|json_encode|raw }})
+                }
+            );
+        });
+    </script>
+{% endmacro %}
+
+{# ------------------------------------------------------------------- #}
+{# BAR CHART - @see https://www.chartjs.org/docs/2.9.4/charts/bar.html #}
+{# ------------------------------------------------------------------- #}
+
+{#
+    options = {'label': 'label', 'title': string|null, 'footer': string|null, 'legend': {'display': false}, 'onclick': {'url': string, 'replacer': {'name': 'value'}}}
+#}
+{% macro bar_javascript(options) %}
+    <script type="text/javascript">
+        function barChartOptions() {
+            return {
+                maintainAspectRatio: true,
+                responsive: true,
+                barPercentage: 0.5,
+                categoryPercentage: 1.0,
+                scales: {
+                    x: {
+                        gridLines: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                        gridLines: {
+                            display: true,
+                            color: '{{ config('theme.chart.grid_color') }}',
+                            lineWidth: 1
+                        }
+                    }
+                },
+                plugins: {
+                    {% if options.legend is defined and options.legend is iterable %}
+                    legend: {{ options.legend|json_encode|raw }},
+                    {% endif %}
+                    tooltip: {
+                        titleSpacing: 0,
+                        titleMarginBottom: 0,
+                        footerMarginTop: 0,
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                const tooltipData = tooltipItem.dataset.realData[tooltipItem.dataIndex];
+                                return ' ' + tooltipData['{{ options.label|default('label') }}'];
+                            },
+                            afterTitle: function(tooltipItems) {
+                                return ' ';
+                            },
+                            {% if options.title is defined and options.title is not empty %}
+                            title: function(tooltipItems) {
+                                const tooltipItem = tooltipItems[0];
+                                const tooltipData = tooltipItem.dataset.realData[tooltipItem.dataIndex];
+                                return ' ' + tooltipData['{{ options.title }}'];
+                            },
+                            {% endif %}
+                            {% if options.footer is defined and options.footer is not empty %}
+                            beforeFooter: function(tooltipItems) {
+                                return ' ';
+                            },
+                            footer: function(tooltipItems) {
+                                const tooltipItem = tooltipItems[0];
+                                const tooltipData = tooltipItem.dataset.realData[tooltipItem.dataIndex];
+                                return tooltipData['{{ options.footer }}'];
+                            },
+                            {% endif %}
+                        }
+                    },
+                },
+                {% if options.onclick is defined and options.onclick.url is defined %}
+                onClick: function(event, elements, chart) {
+                    if (elements.length !== 1) {
+                        return;
+                    }
+                    const element = elements[0];
+                    const data = this.data.datasets[element.datasetIndex].realData[element.index];
+                    let url = '{{ options.onclick.url|raw }}';
+                    {% if options.onclick.replacer is defined %}
+                        {% for replacer, field in options.onclick.replacer %}
+                        url = url.replace(/{{ replacer }}/, data['{{ field }}']);
+                        {% endfor %}
+                        document.location = url;
+                    {% endif %}
+                },
+                {% endif %}
+            };
+        }
+    </script>
+{% endmacro %}
+
+{#
+    id          = 'name'
+    labels      = ['Foo', 'Bar']
+    datasets    = [[{'value': 1234, 'tooltip': '1234€', 'color': ''}]]
+    options     = {'height: '100px', 'renderEvent': 'kimai.initialized'}
+#}
+{% macro bar_chart(id, labels, datasets, options) %}
+    {% set height = options.height|default(config('theme.chart.height') ~ 'px') %}
+    {% set bgColor = config('theme.chart.background_color') %}
+    <div class="{{ config('chart-class') }}" style="position: relative;">
+        <canvas id="{{ id }}" style="height: {{ height }}; width: 100%;"></canvas>
+    </div>
+    <script type="text/javascript">
+        document.addEventListener('{{ options.renderEvent|default('kimai.initialized') }}', function() {
+            new Chart(
+                document.getElementById('{{ id }}').getContext("2d"), {
+                    type: '{{ options.type|default('bar') }}',
+                    data: {
+                        {% if labels is not empty %}
+                        labels: {{ labels|json_encode|raw }},
+                        {% endif %}
+                        datasets: [
+                            {% for dataset in datasets %}
+                            {
+                                backgroundColor: [
+                                    {% for entry in dataset %}
+                                    '{{ entry.color|default(bgColor) }}',
+                                    {% endfor %}
+                                ],
+                                data: [
+                                    {% for entry in dataset %}
+                                    {{ entry.value }},
+                                    {% endfor %}
+                                ],
+                                realData: {{ dataset|json_encode|raw }},
+                            },
+                            {% endfor %}
+                        ]
+                    },
+                    options: Object.assign(barChartOptions(),{{ options|json_encode|raw }})
+                }
+            );
+        });
+    </script>
+{% endmacro %}

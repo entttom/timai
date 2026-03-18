@@ -171,6 +171,22 @@
 "timesheetEdit.error.loadingProjects" = "Fehler beim Laden der Projekte";
 "timesheetEdit.error.loadingActivities" = "Fehler beim Laden der Aktivitäten";
 "timesheetEdit.error.saving" = "Fehler beim Speichern";
+"timesheetEdit.ai.button" = "KI";
+"timesheetEdit.ai.missingConfig.title" = "KI-Konfiguration fehlt";
+"timesheetEdit.ai.missingConfig.message" = "Bitte konfigurieren Sie die KI-Generierung zuerst in den Einstellungen.";
+"timesheetEdit.ai.sheet.title" = "KI-Generierung";
+"timesheetEdit.ai.section.prompt" = "Prompt";
+"timesheetEdit.ai.section.input" = "Aktuelle Beschreibung";
+"timesheetEdit.ai.section.preview" = "Vorschau";
+"timesheetEdit.ai.promptSelection" = "Prompt auswählen";
+"timesheetEdit.ai.prompt.custom" = "Eigener Prompt";
+"timesheetEdit.ai.prompts.empty" = "Keine gespeicherten Prompts vorhanden. Verwenden Sie stattdessen einen eigenen Prompt.";
+"timesheetEdit.ai.input.empty" = "Es ist noch keine Beschreibung vorhanden. Der Prompt wird ohne Quelltext gesendet.";
+"timesheetEdit.ai.input.footer" = "Die aktuelle Beschreibung wird gemeinsam mit dem gewählten Prompt gesendet und kann danach gezielt ersetzt werden.";
+"timesheetEdit.ai.generate" = "Generieren";
+"timesheetEdit.ai.generating" = "Generiere...";
+"timesheetEdit.ai.apply" = "In Beschreibung übernehmen";
+"timesheetEdit.ai.discard" = "Ergebnis verwerfen";
 
 // Settings - Cache Section
 "settings.section.offlineCache" = "Offline & Cache";
@@ -222,6 +238,13 @@
 "network.error.noResponse" = "Keine Antwort vom Server";
 "network.error.invalidResponse" = "Ungültige Serverantwort";
 "network.error.requestError" = "Netzwerkfehler";
+"ai.error.missingApiKey" = "Bitte geben Sie einen API-Key ein.";
+"ai.error.missingModel" = "Bitte wählen Sie zuerst ein Modell aus.";
+"ai.error.missingBaseURL" = "Bitte geben Sie eine Server-URL für die kompatible API ein.";
+"ai.error.invalidBaseURL" = "Die Server-URL ist ungültig.";
+"ai.error.invalidResponse" = "Der Provider hat eine ungültige Antwort geliefert.";
+"ai.error.emptyResponse" = "Der Provider hat keinen Text zurückgegeben.";
+"ai.error.noModelsFound" = "Der Provider hat keine nutzbaren Modelle geliefert.";
 
 // Biometric
 "biometric.type.faceID" = "Face ID";
@@ -522,6 +545,39 @@
 "settings.expenses.apiUnavailable.title" = "API nicht verfügbar";
 "settings.expenses.apiUnavailable.message" = "Die Expenses-API ist nicht verfügbar. Bitte stellen Sie sicher, dass das Expenses-Plugin installiert ist und Sie die erforderlichen Berechtigungen haben. Andernfalls wenden Sie sich bitte an Ihren Server-Administrator.";
 "settings.expenses.apiUnavailable.ok" = "OK";
+"settings.aiGeneration.enable" = "KI-Generierung aktivieren";
+"settings.aiGeneration.configure" = "KI-Generierung konfigurieren";
+"settings.aiGeneration.title" = "KI-Generierung";
+"settings.aiGeneration.section.connection" = "Verbindung";
+"settings.aiGeneration.section.model" = "Modell";
+"settings.aiGeneration.section.prompts" = "Prompts";
+"settings.aiGeneration.provider" = "Provider";
+"settings.aiGeneration.provider.openAI" = "ChatGPT";
+"settings.aiGeneration.provider.gemini" = "Gemini";
+"settings.aiGeneration.provider.openAICompatible" = "ChatGPT-kompatible API";
+"settings.aiGeneration.apiKey.placeholder" = "API-Key";
+"settings.aiGeneration.compatibleURL.placeholder" = "Server-URL (z.B. https://example.com/v1)";
+"settings.aiGeneration.model" = "Modell";
+"settings.aiGeneration.test" = "Verbindung testen";
+"settings.aiGeneration.testing" = "Teste...";
+"settings.aiGeneration.test.success" = "Verbindung erfolgreich. Modelle wurden geladen.";
+"settings.aiGeneration.models.empty" = "Noch keine Modelle geladen. Verwenden Sie den Testbutton, um verfügbare Modelle abzurufen.";
+"settings.aiGeneration.prompts.empty" = "Keine gespeicherten Prompts.";
+"settings.aiGeneration.addPrompt" = "Prompt hinzufügen";
+"settings.aiGeneration.prompt.initial" = "Standard";
+"settings.aiGeneration.prompt.shortDescription" = "Kurzbeschreibung";
+"settings.aiGeneration.prompt.shortDescription.placeholder" = "Zum Beispiel Rechtschreibung korrigieren";
+"settings.aiGeneration.prompt.text" = "Prompt";
+"settings.aiGeneration.prompt.newTitle" = "Neuer Prompt";
+"settings.aiGeneration.prompt.editTitle" = "Prompt bearbeiten";
+"settings.aiGeneration.betaWarning.title" = "Beta-Funktion";
+"settings.aiGeneration.betaWarning.message" = "Diese Funktion befindet sich in der Beta-Phase. KI-Anfragen werden an den von Ihnen konfigurierten Provider gesendet und können externe Kosten verursachen.";
+"settings.aiGeneration.betaWarning.confirm" = "Verstanden und aktivieren";
+"settings.aiGeneration.betaWarning.cancel" = "Abbrechen";
+"settings.aiGeneration.defaultPrompt.spellcheck.title" = "Rechtschreibung korrigieren";
+"settings.aiGeneration.defaultPrompt.spellcheck.text" = "Korrigiere die Rechtschreibung und offensichtliche Grammatikfehler im folgenden Text. Bewahre Inhalt, Ton und Format so weit wie möglich. Die Ausgabesprache muss der Eingabesprache entsprechen. Gib nur den überarbeiteten Text ohne Erklärung zurück.";
+"settings.aiGeneration.defaultPrompt.sentences.title" = "Aus Stichworten Sätze bilden";
+"settings.aiGeneration.defaultPrompt.sentences.text" = "Formuliere aus den vorhandenen Stichworten klare, natürliche und vollständige Sätze. Erfinde keine neuen Fakten und bleibe inhaltlich eng am Ursprungstext. Die Ausgabesprache muss der Eingabesprache entsprechen. Gib nur den überarbeiteten Text ohne Erklärung zurück.";
 
 // Abwesenheiten
 "absences.tabTitle" = "Abwesenheiten";

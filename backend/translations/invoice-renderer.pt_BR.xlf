@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="pt-BR" datatype="plaintext" original="invoice-renderer.en.xlf">
+    <body>
+      <trans-unit id="hOcTt2G" resname="invoice_renderer">
+        <source>invoice_renderer</source>
+        <target state="translated">Modelo de fatura</target>
+      </trans-unit>
+      <trans-unit id="Utbj3k_" resname="invoice">
+        <source>invoice</source>
+        <target>Fatura</target>
+      </trans-unit>
+      <trans-unit id="lt2Y2LO" resname="timesheet">
+        <source>timesheet</source>
+        <target state="translated">Quadro de horários</target>
+      </trans-unit>
+      <trans-unit id="m1UyfD9" resname="service-date">
+        <source>service-date</source>
+        <target>Freelancer</target>
+      </trans-unit>
+      <trans-unit id="7mEUv6C" resname="help.upload">
+        <source>help.upload</source>
+        <target>Atenção: os arquivos já existentes serão substituídos. Os tipos dos arquivos permitidos são: %extensions%.</target>
+      </trans-unit>
+      <trans-unit id="E5BwZHT" resname="programmatic">
+        <source>programmatic</source>
+        <target>Para processamento posterior</target>
+      </trans-unit>
+      <trans-unit id="N6juwc4" resname="default">
+        <source>default</source>
+        <target>Fatura</target>
+      </trans-unit>
+      <trans-unit id="mC2ePrm" resname="text">
+        <source>text</source>
+        <target>Texto</target>
+      </trans-unit>
+      <trans-unit id="22pt8Gs" resname="download_invoice_renderer">
+        <source>download_invoice_renderer</source>
+        <target state="translated">Você pode baixar outros modelos aqui</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

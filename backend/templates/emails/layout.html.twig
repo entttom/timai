@@ -1,0 +1,15 @@
+{% apply inky_to_html|inline_css(source('emails/css/emails.css')) %}
+
+    <spacer size="32"></spacer>
+
+    <h5>{% block title %}{% endblock %}</h5>
+
+    <spacer size="32"></spacer>
+
+    {% block body %}{% endblock %}
+
+    <spacer size="32"></spacer>
+
+    {% block no_answer %}<p><small>{{ 'automated_email_dont_answer'|trans({}, 'email') }}</small></p>{% endblock %}
+
+{% endapply %}

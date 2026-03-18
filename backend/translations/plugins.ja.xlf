@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ja" datatype="plaintext" original="plugins.en.xlf">
+    <body>
+      <trans-unit id="vFSLi54" resname="plugin.none_installed">
+        <source>plugin.none_installed</source>
+        <target>インストールされたプラグインは存在しません。</target>
+      </trans-unit>
+      <trans-unit id="zVtBsSo" resname="plugin.marketplace" xml:space="preserve">
+        <source>Available plugins</source>
+        <target state="translated">利用可能なプラグイン</target>
+      </trans-unit>
+      <trans-unit id="6Bl7IPj" resname="buy" xml:space="preserve">
+        <source>Buy now</source>
+        <target state="translated">今すぐ購入</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

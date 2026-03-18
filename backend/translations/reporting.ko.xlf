@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ko" datatype="plaintext" original="reporting.en.xlf">
+    <body>
+      <trans-unit id="XV3FBpu" resname="report_user_week">
+        <source>report_user_week</source>
+        <target>사용자 1명의 주간 보기</target>
+      </trans-unit>
+      <trans-unit id="Ng47B75" resname="report_user_month">
+        <source>report_user_month</source>
+        <target>사용자 1명의 월간 보기</target>
+      </trans-unit>
+      <trans-unit id="zk30bmP" resname="report_monthly_users">
+        <source>report_monthly_users</source>
+        <target>모든 사용자의 월간 보기</target>
+      </trans-unit>
+      <trans-unit id="VD98UBN" resname="report_yearly_users">
+        <source>report_yearly_users</source>
+        <target>모든 사용자의 연간 보기</target>
+      </trans-unit>
+      <trans-unit id="R.9yUkf" resname="report_project_view">
+        <source>report_project_view</source>
+        <target>프로젝트 개요</target>
+      </trans-unit>
+      <trans-unit id="q_A4AHD" resname="report_weekly_users">
+        <source>report_weekly_users</source>
+        <target>모든 사용자의 주간 보기</target>
+      </trans-unit>
+      <trans-unit id="BQAsynV" resname="report_project_daterange">
+        <source>report_project_daterange</source>
+        <target>월별 보고서</target>
+      </trans-unit>
+      <trans-unit id="1gBKwGH" resname="report_inactive_project">
+        <source>report_inactive_project</source>
+        <target>비활성 프로젝트</target>
+      </trans-unit>
+      <trans-unit id="3JLmvfB" resname="report_user_year">
+        <source>report_user_year</source>
+        <target>사용자 1명의 연간 보기</target>
+      </trans-unit>
+      <trans-unit id="518eY_l" resname="report_project_details">
+        <source>report_project_details</source>
+        <target>프로젝트 세부정보</target>
+      </trans-unit>
+      <trans-unit id="8RaUHlW" resname="report_customer_monthly_projects">
+        <source>report_customer_monthly_projects</source>
+        <target state="translated">월별 프로젝트, 활동, 사용자</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ro" datatype="plaintext" original="invoice-calculator.en.xlf">
+    <body>
+      <trans-unit id="MviRJeB" resname="invoice_calculator">
+        <source>invoice_calculator</source>
+        <target>Calcularea sumelor</target>
+      </trans-unit>
+      <trans-unit id="N6juwc4" resname="default">
+        <source>default</source>
+        <target state="translated">Implicit: o intrare per înregistrare a timpului</target>
+      </trans-unit>
+      <trans-unit id="_bAHi13" resname="short">
+        <source>short</source>
+        <target>Ore: se adună înregistrările, o intrare în total</target>
+      </trans-unit>
+      <trans-unit id="BPiZbad" resname="user" xml:space="preserve">
+        <source>user</source>
+        <target state="translated">Utilizator</target>
+      </trans-unit>
+      <trans-unit id="BlGGO.X" resname="activity">
+        <source>activity</source>
+        <target>Activitate: o intrare pentru fiecare activitate</target>
+      </trans-unit>
+      <trans-unit id="JEIQ5IQ" resname="project" xml:space="preserve">
+        <source>project</source>
+        <target state="translated">Proiect</target>
+      </trans-unit>
+      <trans-unit id="DodjLNR" resname="date" xml:space="preserve">
+        <source>date</source>
+        <target state="translated">Data</target>
+      </trans-unit>
+      <trans-unit id="aDtTH0H" resname="price">
+        <source>price</source>
+        <target>Preț: o intrare pentru fiecare preț</target>
+      </trans-unit>
+      <trans-unit id="iFDs7Zh" resname="weekly">
+        <source>weekly</source>
+        <target>Săptămânal: o intrare pe săptămână (folosește data de început)</target>
+      </trans-unit>
+      <trans-unit id="oRa0mkz" resname="activity_user" xml:space="preserve">
+        <source>activity_user</source>
+        <target state="translated">Activitate si utilizator</target>
+      </trans-unit>
+      <trans-unit id="AJm1952" resname="project_user" xml:space="preserve">
+        <source>project_user</source>
+        <target state="translated">Proiecte si utilizator</target>
+      </trans-unit>
+      <trans-unit id="0l1P9cz" resname="date_user" xml:space="preserve">
+        <source>date_user</source>
+        <target state="translated">Data si utilizator</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

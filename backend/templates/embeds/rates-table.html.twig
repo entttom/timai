@@ -1,0 +1,68 @@
+{% embed '@theme/embeds/card.html.twig' with {'id': id, 'entity': entity, 'create_url': create_url, 'delete_route': delete_route, 'currency': currency} %}
+    {% import "macros/widgets.html.twig" as widgets %}
+    {% block box_attributes %}id="{{ id }}"{% endblock %}
+    {% block box_title %}
+        {{ 'rates.title'|trans }}
+    {% endblock %}
+    {% block box_tools %}
+        {{ widgets.card_tool_button('create', {'class': 'modal-ajax-form open-edit', 'title': 'create', 'url': create_url}) }}
+    {% endblock %}
+    {% block box_body_class %}{% if rates is not empty %}p-0{% endif %}{% endblock %}
+    {% block box_body %}
+        {% if rates is empty %}
+            <div class="comment">{{ 'rates.empty'|trans }}</div>
+        {% else %}
+            <table class="table dataTable">
+                <thead>
+                <tr>
+                    <th>
+                        {{ 'user'|trans }}
+                    </th>
+                    <th class="text-end">
+                        {{ 'hourlyRate'|trans }}
+                    </th>
+                    <th class="d-none d-sm-table-cell text-end">
+                        {{ 'internalRate'|trans }}
+                    </th>
+                    <th class="text-center">
+                        {{ 'fixedRate'|trans }}
+                    </th>
+                    <th class="actions"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for rate in rates %}
+                    <tr class="modal-ajax-form open-edit" data-href="{{ path(edit_route, {'id': entity.id, 'rate': rate.id}) }}">
+                        <td>
+                            {% if rate.user is not null %}
+                                {{ widgets.user_avatar(rate.user) }}
+                            {% else %}
+                                &ndash;
+                            {% endif %}
+                        </td>
+                        <td class="text-end">
+                            {{ rate.rate|money(currency) }}
+                        </td>
+                        <td class="d-none d-sm-table-cell text-end">
+                            {% if rate.internalRate is not null %}
+                                {{ rate.internalRate|money(currency) }}
+                            {% else %}
+                                &ndash;
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {{ widgets.label_boolean(rate.fixed) }}
+                        </td>
+                        <td class="actions">
+                            <div class="btn-group">
+                                <a href="{{ path(edit_route, {'id': entity.id, 'rate': rate.id}) }}" class="modal-ajax-form btn btn-icon">{{ icon('edit', true) }}</a>
+                                <a href="{{ path(delete_route, {'id': entity.id, 'rateId': rate.id}) }}" class="btn btn-icon api-link" data-question="confirm.delete" data-event="kimai.rateUpdate kimai.rateDelete" data-method="DELETE" data-msg-error="action.delete.error">{{ icon('delete', true) }}</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    {% endblock %}
+{% endembed %}

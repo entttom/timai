@@ -1,0 +1,9 @@
+{% extends 'emails/layout.html.twig' %}
+
+{% block title %}
+    {{ subject|trans({}, 'email') }}
+{% endblock %}
+
+{% block body %}
+    <p>{{ body|trans({}, 'email') }}<p>
+{% endblock %}

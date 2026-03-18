@@ -1,0 +1,165 @@
+{% extends 'base.html.twig' %}
+{% import "macros/datatables.html.twig" as tables %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block main %}
+
+    {% set roles = roles|reverse %}
+    {% set columns = {
+        'name': 'alwaysVisible',
+    } %}
+    {% set canEditPermissions = is_granted('role_permissions') %}
+    <div class="row g-2 mb-3">
+    {% for role in roles %}
+        {% set class = 'alwaysVisible text-center' %}
+        {% if role.name == 'ROLE_SUPER_ADMIN' %}
+            {% set class = class ~ ' bg-orange-lt' %}
+        {% elseif role.name == 'ROLE_USER' %}
+            {% set class = class ~ ' bg-green-lt' %}
+        {% endif %}
+        {% set columns = columns|merge({(role.name): {'class': class}}) %}
+        {% set roleUsers = [] %}
+        {% for user in users %}
+            {% if user.hasRole(role.getName()) %}
+                {% set roleUsers = roleUsers|merge([user]) %}
+            {% endif %}
+        {% endfor %}
+
+        {% if not role.isUser() %}
+        <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <h4 class="card-title">
+                            <span ondblclick="navigator.clipboard.writeText('{{ role.getName() }}');" title="{{ role.getName() }}">{{ role.getName()|trans }}</span>
+                            {% if canEditPermissions and (role.name not in system_roles) %}
+                                &nbsp;
+                                <a href="{{ path('admin_user_role_delete', {'role': role.id, 'csrfToken': token}) }}" class="confirmation-link" data-question="confirm.delete">{{ icon('trash') }}</a>
+                            {% endif %}
+                        </h4>
+                        <div class="list-unstyled d-flex mb-0">
+                            {% if is_granted('view_user') %}
+                                <a href="{{ path('admin_user', {'role': role.getName()}) }}" class="fs-6 mb-1">{{ 'amount'|trans }}: {{ roleUsers|length }}</a>
+                            {% else %}
+                                <span class="fs-6 mb-1">Total {{ roleUsers|length }} users</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div class="list-unstyled d-flex align-items-center avatars avatar-list avatar-list-stacked mb-0">
+                            {% for user in roleUsers %}
+                                {{ widgets.user_avatar(user, user.displayName, 'avatar-rounded avatar-sm')  }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    {% set tableName = 'user_admin_permissions' %}
+
+    {{ tables.datatable_header(tableName, columns, null, {'reload': 'kimai.userRoleUpdate'}) }}
+    
+    {% set colspan = 1 + (roles|length) %}
+
+    {% for title, perms in sorted %}
+        {% if perms|length > 0 %}
+            <tr class="summary info">
+                <td colspan="{{ colspan }}">{{ title }}</td>
+            </tr>
+            {% for permission in perms|sort %}
+                <tr>
+                    <td>{{ permission }}</td>
+                    {% for role in roles %}
+                        {% set value = manager.permission(role.name, permission) %}
+                        <td class="{{ tables.data_table_column_class(tableName, columns, role.name) }}">
+                            {# see RolePermissionManager for this special case #}
+                            {% if role.name == 'ROLE_SUPER_ADMIN' and permission in always_apply_superadmin %}
+                                {% if value %}
+                                    {{ widgets.label('yes'|trans, 'warning') }}
+                                {% else %}
+                                    <a class="togglePerm permOff" href="#" data-href="{{ path('admin_user_permission_save', {'role': role.id, 'name': permission, 'value': '1', 'csrfToken': '__TOKEN__'}) }}">{{ widgets.label('no'|trans, 'danger') }}</a>
+                                {% endif %}
+                            {% else %}
+                                <a class="togglePerm {{ value ? 'permOn' : 'permOff' }}" href="#" data-href="{{ path('admin_user_permission_save', {'role': role.id, 'name': permission, 'value': '__VALUE__', 'csrfToken': '__TOKEN__'}) }}">{{ widgets.label_boolean(value) }}</a>
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+    {{ tables.data_table_footer() }}
+
+    <div style="display: none" id="permission-token" data-value="{{ token }}"></div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function getPermissionToken() {
+            return document.getElementById('permission-token').dataset['value'];
+        }
+        function setPermissionToken(token) {
+            document.getElementById('permission-token').dataset['value'] = token;
+        }
+
+        document.addEventListener('kimai.initialized', (event) => {
+            const FETCHER = event.detail.kimai.getPlugin('fetch');
+            for (const element of document.querySelectorAll('a.togglePerm')) {
+                element.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    event.preventDefault();
+
+                    let target = event.target;
+                    if (!target.matches('a')) {
+                        target = target.parentNode;
+                    }
+
+                    let linkElement = target;
+                    linkElement.innerHTML = '<i class="{{ 'spinner'|icon }} fa-pulse"></i>';
+
+                    const isActive = linkElement.classList.contains('permOn');
+                    let url = linkElement.dataset['href'].replace(/__VALUE__/, isActive ? '0' : '1').replace(/__TOKEN__/, getPermissionToken());
+
+                    /** @type {KimaiFetch} FETCHER */
+                    const headers = new Headers();
+                    headers.append('Content-Type', 'application/json');
+
+                    const options = {method: 'POST', headers: headers};
+
+                    FETCHER.fetch(url, options)
+                        .then(response => {
+                            response.json().then(json => {
+                                kimai.getPlugin('alert').success('action.update.success');
+                                linkElement.classList.toggle('permOn');
+                                linkElement.classList.toggle('permOff');
+                                toggleLabel(linkElement, !isActive);
+                                setPermissionToken(json.token);
+                            });
+                        })
+                        .catch(error => {
+                            kimai.getPlugin('alert').error('action.update.error');
+                            toggleLabel(linkElement, isActive);
+                        })
+                    ;
+                });
+            }
+
+            KimaiReloadPageWidget.create('kimai.userRoleUpdate', true);
+        });
+
+        function toggleLabel(element, showTrue) {
+            if (showTrue) {
+                element.innerHTML = '{{ widgets.label_boolean(true)|trim|e('js') }}';
+            } else {
+                element.innerHTML = '{{ widgets.label_boolean(false)|trim|e('js') }}';
+            }
+        }
+    </script>
+{% endblock %}

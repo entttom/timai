@@ -1,0 +1,39 @@
+{% extends 'wizard/layout.html.twig' %}
+
+{% block wizard_content %}
+    <div class="card-body text-center py-4 p-sm-6">
+        <h1 class="mt-2">{{ 'wizard.profile.title'|trans({}, 'wizard') }}</h1>
+        <p class="text-body-secondary">{{ 'wizard.profile.description'|trans({}, 'wizard') }}</p>
+    </div>
+    <div class="hr-text hr-text-center hr-text-spaceless">{{ 'wizard.separator'|trans({}, 'wizard') }}</div>
+    <div class="card-body">
+        <div class="mb-3">
+            {{ form_rest(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            const skinChooser = document.getElementById('form_skin');
+            if (skinChooser !== null) {
+                skinChooser.addEventListener('change', () => {
+                    document.querySelectorAll('[data-bs-theme]').forEach(
+                        element => {
+                            element.dataset['bsTheme'] = (skinChooser.value === 'default' ? 'light' : 'dark');
+                        }
+                    );
+                });
+            }
+
+            const localeChooser = document.getElementById('form_language');
+            if (localeChooser !== null) {
+                localeChooser.addEventListener('change', (ev) => {
+                    document.getElementById('form_reload').value = '1';
+                    ev.target.form.submit();
+                });
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'reporting/layout.html.twig' %}
+
+{% block report_form_layout %}
+    {{ form_widget(form.date) }}
+    {{ form_widget(form.customer, {'label': false, 'placeholder': 'customer'}) }}
+    {{ form_widget(form.sumType) }}
+    {% from '@theme/components/buttons.html.twig' import submit_button %}
+    {{ submit_button('download', {'attr': {'formaction': path(export_route)}, 'icon': 'download', 'combined': false}) }}
+{% endblock %}
+
+{% block report %}
+    {% embed '@theme/embeds/card.html.twig' %}
+        {% from "macros/widgets.html.twig" import nothing_found %}
+        {% block box_body_class %} table-responsive {% if stats is not empty %}p-0{% endif %}{% endblock %}
+        {% block box_body %}
+            {% if stats is empty %}
+                {{ nothing_found() }}
+            {% else %}
+                {% embed 'reporting/customer/monthly_projects_data.html.twig' with {'stats': stats, 'dataType': dataType, 'decimal': decimal} only %}
+                    {% set rowspanStyle = 'vertical-align: middle' %}
+                {% endembed %}
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

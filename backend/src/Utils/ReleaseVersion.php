@@ -1,0 +1,125 @@
+<?php
+
+/*
+ * This file is part of the Kimai time-tracking app.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace App\Utils;
+
+use App\Constants;
+use Composer\Semver\Semver;
+use Composer\Semver\VersionParser;
+
+/**
+ * Code inspired by https://github.com/consolidation/self-update (MIT license - 03 Sept. 2022)
+ */
+final class ReleaseVersion
+{
+    /**
+     * Get all releases from GitHub.
+     *
+     * @return array<string, array{'version': non-empty-string, 'date': \DateTimeInterface, 'url': non-empty-string, 'download': non-empty-string, 'content': string}>
+     */
+    private function getReleasesFromGithub(): array
+    {
+        $versionParser = new VersionParser();
+        $opts = [
+            'http' => [
+                'method' => 'GET',
+                'header' => [
+                    'User-Agent: ' . Constants::SOFTWARE . ' ' . Constants::VERSION . ' Update-Check (PHP)',
+                ],
+            ],
+        ];
+
+        $context = stream_context_create($opts);
+
+        $releases = file_get_contents('https://api.github.com/repos/' . Constants::GITHUB_REPO . '/releases', false, $context);
+        if ($releases === false) {
+            throw new \Exception('Could not load releases from GitHub repository: ' . Constants::GITHUB_REPO);
+        }
+        /** @var array<string, array{url: non-empty-string, html_url: non-empty-string, tag_name: non-empty-string, name: non-empty-string, draft: bool, immutable: bool, prerelease: bool, created_at: non-empty-string, updated_at: non-empty-string, published_at: non-empty-string, zipball_url: non-empty-string, body: string}> $releases */
+        $releases = json_decode($releases, true);
+
+        if ($releases === false) {
+            throw new \Exception('Failed parsing release found at GitHub repository: ' . Constants::GITHUB_REPO);
+        }
+
+        $parsed = [];
+        foreach ($releases as $release) {
+            if ($release['draft'] || $release['prerelease']) {
+                continue;
+            }
+
+            try {
+                $normalized = $versionParser->normalize($release['tag_name']);
+            } catch (\UnexpectedValueException $e) {
+                continue;
+            }
+
+            if (VersionParser::parseStability($normalized) !== 'stable') {
+                continue;
+            }
+
+            $date = $release['published_at'];
+            try {
+                $date = new \DateTimeImmutable($date);
+            } catch (\Exception $ex) {
+                continue;
+            }
+
+            $parsed[$normalized] = [
+                'version' => $release['tag_name'],
+                'date' => $date,
+                'url' => $release['html_url'],
+                'download' => $release['zipball_url'],
+                'content' => $release['body'],
+            ];
+        }
+        $versions = Semver::rsort(array_keys($parsed));
+        $releases = [];
+        foreach ($versions as $version) {
+            $releases[$version] = $parsed[$version];
+        }
+
+        return $releases;
+    }
+
+    /**
+     * Returns an array with the keys:
+     * - version (string, tag name)
+     * - date (string, release date)
+     * - url (string, web address)
+     * - download (string, ZIP URL)
+     * - content (string, release notes)
+     *
+     * @param bool $compatible
+     * @return array{'version': string, 'date': \DateTimeInterface, 'url': string, 'download': string, 'content': string}|null
+     * @throws \Exception
+     */
+    public function getLatestReleaseFromGithub(bool $compatible): ?array
+    {
+        foreach ($this->getReleasesFromGithub() as $release) {
+            $releaseVersion = $release['version'];
+            if ($compatible && !$this->satisfiesMajorVersionConstraint($releaseVersion)) {
+                continue;
+            }
+
+            return $release;
+        }
+
+        return null;
+    }
+
+    private function satisfiesMajorVersionConstraint(string $releaseVersion): bool
+    {
+        if (preg_match('/^v?(\d+)/', Constants::VERSION, $matches)) {
+            return Semver::satisfies($releaseVersion, '^' . $matches[1]);
+        }
+
+        return false;
+    }
+}

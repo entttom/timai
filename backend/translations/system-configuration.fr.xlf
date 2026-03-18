@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="system-configuration.en.xlf">
+    <body>
+      <trans-unit id="PLggHn." resname="theme">
+        <source>theme</source>
+        <target>Thème</target>
+      </trans-unit>
+      <trans-unit id="mPRUBFX" resname="theme.markdown_content">
+        <source>theme.markdown_content</source>
+        <target state="translated">Autoriser le formatage Markdown dans les descriptions et les commentaires</target>
+      </trans-unit>
+      <trans-unit id="FaGqoTT" resname="timesheet.mode">
+        <source>timesheet.mode</source>
+        <target>Mode de suivi du temps</target>
+      </trans-unit>
+      <trans-unit id="A11vhSN" resname="timesheet.mode_default">
+        <source>timesheet.mode_default</source>
+        <target state="translated">[Défaut] les temps de début et de fin peuvent êtres modifiés</target>
+      </trans-unit>
+      <trans-unit id="3tlkqJC" resname="timesheet.mode_punch">
+        <source>timesheet.mode_punch</source>
+        <target state="translated">[Temps-réel] l'utilisateur peut démarrer et arrêter les enregistrements, mais ne peut pas modifier les heures ou la durée</target>
+      </trans-unit>
+      <trans-unit id="k4pl27g" resname="timesheet.rules.allow_future_times">
+        <source>timesheet.rules.allow_future_times</source>
+        <target>Autoriser la saisie d'activités futures</target>
+      </trans-unit>
+      <trans-unit id="Fe18zp4" resname="timesheet.active_entries.hard_limit">
+        <source>timesheet.active_entries.hard_limit</source>
+        <target>Nombre autorisé de relevés d'activité simultanées</target>
+      </trans-unit>
+      <trans-unit id="t38HFZd" resname="calendar.week_numbers">
+        <source>calendar.week_numbers</source>
+        <target>Afficher les numéros de semaine</target>
+      </trans-unit>
+      <trans-unit id="qaoBvYU" resname="calendar.weekends">
+        <source>calendar.weekends</source>
+        <target>Afficher les week-ends</target>
+      </trans-unit>
+      <trans-unit id="yUeuM2_" resname="calendar.businessHours.begin">
+        <source>calendar.businessHours.begin</source>
+        <target>Début des horaires normaux de travail (en surbrillance )</target>
+      </trans-unit>
+      <trans-unit id="Aa_Ushz" resname="calendar.businessHours.end">
+        <source>calendar.businessHours.end</source>
+        <target>Fin des horaires normaux de travail (en surbrillance)</target>
+      </trans-unit>
+      <trans-unit id="1bHgx7p" resname="calendar.visibleHours.begin">
+        <source>calendar.visibleHours.begin</source>
+        <target>Début de l'intervalle de temps visible</target>
+      </trans-unit>
+      <trans-unit id="6nayLDB" resname="calendar.visibleHours.end">
+        <source>calendar.visibleHours.end</source>
+        <target>Fin de l'intervalle de temps visible</target>
+      </trans-unit>
+      <trans-unit id="6CSB6iM" resname="first_weekday">
+        <source>first_weekday</source>
+        <target>Premier jour de la semaine</target>
+      </trans-unit>
+      <trans-unit id="UTurPF1" resname="invoice.number_format">
+        <source>invoice.number_format</source>
+        <target>Format du numéro de facture</target>
+      </trans-unit>
+      <trans-unit id="_0OBfZf" resname="timesheet.default_begin">
+        <source>timesheet.default_begin</source>
+        <target>Heure de début par défaut (non utilisé dans tous les modes de suivi du temps)</target>
+      </trans-unit>
+      <trans-unit id="0mjJxEk" resname="Floor" xml:space="preserve">
+        <source>Floor</source>
+        <target state="translated">Le début, la fin et la durée seront arrondis à l'unité inférieure</target>
+      </trans-unit>
+      <trans-unit id="IbERy.5" resname="Default" xml:space="preserve">
+        <source>Default</source>
+        <target state="translated">L'heure de début sera arrondie à l'inférieur, l'heure de fin et la durée au supérieur</target>
+      </trans-unit>
+      <trans-unit id="jmsE4EY" resname="Ceil" xml:space="preserve">
+        <source>Ceil</source>
+        <target state="translated">Le début, la fin et la durée seront arrondies au supérieur</target>
+      </trans-unit>
+      <trans-unit id="Y_qmsDz" resname="Closest" xml:space="preserve">
+        <source>Closest</source>
+        <target state="translated">Arrondi mathématique à la valeur la plus proche</target>
+      </trans-unit>
+      <trans-unit id="hz.vdg5" resname="Sunday">
+        <source>Sunday</source>
+        <target>Dimanche</target>
+      </trans-unit>
+      <trans-unit id="2_Ncc2P" resname="Saturday">
+        <source>Saturday</source>
+        <target>Samedi</target>
+      </trans-unit>
+      <trans-unit id="4h8.Nyp" resname="Friday">
+        <source>Friday</source>
+        <target>Vendredi</target>
+      </trans-unit>
+      <trans-unit id=".CZiBi." resname="Thursday">
+        <source>Thursday</source>
+        <target>Jeudi</target>
+      </trans-unit>
+      <trans-unit id="wKbMgpz" resname="Wednesday">
+        <source>Wednesday</source>
+        <target>Mercredi</target>
+      </trans-unit>
+      <trans-unit id="fYrx3hJ" resname="Tuesday">
+        <source>Tuesday</source>
+        <target>Mardi</target>
+      </trans-unit>
+      <trans-unit id="agDfwdy" resname="Monday">
+        <source>Monday</source>
+        <target>Lundi</target>
+      </trans-unit>
+      <trans-unit id="oL_eD_9" resname="timesheet.rounding.default.days">
+        <source>timesheet.rounding.default.days</source>
+        <target>Jours de la semaine ou l'arrondi sera appliqué</target>
+      </trans-unit>
+      <trans-unit id="O8E4Hj5" resname="timesheet.rounding.default.mode">
+        <source>timesheet.rounding.default.mode</source>
+        <target>Mode d'arrondi</target>
+      </trans-unit>
+      <trans-unit id="t.YW9eU" resname="timesheet.rounding.default.duration">
+        <source>timesheet.rounding.default.duration</source>
+        <target>Arrondir la durée en minutes (0 = désactivé)</target>
+      </trans-unit>
+      <trans-unit id="AUc43eR" resname="timesheet.rounding.default.end">
+        <source>timesheet.rounding.default.end</source>
+        <target>Arrondir l'heure de fin en minutes (0 = désactivé)</target>
+      </trans-unit>
+      <trans-unit id="ZMvZTTx" resname="timesheet.rounding.default.begin">
+        <source>timesheet.rounding.default.begin</source>
+        <target>Arrondir l'heure de début en minutes (0 = désactivé)</target>
+      </trans-unit>
+      <trans-unit id="Gdb5M4w" resname="rounding">
+        <source>rounding</source>
+        <target>Arrondi des heures</target>
+      </trans-unit>
+      <trans-unit id="en0.Ahu" resname="theme.branding.company">
+        <source>theme.branding.company</source>
+        <target>Nom de l'entreprise</target>
+      </trans-unit>
+      <trans-unit id="o9mON14" resname="theme.branding.logo">
+        <source>theme.branding.logo</source>
+        <target>URL du logo (remplace le nom de la société dans l'écran de connexion)</target>
+      </trans-unit>
+      <trans-unit id="nwuLBP4" resname="branding">
+        <source>branding</source>
+        <target>Mon entreprise</target>
+      </trans-unit>
+      <trans-unit id="BYy.c1V" resname="calendar.slot_duration">
+        <source>calendar.slot_duration</source>
+        <target>Durée de a vue en semaine et en jour</target>
+      </trans-unit>
+      <trans-unit id="RLgv62J" resname="timesheet.rules.lockdown_grace_period">
+        <source>timesheet.rules.lockdown_grace_period</source>
+        <target>Verrouiller la période de fin (Date relative a la période de fin PHP)</target>
+      </trans-unit>
+      <trans-unit id="M1iVHeQ" resname="timesheet.rules.lockdown_period_end">
+        <source>timesheet.rules.lockdown_period_end</source>
+        <target>Verrouiller la période de fin (Date relative au présent en PHP)</target>
+      </trans-unit>
+      <trans-unit id="_PvFlQ9" resname="timesheet.rules.lockdown_period_start">
+        <source>timesheet.rules.lockdown_period_start</source>
+        <target>Verrouiller la période de début (Date relative au présent en PHP)</target>
+      </trans-unit>
+      <trans-unit id="ZCg9UVM" resname="timesheet.rules.allow_overlapping_records">
+        <source>timesheet.rules.allow_overlapping_records</source>
+        <target state="translated">Autoriser le chevauchement des entrées d'heures</target>
+      </trans-unit>
+      <trans-unit id="CJZhtYx" resname="timesheet.mode_duration_fixed_begin">
+        <source>timesheet.mode_duration_fixed_begin</source>
+        <target>[Durée] heure de début fixe configurable, seule la durée peut-être modifiée</target>
+      </trans-unit>
+      <trans-unit id="tNxm3eg" resname="off">
+        <source>off</source>
+        <target>Désactivé</target>
+      </trans-unit>
+      <trans-unit id="OIvZ_wc" resname="timesheet.time_increment">
+        <source>timesheet.time_increment</source>
+        <target>Sélection des minutes pour Du et Au</target>
+      </trans-unit>
+      <trans-unit id="nqWKu27" resname="timesheet.duration_increment">
+        <source>timesheet.duration_increment</source>
+        <target>Sélection des minutes pour la durée</target>
+      </trans-unit>
+      <trans-unit id="2KUm56c" resname="timesheet.rules.allow_overbooking_budget">
+        <source>timesheet.rules.allow_overbooking_budget</source>
+        <target state="translated">Autoriser le dépassement des budgets configurés</target>
+      </trans-unit>
+      <trans-unit id="aUc3uU1" resname="help.theme.color_choices">
+        <source>help.theme.color_choices</source>
+        <target>Liste de codes de couleur HTML séparés par des virgules. Les noms des couleurs peuvent être définis en faisant précéder le code de couleur d'un nom et du délimiteur |, par ex : Blanc|#ffffff,Noir|#000000.</target>
+      </trans-unit>
+      <trans-unit id="EFY6GmX" resname="theme.color_choices">
+        <source>theme.color_choices</source>
+        <target>Couleurs autorisées</target>
+      </trans-unit>
+      <trans-unit id="AzOiQES" resname="company.financial_year">
+        <source>company.financial_year</source>
+        <target>Année fiscale</target>
+      </trans-unit>
+      <trans-unit id="vg5G_9i" resname="timesheet.rules.long_running_duration">
+        <source>timesheet.rules.long_running_duration</source>
+        <target>Durée maximale d'un enregistrement de feuille de temps en minutes avant que la sauvegarde soit rejetée (0 = désactivé)</target>
+      </trans-unit>
+      <trans-unit id="Rf_fb9x" resname="timesheet.rules.break_warning_duration">
+        <source>timesheet.rules.break_warning_duration</source>
+        <target>Durée maximale d'un enregistrement de feuille de temps en minutes avant qu'un « avertissement de pause » soit affiché (0 = désactivé)</target>
+      </trans-unit>
+      <trans-unit id="0noFWbL" resname="saml_activate">
+        <source>saml_activate</source>
+        <target>Connexion SAML</target>
+      </trans-unit>
+      <trans-unit id="ihORk9W" resname="ldap_activate">
+        <source>ldap_activate</source>
+        <target>Connexion LDAP</target>
+      </trans-unit>
+      <trans-unit id="55s60b4" resname="user_auth_password_reset_token_ttl">
+        <source>user_auth_password_reset_token_ttl</source>
+        <target>Mot de passe oublié – secondes avant l'expiration d'un lien de réinitialisation</target>
+      </trans-unit>
+      <trans-unit id="E9URNEx" resname="user_auth_password_reset_retry_ttl">
+        <source>user_auth_password_reset_retry_ttl</source>
+        <target>Mot de passe oublié – secondes avant qu'un utilisateur puisse demander le prochain courriel</target>
+      </trans-unit>
+      <trans-unit id="5RSshEN" resname="user_auth_password_reset">
+        <source>user_auth_password_reset</source>
+        <target>Mot de passe oublié</target>
+      </trans-unit>
+      <trans-unit id="C26_mL7" resname="user_auth_registration">
+        <source>user_auth_registration</source>
+        <target>Enregistrement de l'utilisateur</target>
+      </trans-unit>
+      <trans-unit id="BGHQ8YO" resname="user_auth_login">
+        <source>user_auth_login</source>
+        <target>Formulaire de connexion</target>
+      </trans-unit>
+      <trans-unit id="udkGKEU" resname="authentication">
+        <source>authentication</source>
+        <target>Authentification</target>
+      </trans-unit>
+      <trans-unit id="wrnXs_a" resname="timesheet.rules.lockdown_period_timezone">
+        <source>timesheet.rules.lockdown_period_timezone</source>
+        <target>Fuseau horaire (si vide, le fuseau horaire de l'utilisateur respectif est utilisé)</target>
+      </trans-unit>
+      <trans-unit id="tuPXa0S" resname="lockdown_period">
+        <source>lockdown_period</source>
+        <target>Période de verrouillage</target>
+      </trans-unit>
+      <trans-unit id="xlNjElF" resname="calendar.dragdrop_amount">
+        <source>calendar.dragdrop_amount</source>
+        <target>Nombre d'entrées pour le glisser-déposer (0 = désactivé)</target>
+      </trans-unit>
+      <trans-unit id="SnkW0Pk" resname="theme.avatar_url">
+        <source>theme.avatar_url</source>
+        <target state="translated">Permettre l'usage des URL pour les images d'avatar</target>
+      </trans-unit>
+      <trans-unit id="xa6f6fq" resname="quick_entry.recent_activities">
+        <source>quick_entry.recent_activities</source>
+        <target>Nombre d'entrées prises les semaines précédentes</target>
+      </trans-unit>
+      <trans-unit id="winWMI1" resname="calendar.title_pattern">
+        <source>calendar.title_pattern</source>
+        <target>Affichage des titres des entrées du calendrier</target>
+      </trans-unit>
+      <trans-unit id="yBBvkfb" resname="timesheet.rules.allow_zero_duration">
+        <source>timesheet.rules.allow_zero_duration</source>
+        <target state="translated">Autoriser la saisie d'activités avec une durée vide</target>
+      </trans-unit>
+      <trans-unit id="Vp1e9qb" resname="quick_entry.recent_activity_weeks">
+        <source>quick_entry.recent_activity_weeks</source>
+        <target>Reprendre les entrées des X dernières semaines (vide ou 0 pour tout le temps)</target>
+      </trans-unit>
+      <trans-unit id="KbAqHBa" resname="quick_entry.minimum_rows">
+        <source>quick_entry.minimum_rows</source>
+        <target>Nombre minimal de lignes</target>
+      </trans-unit>
+      <trans-unit id="9efN4Oc" resname="calendar.dragdrop_data">
+        <source>Copies data when adding via drag and drop</source>
+        <target state="translated">Copie les données lors de l'ajout par glisser-déposer</target>
+      </trans-unit>
+      <trans-unit id="pBxkAF_" resname="copy_teams_on_create" approved="no">
+        <source>copy_teams_on_create</source>
+        <target state="translated">Reprendre les équipes de l'utilisateur connecté lors de la création de nouvelles entrées</target>
+      </trans-unit>
+      <trans-unit id="LmOfuE5" resname="customer.number_format" xml:space="preserve">
+        <source>customer.number_format</source>
+        <target state="translated">Format du numéro de client</target>
+      </trans-unit>
+      <trans-unit id="1cAQPNS" resname="customer.allow_duplicate_number">
+        <source>customer.allow_duplicate_number</source>
+        <target state="translated">Autoriser la duplication du numéro de compte</target>
+      </trans-unit>
+      <trans-unit id="12sQGSo" resname="activity.allow_inline_create" xml:space="preserve">
+        <source>activity.allow_inline_create</source>
+        <target state="translated">Autoriser la création d’activités depuis la saisie des temps</target>
+      </trans-unit>
+      <trans-unit id="3xUU9V." resname="project.number_format" xml:space="preserve">
+        <source>project.number_format</source>
+        <target state="translated">Format du numéro de projet</target>
+      </trans-unit>
+      <trans-unit id="ifgrIHh" resname="activity.number_format" xml:space="preserve">
+        <source>activity.number_format</source>
+        <target state="translated">Format du numéro d’activité</target>
+      </trans-unit>
+      <trans-unit id="jj1NmKW" resname="allow_duplicate_number" xml:space="preserve">
+        <source>allow_duplicate_number</source>
+        <target state="translated">Autoriser plusieurs utilisations du même nombre</target>
+      </trans-unit>
+      <trans-unit id="IZY5kqL" resname="allowed_replacer" xml:space="preserve">
+        <source>allowed_replacer</source>
+        <target state="translated">Remplacement autorisé : %replacer%</target>
+      </trans-unit>
+      <trans-unit id="6AaVxB2" resname="invoice.rounding_mode" approved="no" xml:space="preserve">
+        <source>invoice.rounding_mode</source>
+        <target state="translated">Mode d'arrondi</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

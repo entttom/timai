@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    {% set formEditTemplate = kimai_context.modalRequest ? 'default/_form_modal.html.twig' : 'default/_form.html.twig' %}
+    {% set formOptions = {
+        'title': 'create'|trans,
+        'form': form,
+        'back': path('admin_user')
+    } %}
+    {% embed formEditTemplate with formOptions %}
+        {% block form_body %}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.username) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.email) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.plainPassword.first) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.plainPassword.second) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.alias) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.title) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md{% if form.avatar is defined %}-6{% endif %}">
+                    {{ form_row(form.color) }}
+                </div>
+                {% if form.avatar is defined %}
+                <div class="col-md-6">
+                    {{ form_row(form.avatar) }}
+                </div>
+                {% endif %}
+            </div>
+
+            {% if form.language is defined and form.timezone is defined %}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.language) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.timezone) }}
+                </div>
+            </div>
+            {% endif %}
+
+            {% set length = 12 %}
+            {% if form.supervisor is defined  %}
+                {% set length = 6 %}
+            {% endif %}
+
+            <div class="row">
+                <div class="col-md-{{ length }}">
+                    {{ form_row(form.accountNumber) }}
+                </div>
+                {% if form.supervisor is defined  %}
+                <div class="col-md-{{ length }}">
+                    {{ form_row(form.supervisor) }}
+                </div>
+                {% endif %}
+            </div>
+
+            {% if form.teams is defined or form.roles is defined %}
+                {% set length = 12 %}
+                {% if form.teams is defined and form.roles is defined %}
+                    {% set length = 6 %}
+                {% endif %}
+                <div class="row">
+                    {% if form.teams is defined %}
+                    <div class="col-md-{{ length }}">
+                        {{ form_row(form.teams) }}
+                    </div>
+                    {% endif %}
+                    {% if form.roles is defined %}
+                    <div class="col-md-{{ length }}">
+                        {{ form_row(form.roles) }}
+                    </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {{ form_rest(form) }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

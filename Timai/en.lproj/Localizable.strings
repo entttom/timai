@@ -171,6 +171,22 @@
 "timesheetEdit.error.loadingProjects" = "Error loading projects";
 "timesheetEdit.error.loadingActivities" = "Error loading activities";
 "timesheetEdit.error.saving" = "Error saving";
+"timesheetEdit.ai.button" = "AI";
+"timesheetEdit.ai.missingConfig.title" = "AI configuration missing";
+"timesheetEdit.ai.missingConfig.message" = "Please configure AI generation in Settings before using this function.";
+"timesheetEdit.ai.sheet.title" = "AI Generation";
+"timesheetEdit.ai.section.prompt" = "Prompt";
+"timesheetEdit.ai.section.input" = "Current description";
+"timesheetEdit.ai.section.preview" = "Preview";
+"timesheetEdit.ai.promptSelection" = "Choose prompt";
+"timesheetEdit.ai.prompt.custom" = "Custom prompt";
+"timesheetEdit.ai.prompts.empty" = "No saved prompts available. Use a custom prompt instead.";
+"timesheetEdit.ai.input.empty" = "No description exists yet. The prompt will be sent without source text.";
+"timesheetEdit.ai.input.footer" = "The current description is sent together with the chosen prompt and can be replaced after review.";
+"timesheetEdit.ai.generate" = "Generate";
+"timesheetEdit.ai.generating" = "Generating...";
+"timesheetEdit.ai.apply" = "Apply to description";
+"timesheetEdit.ai.discard" = "Discard result";
 
 // Settings - Cache Section
 "settings.section.offlineCache" = "Offline & Cache";
@@ -222,6 +238,13 @@
 "network.error.noResponse" = "No response from server";
 "network.error.invalidResponse" = "Invalid server response";
 "network.error.requestError" = "Network error";
+"ai.error.missingApiKey" = "Please enter an API key.";
+"ai.error.missingModel" = "Please choose a model first.";
+"ai.error.missingBaseURL" = "Please enter a server URL for the compatible API.";
+"ai.error.invalidBaseURL" = "The server URL is invalid.";
+"ai.error.invalidResponse" = "The provider returned an invalid response.";
+"ai.error.emptyResponse" = "The provider returned no text.";
+"ai.error.noModelsFound" = "No usable models were returned by the provider.";
 
 // Biometric
 "biometric.type.faceID" = "Face ID";
@@ -522,6 +545,39 @@
 "settings.expenses.apiUnavailable.title" = "API Not Available";
 "settings.expenses.apiUnavailable.message" = "The Expenses API is not available. Please make sure the Expenses plugin is installed and you have the required permissions. Otherwise, please contact your server administrator.";
 "settings.expenses.apiUnavailable.ok" = "OK";
+"settings.aiGeneration.enable" = "Enable AI Generation";
+"settings.aiGeneration.configure" = "Configure AI Generation";
+"settings.aiGeneration.title" = "AI Generation";
+"settings.aiGeneration.section.connection" = "Connection";
+"settings.aiGeneration.section.model" = "Model";
+"settings.aiGeneration.section.prompts" = "Prompts";
+"settings.aiGeneration.provider" = "Provider";
+"settings.aiGeneration.provider.openAI" = "ChatGPT";
+"settings.aiGeneration.provider.gemini" = "Gemini";
+"settings.aiGeneration.provider.openAICompatible" = "ChatGPT-compatible API";
+"settings.aiGeneration.apiKey.placeholder" = "API key";
+"settings.aiGeneration.compatibleURL.placeholder" = "Server URL (for example https://example.com/v1)";
+"settings.aiGeneration.model" = "Model";
+"settings.aiGeneration.test" = "Test connection";
+"settings.aiGeneration.testing" = "Testing...";
+"settings.aiGeneration.test.success" = "Connection successful. Models loaded.";
+"settings.aiGeneration.models.empty" = "No models loaded yet. Use the test button to fetch the available models.";
+"settings.aiGeneration.prompts.empty" = "No saved prompts.";
+"settings.aiGeneration.addPrompt" = "Add prompt";
+"settings.aiGeneration.prompt.initial" = "Default";
+"settings.aiGeneration.prompt.shortDescription" = "Short description";
+"settings.aiGeneration.prompt.shortDescription.placeholder" = "For example Fix spelling";
+"settings.aiGeneration.prompt.text" = "Prompt";
+"settings.aiGeneration.prompt.newTitle" = "New prompt";
+"settings.aiGeneration.prompt.editTitle" = "Edit prompt";
+"settings.aiGeneration.betaWarning.title" = "Beta Feature";
+"settings.aiGeneration.betaWarning.message" = "This feature is in beta phase. AI requests are sent to the provider you configure and may incur external costs.";
+"settings.aiGeneration.betaWarning.confirm" = "Understood and enable";
+"settings.aiGeneration.betaWarning.cancel" = "Cancel";
+"settings.aiGeneration.defaultPrompt.spellcheck.title" = "Fix spelling";
+"settings.aiGeneration.defaultPrompt.spellcheck.text" = "Correct spelling mistakes and obvious grammar issues in the following text. Preserve the meaning, tone, and structure as much as possible. The output language must match the input language. Return only the revised text without explanation.";
+"settings.aiGeneration.defaultPrompt.sentences.title" = "Turn keywords into sentences";
+"settings.aiGeneration.defaultPrompt.sentences.text" = "Turn the existing keywords into clear, natural, and complete sentences. Do not invent new facts and stay very close to the original content. The output language must match the input language. Return only the revised text without explanation.";
 
 // Absences
 "absences.tabTitle" = "Absences";

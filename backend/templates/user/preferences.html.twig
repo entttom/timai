@@ -1,0 +1,26 @@
+{% extends 'user/form.html.twig' %}
+
+{% block form_content %}
+
+    {% form_theme form 'form/horizontal.html.twig' %}
+
+    {% for section in sections %}
+
+        {% set show = false %}
+        {% for pref in form.children.preferences|filter(pref => pref.vars.data.section == section) %}
+            {% if (pref.children|length > 0) %}
+                {% set show = true %}
+            {% endif %}
+        {% endfor %}
+
+        {% if show %}
+            <fieldset class="form-fieldset form-fieldset-light mb-3">
+                {% for pref in form.children.preferences|filter(pref => pref.vars.data.section == section)|sort((a, b) => a.vars.data.order <=> b.vars.data.order) %}
+                    {{ form_widget(pref) }}
+                {% endfor %}
+            </fieldset>
+        {% endif %}
+
+    {% endfor %}
+
+{% endblock %}

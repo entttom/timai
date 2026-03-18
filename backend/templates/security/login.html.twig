@@ -1,0 +1,101 @@
+{% extends '@theme/security/login.html.twig' %}
+
+{% block logo_login %}{% include 'partials/logo_login.html.twig' %}{% endblock %}
+{% block title %}{{- get_title() -}}{% endblock %}
+
+{% block head %}
+    {% include 'partials/head.html.twig' %}
+    {% set event = trigger(constant('App\\Event\\ThemeEvent::HTML_HEAD')) %}
+    {{ event.content|raw }}
+{% endblock %}
+
+{% block stylesheets %}
+    {% if tabler_bundle.isRightToLeft() %}
+        {{ encore_entry_link_tags('app-rtl') }}
+    {% else %}
+        {{ encore_entry_link_tags('app') }}
+    {% endif %}
+    {% set event = trigger(constant('App\\Event\\ThemeEvent::STYLESHEET')) %}
+    {{ event.content|raw }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% set event = trigger(constant('App\\Event\\ThemeEvent::JAVASCRIPT')) %}
+    <script>
+        let profile = localStorage.getItem('kimai_profile');
+        if (profile === null) {
+            {#
+                screen.width = real screen width
+                screen.availWidth = screen minus e.g. OS elements
+                window.screen.width * window.devicePixelRatio = screen resolution is not relevant
+                window.innerWidth = browser screen width minus browser elements (doesn’t include scroll bars and borders)
+                window.visualViewport.width = window.innerWidth - border(?) => only a couple of pixels smaller
+
+                See https://getbootstrap.com/docs/5.0/layout/breakpoints/ for the min width, as of v5 this is 576px
+            #}
+            profile = '{{ constant('\\App\\Utils\\ProfileManager::PROFILE_DESKTOP') }}'
+            const size = window.visualViewport !== undefined ? window.visualViewport.width : window.innerWidth;
+            if (size < 576) {
+                profile = '{{ constant('\\App\\Utils\\ProfileManager::PROFILE_MOBILE') }}';
+            }
+            localStorage.setItem('kimai_profile', profile);
+        }
+        document.cookie = "{{ constant('\\App\\Utils\\ProfileManager::COOKIE_PROFILE') }}="+profile+"; path=/; expires=; SameSite=Strict; Secure";
+    </script>
+    {{ event.content|raw }}
+{% endblock %}
+
+{% block login_social_auth %}
+    {% if saml_config.isActivated() %}
+        {% if kimai_config.loginFormActive %}
+            <div class="hr-text">{{ 'or'|trans({}, 'TablerBundle') }}</div>
+        {% endif %}
+        <div class="card-body">
+            <div class="row">
+                {% if not kimai_config.loginFormActive %}
+                    <h2 class="card-title text-center mb-4">{{ block('login_box_msg') }}</h2>
+                {% endif %}
+                <div class="col text-center">
+                    <a href="{{ path('saml_login') }}" id="social-login-button" tabindex="50" class="btn btn-white w-50">
+                        {% set provider = saml_config.getProvider() %}
+                        {% if provider is not null %}
+                            {% if 'fa-' in provider %}
+                                <i class="icon {{ provider }} text-{{ provider|replace({'fas ': '', 'far ': '', 'fab ': ''}) }}"></i>
+                            {% else %}
+                                <i class="icon fab fa-{{ provider }} text-{{ provider }}"></i>
+                            {% endif %}
+                        {% endif %}
+                        {{ saml_config.getTitle()|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block login_box %}
+    {% if kimai_config.loginFormActive %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block login_form %}
+    {% if kimai_config.loginFormActive %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block password_forgotten %}
+    {% if kimai_config.passwordResetActive %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block registration %}
+    {% if kimai_config.selfRegistrationActive %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block remember_me %}{% endblock %}

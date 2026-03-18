@@ -1,0 +1,53 @@
+    {% embed '@theme/embeds/card.html.twig' with {'project': project, 'activities': activities, 'page': page, 'id': 'activity_list_box'} %}
+        {% import "activity/actions.html.twig" as actions %}
+        {% import "macros/widgets.html.twig" as widgets %}
+        {% block box_title %}{{ 'activities'|trans }}{% endblock %}
+        {% block box_attributes %} data-reload="kimai.activityUpdate kimai.activityDelete" {% endblock %}
+        {% block box_tools %}
+            {%- if project.visible and project.customer.visible and is_granted('create_activity') -%}
+                {{ widgets.card_tool_button('create', {'class': 'modal-ajax-form open-edit', 'title': 'create', 'url': path('admin_activity_create_with_project', {'project': project.id})}) }}
+            {%- endif -%}
+        {% endblock %}
+        {% block box_footer %}
+            {%- if activities|length > 0 -%}
+                <div class="d-flex">
+                    {{ pagination(activities, { css_container_class: 'pagination ms-auto m-0', routeName: 'project_activities', routeParams: {'id': project.id} }) }}
+                </div>
+            {%- endif -%}
+        {% endblock %}
+        {% block box_body_class %}{%- if activities|length > 0 -%}p-0{%- endif -%}{% endblock %}
+        {% block box_body %}
+            {% if activities|length == 0 %}
+                <div class="comment">{{ 'error.no_entries_found'|trans }}</div>
+            {% else %}
+                <table class="table table-hover dataTable">
+                    <thead>
+                        <tr>
+                            <th>{{ 'name'|trans }}</th>
+                            <th class="d-none d-md-table-cell">{{ 'comment'|trans }}</th>
+                            <th class="d-none d-sm-table-cell w-min text-center">{{ 'visible'|trans }}</th>
+                            <th class="d-none d-sm-table-cell w-min text-center">{{ 'team'|trans }}</th>
+                            <th class="actions"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for activity in activities %}
+                        <tr {{ widgets.activity_row_attr(activity, now) }}>
+                            <td>{{ widgets.label_activity(activity) }}</td>
+                            <td class="d-none d-md-table-cell">{{ activity.comment|comment1line(false) }}</td>
+                            <td class="d-none d-sm-table-cell w-min text-center">{{ widgets.label_visible(activity.visible) }}</td>
+                            <td class="d-none d-sm-table-cell w-min text-center">{{ widgets.badge_team_access(activity.teams) }}</td>
+                            <td class="actions">{{ actions.activity(activity, 'project_details', true) }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+    <script type="text/javascript">
+        {% set eventName = kimai_context.javascriptRequest ? 'kimai.reloadPage' : 'kimai.initialized' %}
+        document.addEventListener('{{ eventName }}', function() {
+            KimaiPaginatedBoxWidget.create('#activity_list_box');
+        });
+    </script>

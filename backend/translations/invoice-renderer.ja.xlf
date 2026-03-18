@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="ja" datatype="plaintext" original="invoice-renderer.en.xlf">
+    <body>
+      <trans-unit id="hOcTt2G" resname="invoice_renderer">
+        <source>invoice_renderer</source>
+        <target>請求書</target>
+      </trans-unit>
+      <trans-unit id="Utbj3k_" resname="invoice">
+        <source>invoice</source>
+        <target>請求書 (デフォルト)</target>
+      </trans-unit>
+      <trans-unit id="lt2Y2LO" resname="timesheet">
+        <source>timesheet</source>
+        <target>タイムシート</target>
+      </trans-unit>
+      <trans-unit id="m1UyfD9" resname="service-date">
+        <source>service-date</source>
+        <target>フリーランサー</target>
+      </trans-unit>
+      <trans-unit id="7mEUv6C" resname="help.upload" xml:space="preserve">
+        <source>help.upload</source>
+        <target state="translated">注意：既存のファイルが上書きされようとしています。利用可能なファイル形式は%extensions%です。</target>
+      </trans-unit>
+      <trans-unit id="22pt8Gs" resname="download_invoice_renderer" xml:space="preserve">
+        <source>download_invoice_renderer</source>
+        <target state="translated">別のテンプレートのダウンロードはこちら</target>
+      </trans-unit>
+      <trans-unit id="E5BwZHT" resname="programmatic" xml:space="preserve">
+        <source>programmatic</source>
+        <target state="translated">追加処理</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,233 @@
+{% extends 'base.html.twig' %}
+
+{% block status %}
+    {% from "macros/status.html.twig" import status %}
+    {{ status(constant('App\\Constants::VERSION')) }}
+    {{ status(environment, environment == 'dev' ? 'danger-lt' : 'success-lt') }}
+{% endblock %}
+
+{% block main %}
+
+    {% if release is not null and release is iterable %}
+        {% embed '@theme/embeds/card.html.twig' with {'release': release, boxtype: 'warning'} %}
+            {% block box_title %}Kimai {{ release.version }} available (released on {{ release.date|date_short }}){% endblock %}
+            {% block box_body %}
+                {{ release.content|md2html }}
+                <p>
+                    <a class="btn btn-primary" href="{{ release.url }}" target=_blank">Read more</a>
+                </p>
+            {% endblock %}
+        {% endembed %}
+    {% endif %}
+
+    {% set permissionOpts = {boxtype: 'success'} %}
+    {% for name, value in directories %}
+        {% if value is same as (false) %}
+            {% set permissionOpts = {boxtype: 'danger', open: true} %}
+        {% endif %}
+    {% endfor %}
+
+    {% embed '@theme/embeds/collapsible.html.twig' with permissionOpts %}
+        {% block title %}File permissions{% endblock %}
+        {% block body %}
+            <p>
+                If you see a warning icon <i class="{{ 'warning'|icon(false) }} text-red"></i> in the list below, you should talk to your administrator.
+                The path is either not readable or not writable and Kimai might not work as expected.
+            </p>
+            <table class="table">
+                {% for name, value in directories %}
+                    <tr>
+                        <th style="width:15%">{{ name }}</th>
+                        <td>
+                            {% if value is same as (false) %}
+                                <i class="{{ 'warning'|icon(false) }} text-red"></i>
+                            {% else %}
+                                <i class="{{ 'success'|icon(false) }} text-green"></i>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endblock %}
+    {% endembed %}
+
+    {% set extensionOpts = {boxtype: 'success'} %}
+    {% for name, value in extensions %}
+        {% if value is same as (false) %}
+            {% set extensionOpts = {boxtype: 'danger', open: true} %}
+        {% endif %}
+    {% endfor %}
+
+    {% embed '@theme/embeds/collapsible.html.twig' with extensionOpts %}
+        {% block title %}PHP extensions{% endblock %}
+        {% block body %}
+            <p>
+                If you see a warning icon <i class="{{ 'warning'|icon(false) }} text-red"></i> in the list below, you should talk to your administrator, as there is a missing PHP extension causing Kimai not to work as expected.
+            </p>
+            <table class="table">
+                {% for name, value in extensions %}
+                    <tr>
+                        <th style="width:15%">{{ name }}</th>
+                        <td>
+                            {% if value is same as (false) %}
+                                <i class="{{ 'warning'|icon(false) }} text-red"></i>
+                            {% else %}
+                                <i class="{{ 'success'|icon(false) }} text-green"></i>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endblock %}
+    {% endembed %}
+
+    {% set logOpts = {} %}
+    {% if logSize > 52428800 %}
+        {% set logOpts = {boxtype: 'danger', open: true} %}
+    {% endif %}
+    {% embed '@theme/embeds/collapsible.html.twig' with logOpts %}
+        {% from "@theme/components/button.html.twig" import button %}
+        {% block title %}Logfile (max. {{ logLines }} last lines){% endblock %}
+        {% block body %}
+            {% if logSize > 52428800 %}
+                <p>Your logfile is larger than 50 MB, consider deleting it (it will be re-created automatically).</p>
+            {% endif %}
+            <pre>{% for logLine in logs|reverse -%}
+                {%- set logLineClass = '' -%}
+                {%- if '.CRITICAL' in logLine -%}
+                    {%- set logLineClass = 'text-danger text-bold' -%}
+                {%- elseif '.WARNING' in logLine -%}
+                    {%- set logLineClass = 'text-warning text-bold' -%}
+                {%- elseif '.ERROR' in logLine -%}
+                    {%- set logLineClass = 'text-warning text-bold' -%}
+                {%- elseif '.DEBUG' in logLine -%}
+                    {%- set logLineClass = 'text-body-secondary' -%}
+                {%- endif -%}
+                <span class="{{ logLineClass }}">{{- logLine -}}</span>
+            {%- endfor %}</pre>
+            {% if log_delete %}
+                {{ button('delete', {combined: true, 'class': 'confirmation-link btn-danger', 'title': 'delete', 'url': path('doctor_flush_log', {'token': csrf_token('doctor.flush_log')}), 'attr': {'data-question': 'confirm.delete'}}) }}
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+
+    {% embed '@theme/embeds/collapsible.html.twig' %}
+        {% import "macros/widgets.html.twig" as widgets %}
+        {% block title %}Composer{% endblock %}
+        {% block body_class %}p-0{% endblock %}
+        {% block body %}
+            <table class="table table-hover">
+                {% for name, value in composer %}
+                    <tr>
+                        <th class="text-nowrap w-min">{{ name }}</th>
+                        <td class="text-break">{{ value }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endblock %}
+    {% endembed %}
+
+    {% embed '@theme/embeds/collapsible.html.twig' %}
+        {% block title %}PHP{% endblock %}
+        {% block body_class %}p-0{% endblock %}
+        {% block body %}
+            <table class="table table-hover">
+                <tr>
+                    <th class="text-nowrap w-min">{{ 'version'|trans }}</th>
+                    <td>{{ constant('PHP_VERSION') }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Modules</th>
+                    <td class="text-break">{{ modules|join(', ') }}</td>
+                </tr>
+                {% for name, value in settings %}
+                    <tr>
+                        <th class="text-nowrap w-min">{{ name }}</th>
+                        <td class="text-break">
+                            {% if value is empty %}
+                                <i>unknown</i>
+                            {% else %}
+                                {{ value }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% for name, value in info %}
+                    <tr>
+                        <th class="text-nowrap w-min">{{ name }}</th>
+                        <td class="text-break">{{ value|raw }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endblock %}
+    {% endembed %}
+
+    {% set opcache_warning = not opcache['enabled'] %}
+    {% embed '@theme/embeds/collapsible.html.twig' with {open: opcache_warning, boxtype: (opcache_warning ? 'danger' : 'success')} %}
+        {% block title %}OPCache{% endblock %}
+        {% block body_class %}p-0{% endblock %}
+        {% block body %}
+            {% import "macros/widgets.html.twig" as widgets %}
+            {% if opcache_warning %}
+                {{ widgets.alert('danger', 'Could not detect an active OPCache. This will significantly impact the performance of Kimai.') }}
+            {% endif %}
+            {% if opcache['status'] is iterable %}
+            <table class="table table-hover">
+                <tr>
+                    <th class="text-nowrap w-min">Opcache Enabled</th>
+                    <td class="text-break">{{ widgets.label_boolean(opcache['enabled']) }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Opcache Full</th>
+                    <td class="text-break">{{ widgets.label_boolean(opcache['status']['cache_full']) }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Memory Used</th>
+                    <td class="text-break">{{ (opcache['status']['memory_usage']['used_memory'] / 1024 / 1024)|number_format(2) }} MB</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Memory Free</th>
+                    <td class="text-break">{{ (opcache['status']['memory_usage']['free_memory'] / 1024 / 1024)|number_format(2) }} MB</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Interned-Strings Used</th>
+                    <td class="text-break">{{ (opcache['status']['interned_strings_usage']['used_memory'] / 1024 / 1024)|number_format(2) }} MB</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Interned-Strings Free</th>
+                    <td class="text-break">{{ (opcache['status']['interned_strings_usage']['free_memory'] / 1024 / 1024)|number_format(2) }} MB</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Cached Scripts</th>
+                    <td class="text-break">{{ opcache['status']['opcache_statistics']['num_cached_scripts'] }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Cached Keys</th>
+                    <td class="text-break">{{ opcache['status']['opcache_statistics']['num_cached_keys'] }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Max Keys</th>
+                    <td class="text-break">{{ opcache['status']['opcache_statistics']['max_cached_keys'] }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Hit Rate</th>
+                    <td class="text-break">{{ opcache['status']['opcache_statistics']['opcache_hit_rate']|number_format(2) }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Jit enabled</th>
+                    <td class="text-break">{{ widgets.label_boolean(opcache['status']['jit']['enabled']) }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Buffer Size</th>
+                    <td class="text-break">{{ (opcache['status']['jit']['buffer_size'] / 1024 / 1024)|number_format(2) }} MB</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap w-min">Buffer Free</th>
+                    <td class="text-break">{{ (opcache['status']['jit']['buffer_free'] / 1024 / 1024)|number_format(2) }} MB</td>
+                </tr>
+            </table>
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+
+{% endblock %}

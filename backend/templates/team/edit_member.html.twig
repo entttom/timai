@@ -1,0 +1,6 @@
+{% extends kimai_context.modalRequest ? 'form.html.twig' : 'base.html.twig' %}
+{% import "macros/widgets.html.twig" as widgets %}
+
+{% block main %}
+    {% include 'team/member-form.html.twig' %}
+{% endblock %}

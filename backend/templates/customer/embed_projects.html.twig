@@ -1,0 +1,66 @@
+    {% embed '@theme/embeds/card.html.twig' with {'customer': customer, 'projects': projects, 'page': page} %}
+        {% import "project/actions.html.twig" as actions %}
+        {% import "macros/widgets.html.twig" as widgets %}
+        {% block box_title %}{{ 'projects'|trans }}{% endblock %}
+        {% block box_attributes %}
+            id="project_list_box" data-reload="kimai.projectUpdate kimai.projectDelete"
+        {% endblock %}
+        {% block box_tools %}
+            {%- if is_granted('report:project') and is_granted('budget_any', 'project') -%}
+                {{ widgets.card_tool_button('reporting', {'title': 'report_project_view', 'translation_domain': 'reporting', 'url': path('report_project_view', {'customer': customer.id})}) }}
+            {%- endif -%}
+            {%- if customer.visible and is_granted('create_project') -%}
+                {{ widgets.card_tool_button('create', {'class': 'modal-ajax-form open-edit', 'title': 'create', 'url': path('admin_project_create_with_customer', {'customer': customer.id})}) }}
+            {%- endif -%}
+        {% endblock %}
+        {% block box_footer %}
+            {%- if projects|length > 0 -%}
+                <div class="d-flex">
+                    {{ pagination(projects, { css_container_class: 'pagination ms-auto m-0', routeName: 'customer_projects', routeParams: {'id': customer.id} }) }}
+                </div>
+            {%- endif -%}
+        {% endblock %}
+        {% block box_body_class %}{%- if projects|length > 0 -%}p-0{%- endif -%}{% endblock %}
+        {% block box_body %}
+            {% if projects|length == 0 %}
+                <div class="comment">{{ 'error.no_entries_found'|trans }}</div>
+            {% else %}
+            <table class="table table-hover dataTable">
+                <thead>
+                    <tr>
+                        <th>{{ 'name'|trans }}</th>
+                        <th class="d-none d-md-table-cell">{{ 'comment'|trans }}</th>
+                        <th class="d-none d-sm-table-cell w-min text-end">{{ 'project_end'|trans }}</th>
+                        <th class="d-none d-sm-table-cell w-min text-center">{{ 'visible'|trans }}</th>
+                        <th class="d-none d-sm-table-cell w-min text-center">{{ 'team'|trans }}</th>
+                        <th class="actions"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for project in projects %}
+                    <tr {{ widgets.project_row_attr(project, now) }}>
+                        <td>{{ widgets.label_project(project) }}</td>
+                        <td class="d-none d-md-table-cell">{{ project.comment|comment1line(false) }}</td>
+                        <td class="d-none d-sm-table-cell w-min text-end">
+                            {% if project.end is not null %}
+                                {{ project.end|date_short }}
+                            {% else %}
+                                &ndash;
+                            {% endif %}
+                        </td>
+                        <td class="d-none d-sm-table-cell w-min text-center">{{ widgets.label_visible(project.visible) }}</td>
+                        <td class="d-none d-sm-table-cell w-min text-center">{{ widgets.badge_team_access(project.teams) }}</td>
+                        <td class="actions">{{ actions.project(project, 'customer_details', true) }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+    <script type="text/javascript">
+        {% set eventName = kimai_context.javascriptRequest ? 'kimai.reloadPage' : 'kimai.initialized' %}
+        document.addEventListener('{{ eventName }}', function() {
+            KimaiPaginatedBoxWidget.create('#project_list_box');
+        });
+    </script>

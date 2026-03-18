@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="eu" datatype="plaintext" original="daterangepicker.en.xlf">
+    <body>
+      <trans-unit id="s9Hdo7E" resname="daterangepicker.today">
+        <source>daterangepicker.today</source>
+        <target>Gaur</target>
+      </trans-unit>
+      <trans-unit id="gkQA1YG" resname="daterangepicker.yesterday">
+        <source>daterangepicker.yesterday</source>
+        <target>Atzo</target>
+      </trans-unit>
+      <trans-unit id="CAvVEbc" resname="daterangepicker.lastWeek">
+        <source>daterangepicker.lastWeek</source>
+        <target>Azken astea</target>
+      </trans-unit>
+      <trans-unit id="HfcD1_y" resname="daterangepicker.thisWeek">
+        <source>daterangepicker.thisWeek</source>
+        <target>Aste hau</target>
+      </trans-unit>
+      <trans-unit id="_9rEFED" resname="daterangepicker.lastYear">
+        <source>daterangepicker.lastYear</source>
+        <target>Azken urtea</target>
+      </trans-unit>
+      <trans-unit id="XgIrZS3" resname="daterangepicker.thisYear">
+        <source>daterangepicker.thisYear</source>
+        <target>Aurten</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
