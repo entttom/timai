@@ -45,6 +45,10 @@
 	<string>Timai benötigt Netzwerkzugriff um sich mit Ihrem Kimai Server zu verbinden und Zeiterfassungsdaten zu synchronisieren.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Timai verwendet Face ID um deine App zu schützen und deine Zeiterfassungsdaten zu sichern.</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.timai.sync.refresh</string>
+	</array>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -55,6 +59,10 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
