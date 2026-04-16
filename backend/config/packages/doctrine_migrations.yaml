@@ -1,8 +1,0 @@
-doctrine_migrations:
-    transactional: false
-    storage:
-        table_storage:
-            table_name: 'migration_versions'
-    migrations_paths:
-        'DoctrineMigrations': '%kernel.project_dir%/migrations'
-    custom_template: '%kernel.project_dir%/migrations/MigrationTemplate.txt'

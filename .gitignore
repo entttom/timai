@@ -89,3 +89,6 @@ vendor/bundle
 
 # macOS
 .DS_Store
+
+# Firebase / local app secrets
+Timai/GoogleService-Info.plist
