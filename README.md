@@ -55,6 +55,7 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
   - Monthly evaluations and inactive projects tracking
 - **Budget Tracking**: Visual representation of project time budgets and progress
 - **Offline Support**: Work without internet, automatic sync when reconnected
+- **Kimai Push Bridge**: Optional Kimai server plugin for push-based sync signals and configurable notifications
 - **Multi-Instance**: Manage multiple Kimai servers in one app
 - **Biometric Lock**: Secure your app with Face ID/Touch ID
 - **Multi-language Support**: Full German and English localization
@@ -86,27 +87,7 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
 - Xcode 15.0 or later
 - Kimai v2 server (version 0.5.0 or higher) with API access
 - Valid Kimai API token
-
-## Build from Source
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/entttom/timai.git
-   cd timai
-   ```
-
-2. **Open the project**:
-   ```bash
-   open Timai.xcodeproj
-   ```
-   
-   Xcode will automatically resolve Swift Package Manager dependencies when you open the project.
-
-3. **Build and run**:
-   - Select your target device or simulator
-   - Press `Cmd + R` to build and run
-
-> **Note**: You may need to update the team and bundle identifier in the project settings to run on your device.
+- Optional for push synchronization: Kimai v2.4.0 or later with the Kimai Push Bridge Bundle installed
 
 ## Usage
 
@@ -115,34 +96,41 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
 3. Enter your API token (generate one in your Kimai profile settings)
 4. Start tracking your time!
 
-## Project Structure
+## Kimai Push Bridge Bundle
 
-```
-Timai/
-├── Model/              # Data models (Timesheet, Project, Customer, etc.)
-├── Views/              # SwiftUI views
-│   ├── Timesheet/      # Time tracking views
-│   ├── Reports/        # Report views
-│   └── Settings/       # Settings views
-├── ViewModels/         # View models for business logic
-├── Services/           # Network and API services
-│   └── WatchConnectivityService.swift  # iPhone-Watch communication
-├── Components/         # Reusable UI components
-└── Helper/             # Utility files and extensions
+Timai can use an optional Kimai server plugin, the **Kimai Push Bridge Bundle**, to receive push-based sync signals when relevant changes happen on the Kimai server. This keeps the iOS app, Live Activity, notification inbox, reports, absences, and timer state closer to the current server state even when changes were made in Kimai Web or by another client.
 
-TimaiWatch Watch App/
-├── Views/              # Watch app views
-│   ├── TimerView.swift              # Main timer view
-│   ├── CustomerSelectionView.swift  # Customer selection
-│   ├── ProjectSelectionView.swift  # Project selection
-│   ├── ActivitySelectionView.swift # Activity selection
-│   ├── TimerSummaryView.swift      # Timer summary before start
-│   ├── ManualTimesheetView.swift   # Manual time entry flow
-│   └── TimesheetListView.swift    # Recent entries list
-├── ViewModels/         # Watch app view models
-├── Services/           # WatchConnectivityService (Watch side)
-└── Complications/      # Watch face complications
-```
+Download the bundled release here: [KimaiPushBridgeBundle-0.1.0-release.zip](KimaiPushBridgeBundle-0.1.0-release.zip)
+
+The bundle listens for supported Kimai events, sends a signed event signal to the Timai relay, and Timai then refreshes the affected data from the Kimai API. The push event is treated only as a sync trigger; the app does not blindly start or stop timers from the push payload.
+
+Supported event groups:
+
+- Timer started, restarted, and stopped
+- Absence requested, approved, and rejected, if the Kimai installation provides the absence events
+- Working-time month approved and unlocked
+
+Installation in Kimai:
+
+1. Unzip `KimaiPushBridgeBundle-0.1.0-release.zip`.
+2. Copy the extracted `KimaiPushBridgeBundle` folder into your Kimai installation at `var/plugins/KimaiPushBridgeBundle/`.
+3. Clear the Kimai cache:
+   ```bash
+   bin/console cache:clear
+   ```
+4. Optionally verify that Kimai detected the plugin:
+   ```bash
+   bin/console kimai:plugins
+   ```
+5. In Timai, open Settings and enable the Kimai Push Plugin for the active instance.
+
+After activation, users can control which notification types are enabled. The plugin also adds a Kimai profile settings page for push preferences and notification text customization. Timai uses the authenticated Kimai endpoints exposed by the bundle:
+
+- `GET /api/push-bridge/topic`
+- `POST /api/push-bridge/subscribe`
+- `POST /api/push-bridge/unsubscribe`
+
+Requests created by Timai itself are marked with `X-Timai-Client: ios`, so the plugin can suppress echo notifications for actions that originated from the app.
 
 ## License
 
@@ -161,18 +149,6 @@ Special thanks to:
 - Sebastian Limbach for the original Timeu project and inspiration
 - The Kimai team for developing an excellent open-source time tracking solution
 - All contributors and open-source maintainers whose libraries made this project possible
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-Please ensure your code follows Swift best practices and includes appropriate comments.
 
 ## Roadmap
 

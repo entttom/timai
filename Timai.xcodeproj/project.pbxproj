@@ -15,6 +15,7 @@
 		A1B2C3D52F30000100ABC001 /* AIGenerationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E52F30000100ABC001 /* AIGenerationSettingsView.swift */; };
 		A1B2C3D62F30000100ABC001 /* AIGenerationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E62F30000100ABC001 /* AIGenerationSheet.swift */; };
 		AA25519A2F6F8C7D00B2452D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA2551992F6F8C7D00B2452D /* GoogleService-Info.plist */; };
+		AA25519B2F6F8C7D00B2452D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA25519C2F6F8C7D00B2452D /* PrivacyInfo.xcprivacy */; };
 		AA256FEB2F0EB3BB00119498 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FE82F0EB3BB00119498 /* ExpenseCategory.swift */; };
 		AA256FEC2F0EB3BB00119498 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FE72F0EB3BB00119498 /* Expense.swift */; };
 		AA256FED2F0EB3BB00119498 /* ExpenseEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA256FE92F0EB3BB00119498 /* ExpenseEditForm.swift */; };
@@ -76,7 +77,6 @@
 		AA68BDFD2EBB28AC00D64E58 /* SyncStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */; };
 		AA68BDFF2EBB28B800D64E58 /* CacheSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */; };
 		AA9C3B8B2F0A1B2C0033D4E5 /* LastSelectionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C3B8A2F0A1B2C0033D4E5 /* LastSelectionStore.swift */; };
-		AA9CB2D52F113AD500492298 /* ExpenseEnrichmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9CB2D42F113AD500492298 /* ExpenseEnrichmentService.swift */; };
 		AAB0AB0102FEB00100A11001 /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1102FEB00100A11001 /* Absence.swift */; };
 		AAB0AB0202FEB00100A11001 /* AbsenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1202FEB00100A11001 /* AbsenceViewModel.swift */; };
 		AAB0AB0302FEB00100A11001 /* AbsenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1302FEB00100A11001 /* AbsenceView.swift */; };
@@ -104,6 +104,9 @@
 		AAE1C3032F6B4A1C00ABD004 /* TimaiShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C2032F6B4A1C00ABC004 /* TimaiShortcutsProvider.swift */; };
 		AAE1C3042F6B4A1C00ABD005 /* ShortcutUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C2042F6B4A1C00ABC005 /* ShortcutUserProvider.swift */; };
 		AAE1C3052F6B4A1C00ABD006 /* OptionsProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C2052F6B4A1C00ABC006 /* OptionsProviders.swift */; };
+		B10000012F70000100AAA001 /* PushBridgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000112F70000100AAA001 /* PushBridgeManager.swift */; };
+		B10000022F70000100AAA001 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = B10000A12F70000100AAA001 /* FirebaseCore */; };
+		B10000032F70000100AAA001 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = B10000A22F70000100AAA001 /* FirebaseMessaging */; };
 		B20000012F80000100AAA001 /* UserPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000112F80000100AAA001 /* UserPreference.swift */; };
 		B20000022F80000100AAA001 /* PushEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000122F80000100AAA001 /* PushEnvelope.swift */; };
 		B20000032F80000100AAA001 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000132F80000100AAA001 /* AppRouter.swift */; };
@@ -111,11 +114,10 @@
 		B20000052F80000100AAA001 /* PushPreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000152F80000100AAA001 /* PushPreferencesStore.swift */; };
 		B20000062F80000100AAA001 /* PushSyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000162F80000100AAA001 /* PushSyncCoordinator.swift */; };
 		B20000072F80000100AAA001 /* NotificationInboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000172F80000100AAA001 /* NotificationInboxView.swift */; };
-		B10000012F70000100AAA001 /* PushBridgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000112F70000100AAA001 /* PushBridgeManager.swift */; };
-		B10000022F70000100AAA001 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = B10000A12F70000100AAA001 /* FirebaseCore */; };
-		B10000032F70000100AAA001 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = B10000A22F70000100AAA001 /* FirebaseMessaging */; };
 		B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4A303DA5D49C78F37C4A9 /* Customer.swift */; };
 		BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */; };
+		C30001012F90000100AAA001 /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30001112F90000100AAA001 /* LocalDatabase.swift */; };
+		C30001022F90000100AAA001 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = C30001312F90000100AAA001 /* GRDB */; };
 		F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */; };
 		FD3E058A208543F0005AAC63 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3E0589208543F0005AAC63 /* SnapshotHelper.swift */; };
 		FD3E3E731F82E62200B5D291 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3E3E751F82E62200B5D291 /* Localizable.strings */; };
@@ -206,6 +208,7 @@
 		A1B2C3E52F30000100ABC001 /* AIGenerationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGenerationSettingsView.swift; sourceTree = "<group>"; };
 		A1B2C3E62F30000100ABC001 /* AIGenerationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGenerationSheet.swift; sourceTree = "<group>"; };
 		AA2551992F6F8C7D00B2452D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AA25519C2F6F8C7D00B2452D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA256FE72F0EB3BB00119498 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		AA256FE82F0EB3BB00119498 /* ExpenseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategory.swift; sourceTree = "<group>"; };
 		AA256FE92F0EB3BB00119498 /* ExpenseEditForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEditForm.swift; sourceTree = "<group>"; };
@@ -259,7 +262,6 @@
 		AA68BDFB2EBB28AC00D64E58 /* SyncStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatusIndicator.swift; sourceTree = "<group>"; };
 		AA68BDFE2EBB28B800D64E58 /* CacheSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheSettingsView.swift; sourceTree = "<group>"; };
 		AA9C3B8A2F0A1B2C0033D4E5 /* LastSelectionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSelectionStore.swift; sourceTree = "<group>"; };
-		AA9CB2D42F113AD500492298 /* ExpenseEnrichmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEnrichmentService.swift; sourceTree = "<group>"; };
 		AAB0AB1102FEB00100A11001 /* Absence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absence.swift; sourceTree = "<group>"; };
 		AAB0AB1202FEB00100A11001 /* AbsenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceViewModel.swift; sourceTree = "<group>"; };
 		AAB0AB1302FEB00100A11001 /* AbsenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceView.swift; sourceTree = "<group>"; };
@@ -287,6 +289,8 @@
 		AAE1C2032F6B4A1C00ABC004 /* TimaiShortcutsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimaiShortcutsProvider.swift; sourceTree = "<group>"; };
 		AAE1C2042F6B4A1C00ABC005 /* ShortcutUserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutUserProvider.swift; sourceTree = "<group>"; };
 		AAE1C2052F6B4A1C00ABC006 /* OptionsProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsProviders.swift; sourceTree = "<group>"; };
+		B10000112F70000100AAA001 /* PushBridgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushBridgeManager.swift; sourceTree = "<group>"; };
+		B10000122F70000100AAA001 /* Timai.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timai.entitlements; sourceTree = "<group>"; };
 		B20000112F80000100AAA001 /* UserPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreference.swift; sourceTree = "<group>"; };
 		B20000122F80000100AAA001 /* PushEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushEnvelope.swift; sourceTree = "<group>"; };
 		B20000132F80000100AAA001 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -294,10 +298,9 @@
 		B20000152F80000100AAA001 /* PushPreferencesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPreferencesStore.swift; sourceTree = "<group>"; };
 		B20000162F80000100AAA001 /* PushSyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSyncCoordinator.swift; sourceTree = "<group>"; };
 		B20000172F80000100AAA001 /* NotificationInboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInboxView.swift; sourceTree = "<group>"; };
-		B10000112F70000100AAA001 /* PushBridgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushBridgeManager.swift; sourceTree = "<group>"; };
-		B10000122F70000100AAA001 /* Timai.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timai.entitlements; sourceTree = "<group>"; };
 		B21783BD3CFE445097141633 /* Timesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timesheet.swift; sourceTree = "<group>"; };
 		BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollection.swift; sourceTree = "<group>"; };
+		C30001112F90000100AAA001 /* LocalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabase.swift; sourceTree = "<group>"; };
 		EFF4A303DA5D49C78F37C4A9 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		FD3E0589208543F0005AAC63 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		FD3E3E701F82E5C300B5D291 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -359,6 +362,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C30001022F90000100AAA001 /* GRDB in Frameworks */,
 				B10000022F70000100AAA001 /* FirebaseCore in Frameworks */,
 				B10000032F70000100AAA001 /* FirebaseMessaging in Frameworks */,
 				AA41F1112EC71DF3008F4B4A /* KeychainAccess in Frameworks */,
@@ -411,7 +415,7 @@
 			children = (
 				A1B2C3E42F30000100ABC001 /* AIGeneration.swift */,
 				B20000132F80000100AAA001 /* AppRouter.swift */,
-				AA9CB2D42F113AD500492298 /* ExpenseEnrichmentService.swift */,
+				C30001112F90000100AAA001 /* LocalDatabase.swift */,
 				AAD67B1D2EBF8B6D005E592B /* LiveActivityManager.swift */,
 				B20000142F80000100AAA001 /* NotificationInboxStore.swift */,
 				B20000152F80000100AAA001 /* PushPreferencesStore.swift */,
@@ -520,14 +524,6 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		B20000212F80000100AAA001 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				B20000172F80000100AAA001 /* NotificationInboxView.swift */,
-			);
-			path = Notifications;
-			sourceTree = "<group>";
-		};
 		AAE1C2102F6B4A1C00ABC010 /* Shortcuts */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,6 +535,14 @@
 				AAE1C2032F6B4A1C00ABC004 /* TimaiShortcutsProvider.swift */,
 			);
 			path = Shortcuts;
+			sourceTree = "<group>";
+		};
+		B20000212F80000100AAA001 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				B20000172F80000100AAA001 /* NotificationInboxView.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		FD6C12DA2051D4570068D584 /* Settings */ = {
@@ -643,6 +647,7 @@
 				B10000122F70000100AAA001 /* Timai.entitlements */,
 				FD3E3E751F82E62200B5D291 /* Localizable.strings */,
 				AA2551992F6F8C7D00B2452D /* GoogleService-Info.plist */,
+				AA25519C2F6F8C7D00B2452D /* PrivacyInfo.xcprivacy */,
 			);
 			path = Timai;
 			sourceTree = "<group>";
@@ -774,6 +779,7 @@
 				AA41F1102EC71DF3008F4B4A /* KeychainAccess */,
 				B10000A12F70000100AAA001 /* FirebaseCore */,
 				B10000A22F70000100AAA001 /* FirebaseMessaging */,
+				C30001312F90000100AAA001 /* GRDB */,
 			);
 			productName = Timai;
 			productReference = FDD678661F7D9051002F4D33 /* Timai.app */;
@@ -829,6 +835,7 @@
 			packageReferences = (
 				AA41F10F2EC71DF3008F4B4A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				B10000912F70000100AAA001 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C30001212F90000100AAA001 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
 			productRefGroup = FDD678671F7D9051002F4D33 /* Products */;
 			projectDirPath = "";
@@ -870,6 +877,7 @@
 			files = (
 				AA41F1D02ECB3DD4008F4B4A /* LaunchScreen.storyboard in Resources */,
 				AA25519A2F6F8C7D00B2452D /* GoogleService-Info.plist in Resources */,
+				AA25519B2F6F8C7D00B2452D /* PrivacyInfo.xcprivacy in Resources */,
 				FD3E3E731F82E62200B5D291 /* Localizable.strings in Resources */,
 				FDD678711F7D9051002F4D33 /* Assets.xcassets in Resources */,
 			);
@@ -949,12 +957,12 @@
 				AA3AC11B2EB8B239007CB3AA /* ReportType.swift in Sources */,
 				AAD67AE52EBCC81C005E592B /* AppLockView.swift in Sources */,
 				AA68BDFC2EBB28AC00D64E58 /* OfflineBanner.swift in Sources */,
-				AA9CB2D52F113AD500492298 /* ExpenseEnrichmentService.swift in Sources */,
 				A1B2C3D42F30000100ABC001 /* AIGeneration.swift in Sources */,
 				A1B2C3D52F30000100ABC001 /* AIGenerationSettingsView.swift in Sources */,
 				A1B2C3D62F30000100ABC001 /* AIGenerationSheet.swift in Sources */,
 				B20000032F80000100AAA001 /* AppRouter.swift in Sources */,
 				B10000012F70000100AAA001 /* PushBridgeManager.swift in Sources */,
+				C30001012F90000100AAA001 /* LocalDatabase.swift in Sources */,
 				B20000042F80000100AAA001 /* NotificationInboxStore.swift in Sources */,
 				B20000072F80000100AAA001 /* NotificationInboxView.swift in Sources */,
 				B20000022F80000100AAA001 /* PushEnvelope.swift in Sources */,
@@ -1203,7 +1211,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiWidgets;
@@ -1243,7 +1251,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.5;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1440,7 +1448,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1474,7 +1482,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1555,6 +1563,14 @@
 				minimumVersion = 11.8.0;
 			};
 		};
+		C30001212F90000100AAA001 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.8.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1572,6 +1588,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B10000912F70000100AAA001 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		C30001312F90000100AAA001 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C30001212F90000100AAA001 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
