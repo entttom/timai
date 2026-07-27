@@ -207,6 +207,9 @@
 "timesheetEdit.error.loadingProjects" = "Fehler beim Laden der Projekte";
 "timesheetEdit.error.loadingActivities" = "Fehler beim Laden der Aktivitäten";
 "timesheetEdit.error.saving" = "Fehler beim Speichern";
+"timesheetEdit.error.missingCreatePermission" = "Der Zeiteintrag konnte aufgrund fehlender Berechtigungen nicht erstellt werden.";
+"timesheetEdit.warning.partialSave.title" = "Zeiteintrag gespeichert";
+"timesheetEdit.warning.partialSave.message" = "Der Zeiteintrag wurde gespeichert, einige erweiterte Einstellungen konnten jedoch nicht übernommen werden.";
 "timesheetEdit.ai.button" = "KI";
 "timesheetEdit.ai.missingConfig.title" = "KI-Konfiguration fehlt";
 "timesheetEdit.ai.missingConfig.message" = "Bitte konfigurieren Sie die KI-Generierung zuerst in den Einstellungen.";
@@ -277,6 +280,9 @@
 "network.error.noResponse" = "Keine Antwort vom Server";
 "network.error.invalidResponse" = "Ungültige Serverantwort";
 "network.error.requestError" = "Netzwerkfehler";
+"network.error.permissionDenied" = "Die erforderliche Berechtigung fehlt.";
+"network.error.invalidRequest" = "Der Server hat die Anfrage abgelehnt.";
+"network.error.serverError" = "Der Server ist vorübergehend nicht verfügbar.";
 "ai.error.missingApiKey" = "Bitte geben Sie einen API-Key ein.";
 "ai.error.missingModel" = "Bitte wählen Sie zuerst ein Modell aus.";
 "ai.error.missingBaseURL" = "Bitte geben Sie eine Server-URL für die kompatible API ein.";

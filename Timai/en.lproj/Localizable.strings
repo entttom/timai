@@ -207,6 +207,9 @@
 "timesheetEdit.error.loadingProjects" = "Error loading projects";
 "timesheetEdit.error.loadingActivities" = "Error loading activities";
 "timesheetEdit.error.saving" = "Error saving";
+"timesheetEdit.error.missingCreatePermission" = "The time entry could not be created because the required permission is missing.";
+"timesheetEdit.warning.partialSave.title" = "Time entry saved";
+"timesheetEdit.warning.partialSave.message" = "The time entry was saved, but some advanced settings could not be applied.";
 "timesheetEdit.ai.button" = "AI";
 "timesheetEdit.ai.missingConfig.title" = "AI configuration missing";
 "timesheetEdit.ai.missingConfig.message" = "Please configure AI generation in Settings before using this function.";
@@ -277,6 +280,9 @@
 "network.error.noResponse" = "No response from server";
 "network.error.invalidResponse" = "Invalid server response";
 "network.error.requestError" = "Network error";
+"network.error.permissionDenied" = "The required permission is missing.";
+"network.error.invalidRequest" = "The server rejected the request.";
+"network.error.serverError" = "The server is temporarily unavailable.";
 "ai.error.missingApiKey" = "Please enter an API key.";
 "ai.error.missingModel" = "Please choose a model first.";
 "ai.error.missingBaseURL" = "Please enter a server URL for the compatible API.";
