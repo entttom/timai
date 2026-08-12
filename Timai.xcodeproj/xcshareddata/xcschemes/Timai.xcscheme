@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Timai.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "85B1BC5D93627EEE563A0A74"
+               BuildableName = "TimaiTests.xctest"
+               BlueprintName = "TimaiTests"
+               ReferencedContainer = "container:Timai.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -37,6 +51,16 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "85B1BC5D93627EEE563A0A74"
+               BuildableName = "TimaiTests.xctest"
+               BlueprintName = "TimaiTests"
+               ReferencedContainer = "container:Timai.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference

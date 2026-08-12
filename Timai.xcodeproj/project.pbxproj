@@ -10,6 +10,7 @@
 		0699EE5D657847C39AB7ABA5 /* ActivityDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59417D4EA39948F8AE6F4B07 /* ActivityDetails.swift */; };
 		0798E753E1C54458A75104D5 /* TimesheetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C10F0E4E884E63ACE6FF3F /* TimesheetUser.swift */; };
 		5E68D7CDAD99403DB8C42535 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74829760C01C4CB7B99E35E4 /* Project.swift */; };
+		5F85DACA5914774A881A6C2C /* SyncSafetyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F7FEF7F9A0B08A0EC28DA8 /* SyncSafetyTests.swift */; };
 		9F972C4094E645ECA13A334E /* Timesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21783BD3CFE445097141633 /* Timesheet.swift */; };
 		A1B2C3D42F30000100ABC001 /* AIGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E42F30000100ABC001 /* AIGeneration.swift */; };
 		A1B2C3D52F30000100ABC001 /* AIGenerationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E52F30000100ABC001 /* AIGenerationSettingsView.swift */; };
@@ -115,6 +116,7 @@
 		B20000062F80000100AAA001 /* PushSyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000162F80000100AAA001 /* PushSyncCoordinator.swift */; };
 		B20000072F80000100AAA001 /* NotificationInboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000172F80000100AAA001 /* NotificationInboxView.swift */; };
 		B597340195CE4D44B4BE3FDB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4A303DA5D49C78F37C4A9 /* Customer.swift */; };
+		BC3EFCE2DF5AFCA2467E938A /* TagUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750B0593E6F2F59A0F3CEBFA /* TagUtilsTests.swift */; };
 		BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */; };
 		C30001012F90000100AAA001 /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30001112F90000100AAA001 /* LocalDatabase.swift */; };
 		C30001022F90000100AAA001 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = C30001312F90000100AAA001 /* GRDB */; };
@@ -165,6 +167,13 @@
 			remoteGlobalIDString = AAD67AF42EBF88DC005E592B;
 			remoteInfo = TimaiWidgetsExtension;
 		};
+		EC49A7F11CBB1CA9A3FC1ADE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDD678651F7D9051002F4D33;
+			remoteInfo = Timai;
+		};
 		FD8D548720853DCC004F1C85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FDD6785E1F7D9051002F4D33 /* Project object */;
@@ -201,9 +210,12 @@
 
 /* Begin PBXFileReference section */
 		59417D4EA39948F8AE6F4B07 /* ActivityDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetails.swift; sourceTree = "<group>"; };
+		60F7FEF7F9A0B08A0EC28DA8 /* SyncSafetyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncSafetyTests.swift; sourceTree = "<group>"; };
 		73C10F0E4E884E63ACE6FF3F /* TimesheetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetUser.swift; sourceTree = "<group>"; };
 		74829760C01C4CB7B99E35E4 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		750B0593E6F2F59A0F3CEBFA /* TagUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagUtilsTests.swift; sourceTree = "<group>"; };
 		8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBackgroundView.swift; sourceTree = "<group>"; };
+		A153716A2B24BA670682FE68 /* TimaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimaiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B2C3E42F30000100ABC001 /* AIGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGeneration.swift; sourceTree = "<group>"; };
 		A1B2C3E52F30000100ABC001 /* AIGenerationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGenerationSettingsView.swift; sourceTree = "<group>"; };
 		A1B2C3E62F30000100ABC001 /* AIGenerationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGenerationSheet.swift; sourceTree = "<group>"; };
@@ -335,6 +347,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D5699B751C57E038A2B17F6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA41F1F52ECB6400008F4B4A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,6 +392,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8515B10FD90B24629B5BE102 /* TimaiTests */ = {
+			isa = PBXGroup;
+			children = (
+				750B0593E6F2F59A0F3CEBFA /* TagUtilsTests.swift */,
+				60F7FEF7F9A0B08A0EC28DA8 /* SyncSafetyTests.swift */,
+			);
+			path = TimaiTests;
+			sourceTree = "<group>";
+		};
 		AA256FF52F0EB3DD00119498 /* Expenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +641,7 @@
 				AA41F1F92ECB6400008F4B4A /* TimaiWatch Watch App */,
 				FDD678671F7D9051002F4D33 /* Products */,
 				FDD6787F1F7D93E7002F4D33 /* Frameworks */,
+				8515B10FD90B24629B5BE102 /* TimaiTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -623,6 +652,7 @@
 				FD8D548220853DCC004F1C85 /* TimaiUITests.xctest */,
 				AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */,
 				AA41F1F82ECB6400008F4B4A /* TimaiWatch Watch App.app */,
+				A153716A2B24BA670682FE68 /* TimaiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -691,6 +721,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		85B1BC5D93627EEE563A0A74 /* TimaiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5AA34F07525C9B9E5A81595A /* Build configuration list for PBXNativeTarget "TimaiTests" */;
+			buildPhases = (
+				D1ED2F39D372F2A12006E80D /* Sources */,
+				D5699B751C57E038A2B17F6C /* Frameworks */,
+				773218C1690E8E412E18B27E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0796F57D9E6C3D8AAA7CCA28 /* PBXTargetDependency */,
+			);
+			name = TimaiTests;
+			productName = TimaiTests;
+			productReference = A153716A2B24BA670682FE68 /* TimaiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AA41F1F72ECB6400008F4B4A /* TimaiWatch Watch App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA41F2032ECB6400008F4B4A /* Build configuration list for PBXNativeTarget "TimaiWatch Watch App" */;
@@ -845,11 +893,19 @@
 				FD8D548120853DCC004F1C85 /* TimaiUITests */,
 				AAD67AF42EBF88DC005E592B /* TimaiWidgetsExtension */,
 				AA41F1F72ECB6400008F4B4A /* TimaiWatch Watch App */,
+				85B1BC5D93627EEE563A0A74 /* TimaiTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		773218C1690E8E412E18B27E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA41F1F62ECB6400008F4B4A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -915,6 +971,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D1ED2F39D372F2A12006E80D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC3EFCE2DF5AFCA2467E938A /* TagUtilsTests.swift in Sources */,
+				5F85DACA5914774A881A6C2C /* SyncSafetyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA41F1F42ECB6400008F4B4A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1052,6 +1117,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0796F57D9E6C3D8AAA7CCA28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Timai;
+			target = FDD678651F7D9051002F4D33 /* Timai */;
+			targetProxy = EC49A7F11CBB1CA9A3FC1ADE /* PBXContainerItemProxy */;
+		};
 		AA41F2012ECB6400008F4B4A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AA41F1F72ECB6400008F4B4A /* TimaiWatch Watch App */;
@@ -1106,6 +1177,37 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		37B40591C8519E4A0549ECD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timai.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Timai";
+			};
+			name = Debug;
+		};
+		FBF55FF3B805EA04EA898865 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time.TimaiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timai.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Timai";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		AA41F2042ECB6400008F4B4A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1499,6 +1601,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5AA34F07525C9B9E5A81595A /* Build configuration list for PBXNativeTarget "TimaiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37B40591C8519E4A0549ECD4 /* Debug */,
+				FBF55FF3B805EA04EA898865 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AA41F2032ECB6400008F4B4A /* Build configuration list for PBXNativeTarget "TimaiWatch Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
