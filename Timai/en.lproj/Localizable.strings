@@ -305,6 +305,27 @@
 "login.error.invalidUrl" = "Please enter a valid URL";
 "login.error.missingCredentials" = "Please enter URL and API token";
 "login.button.noAccount" = "No account yet?";
+"login.qr.scan" = "Scan QR code";
+"login.qr.orManual" = "or enter manually";
+"login.qr.scanner.title" = "Scan Kimai QR code";
+"login.qr.scanner.hint" = "Point the camera at the QR code shown after creating your API token.";
+"login.qr.photo.select" = "Choose from Photo Library";
+"login.qr.photo.processing" = "Checking image…";
+"login.qr.openSettings" = "Open Settings";
+"login.qr.confirm.title" = "Connect to this Kimai?";
+"login.qr.confirm.message" = "Server: %@\nInstance: %@";
+"login.qr.confirm.connect" = "Connect";
+"login.qr.error.invalidPayload" = "This QR code does not contain a valid Kimai configuration.";
+"login.qr.error.wrongType" = "This QR code does not belong to Kimai.";
+"login.qr.error.invalidVersion" = "This Kimai configuration has an invalid version.";
+"login.qr.error.unsupportedVersion" = "This configuration uses version %d. Please update Timai.";
+"login.qr.error.invalidURL" = "The QR code does not contain a valid Kimai server URL.";
+"login.qr.error.emptyToken" = "The QR code does not contain an API token.";
+"login.qr.error.cameraDenied" = "Allow Timai to access the camera in Settings to scan QR codes.";
+"login.qr.error.scannerUnavailable" = "The QR code scanner is currently unavailable on this device.";
+"login.qr.error.scannerStart" = "The QR code scanner could not be started.";
+"login.qr.error.photoLoad" = "The selected image could not be read.";
+"login.qr.error.noQRCodeInPhoto" = "No QR code was found in the selected image.";
 
 // Auth
 "auth.error.unexpected" = "An unexpected error occurred";

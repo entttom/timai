@@ -49,6 +49,8 @@
 	</dict>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Timai verwendet Face ID um deine App zu schützen und deine Zeiterfassungsdaten zu sichern.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Timai verwendet die Kamera, um Kimai QR-Codes für eine sichere und schnelle Anmeldung zu scannen.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>Timai benötigt Netzwerkzugriff um sich mit Ihrem Kimai Server zu verbinden und Zeiterfassungsdaten zu synchronisieren.</string>
 	<key>NSSupportsLiveActivities</key>

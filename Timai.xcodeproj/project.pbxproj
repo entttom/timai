@@ -120,6 +120,8 @@
 		BD852694B11E4CEFA04CC193 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */; };
 		C30001012F90000100AAA001 /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30001112F90000100AAA001 /* LocalDatabase.swift */; };
 		C30001022F90000100AAA001 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = C30001312F90000100AAA001 /* GRDB */; };
+		C40000012FA0000100AAA001 /* KimaiConnectionQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40000112FA0000100AAA001 /* KimaiConnectionQRCode.swift */; };
+		C40000022FA0000100AAA001 /* KimaiQRCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40000122FA0000100AAA001 /* KimaiQRCodeScannerView.swift */; };
 		F5C34D6F06E04381A688472E /* ProjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */; };
 		FD3E058A208543F0005AAC63 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3E0589208543F0005AAC63 /* SnapshotHelper.swift */; };
 		FD3E3E731F82E62200B5D291 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD3E3E751F82E62200B5D291 /* Localizable.strings */; };
@@ -313,6 +315,8 @@
 		B21783BD3CFE445097141633 /* Timesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timesheet.swift; sourceTree = "<group>"; };
 		BC5CEEC6851A484EB8F431BF /* ProjectCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollection.swift; sourceTree = "<group>"; };
 		C30001112F90000100AAA001 /* LocalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabase.swift; sourceTree = "<group>"; };
+		C40000112FA0000100AAA001 /* KimaiConnectionQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimaiConnectionQRCode.swift; sourceTree = "<group>"; };
+		C40000122FA0000100AAA001 /* KimaiQRCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimaiQRCodeScannerView.swift; sourceTree = "<group>"; };
 		EFF4A303DA5D49C78F37C4A9 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		FD3E0589208543F0005AAC63 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		FD3E3E701F82E5C300B5D291 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -584,6 +588,8 @@
 		FD6FC36C2038797A001012CA /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				C40000112FA0000100AAA001 /* KimaiConnectionQRCode.swift */,
+				C40000122FA0000100AAA001 /* KimaiQRCodeScannerView.swift */,
 				FDDC10592083DFC900D8A0A6 /* View */,
 			);
 			path = Login;
@@ -1014,6 +1020,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C40000012FA0000100AAA001 /* KimaiConnectionQRCode.swift in Sources */,
+				C40000022FA0000100AAA001 /* KimaiQRCodeScannerView.swift in Sources */,
 				AAB0AB0302FEB00100A11001 /* AbsenceView.swift in Sources */,
 				AA256FF62F0EB3DD00119498 /* ExpenseDetailView.swift in Sources */,
 				AA256FF72F0EB3DD00119498 /* ExpenseSearchSheet.swift in Sources */,

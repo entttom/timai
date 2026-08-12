@@ -305,6 +305,27 @@
 "login.error.invalidUrl" = "Bitte gültige URL eingeben";
 "login.error.missingCredentials" = "Bitte URL und API Token eingeben";
 "login.button.noAccount" = "Noch kein Konto?";
+"login.qr.scan" = "QR-Code scannen";
+"login.qr.orManual" = "oder manuell";
+"login.qr.scanner.title" = "Kimai QR-Code scannen";
+"login.qr.scanner.hint" = "Richte die Kamera auf den QR-Code, der beim Erstellen deines API-Tokens angezeigt wird.";
+"login.qr.photo.select" = "Aus Fotomediathek wählen";
+"login.qr.photo.processing" = "Bild wird geprüft …";
+"login.qr.openSettings" = "Einstellungen öffnen";
+"login.qr.confirm.title" = "Mit diesem Kimai verbinden?";
+"login.qr.confirm.message" = "Server: %@\nInstanz: %@";
+"login.qr.confirm.connect" = "Verbinden";
+"login.qr.error.invalidPayload" = "Dieser QR-Code enthält keine gültige Kimai-Konfiguration.";
+"login.qr.error.wrongType" = "Dieser QR-Code gehört nicht zu Kimai.";
+"login.qr.error.invalidVersion" = "Die Version dieser Kimai-Konfiguration ist ungültig.";
+"login.qr.error.unsupportedVersion" = "Diese Konfiguration verwendet Version %d. Bitte aktualisiere Timai.";
+"login.qr.error.invalidURL" = "Der QR-Code enthält keine gültige Kimai-Server-URL.";
+"login.qr.error.emptyToken" = "Der QR-Code enthält keinen API-Token.";
+"login.qr.error.cameraDenied" = "Erlaube Timai den Kamerazugriff in den Einstellungen, um QR-Codes zu scannen.";
+"login.qr.error.scannerUnavailable" = "Der QR-Code-Scanner ist auf diesem Gerät derzeit nicht verfügbar.";
+"login.qr.error.scannerStart" = "Der QR-Code-Scanner konnte nicht gestartet werden.";
+"login.qr.error.photoLoad" = "Das ausgewählte Bild konnte nicht gelesen werden.";
+"login.qr.error.noQRCodeInPhoto" = "Auf dem ausgewählten Bild wurde kein QR-Code gefunden.";
 
 // Auth
 "auth.error.unexpected" = "Ein unerwarteter Fehler ist aufgetreten";
