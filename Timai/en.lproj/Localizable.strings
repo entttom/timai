@@ -186,6 +186,8 @@
 "timesheetEdit.section.project" = "Project";
 "timesheetEdit.section.activity" = "Activity";
 "timesheetEdit.section.time" = "Time";
+"timesheetEdit.time.running.title" = "Timer running";
+"timesheetEdit.time.running.hint" = "The end time is only set when you stop the timer.";
 "timesheetEdit.section.description" = "Description";
 "timesheetEdit.section.tags" = "Tags";
 "timesheetEdit.section.advancedSettings" = "Advanced Settings";
