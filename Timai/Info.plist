@@ -36,6 +36,8 @@
 	<string>0.5.0</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>
@@ -47,12 +49,12 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Timai verwendet Face ID um deine App zu schützen und deine Zeiterfassungsdaten zu sichern.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Timai verwendet die Kamera, um Kimai QR-Codes für eine sichere und schnelle Anmeldung zu scannen.</string>
+	<string>Timai uses the camera to scan Kimai QR codes for a quick and secure sign-in.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Timai uses Face ID to lock the app and protect your time tracking data.</string>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>Timai benötigt Netzwerkzugriff um sich mit Ihrem Kimai Server zu verbinden und Zeiterfassungsdaten zu synchronisieren.</string>
+	<string>Timai needs network access to connect to your Kimai server and sync your time tracking data.</string>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
 	<key>UIBackgroundModes</key>

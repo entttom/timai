@@ -65,6 +65,7 @@
 "watch.error.connectionFailed" = "Verbindung zum iPhone konnte nicht hergestellt werden";
 "watch.error.switchFailed" = "Fehler beim Wechseln der Instanz: %@";
 "watch.error.invalidResponse" = "Ungültige Antwort vom iPhone";
+"watch.error.phoneUnreachable" = "iPhone nicht erreichbar. Öffne Timai auf dem iPhone und versuche es erneut.";
 "watch.error.requestFailed" = "Fehler beim Anfordern der Daten: %@";
 
 // Instances
@@ -83,11 +84,7 @@
 "watch.manual.continue" = "Weiter";
 "watch.manual.save" = "Speichern";
 "watch.manual.success" = "Zeiteintrag erstellt";
+"watch.manual.error.failed" = "Der Eintrag konnte nicht gespeichert werden";
 "watch.manual.error.missingData" = "Fehlende Daten";
 "watch.manual.error.invalidDateRange" = "Ende muss nach Start sein";
 "watch.manual.error.endBeforeStart" = "Ende muss nach Start sein";
-
-// Complications
-"watch.complication.name" = "Timer";
-"watch.complication.description" = "Zeigt den aktuellen Timer-Status";
-"watch.complication.noTimer" = "Kein Timer";

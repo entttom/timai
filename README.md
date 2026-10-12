@@ -44,7 +44,7 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
   - Browse and view recent time entries with details
   - Create manual time entries with date and time selection
   - Switch between multiple Kimai instances
-  - Watch Complications for quick access from Watch face
+  - Watch Complications showing the running timer on the Watch face
   - Full localization support (German and English)
 - **Timesheet Management**: View, create, edit, and delete time entries
 - **Comprehensive Reports**: 
@@ -68,7 +68,7 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
 - **Architecture**: MVVM (Model-View-ViewModel)
 - **Live Activities**: ActivityKit for Lock Screen & Dynamic Island
 - **Watch Connectivity**: WatchConnectivity framework for iPhone-Watch communication
-- **Watch Complications**: ClockKit for Watch face complications
+- **Watch Complications**: WidgetKit accessory widgets for Watch face complications
 - **API**: Kimai v2 REST API
 - **Dependencies**: 
   - [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess) - Secure credential storage

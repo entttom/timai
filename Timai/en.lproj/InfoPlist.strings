@@ -1,0 +1,4 @@
+/* Permission prompts (Info.plist). */
+"NSFaceIDUsageDescription" = "Timai uses Face ID to lock the app and protect your time tracking data.";
+"NSCameraUsageDescription" = "Timai uses the camera to scan Kimai QR codes for a quick and secure sign-in.";
+"NSLocalNetworkUsageDescription" = "Timai needs network access to connect to your Kimai server and sync your time tracking data.";

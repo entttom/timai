@@ -36,20 +36,55 @@
 
 // Settings View
 "settings.navigationTitle" = "Settings";
+"settings.section.general" = "General";
+"settings.display.title" = "Display";
+"settings.display.durationFormat" = "Duration format";
+"settings.display.format.hoursMinutes" = "Hours:Minutes";
+"settings.display.format.decimalHours" = "Decimal hours";
+"settings.display.showBudgetUsage" = "Show budget usage";
+"settings.display.reports.footer" = "Applies to all durations and time budgets in Reporting. Turning off budget usage hides budget comparisons, percentages and progress bars. Used and budgeted durations remain visible.";
+"settings.display.preview" = "Preview";
+"settings.section.features" = "Features";
+"settings.features.footer" = "Absences, Expenses and Notifications need the matching plugin on your Kimai server.";
+"settings.features.checking" = "Checking availability…";
+"settings.features.ok" = "OK";
+"settings.features.unavailable.title" = "Not Available";
+"settings.features.checkFailed.title" = "Couldn’t Check Availability";
+"settings.features.checkFailed.message" = "Timai couldn’t reach your Kimai server. Check your connection and try again.";
+"settings.absences.apiUnavailable.message" = "Absences aren’t available on this Kimai server. The absences plugin must be installed and you need permission to view absences. Otherwise, contact your server administrator.";
+"settings.section.data" = "Data";
+"settings.sync.row" = "Offline & Sync";
+"settings.about.title" = "About Timai";
+"settings.about.version" = "Version %@";
+"settings.value.on" = "On";
+"settings.value.off" = "Off";
+"settings.value.justNow" = "Just now";
 "settings.tabTitle" = "Settings";
-"settings.button.signout" = "Sign out";
-"settings.tableView.section.appearance" = "Appearance";
-"settings.tableView.cell.theme" = "Theme";
+"settings.tableView.cell.theme" = "Appearance";
 "settings.theme.system" = "System";
 "settings.theme.light" = "Light";
 "settings.theme.dark" = "Dark";
-"settings.tableView.section.language" = "Language";
 "settings.tableView.cell.language" = "Language";
 "settings.language.german" = "German";
 "settings.language.english" = "English";
+"settings.timeEntry.section" = "Time Tracking";
+"settings.timeEntry.navigationTitle" = "Entry & Duration";
+"settings.timeEntry.row" = "Entry & Duration";
+"settings.timeEntry.row.value" = "Step %@";
+"settings.timeEntry.durationStep" = "Time grid";
+"settings.timeEntry.durationStep.option" = "%ld min";
+"settings.timeEntry.durationStep.footer" = "Sets the +/− steps for the duration of manual entries. 6 minutes equal 0.1 h.";
+"settings.timeEntry.quickDurations" = "Quick select";
+"settings.timeEntry.quickDuration.label" = "Value %ld";
+"settings.timeEntry.minutesUnit" = "min";
+"settings.timeEntry.quickDurations.footer" = "These durations are offered as quick select when entering time manually. Allowed are 1 to 1440 minutes.";
+"settings.timeEntry.quickDurations.invalid" = "Please enter a value between 1 and 1440 minutes.";
 "settings.liveActivity.section" = "Live Activity";
 "settings.liveActivity.navigationTitle" = "Live Activity";
-"settings.liveActivity.general.section" = "General";
+"settings.liveActivity.preview" = "Preview";
+"settings.liveActivity.preview.project" = "Website Relaunch";
+"settings.liveActivity.preview.activity" = "Design";
+"settings.liveActivity.preview.customer" = "Example Inc.";
 "settings.liveActivity.enable" = "Show Live Activity";
 "settings.liveActivity.color.section" = "Color";
 "settings.liveActivity.color.project" = "Project color";
@@ -70,39 +105,36 @@
 "settings.liveActivity.compact.mode" = "Display";
 "settings.liveActivity.compact.mode.original" = "Wide";
 "settings.liveActivity.compact.mode.compact" = "Compact";
-"settings.liveActivity.compact.leading" = "Leading";
-"settings.liveActivity.compact.trailing" = "Trailing";
-"settings.liveActivity.compact.logo" = "Logo";
-"settings.liveActivity.compact.logoProject" = "Logo + project";
 "settings.liveActivity.compact.none" = "Empty";
-"settings.liveActivity.compact.systemTimer" = "System timer";
 "settings.liveActivity.compact.elapsed" = "HH:mm";
 "settings.liveActivity.lockScreen" = "Lock Screen";
 "settings.liveActivity.dynamicIsland" = "Dynamic Island";
 "settings.liveActivity.mode.details" = "Details";
 "settings.liveActivity.mode.timerOnly" = "Timer only";
 "settings.liveActivity.footer" = "When disabled, the timer keeps running normally, but no Live Activity is started on the Lock Screen or Dynamic Island. Changes apply immediately to a running Live Activity.";
-"settings.tableView.section.credits" = "Credits";
-"settings.tableView.section.about" = "About";
+"settings.tableView.section.credits" = "Acknowledgements";
 "settings.tableView.cell.openSource" = "Open Source Software";
 "settings.tableView.cell.graphics" = "Graphics & Images";
 "settings.tableView.cell.contributors" = "Contributors";
 "settings.tableView.cell.source" = "Source code";
-"settings.tableView.cell.appVersion" = "App Version";
 "settings.label.madeBy" = "Timai is built by Dr. Thomas Entner";
 "settings.alert.logout.title" = "Sign out?";
 "settings.alert.logout.message" = "Do you really want to sign out?";
-"settings.alert.logout.messageWithInstance" = "Do you really want to sign out from '%@'? You will be logged out from this instance.";
+"settings.alert.logout.messageWithInstance" = "The server “%@” will be removed from this device together with its token and local data. You can add it again at any time.";
 "settings.alert.logout.confirm" = "Sign out";
 "settings.alert.logout.cancel" = "Cancel";
 "settings.alert.language.title" = "Change language";
 "settings.alert.language.message" = "The language will be changed. Some texts will only be fully updated after restarting the app.";
 "settings.alert.language.confirm" = "Change";
 "settings.alert.language.cancel" = "Cancel";
-"settings.section.support" = "Support";
 "settings.support.developer" = "Support the developer";
-"settings.section.account" = "Account";
-"settings.account.user" = "User";
+"settings.account.title" = "Account & Servers";
+"settings.account.activeSection" = "Active Account";
+"settings.account.name" = "Name";
+"settings.account.summary.caption" = "Account, servers and sign-out";
+"settings.account.signOut" = "Sign Out of “%@”";
+"settings.account.signOut.footer" = "Removes the server with its token and locally stored data from this device. Unsent changes must be synced or discarded first.";
+"settings.account.user" = "Username";
 "settings.account.userId" = "User ID";
 "settings.account.roles" = "Roles";
 "settings.account.server" = "Server";
@@ -188,6 +220,18 @@
 "timesheetEdit.section.time" = "Time";
 "timesheetEdit.time.running.title" = "Timer running";
 "timesheetEdit.time.running.hint" = "The end time is only set when you stop the timer.";
+"timesheetEdit.field.start" = "Start";
+"timesheetEdit.field.end" = "End";
+"timesheetEdit.duration" = "Duration";
+"timesheetEdit.duration.placeholder" = "e.g. 12 or 0.2h";
+"timesheetEdit.duration.minutes" = "%ld min";
+"timesheetEdit.duration.hours" = "%ld h";
+"timesheetEdit.duration.hoursMinutes" = "%ld h %ld min";
+"timesheetEdit.duration.decimalHours" = "%@ h";
+"timesheetEdit.duration.summary" = "%1$@ · %2$@";
+"timesheetEdit.duration.error.invalid" = "Invalid duration. Examples: 12, 12m, 0.2h, 1:30";
+"timesheetEdit.duration.error.tooShort" = "The duration must be at least 1 minute and the end must be after the start.";
+"timesheetEdit.duration.error.tooLong" = "The duration must not exceed 24 hours.";
 "timesheetEdit.section.description" = "Description";
 "timesheetEdit.section.tags" = "Tags";
 "timesheetEdit.section.advancedSettings" = "Advanced Settings";
@@ -195,6 +239,9 @@
 "timesheetEdit.picker.project" = "Select project";
 "timesheetEdit.picker.activity" = "Select activity";
 "timesheetEdit.picker.placeholder" = "Please select";
+"timesheetEdit.customerSelection.title" = "Select Customer";
+"timesheetEdit.customerSelection.searchPrompt" = "Search customers";
+"timesheetEdit.customerSelection.noResults" = "No customers found";
 "timesheetEdit.placeholder.tags" = "e.g. projectname, important";
 "timesheetEdit.tags.suggestions" = "Suggestions";
 "timesheetEdit.field.fixedRate" = "Fixed Rate";
@@ -213,26 +260,30 @@
 "timesheetEdit.warning.partialSave.title" = "Time entry saved";
 "timesheetEdit.warning.partialSave.message" = "The time entry was saved, but some advanced settings could not be applied.";
 "timesheetEdit.ai.button" = "AI";
+"timesheetEdit.ai.button.accessibility" = "Rework description with AI";
 "timesheetEdit.ai.missingConfig.title" = "AI configuration missing";
 "timesheetEdit.ai.missingConfig.message" = "Please configure AI generation in Settings before using this function.";
 "timesheetEdit.ai.sheet.title" = "AI Generation";
 "timesheetEdit.ai.section.prompt" = "Prompt";
 "timesheetEdit.ai.section.input" = "Current description";
-"timesheetEdit.ai.section.preview" = "Preview";
+"timesheetEdit.ai.section.preview" = "Result";
 "timesheetEdit.ai.promptSelection" = "Choose prompt";
 "timesheetEdit.ai.prompt.custom" = "Custom prompt";
+"timesheetEdit.ai.customPrompt.placeholder" = "What should happen with the description?";
 "timesheetEdit.ai.prompts.empty" = "No saved prompts available. Use a custom prompt instead.";
 "timesheetEdit.ai.input.empty" = "No description exists yet. The prompt will be sent without source text.";
-"timesheetEdit.ai.input.footer" = "The current description is sent together with the chosen prompt and can be replaced after review.";
+"timesheetEdit.ai.input.footer" = "The description and the prompt are sent to %@. Your time entry only changes when you apply the result.";
 "timesheetEdit.ai.generate" = "Generate";
-"timesheetEdit.ai.generating" = "Generating...";
+"timesheetEdit.ai.regenerate" = "Generate again";
+"timesheetEdit.ai.generating" = "Generating…";
+"timesheetEdit.ai.stop" = "Stop";
+"timesheetEdit.ai.result.footer" = "You can edit the result before applying it.";
 "timesheetEdit.ai.apply" = "Apply to description";
+"timesheetEdit.ai.replace" = "Replace description";
+"timesheetEdit.ai.append" = "Append to description";
 "timesheetEdit.ai.discard" = "Discard result";
 
 // Settings - Cache Section
-"settings.section.offlineCache" = "Offline & Cache";
-"settings.cache.management" = "Cache Management";
-"settings.cache.autoSync" = "Automatic Synchronization";
 
 // Common
 "common.loading" = "Loading...";
@@ -260,6 +311,7 @@
 "offline.error.noDataAvailable" = "Offline - no data available.";
 "offline.error.noCacheData" = "Offline - no cached data. Please connect once while online.";
 "offline.error.noCache" = "Offline - no cached data";
+"offline.error.projectActivitiesUnavailable" = "Offline activities are not yet available for this project. Please connect to the internet once and sync the reference data.";
 "offline.warning.localData" = "Offline - showing local data.";
 "offline.warning.staleData" = "Server unavailable - showing local data.";
 "offline.banner.offlineMode" = "Offline mode";
@@ -288,10 +340,20 @@
 "ai.error.missingApiKey" = "Please enter an API key.";
 "ai.error.missingModel" = "Please choose a model first.";
 "ai.error.missingBaseURL" = "Please enter a server URL for the compatible API.";
-"ai.error.invalidBaseURL" = "The server URL is invalid.";
+"ai.error.invalidBaseURL" = "The server URL is invalid. Use an http or https address, e.g. http://192.168.1.10:11434.";
 "ai.error.invalidResponse" = "The provider returned an invalid response.";
 "ai.error.emptyResponse" = "The provider returned no text.";
 "ai.error.noModelsFound" = "No usable models were returned by the provider.";
+"ai.error.blocked" = "The provider's safety filters blocked the request or the answer.";
+"ai.error.unauthorized" = "The API key was rejected. Check the key and whether it is still active.";
+"ai.error.notFound" = "Not found. Check the server URL and the model.";
+"ai.error.rateLimited" = "Too many requests or the quota is used up. Try again later or check your plan with the provider.";
+"ai.error.serverError" = "The provider is currently unavailable (HTTP %d). Try again later.";
+"ai.error.requestRejected" = "The provider rejected the request (HTTP %d).";
+"ai.error.timeout" = "The provider took too long to answer. Try again or choose a faster model.";
+"ai.error.offline" = "No internet connection.";
+"ai.error.cannotConnect" = "The server could not be reached. Check the URL and your network.";
+"ai.error.insecureConnection" = "Unencrypted connections (http) only work with localhost and IP addresses. Use https or the server's IP address.";
 
 // Biometric
 "biometric.type.faceID" = "Face ID";
@@ -300,10 +362,10 @@
 "biometric.type.passcode" = "Device Passcode";
 
 // Login
-"login.instanceName.placeholder" = "Instance name (e.g. Company)";
+"login.instanceName.placeholder" = "Display name (e.g. Work)";
 "login.serverUrl.placeholder" = "Kimai server URL";
 "login.apiToken.placeholder" = "API Token";
-"login.instanceName.default" = "Kimai Instance";
+"login.instanceName.default" = "Kimai";
 "login.error.invalidUrl" = "Please enter a valid URL";
 "login.error.missingCredentials" = "Please enter URL and API token";
 "login.button.noAccount" = "No account yet?";
@@ -315,7 +377,7 @@
 "login.qr.photo.processing" = "Checking image…";
 "login.qr.openSettings" = "Open Settings";
 "login.qr.confirm.title" = "Connect to this Kimai?";
-"login.qr.confirm.message" = "Server: %@\nInstance: %@";
+"login.qr.confirm.message" = "Server: %@\nName: %@";
 "login.qr.confirm.connect" = "Connect";
 "login.qr.error.invalidPayload" = "This QR code does not contain a valid Kimai configuration.";
 "login.qr.error.wrongType" = "This QR code does not belong to Kimai.";
@@ -331,87 +393,99 @@
 
 // Auth
 "auth.error.unexpected" = "An unexpected error occurred";
-"auth.error.noCredentialsForInstance" = "No credentials found for this instance";
+"auth.error.noCredentialsForInstance" = "No credentials found for this server";
 "auth.error.logoutFailed" = "Logout failed";
 "auth.error.noUser" = "No user available";
 "auth.error.localDatabase" = "The local database could not be initialised. Please restart the app or clear local data in Settings.";
-"auth.error.logoutWithPendingOperations" = "There are unsynchronised changes for this instance. Please sync them or discard the failed entries before signing out, otherwise your offline changes will be lost.";
+"auth.error.logoutWithPendingOperations" = "This server still has unsent changes. Send or discard them in Settings › Offline & Sync first, otherwise they'll be lost.";
 "auth.error.legacyCacheRequiresLogin" = "Old offline data was found and removed. Please sign in again.";
+"auth.error.accountChangeWithPendingOperations" = "This token belongs to a different Kimai account than the one used on this server so far, and that account still has unsynchronised offline changes. Nothing was changed. Sign in with the previous account to sync them, or discard them in Settings first.";
+"auth.error.accountNotVerifiedWithPendingOperations" = "The Kimai account for this token could not be verified, and this server still has unsynchronised offline changes. Nothing was changed. Please try again with a stable connection.";
 
 // Reports
 "reports.error.loadingFailed" = "Failed to load report data";
 
 // Cache Settings View
-"cacheSettings.navigationTitle" = "Cache Management";
-"cacheSettings.section.statistics" = "Cache Statistics";
-"cacheSettings.field.cacheSize" = "Cache Size";
-"cacheSettings.field.lastSync" = "Last Sync";
+"cacheSettings.navigationTitle" = "Offline & Sync";
+"cacheSettings.status.upToDate" = "Everything is synced";
+"cacheSettings.status.syncing" = "Syncing…";
+"cacheSettings.status.pending.one" = "1 change waiting to be sent";
+"cacheSettings.status.pending.other" = "%d changes waiting to be sent";
+"cacheSettings.status.failed.one" = "1 change couldn't be sent";
+"cacheSettings.status.failed.other" = "%d changes couldn't be sent";
+"cacheSettings.status.lastSync" = "Last synced: %@";
+"cacheSettings.status.offline" = "Offline – changes are sent as soon as you're back online.";
+"cacheSettings.diagnostics" = "Diagnostics";
+"cacheSettings.diagnostics.footer" = "Technical details about locally stored data and the sync status per data area.";
+"cacheSettings.section.localChanges" = "Local Changes";
+"cacheSettings.localChanges.format" = "%d new · %d changed · %d deleted";
+"cacheSettings.failedOps.breakdown" = "%d temporary · %d conflicts · %d permanent";
+"cacheSettings.section.statistics" = "Local Data";
+"cacheSettings.field.cacheSize" = "Database size";
 "cacheSettings.lastSync.never" = "Never";
-"cacheSettings.field.timesheets" = "Timesheets in cache";
-"cacheSettings.field.customers" = "Customers in cache";
-"cacheSettings.field.projects" = "Projects in cache";
-"cacheSettings.field.activities" = "Activities in cache";
-"cacheSettings.field.expenses" = "Expenses in cache";
-"cacheSettings.field.tags" = "Tags in cache";
-"cacheSettings.field.expenseCategories" = "Expense categories in cache";
+"cacheSettings.field.timesheets" = "Time entries";
+"cacheSettings.field.customers" = "Customers";
+"cacheSettings.field.projects" = "Projects";
+"cacheSettings.field.activities" = "Activities";
+"cacheSettings.field.projectActivityMappings" = "Project assignments";
+"cacheSettings.field.activityAvailability" = "Activity availability";
+"cacheSettings.field.expenses" = "Expenses";
+"cacheSettings.field.tags" = "Tags";
+"cacheSettings.field.expenseCategories" = "Expense categories";
 "cacheSettings.field.pendingQueue" = "Pending changes";
-"cacheSettings.field.timesheetsLocalChanges" = "Timesheet changes (new/changed/deleted)";
-"cacheSettings.field.expensesLocalChanges" = "Expense changes (new/changed/deleted)";
-"cacheSettings.field.absences" = "Absences in cache";
+"cacheSettings.field.absences" = "Absences";
 "cacheSettings.pendingChanges" = "Pending changes";
-"cacheSettings.failedOps" = "Failed ops";
-"cacheSettings.failedOps.legend" = "Retryable / conflicts / permanent";
-"cacheSettings.failedOps.legendValues" = "R/C/P";
-"cacheSettings.section.syncResources" = "Sync status by data area";
+"cacheSettings.failedOps" = "Failed";
+"cacheSettings.section.syncResources" = "Sync Status per Data Area";
 "cacheSettings.syncResource.never" = "Not synced yet";
 "cacheSettings.syncResource.synced" = "Synced %@";
 "cacheSettings.syncResource.requiresReconcile" = "Full reconcile needed, last %@";
-"cacheSettings.section.sync" = "Synchronization";
 "cacheSettings.sync.auto" = "Automatic Synchronization";
-"cacheSettings.pendingChanges.sync" = "Sync pending changes";
-"cacheSettings.pendingChanges.discard" = "Discard unsent local changes";
+"cacheSettings.pendingChanges.sync" = "Send Changes Now";
+"cacheSettings.pendingChanges.discard" = "Discard Unsent Changes";
 "cacheSettings.pendingChanges.discard.title" = "Discard unsent changes?";
 "cacheSettings.pendingChanges.discard.confirm" = "Discard changes";
 "cacheSettings.pendingChanges.discard.message" = "%d unsent change(s) will be discarded and will not be sent to Kimai.\n\nNew local entries: %d\nLocal changes: %d\nLocal deletions: %d";
-"cacheSettings.section.referenceData" = "Reference data";
-"cacheSettings.referenceData.downloadAll" = "Download all data";
+"cacheSettings.referenceData.downloadAll" = "Reload Master Data";
 "cacheSettings.sync.preload.title" = "Preload Reference Data";
-"cacheSettings.sync.preload.subtitle" = "Loads Customers, Projects & Activities for offline use";
-"cacheSettings.section.settings" = "Cache Settings";
+"cacheSettings.sync.preload.subtitle" = "Customers, projects and activities for offline use";
+"cacheSettings.section.settings" = "Settings";
 "cacheSettings.field.maxEntries" = "Maximum Entries";
 "cacheSettings.field.maxEntries.footer" = "Determines how many timesheet entries are loaded from the API and stored in the cache. More entries require more storage space but enable more comprehensive search and offline access.";
 "cacheSettings.field.retentionDays" = "Retention";
 "cacheSettings.retention.days" = "%d days";
 "cacheSettings.button.clearCache" = "Clear Cache";
-"cacheSettings.section.failedOperations" = "Failed operations";
+"cacheSettings.section.failedOperations" = "Changes Not Sent";
+"cacheSettings.failedOperations.footer" = "Edit, retry or discard each change. You can't sign out while any are left.";
 "cacheSettings.failedOperations.retry" = "Retry";
 "cacheSettings.failedOperations.discard" = "Discard";
+"cacheSettings.failedOperations.discard.title" = "Discard this change?";
+"cacheSettings.failedOperations.discard.message" = "It will not be sent to Kimai and cannot be restored.";
 "cacheSettings.failedOperations.editConflict" = "Edit";
 "cacheSettings.failedOperations.conflictHint" = "Edit the record, select valid references, and save it again.";
 "cacheSettings.failedOperations.affectedRecord" = "%@ #%d";
-"cacheSettings.failedOperations.entity.timesheet" = "Timesheet";
+"cacheSettings.failedOperations.entity.timesheet" = "Time entry";
 "cacheSettings.failedOperations.entity.expense" = "Expense";
 "cacheSettings.failedOperations.unknownCustomer" = "Unknown customer";
 "cacheSettings.failedOperations.projectPlaceholder" = "Project #%d";
 "cacheSettings.failedOperations.activityPlaceholder" = "Activity #%d";
 "cacheSettings.failedOperations.categoryPlaceholder" = "Category #%d";
-"cacheSettings.failedOperations.status.retryable" = "Retryable failure";
+"cacheSettings.failedOperations.status.retryable" = "Temporary error";
 "cacheSettings.failedOperations.status.conflict" = "Validation conflict";
 "cacheSettings.failedOperations.status.conflictWithType" = "Conflict: %@";
-"cacheSettings.failedOperations.status.permanent" = "Permanent failure";
+"cacheSettings.failedOperations.status.permanent" = "Permanent error";
 "cacheSettings.failedOperations.status.pending" = "Pending";
 "cacheSettings.failedOperations.status.syncing" = "Syncing";
 "cacheSettings.failedOperations.status.completed" = "Completed";
 "cacheSettings.failedOperations.nextRetry" = "Next automatic retry after %@";
-"cacheSettings.section.dangerZone" = "Danger Zone";
+"cacheSettings.section.dangerZone" = "Reset";
 "cacheSettings.alert.clear.title" = "Remove downloaded data?";
 "cacheSettings.alert.clear.confirm" = "Clear";
 "cacheSettings.alert.clear.cancel" = "Cancel";
 "cacheSettings.toast.cleared" = "Cache successfully cleared";
 "cacheSettings.preload.success" = "All data downloaded successfully";
-"cacheSettings.section.localDataRange" = "Local Data Range";
-"cacheSettings.field.localDataRange" = "Range";
-"cacheSettings.localDataRange.footer" = "The selected range determines which timesheets, expenses, and absences are kept locally for offline use and reports.";
+"cacheSettings.field.localDataRange" = "Keep Offline";
+"cacheSettings.localDataRange.footer" = "Sets which period of time entries, expenses and absences is stored on this device for offline use and reports.";
 "cacheSettings.localDataRange.applying" = "Applying range and resyncing data...";
 "cacheSettings.button.removeDownloadedData" = "Remove Downloaded Data";
 "cacheSettings.button.clearAllLocalData" = "Delete All Local Data and Unsent Changes";
@@ -452,6 +526,10 @@
 "reports.toolbar.today" = "Today";
 "reports.period.week.short" = "Week";
 "reports.empty.noEntries" = "No entries in the selected period";
+"reports.allUsers.offline" = "Reports for all users need an internet connection.";
+"reports.allUsers.offlineCached" = "Offline – showing the last loaded data for all users.";
+"reports.allUsers.permissionDenied" = "You don't have permission to view other users' time entries.";
+"reports.allUsers.loadFailed" = "The time entries of all users could not be loaded. Pull down to try again.";
 "reports.projectDetail.editTime.title" = "Edit Time";
 "reports.projectDetail.editTime.save" = "Save";
 "reports.projectDetail.editTime.cancel" = "Cancel";
@@ -468,7 +546,6 @@
 "appLock.message.passcode" = "Use your device passcode to unlock the app";
 
 // Settings - Security
-"settings.section.security" = "Security";
 "settings.security.appLock" = "App Lock";
 "settings.security.appLock.with" = "With";
 "settings.security.appLock.withPasscode" = "With Device Passcode";
@@ -480,22 +557,23 @@
 "preload.subtitle" = "Customers, Projects & Activities for offline use";
 
 // Instance Management
-"settings.section.instances" = "Kimai Instances";
-"settings.instances.addNew" = "Add New Instance";
-"settings.instances.activate" = "Activate";
-"settings.instances.delete" = "Delete";
-"settings.instances.delete.title" = "Delete instance?";
-"settings.instances.delete.message" = "Do you really want to delete the instance '%@'? All associated data will also be deleted.";
-"settings.instances.delete.confirm" = "Delete";
+"settings.section.instances" = "Kimai Servers";
+"settings.instances.addNew" = "Add Server";
+"settings.instances.footer" = "Tap a server to switch to it. Use ⓘ to edit its name, address and token.";
+"settings.instances.edit" = "Edit %@";
+"settings.instances.delete" = "Remove";
+"settings.instances.delete.title" = "Remove server?";
+"settings.instances.delete.message" = "“%@” will be removed from this device together with its token and local data. Nothing is deleted on the Kimai server itself.";
+"settings.instances.delete.confirm" = "Remove";
 "settings.instances.delete.cancel" = "Cancel";
 
 // Add Instance View
-"addInstance.title" = "Add Instance";
+"addInstance.title" = "Add Server";
 "addInstance.button.add" = "Add";
 "addInstance.button.cancel" = "Cancel";
 "addInstance.section.name" = "Name";
-"addInstance.section.name.footer" = "A descriptive name for this instance (e.g. 'Work', 'Personal')";
-"addInstance.name.placeholder" = "Instance name";
+"addInstance.section.name.footer" = "A name to recognize the server by (e.g. “Work”, “Personal”).";
+"addInstance.name.placeholder" = "Display name";
 "addInstance.section.url" = "Server URL";
 "addInstance.section.url.footer" = "The URL of your Kimai server (e.g. https://kimai.example.com)";
 "addInstance.url.placeholder" = "https://kimai.example.com";
@@ -507,19 +585,19 @@
 "addInstance.error.invalidURL" = "Please enter a valid URL";
 
 // Instance Switcher
-"instanceSwitcher.title" = "Switch Instance";
-"instanceSwitcher.section.instances" = "Available Instances";
-"instanceSwitcher.button.addNew" = "Add New Instance";
+"instanceSwitcher.title" = "Switch Server";
+"instanceSwitcher.section.instances" = "Kimai Servers";
+"instanceSwitcher.button.addNew" = "Add Server";
 "instanceSwitcher.button.close" = "Close";
-"instanceSwitcher.switching" = "Switching instance...";
+"instanceSwitcher.switching" = "Switching server…";
 
 // Edit Instance View
-"editInstance.title" = "Edit Instance";
+"editInstance.title" = "Edit Server";
 "editInstance.button.save" = "Save";
-"editInstance.button.delete" = "Sign Out";
+"editInstance.button.delete" = "Remove Server";
 "editInstance.section.name" = "Name";
-"editInstance.section.name.footer" = "The descriptive name for this instance";
-"editInstance.name.placeholder" = "Instance name";
+"editInstance.section.name.footer" = "A name to recognize the server by.";
+"editInstance.name.placeholder" = "Display name";
 "editInstance.section.url" = "Server URL";
 "editInstance.section.url.footer" = "The URL of your Kimai server";
 "editInstance.url.placeholder" = "https://kimai.example.com";
@@ -529,12 +607,13 @@
 "editInstance.verifying" = "Verifying connection...";
 "editInstance.error.title" = "Error";
 "editInstance.error.unknown" = "An unknown error occurred";
+"editInstance.error.reenterToken" = "The server address changed. Please enter the API token for the new server again.";
 "editInstance.error.invalidURL" = "Please enter a valid URL";
 "editInstance.success.title" = "Saved";
 "editInstance.success.message" = "Changes have been saved successfully";
-"editInstance.delete.title" = "Sign out?";
-"editInstance.delete.message" = "Do you really want to sign out from '%@'?";
-"editInstance.delete.confirm" = "Sign out";
+"editInstance.delete.title" = "Remove server?";
+"editInstance.delete.message" = "“%@” will be removed from this device together with its token and local data. Nothing is deleted on the Kimai server itself.";
+"editInstance.delete.confirm" = "Remove";
 "editInstance.delete.cancel" = "Cancel";
 
 // Timer
@@ -581,6 +660,13 @@
 "expenses.duplicate.confirm.duplicate" = "Duplicate";
 "expenses.duplicate.confirm.cancel" = "Cancel";
 "expenses.error.duplicateFailed" = "Expense could not be duplicated";
+"expenses.error.duplicateUnavailable" = "Duplicating needs a connection to Kimai and an expense that has already been synced.";
+"expenses.error.deleteFailed" = "The expense could not be deleted.";
+"expenses.error.loadFailed" = "Expenses could not be loaded.";
+"expenses.duplicate.success" = "Expense duplicated";
+"expenses.empty.unavailable.title" = "Expenses Unavailable";
+"expenses.retry" = "Try Again";
+"expenses.category.fallback" = "Category %d";
 
 // Expenses Detail View
 "expensesDetail.navigationTitle" = "Expense";
@@ -593,6 +679,7 @@
 "expensesDetail.field.category" = "Category";
 "expensesDetail.field.date" = "Date";
 "expensesDetail.field.quantity" = "Quantity";
+"expensesDetail.field.unitPrice" = "Unit Price";
 "expensesDetail.field.total" = "Total";
 "expensesDetail.field.refundable" = "Refundable";
 "expensesDetail.field.exported" = "Exported";
@@ -615,7 +702,7 @@
 "expensesEdit.section.activity" = "Activity";
 "expensesEdit.section.category" = "Category";
 "expensesEdit.section.date" = "Date";
-"expensesEdit.section.quantity" = "Quantity";
+"expensesEdit.section.amount" = "Amount";
 "expensesEdit.section.description" = "Description";
 "expensesEdit.section.billableMode" = "Refundable";
 "expensesEdit.section.advancedSettings" = "Advanced Settings";
@@ -625,8 +712,13 @@
 "expensesEdit.picker.activity" = "Activity";
 "expensesEdit.picker.category" = "Category";
 "expensesEdit.picker.placeholder" = "Please select";
+"expensesEdit.picker.none" = "None";
 "expensesEdit.field.date" = "Date";
 "expensesEdit.field.quantity" = "Quantity";
+"expensesEdit.field.unitPrice" = "Unit Price";
+"expensesEdit.field.total" = "Total";
+"expensesEdit.placeholder.categoryDefault" = "Default";
+"expensesEdit.footer.categoryDefault" = "Leave the unit price empty to use the default price of the category. Total = unit price × quantity.";
 "expensesEdit.field.exported" = "Exported";
 "expensesEdit.field.billableMode" = "Refundable";
 "expensesEdit.billableMode.auto" = "Auto";
@@ -646,7 +738,12 @@
 "expensesEdit.error.loadingActivities" = "Error loading activities";
 "expensesEdit.error.loadingCategories" = "Error loading categories";
 "expensesEdit.error.saving" = "Error saving";
-"expensesEdit.error.duplicate" = "Error duplicating";
+"expensesEdit.error.invalidNumber" = "Please enter a valid number. The quantity must not be negative.";
+"expensesEdit.categories.empty" = "No expense categories available. Kimai only lists them for users who may manage expense categories; the categories of expenses you already booked appear after a sync.";
+"expensesEdit.metaField.required" = "%@ (required)";
+"expensesEdit.warning.partialSave.title" = "Expense Saved";
+"expensesEdit.warning.metaFieldsOffline" = "The expense was saved. Custom fields can only be saved while Kimai is reachable, so please enter them again later.";
+"expensesEdit.warning.metaFieldsFailed" = "The expense was saved, but these custom fields could not be saved: %@";
 "expensesEdit.error.invalidMultiplier" = "Quantity must be greater than or equal to 0";
 
 // Expenses Search Sheet
@@ -660,33 +757,39 @@
 "expensesSearch.filters.category" = "Category";
 "expensesSearch.filters.reset" = "Reset";
 "expensesSearch.filters.done" = "Done";
+"expensesSearch.filters.invalidRange" = "The start date is after the end date.";
 "expensesSearch.noResults" = "No Results";
 "expensesSearch.noResults.message" = "No expenses found matching the search criteria.";
 
 // Settings - Expenses
-"settings.section.betaFeatures" = "Beta Features";
-"settings.expenses.enable" = "Enable Expenses";
-"settings.expenses.checkingAPI" = "Checking API availability...";
-"settings.expenses.betaWarning.title" = "Beta Feature";
-"settings.expenses.betaWarning.message" = "This feature is in beta phase. In the future, this feature will be paid.";
-"settings.expenses.betaWarning.confirm" = "Understood and enable";
-"settings.expenses.betaWarning.cancel" = "Cancel";
-"settings.expenses.apiUnavailable.title" = "API Not Available";
-"settings.expenses.apiUnavailable.message" = "The Expenses API is not available. Please make sure the Expenses plugin is installed and you have the required permissions. Otherwise, please contact your server administrator.";
-"settings.expenses.apiUnavailable.ok" = "OK";
-"settings.pushBridge.enable" = "Enable Kimai Push Plugin";
-"settings.pushBridge.checking" = "Checking Push Bridge availability...";
-"settings.pushBridge.pluginRequired" = "Install the KimaiPushBridgeBundle on this Kimai instance before enabling push synchronization.";
-"settings.pushBridge.betaWarning.title" = "Beta Feature";
-"settings.pushBridge.betaWarning.message" = "This feature uses silent pushes to re-sync the active timer with your Kimai server. It requires the KimaiPushBridgeBundle to be installed on the active instance.";
-"settings.pushBridge.betaWarning.confirm" = "Understood and enable";
-"settings.pushBridge.betaWarning.cancel" = "Cancel";
-"settings.pushNotifications.section" = "Push Notifications";
-"settings.pushNotifications.globalStatus" = "Transport status";
+"settings.expenses.title" = "Expenses";
+"settings.expenses.apiUnavailable.message" = "Expenses are not available for this account. Make sure the Expenses plugin is installed in Kimai and your user may view expenses, or ask your Kimai administrator.";
+"settings.pushBridge.title" = "Kimai Push Plugin";
+"settings.pushBridge.footer" = "Keeps the running timer in sync with Kimai via push and reports the events selected below. Requires the KimaiPushBridgeBundle on the Kimai server.";
+"settings.pushBridge.checking" = "Checking the push plugin …";
+"settings.pushBridge.missing.title" = "Plugin not found on the server";
+"settings.pushBridge.missing.message" = "Notifications need the Kimai Push Plugin (KimaiPushBridgeBundle) on your Kimai server. Ask whoever runs it to install the plugin in var/plugins/ and to clear the Kimai cache afterwards.";
+"settings.pushBridge.missing.installGuide" = "Installation guide";
+"settings.pushBridge.missing.recheck" = "Check again";
+"settings.pushNotifications.section" = "Notifications";
+"settings.pushNotifications.events" = "Events";
+"settings.pushNotifications.events.footer" = "Saved in your Kimai profile.";
+"settings.pushNotifications.events.loading" = "Loading events …";
+"settings.pushNotifications.events.loadFailed" = "Couldn’t load the events from Kimai.";
+"settings.pushNotifications.events.saveFailed" = "Couldn’t save the change in Kimai. Try again, or choose the events in your Kimai profile.";
+"settings.pushNotifications.kimaiProfile" = "Customize in your Kimai profile";
+"settings.pushNotifications.retry" = "Try again";
+"settings.pushNotifications.systemDenied" = "Notifications are turned off in iOS Settings";
+"settings.pushNotifications.systemDenied.detail" = "Events only appear once you allow notifications for Timai. Timer sync keeps working.";
+"settings.pushNotifications.globalStatus" = "Connection";
 "settings.pushNotifications.status.disabled" = "Disabled";
-"settings.pushNotifications.status.unavailable" = "Unavailable";
+"settings.pushNotifications.status.unavailable" = "Plugin missing";
 "settings.pushNotifications.status.activating" = "Activating";
 "settings.pushNotifications.status.active" = "Active";
+"settings.pushNotifications.status.failed" = "Failed";
+"settings.pushNotifications.status.active.detail" = "Changes in Kimai are synced to Timai right away.";
+"settings.pushNotifications.status.activating.detail" = "Timai is registering this device with your Kimai server for notifications.";
+"settings.pushNotifications.status.failed.detail" = "Registering for notifications failed. Timai tries again automatically once Kimai is reachable.";
 "settings.pushNotifications.event.timer" = "Timer started/stopped";
 "settings.pushNotifications.event.absenceRequested" = "Absence requested";
 "settings.pushNotifications.event.absenceApproved" = "Absence approved";
@@ -696,6 +799,11 @@
 "settings.pushNotifications.inbox" = "Notifications";
 "settings.pushNotifications.inbox.empty.title" = "No notifications";
 "settings.pushNotifications.inbox.empty.message" = "Relevant absence and working-time updates will appear here.";
+"settings.pushNotifications.inbox.unread" = "Unread";
+"settings.pushNotifications.inbox.unreadCount" = "%d unread";
+"settings.pushNotifications.inbox.delete" = "Delete";
+"settings.pushNotifications.inbox.clearAll" = "Delete All";
+"settings.pushNotifications.inbox.clearAll.confirm" = "Delete all notifications?";
 "settings.pushNotifications.inbox.absenceRequested.title" = "Absence request received";
 "settings.pushNotifications.inbox.absenceApproved.title" = "Absence approved";
 "settings.pushNotifications.inbox.absenceRejected.title" = "Absence rejected";
@@ -704,42 +812,56 @@
 "settings.pushNotifications.inbox.generic.title" = "Notification";
 "settings.pushNotifications.inbox.absence.subtitle" = "Absence request #%d";
 "settings.pushNotifications.inbox.absence.subtitleFallback" = "Open absence overview";
-"settings.pushNotifications.inbox.workingTime.subtitle" = "Month %d/%d";
 "settings.pushNotifications.inbox.workingTime.subtitleFallback" = "Open reports overview";
 "settings.pushNotifications.inbox.generic.subtitle" = "Open the related area";
-"settings.aiGeneration.enable" = "Enable AI Generation";
-"settings.aiGeneration.configure" = "Configure AI Generation";
 "settings.aiGeneration.title" = "AI Generation";
+"settings.aiGeneration.footer" = "Reworks the description of a time entry with a prompt, e.g. checking spelling or turning keywords into sentences. The description is sent to the selected provider for this.";
 "settings.aiGeneration.section.connection" = "Connection";
 "settings.aiGeneration.section.model" = "Model";
 "settings.aiGeneration.section.prompts" = "Prompts";
 "settings.aiGeneration.provider" = "Provider";
-"settings.aiGeneration.provider.openAI" = "ChatGPT";
-"settings.aiGeneration.provider.gemini" = "Gemini";
-"settings.aiGeneration.provider.openAICompatible" = "ChatGPT-compatible API";
+"settings.aiGeneration.provider.openAI" = "OpenAI";
+"settings.aiGeneration.provider.gemini" = "Google Gemini";
+"settings.aiGeneration.provider.openAICompatible" = "OpenAI-compatible server";
 "settings.aiGeneration.apiKey.placeholder" = "API key";
-"settings.aiGeneration.compatibleURL.placeholder" = "Server URL (for example https://example.com/v1)";
+"settings.aiGeneration.apiKey.placeholder.optional" = "API key (optional)";
+"settings.aiGeneration.apiKey.footer.openAI" = "Create an API key at [platform.openai.com](https://platform.openai.com/api-keys). OpenAI bills API usage separately from a ChatGPT subscription.";
+"settings.aiGeneration.apiKey.footer.gemini" = "Create an API key in [Google AI Studio](https://aistudio.google.com/apikey).";
+"settings.aiGeneration.compatibleURL.placeholder" = "Server URL";
+"settings.aiGeneration.compatibleURL.footer" = "For example http://192.168.1.10:11434 (Ollama), http://192.168.1.10:1234 (LM Studio) or https://openrouter.ai/api/v1. Without a path, /v1 is added. Local servers usually need no API key.";
+"settings.aiGeneration.compatibleURL.resolved" = "Requests go to %@";
 "settings.aiGeneration.model" = "Model";
+"settings.aiGeneration.model.placeholder" = "Model ID";
+"settings.aiGeneration.model.none" = "Choose";
 "settings.aiGeneration.test" = "Test connection";
-"settings.aiGeneration.testing" = "Testing...";
+"settings.aiGeneration.testing" = "Testing…";
 "settings.aiGeneration.test.success" = "Connection successful. Models loaded.";
-"settings.aiGeneration.models.empty" = "No models loaded yet. Use the test button to fetch the available models.";
+"settings.aiGeneration.models.empty" = "Test the connection to choose from the provider's models, or enter a model ID.";
 "settings.aiGeneration.prompts.empty" = "No saved prompts.";
+"settings.aiGeneration.prompts.footer" = "The first prompt is preselected. Swipe to delete a prompt, use Edit to reorder.";
 "settings.aiGeneration.addPrompt" = "Add prompt";
+"settings.aiGeneration.restoreDefaults" = "Restore default prompts";
+"settings.aiGeneration.restoreDefaults.title" = "Restore default prompts?";
+"settings.aiGeneration.restoreDefaults.message" = "The default prompts are added again in the current app language. Changes to them are reset; your own prompts are kept.";
+"settings.aiGeneration.restoreDefaults.confirm" = "Restore";
 "settings.aiGeneration.prompt.initial" = "Default";
 "settings.aiGeneration.prompt.shortDescription" = "Short description";
 "settings.aiGeneration.prompt.shortDescription.placeholder" = "For example Fix spelling";
 "settings.aiGeneration.prompt.text" = "Prompt";
+"settings.aiGeneration.prompt.text.placeholder" = "What should happen with the description?";
+"settings.aiGeneration.prompt.text.footer" = "Sent together with the description of the time entry. The app asks for the resulting text only.";
 "settings.aiGeneration.prompt.newTitle" = "New prompt";
 "settings.aiGeneration.prompt.editTitle" = "Edit prompt";
-"settings.aiGeneration.betaWarning.title" = "Beta Feature";
-"settings.aiGeneration.betaWarning.message" = "This feature is in beta phase. The current description and selected prompt are sent to the AI provider you configure and may incur external costs.";
-"settings.aiGeneration.betaWarning.confirm" = "Understood and enable";
-"settings.aiGeneration.betaWarning.cancel" = "Cancel";
+"settings.aiGeneration.consent.title" = "Enable AI Generation?";
+"settings.aiGeneration.consent.message" = "When you use it, the description of the time entry and the selected prompt are sent to the AI provider you configure. Its privacy policy applies, and it may charge you for the requests.";
+"settings.aiGeneration.consent.confirm" = "Enable";
+"settings.aiGeneration.consent.cancel" = "Cancel";
 "settings.aiGeneration.defaultPrompt.spellcheck.title" = "Fix spelling";
-"settings.aiGeneration.defaultPrompt.spellcheck.text" = "Correct spelling mistakes and obvious grammar issues in the following text. Preserve the meaning, tone, and structure as much as possible. The output language must match the input language. Return only the revised text without explanation.";
+"settings.aiGeneration.defaultPrompt.spellcheck.text" = "Correct spelling, punctuation and obvious grammar mistakes. Keep the wording, meaning, tone and line breaks; do not rephrase anything or add content. Answer in the language of the text.";
 "settings.aiGeneration.defaultPrompt.sentences.title" = "Turn keywords into sentences";
-"settings.aiGeneration.defaultPrompt.sentences.text" = "Turn the existing keywords into clear, natural, and complete sentences. Do not invent new facts and stay very close to the original content. The output language must match the input language. Return only the revised text without explanation.";
+"settings.aiGeneration.defaultPrompt.sentences.text" = "Turn the keywords or notes into clear, complete sentences that describe the work done. Use only the information given and add no facts, names or numbers. Keep it short. Answer in the language of the text.";
+"settings.aiGeneration.defaultPrompt.invoice.title" = "Phrase for the invoice";
+"settings.aiGeneration.defaultPrompt.invoice.text" = "Rewrite the text as a concise, professional description of the work that can appear on an invoice to the customer. Keep all facts and add nothing. Answer in the language of the text.";
 
 // Absences
 "absences.tabTitle" = "Absences";
@@ -761,6 +883,7 @@
 "absences.halfDay" = "Half day";
 "absences.dayCount.singular" = "%d day";
 "absences.dayCount.plural" = "%d days";
+"absences.row.accessibilityHint" = "Shows the available actions.";
 
 // Absences - Types
 "absences.type.holiday" = "Holiday";
@@ -776,7 +899,6 @@
 // Absences - Status
 "absences.status.new" = "New";
 "absences.status.open" = "Open";
-"absences.status.requested" = "Open";
 "absences.status.approved" = "Approved";
 "absences.status.rejected" = "Rejected";
 
@@ -794,16 +916,19 @@
 "absences.create.field.comment" = "Optional comment";
 "absences.create.save" = "Save";
 "absences.create.cancel" = "Cancel";
-"absences.create.beta.note" = "Beta feature. This functionality may become paid in the future.";
 
 // Absences - Actions
 "absences.actions.title" = "Absence actions";
-"absences.actions.message" = "Select an action for %d day(s).";
 "absences.action.requestApproval" = "Request approval";
 "absences.action.confirm" = "Approve";
 "absences.action.reject" = "Reject";
+"absences.action.delete" = "Delete";
+"absences.reject.confirm.title" = "Reject absence?";
+"absences.reject.confirm.message" = "The request (%@) will be rejected and the person notified by email.";
+"absences.delete.confirm.title" = "Delete absence?";
+"absences.delete.confirm.message" = "The absence (%@) will be deleted in Kimai. This can’t be undone.";
 "absences.approve.scope.title" = "Approve multiple days";
-"absences.approve.scope.message" = "This request has %d day(s).";
+"absences.approve.scope.message" = "This request covers %@.";
 "absences.approve.scope.allDays" = "Approve all days";
 "absences.approve.scope.selectDays" = "Choose specific days";
 "absences.approve.partial.title" = "Select days";
@@ -836,10 +961,56 @@
 "absences.error.missingApprovePermission" = "You don't have permission to approve absences.";
 "absences.error.missingOtherProfilePermission" = "You don't have permission to view absences of other users.";
 "absences.error.missingUserDirectoryPermission" = "Users could not be loaded. You need permission to view users or team members.";
+"absences.error.loading.message" = "Check your connection and try again.";
+"absences.error.retry" = "Try again";
+"absences.error.offline" = "You’re offline. Changing absences needs an internet connection.";
+"absences.error.notFound" = "This absence no longer exists in Kimai. The list has been updated.";
+"absences.error.deleteFailed" = "The absence could not be deleted.";
 
 // Settings - Absences
-"settings.absences.enable" = "Enable Absences";
-"settings.absences.betaWarning.title" = "Beta Feature";
-"settings.absences.betaWarning.message" = "This feature is in beta phase. In the future, this feature will be paid.";
-"settings.absences.betaWarning.confirm" = "Understood and enable";
-"settings.absences.betaWarning.cancel" = "Cancel";
+"settings.absences.title" = "Absences";
+
+// UI states and accessible actions
+"timesheet.empty.title" = "No time entries yet";
+"search.filters.active" = "Filters active";
+"timer.saveDescription" = "Save description";
+
+// Timer safety and Apple Watch errors
+"timer.error.operationInProgress" = "Another timer action is still in progress. Please try again in a moment.";
+"timer.error.otherInstance" = "The running timer belongs to a different Kimai server. Switch to that server to change it.";
+"watch.phone.error.notLoggedIn" = "Not signed in to Kimai on the iPhone.";
+"watch.phone.error.invalidRequest" = "The request from the Apple Watch was incomplete.";
+
+// Siri & Shortcuts (App Intents use their English source strings as keys)
+"Start Tracking" = "Start Tracking";
+"Starts tracking immediately for a customer, project and activity." = "Starts tracking immediately for a customer, project and activity.";
+"A timer is already running." = "A timer is already running.";
+"The selected project does not belong to the selected customer." = "The selected project does not belong to the selected customer.";
+"The selected activity does not belong to the selected project." = "The selected activity does not belong to the selected project.";
+"Unknown error" = "Unknown error";
+"Customer" = "Customer";
+"Project" = "Project";
+"Activity" = "Activity";
+"Description" = "Description";
+"Show Confirmation" = "Show Confirmation";
+"Start tracking for ${customer}, ${project}, ${activity}" = "Start tracking for ${customer}, ${project}, ${activity}";
+"Tracking started." = "Tracking started.";
+"Stop Tracking" = "Stop Tracking";
+"Stops the running timer." = "Stops the running timer.";
+"No timer is running." = "No timer is running.";
+"Final Description" = "Final Description";
+"Stop tracking" = "Stop tracking";
+"Tracking stopped." = "Tracking stopped.";
+"You are not signed in to Kimai." = "You are not signed in to Kimai.";
+
+// Accessibility labels
+"common.clearSearch" = "Clear search";
+"tagInput.add" = "Add tag";
+"tagInput.remove" = "Remove tag %@";
+"reports.period.previous" = "Previous period";
+"reports.period.next" = "Next period";
+"reports.year.previous" = "Previous year";
+"reports.year.next" = "Next year";
+"offline.banner.syncNow" = "Sync now";
+"reports.chart.hours" = "Hours";
+"reports.chart.project" = "Project";

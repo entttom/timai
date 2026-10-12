@@ -1,0 +1,5 @@
+/* Siri phrases for App Shortcuts. */
+"Start tracking in ${applicationName}" = "Starte Tracking in ${applicationName}";
+"Start time tracking in ${applicationName}" = "Starte Zeiterfassung in ${applicationName}";
+"Stop tracking in ${applicationName}" = "Stoppe Tracking in ${applicationName}";
+"Stop time tracking in ${applicationName}" = "Stoppe Zeiterfassung in ${applicationName}";

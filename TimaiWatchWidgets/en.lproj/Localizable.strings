@@ -1,0 +1,18 @@
+//
+//  Localizable.strings
+//  TimaiWatchWidgets
+//
+//  Copyright (c) 2025 Dr. Thomas Entner.
+//  All rights reserved.
+//
+//  Licensed under the Business Source License 1.1.
+//  Usage is free for non-commercial and personal use.
+//  Commercial use requires a commercial license.
+//
+
+// Timer Complication
+"complication.displayName" = "Timer";
+"complication.description" = "Shows the running timer.";
+"complication.noTimer" = "No timer";
+"complication.sample.project" = "Project";
+"complication.sample.activity" = "Activity";

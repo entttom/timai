@@ -65,6 +65,7 @@
 "watch.error.connectionFailed" = "Couldn't connect to the iPhone";
 "watch.error.switchFailed" = "Failed to switch instance: %@";
 "watch.error.invalidResponse" = "Invalid response from iPhone";
+"watch.error.phoneUnreachable" = "iPhone not reachable. Open Timai on your iPhone and try again.";
 "watch.error.requestFailed" = "Failed to request data: %@";
 
 // Instances
@@ -83,11 +84,7 @@
 "watch.manual.continue" = "Continue";
 "watch.manual.save" = "Save";
 "watch.manual.success" = "Timesheet created";
+"watch.manual.error.failed" = "The entry could not be saved";
 "watch.manual.error.missingData" = "Missing data";
 "watch.manual.error.invalidDateRange" = "End must be after start";
 "watch.manual.error.endBeforeStart" = "End must be after start";
-
-// Complications
-"watch.complication.name" = "Timer";
-"watch.complication.description" = "Shows current timer status";
-"watch.complication.noTimer" = "No Timer";
