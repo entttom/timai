@@ -14,7 +14,6 @@
 		105307CED54292560C41030C /* ActiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67B392EBF8CEE005E592B /* ActiveTimer.swift */; };
 		11033C37E36D4EBAD880F66D /* TimerStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C568F6446317EA93756BF4D /* TimerStateTests.swift */; };
 		23C68AF07492F2439EE7C3EC /* ReportDurationFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF193CBAD6815CB7F065CE1 /* ReportDurationFormatterTests.swift */; };
-		7A1C3E5B9D2F4A6C8E0B1D40 /* ReportAggregatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1C3E5B9D2F4A6C8E0B1D3F /* ReportAggregatorTests.swift */; };
 		29F220080FE6C9F3E49C7C31 /* LiveActivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AABD8167E74C0529D3BD49 /* LiveActivitySettingsView.swift */; };
 		346BE698E7D00337CA95F986 /* KimaiAPIContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345FED8479EC191B641D7AA8 /* KimaiAPIContractTests.swift */; };
 		396B5F247A72F0F89B69E58C /* AIGenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D677CCB2660B7976396FA /* AIGenerationTests.swift */; };
@@ -30,6 +29,7 @@
 		60FDDBD280E3E740DA5F7C69 /* ReportDisplaySettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA99779D17B9660487D53E51 /* ReportDisplaySettingsStore.swift */; };
 		71C6079AC09369DA039E296F /* TimaiWatchWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BF3A642994151214239B6B9C /* TimaiWatchWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		74A433C086690A8D74004DCA /* CustomerSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508B1FDC53B022F8B464C842 /* CustomerSearchTests.swift */; };
+		7A1C3E5B9D2F4A6C8E0B1D40 /* ReportAggregatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1C3E5B9D2F4A6C8E0B1D3F /* ReportAggregatorTests.swift */; };
 		7DF550B1907C3720736C6DC1 /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AD640FAA85C0AB87313BD /* AccountSettingsView.swift */; };
 		8503B665F0871130510A3476 /* SyncDiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5AFA11F8912BC63AFC6987 /* SyncDiagnosticsView.swift */; };
 		8AC2BC5927C39F747082C4A5 /* InstanceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729C4B476FC3F8044C7BB12 /* InstanceRow.swift */; };
@@ -106,8 +106,8 @@
 		AAB0AB0102FEB00100A11001 /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1102FEB00100A11001 /* Absence.swift */; };
 		AAB0AB0202FEB00100A11001 /* AbsenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1202FEB00100A11001 /* AbsenceViewModel.swift */; };
 		AAB0AB0302FEB00100A11001 /* AbsenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1302FEB00100A11001 /* AbsenceView.swift */; };
-		AAB0AB0502FEB00100A11001 /* AbsenceCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1502FEB00100A11001 /* AbsenceCreateView.swift */; };
 		AAB0AB0402FEB00100A11001 /* AbsenceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1402FEB00100A11001 /* AbsenceDetailView.swift */; };
+		AAB0AB0502FEB00100A11001 /* AbsenceCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB0AB1502FEB00100A11001 /* AbsenceCreateView.swift */; };
 		AAD67AE32EBCC813005E592B /* BiometricAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */; };
 		AAD67AE52EBCC81C005E592B /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE42EBCC81C005E592B /* AppLockView.swift */; };
 		AAD67AE72EBE5278005E592B /* KimaiInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD67AE62EBE5278005E592B /* KimaiInstance.swift */; };
@@ -271,7 +271,6 @@
 		18D0162A78224D1A380B9F43 /* DisplaySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySettingsView.swift; sourceTree = "<group>"; };
 		1973B40036D1CF483CD2E900 /* LiveActivityStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityStyle.swift; sourceTree = "<group>"; };
 		1FF193CBAD6815CB7F065CE1 /* ReportDurationFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDurationFormatterTests.swift; sourceTree = "<group>"; };
-		7A1C3E5B9D2F4A6C8E0B1D3F /* ReportAggregatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAggregatorTests.swift; sourceTree = "<group>"; };
 		2B8F2A487731F9C5F3F5431E /* TimeEntrySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntrySettingsView.swift; sourceTree = "<group>"; };
 		3085210997241074A31A69A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		345FED8479EC191B641D7AA8 /* KimaiAPIContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimaiAPIContractTests.swift; sourceTree = "<group>"; };
@@ -287,6 +286,7 @@
 		73C10F0E4E884E63ACE6FF3F /* TimesheetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetUser.swift; sourceTree = "<group>"; };
 		74829760C01C4CB7B99E35E4 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		750B0593E6F2F59A0F3CEBFA /* TagUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagUtilsTests.swift; sourceTree = "<group>"; };
+		7A1C3E5B9D2F4A6C8E0B1D3F /* ReportAggregatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAggregatorTests.swift; sourceTree = "<group>"; };
 		86D0A5A9A055F6BAB67D77CF /* OfflineQueueRetryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineQueueRetryTests.swift; sourceTree = "<group>"; };
 		8FF912E7367E4947A1ADFC5C /* LoginBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBackgroundView.swift; sourceTree = "<group>"; };
 		964A23321A1F6E5472E46219 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -356,16 +356,16 @@
 		AAB0AB1102FEB00100A11001 /* Absence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absence.swift; sourceTree = "<group>"; };
 		AAB0AB1202FEB00100A11001 /* AbsenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceViewModel.swift; sourceTree = "<group>"; };
 		AAB0AB1302FEB00100A11001 /* AbsenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceView.swift; sourceTree = "<group>"; };
-		AAB0AB1502FEB00100A11001 /* AbsenceCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceCreateView.swift; sourceTree = "<group>"; };
 		AAB0AB1402FEB00100A11001 /* AbsenceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceDetailView.swift; sourceTree = "<group>"; };
+		AAB0AB1502FEB00100A11001 /* AbsenceCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenceCreateView.swift; sourceTree = "<group>"; };
 		AAD67AE22EBCC813005E592B /* BiometricAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthService.swift; sourceTree = "<group>"; };
 		AAD67AE42EBCC81C005E592B /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
 		AAD67AE62EBE5278005E592B /* KimaiInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KimaiInstance.swift; sourceTree = "<group>"; };
 		AAD67AE82EBE5286005E592B /* InstanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceManager.swift; sourceTree = "<group>"; };
 		AAD67AEA2EBE5294005E592B /* AddInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstanceView.swift; sourceTree = "<group>"; };
 		AAD67AEC2EBE52BC005E592B /* InstanceSwitcherSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceSwitcherSheet.swift; sourceTree = "<group>"; };
-		AAD67AF12EBE52BC005E592B /* MainTabLeadingToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabLeadingToolbar.swift; sourceTree = "<group>"; };
 		AAD67AEF2EBE59D4005E592B /* EditInstanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInstanceView.swift; sourceTree = "<group>"; };
+		AAD67AF12EBE52BC005E592B /* MainTabLeadingToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabLeadingToolbar.swift; sourceTree = "<group>"; };
 		AAD67AF52EBF88DC005E592B /* TimaiWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimaiWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD67AF62EBF88DC005E592B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		AAD67AF82EBF88DC005E592B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -1879,7 +1879,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.5;
+				MARKETING_VERSION = 1.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1913,7 +1913,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.5;
+				MARKETING_VERSION = 1.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.entner.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
