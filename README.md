@@ -100,7 +100,7 @@ A native iOS time tracking app for [Kimai v2](https://www.kimai.org/), built wit
 
 Timai can use an optional Kimai server plugin, the **Kimai Push Bridge Bundle**, to receive push-based sync signals when relevant changes happen on the Kimai server. This keeps the iOS app, Live Activity, notification inbox, reports, absences, and timer state closer to the current server state even when changes were made in Kimai Web or by another client.
 
-Download the bundled release here: [KimaiPushBridgeBundle-0.1.0-release.zip](KimaiPushBridgeBundle-0.1.0-release.zip)
+Download the bundled release here: [KimaiPushBridgeBundle-0.2.0-release.zip](KimaiPushBridgeBundle-0.2.0-release.zip)
 
 The bundle listens for supported Kimai events, sends a signed event signal to the Timai relay, and Timai then refreshes the affected data from the Kimai API. The push event is treated only as a sync trigger; the app does not blindly start or stop timers from the push payload.
 
@@ -112,7 +112,7 @@ Supported event groups:
 
 Installation in Kimai:
 
-1. Unzip `KimaiPushBridgeBundle-0.1.0-release.zip`.
+1. Unzip `KimaiPushBridgeBundle-0.2.0-release.zip`.
 2. Copy the extracted `KimaiPushBridgeBundle` folder into your Kimai installation at `var/plugins/KimaiPushBridgeBundle/`.
 3. Clear the Kimai cache:
    ```bash
