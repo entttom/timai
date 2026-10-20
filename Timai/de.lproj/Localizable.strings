@@ -169,17 +169,17 @@
 "reports.projectsByMonthActivityUser.title" = "Projekte nach Monat";
 
 // Report Types - Descriptions
-"reports.userWeek.description" = "Deine Zeiterfassung dieser Woche";
-"reports.userMonth.description" = "Deine Zeiterfassung diesen Monat";
-"reports.userYear.description" = "Deine Zeiterfassung dieses Jahr";
-"reports.allUsersWeek.description" = "Zeiterfassung aller Benutzer diese Woche";
-"reports.allUsersMonth.description" = "Zeiterfassung aller Benutzer diesen Monat";
-"reports.allUsersYear.description" = "Zeiterfassung aller Benutzer dieses Jahr";
-"reports.projectDetails.description" = "Detaillierte Projektinformationen";
-"reports.projectOverview.description" = "Übersicht aller Projekte";
-"reports.monthlyEvaluation.description" = "Auswertung des aktuellen Monats";
-"reports.inactiveProjects.description" = "Projekte ohne kürzliche Aktivität";
-"reports.projectsByMonthActivityUser.description" = "Gruppiert nach Monat, Tätigkeit und Benutzer";
+"reports.userWeek.description" = "Deine Stunden pro Tag, Projekt und Aktivität";
+"reports.userMonth.description" = "Dein Monat im Verlauf mit Projekten und Aktivitäten";
+"reports.userYear.description" = "Dein Jahr Monat für Monat";
+"reports.allUsersWeek.description" = "Stunden aller Benutzer pro Woche";
+"reports.allUsersMonth.description" = "Stunden aller Benutzer pro Monat";
+"reports.allUsersYear.description" = "Stunden aller Benutzer pro Jahr";
+"reports.projectDetails.description" = "Ein Projekt im Detail: Budget, Verlauf und Einträge";
+"reports.projectOverview.description" = "Alle Projekte mit Stunden und Budgetauslastung";
+"reports.monthlyEvaluation.description" = "Kunden, Projekte, Aktivitäten und abrechenbare Zeit eines Monats";
+"reports.inactiveProjects.description" = "Projekte ohne Einträge in den letzten 30 Tagen";
+"reports.projectsByMonthActivityUser.description" = "Projekte und Aktivitäten Monat für Monat";
 
 // Error messages
 "error.message.wrongCredentials" = "Falscher Benutzername oder Passwort";
@@ -520,9 +520,9 @@
 "reports.field.running" = "läuft noch";
 "reports.field.year" = "Jahr";
 "reports.projects.inactive.empty.title" = "Alle Projekte aktiv";
-"reports.projects.inactive.empty.message" = "Es gibt keine inaktiven Projekte in den letzten 30 Tagen";
+"reports.projects.inactive.empty.message" = "Alle sichtbaren Projekte hatten in den letzten 30 Tagen Einträge.";
 "reports.projectDetail.empty.title" = "Keine Einträge";
-"reports.projectDetail.empty.message" = "Keine Zeiteinträge für dieses Projekt im ausgewählten Jahr gefunden";
+"reports.projectDetail.empty.message" = "Keine Zeiteinträge für dieses Projekt im ausgewählten Jahr.";
 "reports.toolbar.today" = "Heute";
 "reports.period.week.short" = "KW";
 "reports.empty.noEntries" = "Keine Einträge im ausgewählten Zeitraum";
@@ -707,6 +707,8 @@
 "expensesEdit.section.billableMode" = "Erstattungsfähig";
 "expensesEdit.section.advancedSettings" = "Erweiterte Einstellungen";
 "expensesEdit.section.metaFields" = "Zusatzfelder";
+"expensesEdit.section.assignment" = "Zuordnung";
+"expensesEdit.section.billing" = "Abrechnung";
 "expensesEdit.picker.customer" = "Kunde";
 "expensesEdit.picker.project" = "Projekt";
 "expensesEdit.picker.activity" = "Aktivität";
@@ -902,7 +904,7 @@
 "absences.halfDay" = "Halbtags";
 "absences.dayCount.singular" = "%d Tag";
 "absences.dayCount.plural" = "%d Tage";
-"absences.row.accessibilityHint" = "Zeigt die möglichen Aktionen.";
+"absences.row.accessibilityHint" = "Zeigt Details und Aktionen.";
 
 // Abwesenheiten - Typen
 "absences.type.holiday" = "Urlaub";
@@ -985,6 +987,32 @@
 "absences.error.offline" = "Du bist offline. Zum Ändern von Abwesenheiten brauchst du eine Internetverbindung.";
 "absences.error.notFound" = "Diese Abwesenheit gibt es in Kimai nicht mehr. Die Liste wurde aktualisiert.";
 "absences.error.deleteFailed" = "Die Abwesenheit konnte nicht gelöscht werden.";
+"absences.section.upcoming" = "Aktuell & bevorstehend";
+"absences.ongoing" = "Aktuell";
+"absences.action.request.short" = "Anfragen";
+"absences.userFilter.choose" = "Person auswählen …";
+"absences.userFilter.clear" = "Personenfilter entfernen";
+"absences.detail.person" = "Person";
+"absences.detail.type" = "Art";
+"absences.detail.period" = "Zeitraum";
+"absences.detail.days" = "Tage";
+"absences.detail.extent" = "Umfang";
+"absences.detail.duration" = "Dauer";
+"absences.detail.status" = "Status";
+"absences.detail.daysSection" = "Einzelne Tage";
+"absences.detail.hint.new" = "Noch nicht eingereicht. Fordere die Genehmigung an, damit sie geprüft wird.";
+"absences.detail.hint.pending" = "Die Anfrage wartet auf Genehmigung.";
+"absences.error.notFound.title" = "Abwesenheit nicht gefunden";
+"absences.approve.partial.selectedCount" = "%d von %d Tagen ausgewählt";
+"absences.create.field.multipleDays" = "Mehrere Tage";
+"absences.create.field.date" = "Datum";
+"absences.create.field.from" = "Von";
+"absences.create.field.to" = "Bis";
+"absences.create.field.durationShort" = "Dauer";
+"absences.create.duration.placeholder" = "z. B. 4:00";
+"absences.create.footer.range" = "%d Kalendertage. Arbeitsfreie Tage lässt Kimai anhand deines Arbeitsvertrags aus.";
+"absences.create.footer.duration" = "Dauer optional. Ohne Angabe gilt der ganze Tag.";
+"absences.create.add" = "Hinzufügen";
 
 // Einstellungen - Abwesenheiten
 "settings.absences.title" = "Abwesenheiten";
@@ -1033,3 +1061,61 @@
 "offline.banner.syncNow" = "Jetzt synchronisieren";
 "reports.chart.hours" = "Stunden";
 "reports.chart.project" = "Projekt";
+
+// MARK: - Reports
+"reports.category.personal" = "Meine Zeiten";
+"reports.category.team" = "Team";
+"reports.category.projects" = "Projekte";
+"reports.category.localData.footer" = "Berechnet aus den auf diesem Gerät gespeicherten Einträgen. Den Zeitraum legst du unter Einstellungen › Synchronisierung fest.";
+"reports.category.team.footer" = "Wird direkt von Kimai geladen und braucht eine Internetverbindung.";
+"reports.glance.thisWeek" = "Diese Woche";
+"reports.glance.thisMonth" = "Dieser Monat";
+"reports.trend.previousWeek" = "ggü. Vorwoche";
+"reports.trend.previousMonth" = "ggü. Vormonat";
+"reports.trend.previousYear" = "ggü. Vorjahr";
+"reports.summary.total" = "Gesamt";
+"reports.summary.entries" = "Einträge";
+"reports.summary.activeDays" = "Aktive Tage";
+"reports.summary.averagePerDay" = "Ø pro Tag";
+"reports.section.perDay" = "Pro Tag";
+"reports.section.perMonth" = "Pro Monat";
+"reports.section.byCustomer" = "Nach Kunde";
+"reports.section.byActivity" = "Nach Aktivität";
+"reports.section.billable" = "Abrechenbar";
+"reports.billable.share" = "der Zeit abrechenbar";
+"reports.billable.billable" = "Abrechenbar";
+"reports.billable.nonBillable" = "Nicht abrechenbar";
+"reports.chart.date" = "Datum";
+"reports.chart.average" = "Durchschnitt";
+"reports.chart.averagePerDay" = "Ø pro aktivem Tag";
+"reports.chart.averagePerMonth" = "Ø pro aktivem Monat";
+"reports.chart.others" = "Weitere";
+"reports.empty.title" = "Keine Einträge";
+"reports.period.choose" = "Zeitraum wählen";
+"reports.team.users" = "Benutzer";
+"reports.team.averagePerUser" = "Ø pro Benutzer";
+"reports.field.entriesCount" = "%ld Einträge";
+"reports.sort.title" = "Sortieren";
+"reports.sort.duration" = "Stunden";
+"reports.sort.name" = "Name";
+"reports.sort.recent" = "Zuletzt aktiv";
+"reports.search.projects" = "Projekte oder Kunden suchen";
+"reports.projects.empty.title" = "Keine Projektzeiten";
+"reports.projects.empty.message" = "Im lokal gespeicherten Zeitraum gibt es keine Einträge.";
+"reports.projects.none.title" = "Keine Projekte";
+"reports.projects.none.message" = "Es sind noch keine Projekte auf diesem Gerät gespeichert. Zieh nach unten, um zu synchronisieren.";
+"reports.projects.footer" = "Budgets werden mit den lokal gespeicherten Einträgen verglichen; Monatsbudgets mit dem aktuellen Monat.";
+"reports.projectsByMonth.empty" = "In diesem Jahr gibt es keine Einträge.";
+"reports.inactive.section.stale" = "Seit über 30 Tagen ohne Einträge";
+"reports.inactive.section.unused" = "Ohne Einträge";
+"reports.inactive.footer" = "Für diese Projekte gibt es im lokal gespeicherten Zeitraum keine Einträge.";
+"reports.project.section.year" = "Verlauf";
+"reports.project.entries" = "Einträge";
+"reports.project.entries.title" = "Einträge %@";
+"reports.project.budget.time" = "Zeitbudget";
+"reports.project.budget.monthly" = "Monatliches Zeitbudget";
+"reports.project.budget.money" = "Budget";
+"reports.project.budget.remaining" = "%@ verbleibend";
+"reports.project.budget.exceeded" = "%@ überschritten";
+"reports.project.budget.footer" = "Berechnet aus den lokal gespeicherten Einträgen; ältere Einträge sind nicht enthalten.";
+"reports.project.budget.footer.monthly" = "Monatsbudget: verglichen mit den Einträgen des aktuellen Monats.";
