@@ -1,4 +1,8 @@
-- Added offline mode
-- Implemented cache management
-- Sync pending changes
-- Bug fixes and performance improvements
+New: Favorites
+- Save fixed combinations of customer, project and activity as favorites and start them with one tap
+- Favorites start a timer or book a fixed duration, either until now or from now (for example 10 minutes for a call that just ended)
+- New Home Screen and Lock Screen widgets: several favorites at a glance, a single favorite, or "Choose duration"
+- Quick access: start favorites by touching and holding the app icon, by touching and holding "Start Timer", from Spotlight and with Siri
+- Favorites on Apple Watch too
+- A running timer is never replaced without asking
+- Manage favorites in Settings → Favorites: reorder, rename, change the duration

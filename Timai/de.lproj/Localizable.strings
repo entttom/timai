@@ -29,6 +29,20 @@
 "timesheet.stats.week" = "Stunden dieser Woche";
 "timesheet.stats.month" = "Stunden diesen Monat";
 
+// Timesheet calendar
+"calendar.showCalendar" = "Kalender anzeigen";
+"calendar.showList" = "Liste anzeigen";
+"calendar.previousMonth" = "Vorheriger Monat";
+"calendar.nextMonth" = "Nächster Monat";
+"calendar.today" = "Heute";
+"calendar.entryCount.one" = "1 Eintrag";
+"calendar.entryCount.other" = "%d Einträge";
+"calendar.absence" = "Abwesenheit";
+"calendar.halfDay" = "Halber Tag";
+"calendar.absence.notApproved" = "Nicht genehmigt";
+"calendar.day.empty" = "Keine Einträge an diesem Tag";
+"calendar.warning.outsideLocalRange" = "Offline - dieser Monat liegt außerhalb des lokalen Datenzeitraums und ist evtl. unvollständig.";
+
 // TimesheetRecordDetail View
 "timesheetRecordDetail.startTimeTitle" = "Start";
 "timesheetRecordDetail.endTimeTitle" = "Ende";
@@ -292,6 +306,7 @@
 "common.ok" = "OK";
 "common.error" = "Fehler";
 "common.unknown" = "Unbekannt";
+"common.userFallback" = "Benutzer %ld";
 
 // Sync Status
 "sync.status.ready" = "Bereit";
@@ -570,7 +585,6 @@
 // Add Instance View
 "addInstance.title" = "Server hinzufügen";
 "addInstance.button.add" = "Hinzufügen";
-"addInstance.button.cancel" = "Abbrechen";
 "addInstance.section.name" = "Name";
 "addInstance.section.name.footer" = "Ein Name, an dem du den Server erkennst (z. B. „Firma“, „Privat“).";
 "addInstance.name.placeholder" = "Anzeigename";
@@ -816,8 +830,8 @@
 "settings.pushNotifications.inbox.generic.subtitle" = "Zugehörigen Bereich öffnen";
 "settings.pushBridge.hero.title" = "Kimai in Echtzeit";
 "settings.pushBridge.hero.message" = "Timai erfährt sofort, wenn ein Timer im Web oder auf einem anderen Gerät startet oder stoppt – und meldet Abwesenheiten und Monatsfreigaben.";
-"settings.pushNotifications.permission.request" = "Mitteilungen erlauben";
-"settings.pushNotifications.permission.request.detail" = "Damit Ereignisse als Mitteilung erscheinen, braucht Timai deine Erlaubnis.";
+"settings.pushNotifications.permission.request" = "Weiter";
+"settings.pushNotifications.permission.request.detail" = "Damit Ereignisse als Mitteilung erscheinen können, fragt iOS dich als Nächstes, ob Timai Mitteilungen senden darf.";
 "settings.pushNotifications.group.timeTracking" = "Zeiterfassung";
 "settings.pushNotifications.group.absences" = "Abwesenheiten";
 "settings.pushNotifications.group.workingTime" = "Arbeitszeit";
@@ -1119,3 +1133,62 @@
 "reports.project.budget.exceeded" = "%@ überschritten";
 "reports.project.budget.footer" = "Berechnet aus den lokal gespeicherten Einträgen; ältere Einträge sind nicht enthalten.";
 "reports.project.budget.footer.monthly" = "Monatsbudget: verglichen mit den Einträgen des aktuellen Monats.";
+
+// Mac menu bar
+"mac.menuBar.noTimer" = "Kein Timer aktiv";
+"mac.menuBar.signedOut" = "Melde dich bei Timai an, um Zeiten zu erfassen.";
+"mac.menuBar.openApp" = "Timai öffnen";
+"mac.menuBar.quit" = "Timai beenden";
+"mac.commands.timer" = "Timer";
+
+// Favorites
+"favorites.title" = "Favoriten";
+"favorites.empty.title" = "Keine Favoriten";
+"favorites.empty.message" = "Wähle beim Starten eines Timers Kunde, Projekt und Tätigkeit und tippe auf „Als Favorit speichern“. Oder öffne das Kontextmenü eines Eintrags.";
+"favorites.footer.widget" = "Tippe auf einen Favoriten, um ihn zu bearbeiten. Mit den Timai-Widgets startest du Favoriten direkt vom Home- oder Sperrbildschirm, ausgewählte auch über das gedrückt gehaltene App-Symbol.";
+"favorites.footer.mac" = "Klicke auf einen Favoriten, um ihn zu bearbeiten. Die ersten neun startest du im Menü „Timer“ mit ⌘1 bis ⌘9, alle auch über die Menüleiste.";
+"favorites.action.save" = "Als Favorit speichern";
+"favorites.action.save.hint" = "Speichert die Auswahl als Favorit, als Timer oder mit fester Dauer";
+"favorites.action.saved" = "Als Favorit gespeichert";
+"favorites.action.remove" = "Aus Favoriten entfernen";
+"favorites.action.start.accessibility" = "%@ starten";
+"favorites.rename.message" = "Leer lassen, um den Projektnamen zu verwenden.";
+"favorites.error.duplicate" = "Diese Auswahl ist bereits ein Favorit.";
+"favorites.error.limitReached" = "Du kannst höchstens %d Favoriten speichern.";
+"favorites.error.noInstance" = "Melde dich zuerst bei einem Kimai-Server an.";
+"favorites.error.timerRunning" = "Es läuft bereits ein Timer. Stoppe ihn, bevor du einen Favoriten startest.";
+"favorites.error.notFound" = "Diesen Favoriten gibt es nicht mehr.";
+"favorites.error.otherInstance" = "Dieser Favorit gehört zu einem anderen Kimai-Server. Wechsle zuerst zu diesem Server.";
+
+// Favorites in Siri & Shortcuts (English source strings as keys)
+"Start Favorite" = "Favorit starten";
+"Starts tracking for a saved favorite." = "Startet die Zeiterfassung für einen gespeicherten Favoriten.";
+"Favorite" = "Favorit";
+"Start ${favorite}" = "${favorite} starten";
+"favorites.kind.title" = "Art";
+"favorites.kind.timer" = "Timer starten";
+"favorites.kind.fixedDuration" = "Feste Dauer";
+"favorites.kind.fixedDuration.value" = "Feste Dauer: %@";
+"favorites.kind.timer.footer" = "Startet einen Timer. Läuft bereits einer, musst du ihn zuerst stoppen.";
+"favorites.duration.title" = "Dauer";
+"favorites.edit.title" = "Name";
+"favorites.edit.navigationTitle" = "Favorit bearbeiten";
+"favorites.edit.hint" = "Name und Dauer ändern";
+"favorites.action.edit" = "Bearbeiten";
+"favorites.action.book.accessibility" = "%1$@ für %2$@ buchen";
+"favorites.booked.message" = "%1$@ für %2$@ gebucht";
+"Time booked." = "Zeit gebucht.";
+"favorites.duration.untilNow" = "%@ bis jetzt";
+"favorites.duration.fromNow" = "%@ ab jetzt";
+"favorites.anchor.title" = "Richtung";
+"favorites.anchor.endsNow" = "Bis jetzt";
+"favorites.anchor.startsNow" = "Ab jetzt";
+"favorites.anchor.endsNow.footer" = "Bucht sofort einen Eintrag über %@, der jetzt endet, etwa für ein gerade beendetes Telefonat. Ein laufender Timer bleibt unberührt.";
+"favorites.anchor.startsNow.footer" = "Bucht sofort einen Eintrag über %@, der jetzt beginnt. Ein laufender Timer bleibt unberührt. Kimai muss Einträge in der Zukunft erlauben.";
+"favorites.startMenu.toggle" = "Im Menü von „Timer starten“ zeigen";
+"favorites.startMenu.footer" = "Halte „Timer starten“ gedrückt (am Mac: Rechtsklick), um diesen Favoriten direkt auszuführen.";
+"favorites.feedback.timerStarted" = "Timer für %@ gestartet";
+"favorites.chooseDuration.title" = "Dauer wählen";
+"favorites.chooseDuration.book" = "Buchen";
+"favorites.appIcon.toggle" = "Am App-Symbol zeigen";
+"favorites.appIcon.footer" = "Halte das Timai-Symbol gedrückt, um diesen Favoriten direkt auszuführen. Es erscheinen die ersten %d eingeschalteten Favoriten in deiner Reihenfolge.";

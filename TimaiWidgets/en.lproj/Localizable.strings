@@ -13,3 +13,28 @@
 "widgets.empty.message" = "Timai Widgets are only available on iOS";
 "widgets.configuration.displayName" = "Timai";
 "widgets.configuration.description" = "Timai Widgets";
+
+// Favorites widgets
+"widgets.favorites.name" = "Favorites";
+"widgets.favorites.description" = "Start your favorites with one tap.";
+"widgets.favorite.name" = "Favorite";
+"widgets.favorite.description" = "Start a chosen favorite, also from the Lock Screen.";
+"widgets.message.signedOut" = "Sign in to Timai";
+"widgets.message.noFavorites" = "Add favorites in Timai";
+"widgets.timer.running" = "Running";
+"widgets.action.stop" = "Stop timer";
+
+// App Intents (English source strings as keys)
+"Start Favorite" = "Start Favorite";
+"Starts tracking for a saved favorite." = "Starts tracking for a saved favorite.";
+"Favorite" = "Favorite";
+"Start ${favorite}" = "Start ${favorite}";
+"Tracking started." = "Tracking started.";
+"Stop Tracking" = "Stop Tracking";
+"Select Favorite" = "Select Favorite";
+"Choose the favorite this widget starts." = "Choose the favorite this widget starts.";
+"Time booked." = "Time booked.";
+"favorites.duration.untilNow" = "%@ until now";
+"favorites.duration.fromNow" = "%@ from now";
+"Choose Duration" = "Choose Duration";
+"widgets.chooseDuration" = "Choose duration…";

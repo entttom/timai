@@ -1,4 +1,8 @@
-- Offline-Modus hinzugefügt
-- Cache-Verwaltung implementiert
-- Synchronisierung ausstehender Änderungen
-- Bug-Fixes und Performance-Verbesserungen
+Neu: Favoriten
+- Speichere feste Kombinationen aus Kunde, Projekt und Tätigkeit als Favorit und starte sie mit einem Tipp
+- Favoriten starten einen Timer oder buchen eine feste Dauer, wahlweise bis jetzt oder ab jetzt (z. B. 10 Minuten für ein gerade beendetes Telefonat)
+- Neue Widgets für Home- und Sperrbildschirm: mehrere Favoriten auf einen Blick, ein einzelner Favorit oder „Dauer wählen“
+- Schnellzugriff: Favoriten über das gedrückt gehaltene App-Symbol, langes Drücken auf „Timer starten“, Spotlight und Siri starten
+- Favoriten auch auf der Apple Watch
+- Läuft bereits ein Timer, wird er nie ungefragt ersetzt
+- Favoriten verwaltest du unter Einstellungen → Favoriten: sortieren, umbenennen, Dauer ändern

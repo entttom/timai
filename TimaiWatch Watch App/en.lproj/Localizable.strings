@@ -88,3 +88,11 @@
 "watch.manual.error.missingData" = "Missing data";
 "watch.manual.error.invalidDateRange" = "End must be after start";
 "watch.manual.error.endBeforeStart" = "End must be after start";
+
+// Favorites
+"watch.favorites.title" = "Favorites";
+"watch.favorites.start.accessibility" = "Start %@";
+"watch.favorites.booked" = "%@ booked";
+"watch.favorites.book.accessibility" = "Book %1$@ for %2$@";
+"favorites.duration.untilNow" = "%@ until now";
+"favorites.duration.fromNow" = "%@ from now";

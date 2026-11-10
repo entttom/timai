@@ -29,6 +29,20 @@
 "timesheet.stats.week" = "Hours this week";
 "timesheet.stats.month" = "Hours this month";
 
+// Timesheet calendar
+"calendar.showCalendar" = "Show calendar";
+"calendar.showList" = "Show list";
+"calendar.previousMonth" = "Previous month";
+"calendar.nextMonth" = "Next month";
+"calendar.today" = "Today";
+"calendar.entryCount.one" = "1 entry";
+"calendar.entryCount.other" = "%d entries";
+"calendar.absence" = "Absence";
+"calendar.halfDay" = "Half day";
+"calendar.absence.notApproved" = "Not approved";
+"calendar.day.empty" = "No entries on this day";
+"calendar.warning.outsideLocalRange" = "Offline - this month is outside the local data range and may be incomplete.";
+
 // TimesheetRecordDetail View
 "timesheetRecordDetail.startTimeTitle" = "Start";
 "timesheetRecordDetail.endTimeTitle" = "End";
@@ -292,6 +306,7 @@
 "common.ok" = "OK";
 "common.error" = "Error";
 "common.unknown" = "Unknown";
+"common.userFallback" = "User %ld";
 
 // Sync Status
 "sync.status.ready" = "Ready";
@@ -570,7 +585,6 @@
 // Add Instance View
 "addInstance.title" = "Add Server";
 "addInstance.button.add" = "Add";
-"addInstance.button.cancel" = "Cancel";
 "addInstance.section.name" = "Name";
 "addInstance.section.name.footer" = "A name to recognize the server by (e.g. “Work”, “Personal”).";
 "addInstance.name.placeholder" = "Display name";
@@ -816,8 +830,8 @@
 "settings.pushNotifications.inbox.generic.subtitle" = "Open the related area";
 "settings.pushBridge.hero.title" = "Kimai in real time";
 "settings.pushBridge.hero.message" = "Timai learns right away when a timer starts or stops on the web or another device – and tells you about absences and approved months.";
-"settings.pushNotifications.permission.request" = "Allow notifications";
-"settings.pushNotifications.permission.request.detail" = "Timai needs your permission to show events as notifications.";
+"settings.pushNotifications.permission.request" = "Continue";
+"settings.pushNotifications.permission.request.detail" = "For events to appear as notifications, iOS will ask you next whether Timai may send notifications.";
 "settings.pushNotifications.group.timeTracking" = "Time tracking";
 "settings.pushNotifications.group.absences" = "Absences";
 "settings.pushNotifications.group.workingTime" = "Working time";
@@ -1119,3 +1133,62 @@
 "reports.project.budget.exceeded" = "%@ over budget";
 "reports.project.budget.footer" = "Calculated from the locally stored entries; older entries are not included.";
 "reports.project.budget.footer.monthly" = "Monthly budget: compared with the entries of the current month.";
+
+// Mac menu bar
+"mac.menuBar.noTimer" = "No timer running";
+"mac.menuBar.signedOut" = "Sign in to Timai to track time.";
+"mac.menuBar.openApp" = "Open Timai";
+"mac.menuBar.quit" = "Quit Timai";
+"mac.commands.timer" = "Timer";
+
+// Favorites
+"favorites.title" = "Favorites";
+"favorites.empty.title" = "No Favorites";
+"favorites.empty.message" = "When you start a timer, choose a customer, project and activity, then tap “Save as Favorite”. Or open the context menu of an entry.";
+"favorites.footer.widget" = "Tap a favorite to edit it. With the Timai widgets you can start favorites right from the Home Screen or Lock Screen, and chosen ones by touching and holding the app icon.";
+"favorites.footer.mac" = "Click a favorite to edit it. Start the first nine from the Timer menu with ⌘1 to ⌘9, and all of them from the menu bar.";
+"favorites.action.save" = "Save as Favorite";
+"favorites.action.save.hint" = "Saves the selection as a favorite, as a timer or with a fixed duration";
+"favorites.action.saved" = "Saved as Favorite";
+"favorites.action.remove" = "Remove from Favorites";
+"favorites.action.start.accessibility" = "Start %@";
+"favorites.rename.message" = "Leave empty to use the project name.";
+"favorites.error.duplicate" = "This selection is already a favorite.";
+"favorites.error.limitReached" = "You can save up to %d favorites.";
+"favorites.error.noInstance" = "Sign in to a Kimai server first.";
+"favorites.error.timerRunning" = "A timer is already running. Stop it before starting a favorite.";
+"favorites.error.notFound" = "This favorite no longer exists.";
+"favorites.error.otherInstance" = "This favorite belongs to a different Kimai server. Switch to that server first.";
+
+// Favorites in Siri & Shortcuts (English source strings as keys)
+"Start Favorite" = "Start Favorite";
+"Starts tracking for a saved favorite." = "Starts tracking for a saved favorite.";
+"Favorite" = "Favorite";
+"Start ${favorite}" = "Start ${favorite}";
+"favorites.kind.title" = "Kind";
+"favorites.kind.timer" = "Start Timer";
+"favorites.kind.fixedDuration" = "Fixed Duration";
+"favorites.kind.fixedDuration.value" = "Fixed Duration: %@";
+"favorites.kind.timer.footer" = "Starts a timer. If one is already running, stop it first.";
+"favorites.duration.title" = "Duration";
+"favorites.edit.title" = "Name";
+"favorites.edit.navigationTitle" = "Edit Favorite";
+"favorites.edit.hint" = "Changes the name and duration";
+"favorites.action.edit" = "Edit";
+"favorites.action.book.accessibility" = "Book %1$@ for %2$@";
+"favorites.booked.message" = "Booked %1$@ for %2$@";
+"Time booked." = "Time booked.";
+"favorites.duration.untilNow" = "%@ until now";
+"favorites.duration.fromNow" = "%@ from now";
+"favorites.anchor.title" = "Direction";
+"favorites.anchor.endsNow" = "Until Now";
+"favorites.anchor.startsNow" = "From Now";
+"favorites.anchor.endsNow.footer" = "Immediately books an entry of %@ that ends now, for example for a call that just finished. A running timer is left alone.";
+"favorites.anchor.startsNow.footer" = "Immediately books an entry of %@ that starts now. A running timer is left alone. Kimai must allow entries in the future.";
+"favorites.startMenu.toggle" = "Show in “Start Timer” Menu";
+"favorites.startMenu.footer" = "Touch and hold “Start Timer” (on the Mac: right-click) to run this favorite directly.";
+"favorites.feedback.timerStarted" = "Timer started for %@";
+"favorites.chooseDuration.title" = "Choose Duration";
+"favorites.chooseDuration.book" = "Book";
+"favorites.appIcon.toggle" = "Show on App Icon";
+"favorites.appIcon.footer" = "Touch and hold the Timai icon to run this favorite directly. The first %d favorites switched on appear, in your order.";

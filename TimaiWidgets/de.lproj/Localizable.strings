@@ -13,3 +13,28 @@
 "widgets.empty.message" = "Timai Widgets sind nur auf iOS verfügbar";
 "widgets.configuration.displayName" = "Timai";
 "widgets.configuration.description" = "Timai Widgets";
+
+// Favorites widgets
+"widgets.favorites.name" = "Favoriten";
+"widgets.favorites.description" = "Starte deine Favoriten mit einem Tipp.";
+"widgets.favorite.name" = "Favorit";
+"widgets.favorite.description" = "Starte einen gewählten Favoriten, auch vom Sperrbildschirm.";
+"widgets.message.signedOut" = "In Timai anmelden";
+"widgets.message.noFavorites" = "Favoriten in Timai anlegen";
+"widgets.timer.running" = "Läuft";
+"widgets.action.stop" = "Timer stoppen";
+
+// App Intents (English source strings as keys)
+"Start Favorite" = "Favorit starten";
+"Starts tracking for a saved favorite." = "Startet die Zeiterfassung für einen gespeicherten Favoriten.";
+"Favorite" = "Favorit";
+"Start ${favorite}" = "${favorite} starten";
+"Tracking started." = "Tracking gestartet.";
+"Stop Tracking" = "Tracking stoppen";
+"Select Favorite" = "Favorit auswählen";
+"Choose the favorite this widget starts." = "Wähle den Favoriten, den dieses Widget startet.";
+"Time booked." = "Zeit gebucht.";
+"favorites.duration.untilNow" = "%@ bis jetzt";
+"favorites.duration.fromNow" = "%@ ab jetzt";
+"Choose Duration" = "Dauer wählen";
+"widgets.chooseDuration" = "Dauer wählen …";

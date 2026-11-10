@@ -3,3 +3,5 @@
 "Start time tracking in ${applicationName}" = "Starte Zeiterfassung in ${applicationName}";
 "Stop tracking in ${applicationName}" = "Stoppe Tracking in ${applicationName}";
 "Stop time tracking in ${applicationName}" = "Stoppe Zeiterfassung in ${applicationName}";
+"Start a favorite in ${applicationName}" = "Starte einen Favoriten in ${applicationName}";
+"Start ${favorite} in ${applicationName}" = "Starte ${favorite} in ${applicationName}";
