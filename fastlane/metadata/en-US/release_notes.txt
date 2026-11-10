@@ -5,4 +5,4 @@ New: Favorites
 - Quick access: start favorites by touching and holding the app icon, by touching and holding "Start Timer", from Spotlight and with Siri
 - Favorites on Apple Watch too
 - A running timer is never replaced without asking
-- Manage favorites in Settings → Favorites: reorder, rename, change the duration
+- Create favorites right in Settings → Favorites and manage them there: reorder, rename, change the duration

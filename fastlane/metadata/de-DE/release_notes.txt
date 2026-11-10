@@ -5,4 +5,4 @@ Neu: Favoriten
 - Schnellzugriff: Favoriten über das gedrückt gehaltene App-Symbol, langes Drücken auf „Timer starten“, Spotlight und Siri starten
 - Favoriten auch auf der Apple Watch
 - Läuft bereits ein Timer, wird er nie ungefragt ersetzt
-- Favoriten verwaltest du unter Einstellungen → Favoriten: sortieren, umbenennen, Dauer ändern
+- Favoriten legst du auch direkt unter Einstellungen → Favoriten an und verwaltest sie dort: sortieren, umbenennen, Dauer ändern

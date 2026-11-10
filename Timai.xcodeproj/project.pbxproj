@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF8AA164D1A017AE0B451B59 /* FavoriteCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22C50A800E254CDC17ECA9 /* FavoriteCreateView.swift */; };
 		1DED05E9C406098744C8FDE1 /* FavoriteSurfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453BC8BDFF0BDE1925AE290 /* FavoriteSurfaces.swift */; };
 		2E8974B729CC649C9589397D /* FavoriteActionCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DA6B3EC556599CA4880812 /* FavoriteActionCenter.swift */; };
 		81FA796F059849E0E3695CBF /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7418E4973DDFDC0E26B3FD0A /* Favorite.swift */; };
@@ -291,6 +292,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C22C50A800E254CDC17ECA9 /* FavoriteCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCreateView.swift; sourceTree = "<group>"; };
 		8453BC8BDFF0BDE1925AE290 /* FavoriteSurfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSurfaces.swift; sourceTree = "<group>"; };
 		01DA6B3EC556599CA4880812 /* FavoriteActionCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteActionCenter.swift; sourceTree = "<group>"; };
 		7418E4973DDFDC0E26B3FD0A /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 		AA34B14D2EBA0D4D0027C2F5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				4C22C50A800E254CDC17ECA9 /* FavoriteCreateView.swift */,
 				D7B0B4B6731CECF2038F2B05 /* FavoritesSettingsView.swift */,
 				0C5AFA11F8912BC63AFC6987 /* SyncDiagnosticsView.swift */,
 				0A1AD640FAA85C0AB87313BD /* AccountSettingsView.swift */,
@@ -1307,6 +1310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF8AA164D1A017AE0B451B59 /* FavoriteCreateView.swift in Sources */,
 				1DED05E9C406098744C8FDE1 /* FavoriteSurfaces.swift in Sources */,
 				2E8974B729CC649C9589397D /* FavoriteActionCenter.swift in Sources */,
 				CA83621C2E0A1AF3D53F2618 /* Favorite.swift in Sources */,
@@ -1557,7 +1561,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = TimaiWatchWidgets/TimaiWatchWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1597,7 +1601,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "TimaiWatch Watch App/TimaiWatch.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -1640,7 +1644,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = "TimaiWatch Watch App/TimaiWatch.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -1680,7 +1684,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1721,7 +1725,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1758,7 +1762,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = TimaiWatchWidgets/TimaiWatchWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1976,7 +1980,7 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = Timai/TimaiMac.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2013,7 +2017,7 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = Timai/TimaiMac.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = RG7FE682S2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

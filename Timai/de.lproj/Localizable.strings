@@ -1144,7 +1144,7 @@
 // Favorites
 "favorites.title" = "Favoriten";
 "favorites.empty.title" = "Keine Favoriten";
-"favorites.empty.message" = "Wähle beim Starten eines Timers Kunde, Projekt und Tätigkeit und tippe auf „Als Favorit speichern“. Oder öffne das Kontextmenü eines Eintrags.";
+"favorites.empty.message" = "Lege hier einen Favoriten an. Oder speichere ihn beim Starten eines Timers mit „Als Favorit speichern“ oder über das Kontextmenü eines Eintrags.";
 "favorites.footer.widget" = "Tippe auf einen Favoriten, um ihn zu bearbeiten. Mit den Timai-Widgets startest du Favoriten direkt vom Home- oder Sperrbildschirm, ausgewählte auch über das gedrückt gehaltene App-Symbol.";
 "favorites.footer.mac" = "Klicke auf einen Favoriten, um ihn zu bearbeiten. Die ersten neun startest du im Menü „Timer“ mit ⌘1 bis ⌘9, alle auch über die Menüleiste.";
 "favorites.action.save" = "Als Favorit speichern";
@@ -1192,3 +1192,6 @@
 "favorites.chooseDuration.book" = "Buchen";
 "favorites.appIcon.toggle" = "Am App-Symbol zeigen";
 "favorites.appIcon.footer" = "Halte das Timai-Symbol gedrückt, um diesen Favoriten direkt auszuführen. Es erscheinen die ersten %d eingeschalteten Favoriten in deiner Reihenfolge.";
+"favorites.create.button" = "Favorit anlegen";
+"favorites.create.navigationTitle" = "Neuer Favorit";
+"favorites.create.description.footer" = "Optional. Wird bei jedem Start bzw. jeder Buchung als Beschreibung übernommen.";

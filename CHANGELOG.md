@@ -12,7 +12,7 @@ Das Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
 - **Favoriten**: feste Kombinationen aus Kunde, Projekt, Tätigkeit und optionaler Beschreibung
   - Zwei Arten: Timer starten oder feste Dauer buchen, wahlweise bis jetzt (Eintrag endet jetzt) oder ab jetzt (Eintrag beginnt jetzt)
   - Ein Timer-Favorit startet nie, während schon ein Timer läuft; feste Dauern lassen einen laufenden Timer unberührt
-  - Anlegen im Start-Dialog und im Kontextmenü eines Eintrags, Verwalten unter Einstellungen → Favoriten
+  - Anlegen direkt unter Einstellungen → Favoriten („+“), im Start-Dialog und im Kontextmenü eines Eintrags; dort auch verwalten
   - Widgets „Favoriten“ (klein, mittel, groß) und „Favorit“ (klein, Sperrbildschirm rund und rechteckig)
   - Apple Watch, Mac-Menüleiste und Siri/Kurzbefehle („Favorit starten“)
   - Schnellzugriff: Menü am App-Symbol (bis zu vier Favoriten) und langes Drücken auf „Timer starten“, beides pro Favorit abschaltbar; Spotlight-Suche; Mac-Menü „Timer“ mit ⌘1–⌘9

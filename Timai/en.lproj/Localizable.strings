@@ -1144,7 +1144,7 @@
 // Favorites
 "favorites.title" = "Favorites";
 "favorites.empty.title" = "No Favorites";
-"favorites.empty.message" = "When you start a timer, choose a customer, project and activity, then tap “Save as Favorite”. Or open the context menu of an entry.";
+"favorites.empty.message" = "Create a favorite here. Or save one when you start a timer with “Save as Favorite”, or from the context menu of an entry.";
 "favorites.footer.widget" = "Tap a favorite to edit it. With the Timai widgets you can start favorites right from the Home Screen or Lock Screen, and chosen ones by touching and holding the app icon.";
 "favorites.footer.mac" = "Click a favorite to edit it. Start the first nine from the Timer menu with ⌘1 to ⌘9, and all of them from the menu bar.";
 "favorites.action.save" = "Save as Favorite";
@@ -1192,3 +1192,6 @@
 "favorites.chooseDuration.book" = "Book";
 "favorites.appIcon.toggle" = "Show on App Icon";
 "favorites.appIcon.footer" = "Touch and hold the Timai icon to run this favorite directly. The first %d favorites switched on appear, in your order.";
+"favorites.create.button" = "Add Favorite";
+"favorites.create.navigationTitle" = "New Favorite";
+"favorites.create.description.footer" = "Optional. Used as the description each time the favorite starts a timer or books time.";
